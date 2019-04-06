@@ -810,7 +810,7 @@
       </ownedParameter>
     </ownedOperation>
   </packagedElement>
-  <packagedElement xmi:type="uml:Interface" xmi:id="__ibacFOhEemoaqLE8anhiw" name="SAProvider" clientDependency="_lxKCoFcAEemEatc5wLJn6A">
+  <packagedElement xmi:type="uml:Interface" xmi:id="__ibacFOhEemoaqLE8anhiw" name="SAProvider" clientDependency="_lxKCoFcAEemEatc5wLJn6A _hMTykFhtEem_g_Q789z1bw">
     <ownedOperation xmi:id="__ibacVOhEemoaqLE8anhiw" name="createProvider">
       <ownedParameter xmi:id="__ibaclOhEemoaqLE8anhiw" name="tp" type="_YE904Fb_EemEatc5wLJn6A"/>
       <ownedParameter xmi:id="__ibac1OhEemoaqLE8anhiw" name="Parameter1" direction="return">
@@ -839,7 +839,7 @@
       </ownedParameter>
     </ownedOperation>
   </packagedElement>
-  <packagedElement xmi:type="uml:Interface" xmi:id="__icokFOhEemoaqLE8anhiw" name="SAEmployee" clientDependency="_cLY3sFb_EemEatc5wLJn6A">
+  <packagedElement xmi:type="uml:Interface" xmi:id="__icokFOhEemoaqLE8anhiw" name="SAEmployee" clientDependency="_cLY3sFb_EemEatc5wLJn6A _5T_0AFhcEem_g_Q789z1bw">
     <ownedOperation xmi:id="__icokVOhEemoaqLE8anhiw" name="createEmployee">
       <ownedParameter xmi:id="__icoklOhEemoaqLE8anhiw" name="te" type="_YE-b8Fb_EemEatc5wLJn6A"/>
       <ownedParameter xmi:id="__icok1OhEemoaqLE8anhiw" name="Parameter1" direction="return">
@@ -1420,7 +1420,7 @@
       </ownedOperation>
     </nestedClassifier>
   </packagedElement>
-  <packagedElement xmi:type="uml:Interface" xmi:id="__idPoFOhEemoaqLE8anhiw" name="SAPlattform" clientDependency="_3CA74Fb_EemEatc5wLJn6A _eyLzcFcCEemEatc5wLJn6A">
+  <packagedElement xmi:type="uml:Interface" xmi:id="__idPoFOhEemoaqLE8anhiw" name="SAPlattform" clientDependency="_3CA74Fb_EemEatc5wLJn6A _eyLzcFcCEemEatc5wLJn6A _Ynbv0FhfEem_g_Q789z1bw">
     <ownedOperation xmi:id="__idPoVOhEemoaqLE8anhiw" name="createPlattfomr">
       <ownedParameter xmi:id="__idPolOhEemoaqLE8anhiw" name="tpl" type="_YE_qEFb_EemEatc5wLJn6A"/>
       <ownedParameter xmi:id="__idPo1OhEemoaqLE8anhiw" name="Parameter1" direction="return">
@@ -1838,7 +1838,7 @@
     <ownedAttribute xmi:id="_YE904lb_EemEatc5wLJn6A" name="_nif" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="_YE9041b_EemEatc5wLJn6A" name="address" visibility="private">
+    <ownedAttribute xmi:id="_YE9041b_EemEatc5wLJn6A" name="_address" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="_YE905Fb_EemEatc5wLJn6A" name="_phoneNumber" visibility="private">
@@ -2050,6 +2050,9 @@
     <ownedAttribute xmi:id="_YFARKVb_EemEatc5wLJn6A" name="_plattformId" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
     </ownedAttribute>
+    <ownedAttribute xmi:id="_lRG7MFhhEem_g_Q789z1bw" name="_activated" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
     <ownedOperation xmi:id="_YFARKlb_EemEatc5wLJn6A" name="getDescription">
       <ownedParameter xmi:id="_YFARK1b_EemEatc5wLJn6A" name="Parameter1" direction="return">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
@@ -2140,6 +2143,16 @@
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
       </ownedParameter>
     </ownedOperation>
+    <ownedOperation xmi:id="_m2kdIFhhEem_g_Q789z1bw" name="isActivated">
+      <ownedParameter xmi:id="_oErPAFhhEem_g_Q789z1bw" name="Parameter1" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_ocggMFhhEem_g_Q789z1bw" name="setActivated">
+      <ownedParameter xmi:id="_pnynkFhhEem_g_Q789z1bw" name="b">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
+    </ownedOperation>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_YFBfQFb_EemEatc5wLJn6A" name="TTicket" clientDependency="_YFKpMVb_EemEatc5wLJn6A _YFKpMlb_EemEatc5wLJn6A">
     <ownedAttribute xmi:id="_YFBfQVb_EemEatc5wLJn6A" name="_finalPrice" visibility="private">
@@ -2153,6 +2166,12 @@
     </ownedAttribute>
     <ownedAttribute xmi:id="_YFBfRFb_EemEatc5wLJn6A" name="_activated" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_mPJbUFhiEem_g_Q789z1bw" name="_employeeId" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_MOVOsFhrEem_g_Q789z1bw" name="_productsId" visibility="private">
+      <type xmi:type="uml:Interface" href="mmi:///#jbintype%5Ename=java.util.List%5Bproject%5Eid=2ºDiagrams%5D$uml.Interface"/>
     </ownedAttribute>
     <ownedOperation xmi:id="_YFBfRVb_EemEatc5wLJn6A" name="getPrice">
       <ownedParameter xmi:id="_YFBfRlb_EemEatc5wLJn6A" name="Parameter1" direction="return">
@@ -2187,6 +2206,31 @@
     <ownedOperation xmi:id="_YFBfU1b_EemEatc5wLJn6A" name="setActivated">
       <ownedParameter xmi:id="_YFBfVFb_EemEatc5wLJn6A" name="b">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_nqPgUFhiEem_g_Q789z1bw" name="getEmployee">
+      <ownedParameter xmi:id="_pY-TAFhiEem_g_Q789z1bw" name="Parameter1" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_p1U30FhiEem_g_Q789z1bw" name="setEmployee">
+      <ownedParameter xmi:id="_rabNYFhiEem_g_Q789z1bw" name="i">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_T2kLYFhrEem_g_Q789z1bw" name="getProducts">
+      <ownedParameter xmi:id="_VZIKUFhrEem_g_Q789z1bw" name="Parameter1" direction="return">
+        <type xmi:type="uml:Interface" href="mmi:///#jbintype%5Ename=java.util.List%5Bproject%5Eid=2ºDiagrams%5D$uml.Interface"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_WfhxsFhrEem_g_Q789z1bw" name="removeProduct">
+      <ownedParameter xmi:id="_X7sNsFhrEem_g_Q789z1bw" name="id">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_YX3MUFhrEem_g_Q789z1bw" name="addProduct">
+      <ownedParameter xmi:id="_ajEfoFhrEem_g_Q789z1bw" name="id">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
       </ownedParameter>
     </ownedOperation>
   </packagedElement>
@@ -2287,6 +2331,15 @@
   <packagedElement xmi:type="uml:Dependency" xmi:id="_W7HwkFcCEemEatc5wLJn6A" supplier="_YE6xkFb_EemEatc5wLJn6A" client="_tZRZ8FWUEem0WaQbNobMNQ"/>
   <packagedElement xmi:type="uml:Dependency" xmi:id="_cjjYsFcCEemEatc5wLJn6A" supplier="_YFARIFb_EemEatc5wLJn6A" client="_YE6xkFb_EemEatc5wLJn6A"/>
   <packagedElement xmi:type="uml:Dependency" xmi:id="_eyLzcFcCEemEatc5wLJn6A" supplier="_YFARIFb_EemEatc5wLJn6A" client="__idPoFOhEemoaqLE8anhiw"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_5T_0AFhcEem_g_Q789z1bw" client="__icokFOhEemoaqLE8anhiw">
+    <supplier xmi:type="uml:Class" href="Presentacion.emx#_Ogyv0FOlEemoaqLE8anhiw?Presentacion/TEmployee?"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_Ynbv0FhfEem_g_Q789z1bw" client="__idPoFOhEemoaqLE8anhiw">
+    <supplier xmi:type="uml:Class" href="Presentacion.emx#_Ogz98FOlEemoaqLE8anhiw?Presentacion/TPlattform?"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_hMTykFhtEem_g_Q789z1bw" client="__ibacFOhEemoaqLE8anhiw">
+    <supplier xmi:type="uml:Class" href="Presentacion.emx#_OgxhsFOlEemoaqLE8anhiw?Presentacion/TProvider?"/>
+  </packagedElement>
   <profileApplication xmi:id="_FAS11U1WEemS3My_NeP0_Q">
     <eAnnotations xmi:id="_FAS11k1WEemS3My_NeP0_Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
       <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>

@@ -842,7 +842,7 @@
           <children xmi:type="notation:BasicDecorationNode" xmi:id="_6Xxmk1YqEemCIMugAn099w" type="Name"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_6XxmkVYqEemCIMugAn099w" y="-186"/>
         </children>
-        <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_6Xw_gVYqEemCIMugAn099w" points="[868, 634, -8537, -7444]$[868, 6314, -8537, -1764]$[6709, 6314, -2696, -1764]"/>
+        <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_6Xw_gVYqEemCIMugAn099w" points="[667, 634, -10006, -7444]$[667, 6314, -10006, -1764]$[7977, 6314, -2696, -1764]"/>
       </edges>
       <edges xmi:type="umlnotation:UMLConnector" xmi:id="_AvSiQFYrEemCIMugAn099w" element="_AvQGAFYrEemCIMugAn099w" source="_4oAC_FXmEemOxY6VDOchTA" target="_ArLeUFYrEemCIMugAn099w" fontName="Noto Sans" fontHeight="8" roundedBendpointsRadius="4" routing="Rectilinear" lineColor="8421504" lineWidth="1" showStereotype="Text">
         <children xmi:type="notation:DecorationNode" xmi:id="_AvSiQlYrEemCIMugAn099w" type="NameLabel">
@@ -850,7 +850,7 @@
           <children xmi:type="notation:BasicDecorationNode" xmi:id="_AvSiRVYrEemCIMugAn099w" type="Name"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AvSiQ1YrEemCIMugAn099w" y="-186"/>
         </children>
-        <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_AvSiQVYrEemCIMugAn099w" points="[1635, 634, -7928, -3065]$[1635, 3457, -7928, -242]$[7660, 3457, -1903, -242]"/>
+        <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_AvSiQVYrEemCIMugAn099w" points="[984, 634, -9213, -3065]$[984, 3457, -9213, -242]$[8294, 3457, -1903, -242]"/>
       </edges>
       <edges xmi:type="umlnotation:UMLConnector" xmi:id="_7eXA0Fb-EemEatc5wLJn6A" element="_7ePsEFb-EemEatc5wLJn6A" source="_4oADalXmEemOxY6VDOchTA" target="_BaKYQFb8EemEatc5wLJn6A" fontName="Noto Sans" fontHeight="8" roundedBendpointsRadius="4" routing="Rectilinear" lineColor="8421504" lineWidth="1" showStereotype="Text">
         <children xmi:type="notation:DecorationNode" xmi:id="_7eXn4Fb-EemEatc5wLJn6A" type="NameLabel">
@@ -1018,7 +1018,7 @@
           <children xmi:type="notation:BasicDecorationNode" xmi:id="_wWlZAFYrEemCIMugAn099w" type="Name"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wWkx8VYrEemCIMugAn099w" y="-186"/>
         </children>
-        <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_wWkK4VYrEemCIMugAn099w" points="[596, -633, -7949, 9991]$[596, -10479, -7949, 145]$[6643, -10479, -1902, 145]"/>
+        <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_wWkK4VYrEemCIMugAn099w" points="[-357, -633, -13340, 9991]$[-357, -10479, -13340, 145]$[11081, -10479, -1902, 145]"/>
       </edges>
       <edges xmi:type="umlnotation:UMLConnector" xmi:id="_x2K8cFYrEemCIMugAn099w" element="_x1_WQFYrEemCIMugAn099w" source="_BNWITVXnEemOxY6VDOchTA" target="_uEKDYFYrEemCIMugAn099w" fontName="Noto Sans" fontHeight="8" roundedBendpointsRadius="4" routing="Rectilinear" lineColor="8421504" lineWidth="1" showStereotype="Text">
         <children xmi:type="notation:DecorationNode" xmi:id="_x2LjgFYrEemCIMugAn099w" type="NameLabel">
@@ -1034,7 +1034,7 @@
           <children xmi:type="notation:BasicDecorationNode" xmi:id="_y4eG81YrEemCIMugAn099w" type="Name"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_y4eG8VYrEemCIMugAn099w" y="-186"/>
         </children>
-        <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_y4df4VYrEemCIMugAn099w" points="[1231, -633, -12398, 4283]$[1231, -4455, -12398, 461]$[12349, -4455, -1280, 461]"/>
+        <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_y4df4VYrEemCIMugAn099w" points="[913, -633, -12399, 4283]$[913, -4455, -12399, 461]$[12032, -4455, -1280, 461]"/>
       </edges>
       <edges xmi:type="umlnotation:UMLConnector" xmi:id="_0EYgcFYrEemCIMugAn099w" element="_0EUPAFYrEemCIMugAn099w" source="_BNWITVXnEemOxY6VDOchTA" target="_uEKDdVYrEemCIMugAn099w" fontName="Noto Sans" fontHeight="8" roundedBendpointsRadius="4" routing="Rectilinear" lineColor="8421504" lineWidth="1" showStereotype="Text">
         <children xmi:type="notation:DecorationNode" xmi:id="_0EZHgVYrEemCIMugAn099w" type="NameLabel">
@@ -1042,7 +1042,7 @@
           <children xmi:type="notation:BasicDecorationNode" xmi:id="_0EZukVYrEemCIMugAn099w" type="Name"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0EZHglYrEemCIMugAn099w" y="-186"/>
         </children>
-        <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_0EZHgFYrEemCIMugAn099w" points="[596, -633, -13366, 2008]$[596, -2250, -13366, 391]$[12032, -2250, -1930, 391]"/>
+        <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_0EZHgFYrEemCIMugAn099w" points="[1231, -633, -12731, 2008]$[1231, -2250, -12731, 391]$[12032, -2250, -1930, 391]"/>
       </edges>
       <edges xmi:type="umlnotation:UMLConnector" xmi:id="_1LerYFYrEemCIMugAn099w" element="_1LSeIFYrEemCIMugAn099w" source="_BNWITVXnEemOxY6VDOchTA" target="_uEKqelYrEemCIMugAn099w" fontName="Noto Sans" fontHeight="8" roundedBendpointsRadius="4" routing="Rectilinear" lineColor="8421504" lineWidth="1" showStereotype="Text">
         <children xmi:type="notation:DecorationNode" xmi:id="_1LfScFYrEemCIMugAn099w" type="NameLabel">
@@ -1414,7 +1414,7 @@
     <ownedAttribute xmi:id="__e4XUlb7EemEatc5wLJn6A" name="_nif" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="__e4XU1b7EemEatc5wLJn6A" name="address" visibility="private">
+    <ownedAttribute xmi:id="__e4XU1b7EemEatc5wLJn6A" name="_ address" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="__e4XVFb7EemEatc5wLJn6A" name="_phoneNumber" visibility="private">
@@ -1626,6 +1626,9 @@
     <ownedAttribute xmi:id="__e7aqVb7EemEatc5wLJn6A" name="_plattformId" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
     </ownedAttribute>
+    <ownedAttribute xmi:id="_yqMcMFhhEem_g_Q789z1bw" name="_activated" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
     <ownedOperation xmi:id="__e7aqlb7EemEatc5wLJn6A" name="getDescription">
       <ownedParameter xmi:id="__e7aq1b7EemEatc5wLJn6A" name="Parameter1" direction="return">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
@@ -1716,6 +1719,16 @@
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
       </ownedParameter>
     </ownedOperation>
+    <ownedOperation xmi:id="_0UZUMFhhEem_g_Q789z1bw" name="isActivated">
+      <ownedParameter xmi:id="_1Gp3kFhhEem_g_Q789z1bw" name="Parameter1" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_1cfksFhhEem_g_Q789z1bw" name="setActivated">
+      <ownedParameter xmi:id="_2tCmkFhhEem_g_Q789z1bw" name="b">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
+    </ownedOperation>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="__e8owFb7EemEatc5wLJn6A" name="TTicket" clientDependency="_PX9d8Fb-EemEatc5wLJn6A _QDOogFb-EemEatc5wLJn6A">
     <ownedAttribute xmi:id="__e8owVb7EemEatc5wLJn6A" name="_finalPrice" visibility="private">
@@ -1729,6 +1742,12 @@
     </ownedAttribute>
     <ownedAttribute xmi:id="__e8oxFb7EemEatc5wLJn6A" name="_activated" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_4bYXsFhhEem_g_Q789z1bw" name="_employeeId" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_b5qfIFhrEem_g_Q789z1bw" name="_productsId" visibility="private">
+      <type xmi:type="uml:Interface" href="mmi:///#jbintype%5Ename=java.util.List%5Bproject%5Eid=2ºDiagrams%5D$uml.Interface"/>
     </ownedAttribute>
     <ownedOperation xmi:id="__e8oxVb7EemEatc5wLJn6A" name="getPrice">
       <ownedParameter xmi:id="__e8oxlb7EemEatc5wLJn6A" name="Parameter1" direction="return">
@@ -1763,6 +1782,31 @@
     <ownedOperation xmi:id="__e8o01b7EemEatc5wLJn6A" name="setActivated">
       <ownedParameter xmi:id="__e8o1Fb7EemEatc5wLJn6A" name="b">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_AmOSMFhiEem_g_Q789z1bw" name="getEmployee">
+      <ownedParameter xmi:id="_CG4zsFhiEem_g_Q789z1bw" name="Parameter1" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_CcaXwFhiEem_g_Q789z1bw" name="setEmployee">
+      <ownedParameter xmi:id="_Er9_kFhiEem_g_Q789z1bw" name="e">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_k6TZMFhrEem_g_Q789z1bw" name="getProducts">
+      <ownedParameter xmi:id="_mSsvgFhrEem_g_Q789z1bw" name="Parameter1" direction="return">
+        <type xmi:type="uml:Interface" href="mmi:///#jbintype%5Ename=java.util.List%5Bproject%5Eid=2ºDiagrams%5D$uml.Interface"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_nbrJwFhrEem_g_Q789z1bw" name="addProduct">
+      <ownedParameter xmi:id="_oe8koFhrEem_g_Q789z1bw" name="id">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_o-Rk8FhrEem_g_Q789z1bw" name="removeProduct">
+      <ownedParameter xmi:id="_qX6RYFhrEem_g_Q789z1bw" name="id">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
       </ownedParameter>
     </ownedOperation>
   </packagedElement>
