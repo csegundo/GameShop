@@ -3,7 +3,6 @@
  */
 package Presentacion.Ticket;
 
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -15,7 +14,7 @@ import javax.swing.JTable;
 * @author joalow
 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 */
-public class FormTicket extends JDialog {
+public class FormTicket {
 	/** 
 	* <!-- begin-UML-doc -->
 	* <!-- end-UML-doc -->
@@ -69,5 +68,5 @@ public class FormTicket extends JDialog {
 	* <!-- end-UML-doc -->
 	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	*/
-	private String[] _columnIds = { "ID", "NAME", "PLATFORM" };
+	private String[]_columnIds = { "ID", "NAME", "PLATFORM" };
 }

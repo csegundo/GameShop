@@ -3,7 +3,6 @@
  */
 package Presentacion.Employee;
 
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -15,7 +14,7 @@ import javax.swing.JButton;
 * @author joalow
 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 */
-public class FormEmployee extends JDialog {
+public class FormEmployee {
 	/** 
 	* <!-- begin-UML-doc -->
 	* <!-- end-UML-doc -->

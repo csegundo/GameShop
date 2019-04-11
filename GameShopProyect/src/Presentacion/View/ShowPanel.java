@@ -12,7 +12,7 @@ import javax.swing.JTabbedPane;
 * @author joalow
 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 */
-public class ShowPanel extends JTabbedPane {
+public class ShowPanel extends JPanel {
 	/** 
 	* <!-- begin-UML-doc -->
 	* <!-- end-UML-doc -->

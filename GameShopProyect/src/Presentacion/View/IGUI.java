@@ -3,7 +3,7 @@
  */
 package Presentacion.View;
 
-import javax.xml.stream.util.EventReaderDelegate;
+import Presentacion.Controller.Event;
 
 /** 
 * <!-- begin-UML-doc -->
@@ -19,5 +19,5 @@ public interface IGUI {
 	* @param t
 	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	*/
-	public void actualiza(EventReaderDelegate e, Object t);
+	public void actualiza(Event e, Object t);
 }

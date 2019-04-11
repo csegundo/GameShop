@@ -5,7 +5,9 @@ package Presentacion.Ticket;
 
 import javax.swing.JPanel;
 import Presentacion.View.IGUI;
-import javax.xml.stream.util.EventReaderDelegate;
+import Presentacion.View.OperationsPanel;
+import Presentacion.View.ShowPanel;
+import Presentacion.Controller.Event;
 
 /** 
 * <!-- begin-UML-doc -->
@@ -15,11 +17,24 @@ import javax.xml.stream.util.EventReaderDelegate;
 */
 public class GUITicket extends JPanel implements IGUI {
 	/** 
-	* (non-Javadoc)
-	* @see IGUI#actualiza(EventReaderDelegate e, Object t)
+	* <!-- begin-UML-doc -->
+	* <!-- end-UML-doc -->
 	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	*/
-	public void actualiza(EventReaderDelegate e, Object t) {
+	private OperationsPanel _leftPane;
+	/** 
+	* <!-- begin-UML-doc -->
+	* <!-- end-UML-doc -->
+	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	*/
+	private ShowPanel _rghtPane;
+
+	/** 
+	* (non-Javadoc)
+	* @see IGUI#actualiza(Event e, Object t)
+	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	*/
+	public void actualiza(Event e, Object t) {
 		// begin-user-code
 		// TODO Auto-generated method stub
 

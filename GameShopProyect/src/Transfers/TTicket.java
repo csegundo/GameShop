@@ -24,7 +24,7 @@ public class TTicket {
 	* <!-- end-UML-doc -->
 	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	*/
-	private Timestamp date;
+	private Timestamp _date;
 	/** 
 	* <!-- begin-UML-doc -->
 	* <!-- end-UML-doc -->
@@ -107,7 +107,7 @@ public class TTicket {
 	* @return
 	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	*/
-	public Integer getID() {
+	public Integer getId() {
 		// begin-user-code
 		// TODO Auto-generated method stub
 		return null;
@@ -120,7 +120,7 @@ public class TTicket {
 	* @param i
 	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	*/
-	public void setId(Object i) {
+	public void setId(Integer i) {
 		// begin-user-code
 		// TODO Auto-generated method stub
 

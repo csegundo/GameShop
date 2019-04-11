@@ -3,7 +3,6 @@
  */
 package Presentacion.Platform;
 
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -14,7 +13,7 @@ import javax.swing.JButton;
 * @author joalow
 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 */
-public class FormPlatform extends JDialog {
+public class FormPlatform {
 	/** 
 	* <!-- begin-UML-doc -->
 	* <!-- end-UML-doc -->

@@ -3,9 +3,7 @@
  */
 package Presentacion.View;
 
-import Presentacion.Employee.FormEmployee;
-import Presentacion.Platform.FormPlatform;
-import Presentacion.Provider.FormProvider;
+import javax.swing.JDialog;
 import javax.swing.JButton;
 
 /** 
@@ -14,7 +12,7 @@ import javax.swing.JButton;
 * @author joalow
 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 */
-public class FormUpdate extends FormProvider {
+public class FormUpdate extends JDialog {
 	/** 
 	* <!-- begin-UML-doc -->
 	* <!-- end-UML-doc -->

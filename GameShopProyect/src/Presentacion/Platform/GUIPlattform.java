@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import Presentacion.View.IGUI;
 import Presentacion.View.OperationsPanel;
 import Presentacion.View.ShowPanel;
-import javax.xml.stream.util.EventReaderDelegate;
+import Presentacion.Controller.Event;
 
 /** 
 * <!-- begin-UML-doc -->
@@ -21,20 +21,20 @@ public class GUIPlattform extends JPanel implements IGUI {
 	* <!-- end-UML-doc -->
 	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	*/
-	private OperationsPanel leftPane;
+	private OperationsPanel _leftPane;
 	/** 
 	* <!-- begin-UML-doc -->
 	* <!-- end-UML-doc -->
 	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	*/
-	private ShowPanel rightPane;
+	private ShowPanel _rightPane;
 
 	/** 
 	* (non-Javadoc)
-	* @see IGUI#actualiza(EventReaderDelegate e, Object t)
+	* @see IGUI#actualiza(Event e, Object t)
 	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	*/
-	public void actualiza(EventReaderDelegate e, Object t) {
+	public void actualiza(Event e, Object t) {
 		// begin-user-code
 		// TODO Auto-generated method stub
 
