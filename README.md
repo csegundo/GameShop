@@ -9,7 +9,7 @@ _During this development phase, it will only be programmed to guarantee a total 
 
 
 
-### Pre - requirements 📋
+## Pre - requirements 📋
 _Must have installed a local MySQL database for the full operation of **GameShop application**._
 
 
