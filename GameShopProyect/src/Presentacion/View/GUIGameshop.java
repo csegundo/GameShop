@@ -15,19 +15,18 @@ import javax.swing.UIManager;
 
 import Presentacion.Provider.GUIProvider;
 
-/** 
+/**
 * @author GameShop
 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 */
 @SuppressWarnings("serial")
 public class GUIGameshop extends JFrame {
 	
-	// Private o public?
-	private static final String TAB_PROVIDER = "Provider";
-	private static final String TAB_PLATFORM = "Platform";
-	private static final String TAB_EMPLOYEE = "Employee";
-	private static final String TAB_PRODUCT = "Product";
-	private static final String TAB_TICKET = "Ticket";
+	public static final String TAB_PROVIDER = "Provider";
+	public static final String TAB_PLATFORM = "Platform";
+	public static final String TAB_EMPLOYEE = "Employee";
+	public static final String TAB_PRODUCT = "Product";
+	public static final String TAB_TICKET = "Ticket";
 	
 	private JTabbedPane _tabs;
 	

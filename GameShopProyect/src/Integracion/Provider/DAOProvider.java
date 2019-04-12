@@ -5,6 +5,8 @@ package Integracion.Provider;
 
 import java.util.List;
 
+import Transfers.TProvider;
+
 /** 
 * <!-- begin-UML-doc -->
 * <!-- end-UML-doc -->
@@ -12,56 +14,16 @@ import java.util.List;
 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 */
 public interface DAOProvider {
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @param tp
-	* @return
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Integer createProvider(Object tp);
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @param tp
-	* @return
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Boolean deleteProvider(Object tp);
+	public Integer createProvider(TProvider tp);
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @param tp
-	* @return
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Boolean updateProvider(Object tp);
+	public Boolean deleteProvider(TProvider tp);
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @param tp
-	* @return
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Object readProvider(Object tp);
+	public Boolean updateProvider(TProvider tp);
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @return
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
+	public Object readProvider(TProvider tp);
+
 	public List readAllProviders();
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @param s
-	* @return
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Integer existProviderByNIF(String s);
+	public TProvider readProviderByNIF(String s);
 }

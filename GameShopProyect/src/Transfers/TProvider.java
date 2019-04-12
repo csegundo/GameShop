@@ -14,6 +14,14 @@ public class TProvider {
 	
 	// CONSTRUCTOR
 	
+//	public TProvider(){
+//		_nif = new String();
+//		_address = new String();
+//		_phoneNumber = new Integer();
+//		_id = new Integer();
+//		_activated = new Boolean();
+//	}
+	
 	public String get_nif() {
 		return _nif;
 	}
@@ -30,7 +38,7 @@ public class TProvider {
 		return _phoneNumber;
 	}
 	public void set_phoneNumber(Integer _phoneNumber) {
-		this._phoneNumber = _phoneNumber;
+		this._phoneNumber = new Integer(_phoneNumber);
 	}
 	public Integer get_id() {
 		return _id;

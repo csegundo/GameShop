@@ -4,10 +4,11 @@
 package Integracion.DAO;
 
 import Integracion.Employee.DAOEmployee;
-import Integracion.Platform.DAOPlattform;
+import Integracion.Platform.DAOPlatform;
 import Integracion.Product.DAOProduct;
 import Integracion.Provider.DAOProvider;
 import Integracion.Ticket.DAOTicket;
+import Negocio.SA.SAAbstractFactoryImpl;
 
 /** 
 * <!-- begin-UML-doc -->
@@ -15,89 +16,22 @@ import Integracion.Ticket.DAOTicket;
 * @author joalow
 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 */
-public class DAOAbstractFactory {
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
+public abstract class DAOAbstractFactory {
+
 	private static DAOAbstractFactory instance;
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @return
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
 	public static DAOAbstractFactory getInstance() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+		if(instance == null) instance = new DAOAbstractFactoryImpl();
+		return instance;
 	}
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @return
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public DAOEmployee createDAOEmployee() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
+	public abstract DAOEmployee createDAOEmployee();
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @return
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public DAOPlattform createDAOPlatform() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
+	public abstract DAOPlatform createDAOPlatform();
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @return
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public DAOProduct createDAOProduct() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
+	public abstract DAOProduct createDAOProduct();
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @return
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public DAOProvider createDAOProvider() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
+	public abstract DAOProvider createDAOProvider();
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @return
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public DAOTicket createDAOTicket() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
+	public abstract DAOTicket createDAOTicket();
 }

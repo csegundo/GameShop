@@ -5,6 +5,7 @@ import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.TitledBorder;
@@ -26,23 +27,20 @@ public class ShowPanel extends JPanel {
 		this.setPreferredSize(new Dimension(390, 700));
 		this.setMinimumSize(new Dimension(390, 700));
 		this.setMaximumSize(new Dimension(390, 700));
-		// Border, Box o Flow ????
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 2), "Data information",
 				TitledBorder.LEFT, TitledBorder.TOP));
-		initComponents();
+		initTabs();
 		this.setVisible(true);
 	}
 
-	private void initComponents() {
+	private void initTabs() {
 		_tabs = new JTabbedPane(JTabbedPane.TOP);
-		_tabs.setPreferredSize(new Dimension(400, 700));
+		_tabs.setPreferredSize(new Dimension(400, 300));
 		_tabs.setVisible(true);
-		_tabs.addTab("Show one", null, null, "Show the data of the selected provider");
-		_tabs.addTab("Show all", null, null, "Show the data of all providers");
-		this.add(_tabs);
-		
-		
-		
+		_tabs.addTab("Show one", null, new ShowOne(), "Show the data of the selected provider");
+		_tabs.addTab("Show all", null, new ShowAll(), "Show the data of all providers");
+		this.add(_tabs);		
 	}
+	
 }
