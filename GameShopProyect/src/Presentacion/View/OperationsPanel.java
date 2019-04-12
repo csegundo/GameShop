@@ -1,12 +1,14 @@
 package Presentacion.View;
 
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Rectangle;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -23,7 +25,7 @@ import javax.swing.JLabel;
 public class OperationsPanel extends JPanel {
 	
 	private JButton _register;
-	private JComboBox _election;
+	private JComboBox<Object> _election;
 	private JButton _remove;
 	private JButton _update;
 	private JLabel _registerLabel;
@@ -47,12 +49,13 @@ public class OperationsPanel extends JPanel {
 		this.setVisible(true);
 	}
 	
-	// TODO PONER MEJOR setBounds EN VEZ DE setSize
 	private void initComponents() {
 		this.add(Box.createVerticalGlue());
 		_registerLabel = new JLabel("Register a new provider by entering the data");
 		_registerLabel.setVisible(true);
 		this.add(_registerLabel);
+		
+		this.add(Box.createRigidArea(new Dimension(1, 10)));
 		
 		_register = new JButton("Register Provider");
 		_register.setSize(new Dimension(100, 50));
@@ -65,18 +68,25 @@ public class OperationsPanel extends JPanel {
 		_updaterLabel.setVisible(true);
 		this.add(_updaterLabel);
 		
+		this.add(Box.createRigidArea(new Dimension(1, 10)));
+		
 		// Aqui llamar a algun metodo que se encargue rellenar la lista con los datos de la base de datos
 		_election = new JComboBox<Object>();
 		_election.setSize(new Dimension(200, 50));
 		_election.setMinimumSize(new Dimension(200, 50));
 		_election.setMaximumSize(new Dimension(200, 50));
+		_election.setEditable(false);
 		_election.setVisible(true);
 		this.add(_election);
+		
+		this.add(Box.createRigidArea(new Dimension(1, 20)));
 		
 		_update = new JButton("Delete provider");
 		_update.setSize(new Dimension(100, 50));
 		_update.setVisible(true);
 		this.add(_update);
+		
+		this.add(Box.createRigidArea(new Dimension(1, 10)));
 		
 		_remove = new JButton("Modify provider");
 		_remove.setSize(new Dimension(100, 50));

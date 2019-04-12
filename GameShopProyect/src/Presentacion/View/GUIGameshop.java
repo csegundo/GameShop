@@ -2,6 +2,7 @@ package Presentacion.View;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -36,18 +37,19 @@ public class GUIGameshop extends JFrame {
 	}
 
 	private void initGUI() {
+		// TODO MIRAR LA DOCUMENTACION DEL lookAndFell();
 		try{
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         }catch(Exception ex){
         	System.err.println("ERROR lookAndFeel");
         }
 		this.setSize(new Dimension(700, 500));
-		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
-				if (JOptionPane.showConfirmDialog(null, "Are you sure that you want to close the program?", 
-						"Exit", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+				if (JOptionPane.showConfirmDialog(null, "Are you sure that you want to close the program?", "Exit",
+						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 					System.exit(0);
 			}
 		});
@@ -69,12 +71,9 @@ public class GUIGameshop extends JFrame {
 		_tabs.setMinimumSize(new Dimension(700, 500));
 		_tabs.setMaximumSize(new Dimension(700, 500));
 		
-		_tabs.addTab(GUIGameshop.TAB_PROVIDER, null, null, "Provider tab");
-		GUIProvider guiProvider = new GUIProvider();
-		guiProvider.setVisible(true);
-		_tabs.setComponentAt(_tabs.getTabCount() - _tabs.getTabCount(), guiProvider);
+		_tabs.addTab(GUIGameshop.TAB_PROVIDER, null, new GUIProvider(), "Provider tab");
 		
-		_tabs.addTab(GUIGameshop.TAB_PLATFORM, null, null, "Platform tab");
+		_tabs.addTab(GUIGameshop.TAB_PLATFORM, null, new JLabel("holaa"), "Platform tab");
 		
 		_tabs.addTab(GUIGameshop.TAB_EMPLOYEE, null, null, "Employee tab");
 		
