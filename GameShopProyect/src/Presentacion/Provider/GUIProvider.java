@@ -6,11 +6,11 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Presentacion.Controller.Event;
 import Presentacion.View.GUIGameshop;
 import Presentacion.View.IGUI;
 import Presentacion.View.OperationsPanel;
 import Presentacion.View.ShowPanel;
-import Presentacion.Controller.Event;
 
 /** 
 * @author GameShop
@@ -31,6 +31,7 @@ public class GUIProvider extends JPanel implements IGUI {
 		this._leftPane = new OperationsPanel(GUIGameshop.TAB_PROVIDER);
 		this.add(_leftPane, BorderLayout.WEST);
 		_leftPane.setVisible(true);
+		
 		this._rightPane = new ShowPanel();
 		this.add(_rightPane, BorderLayout.EAST);
 		_rightPane.setVisible(true);
@@ -39,10 +40,10 @@ public class GUIProvider extends JPanel implements IGUI {
 	public void actualiza(Integer e, Integer t) {
 		JDialog jd = new JDialog();
 		switch(e){
-		case 205: //Reg provider ok
+		case Event.RES_REGISTER_PROVIDER_OK:
 			jd.add(new JLabel("Se ha insertado el proveedor correctamente en la base de datos."));
 			break;
-		case -206: //Reg provider failed
+		case Event.RES_REGISTER_PROVIDER_FAILED:
 			jd.add(new JLabel("Error al insertar el proveedor en la base de datos."));
 			break;
 		}

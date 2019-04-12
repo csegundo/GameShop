@@ -1,18 +1,15 @@
 package Presentacion.View;
 
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 import Presentacion.Provider.FormProvider;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,6 +18,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 /** 
@@ -49,74 +47,16 @@ public class OperationsPanel extends JPanel {
 		this.setPreferredSize(new Dimension(300, 700));
 		this.setMinimumSize(new Dimension(300, 700));
 		this.setMaximumSize(new Dimension(300, 700));
-		//this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setLayout(new GridBagLayout());
-		this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 2), "Operations",
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.setAlignmentX(Component.CENTER_ALIGNMENT);
+		this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1), "Operations",
 				TitledBorder.LEFT, TitledBorder.TOP));
-		
 		initComponents();
 		this.setVisible(true);
 	}
 	
 	private void initComponents() {
-		GridBagConstraints constraints = new GridBagConstraints();
-		constraints.fill = GridBagConstraints.NONE;
-		//constraints.weighty = 1.0;
-		
-		_registerLabel = new JLabel("Register a new provider by entering the data");
-		constraints.gridx = 0; // El texto empieza en la columna cero
-		constraints.gridy = 1; // El texto empieza en la fila uno
-		constraints.gridwidth = 1; // El texto ocupa una columna
-		constraints.gridheight = 1; // El texto ocupa 1 fila/
-		this.add(_registerLabel, constraints);
-		//constraints.weighty = 0.0; // Restauramos al valor por defecto, para no afectar a los siguientes componentes
-		
-		_register = new JButton("Register Provider");
-		constraints.gridx = 0;
-		constraints.gridy = 2;
-		constraints.gridwidth = 1;
-		constraints.gridheight = 1;
-		this.add(_register, constraints);
-		constraints.weighty = 1.0;
-		
-		_updaterLabel = new JLabel("Modify or remove a provider from the list");
-		constraints.gridx = 0;
-		constraints.gridy = 3;
-		constraints.gridwidth = 1;
-		constraints.gridheight = 1;
-		this.add(_updaterLabel, constraints);
-		
-		_election = new JComboBox<Object>();
-		_election.setPreferredSize(new Dimension(200, 20));
-		_election.setMinimumSize(new Dimension(200, 50));
-		_election.setMaximumSize(new Dimension(200, 50));
-		_election.setEditable(false);
-		constraints.gridx = 0;
-		constraints.gridy = 4;
-		constraints.gridwidth = 1;
-		constraints.gridheight = 1;
-		this.add(_election, constraints);
-		
-		_update = new JButton("Modify provider");
-		_update.setSize(new Dimension(100, 50));
-		_update.setMinimumSize(new Dimension(100, 50));
-		_update.setMaximumSize(new Dimension(100, 50));
-		constraints.gridx = 0;
-		constraints.gridy = 5;
-		constraints.gridwidth = 1;
-		constraints.gridheight = 1;
-		this.add(_update, constraints);
-		
-		_remove = new JButton("Remove provider");
-		constraints.gridx = 0;
-		constraints.gridy = 6;
-		constraints.gridwidth = 1;
-		constraints.gridheight = 1;
-		this.add(_remove, constraints);
-		
-		registerButtonAction();
-
-		/*this.add(Box.createVerticalGlue());
+		this.add(Box.createVerticalGlue());
 		_registerLabel = new JLabel("Register a new provider by entering the data");
 		_registerLabel.setVisible(true);
 		this.add(_registerLabel);
@@ -159,7 +99,9 @@ public class OperationsPanel extends JPanel {
 		_remove.setVisible(true);
 		this.add(_remove);
 		
-		this.add(Box.createVerticalGlue());*/
+		this.add(Box.createVerticalGlue());
+		
+		registerButtonAction();
 	}
 
 	private void registerButtonAction(){

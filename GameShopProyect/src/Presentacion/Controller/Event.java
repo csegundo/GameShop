@@ -1,417 +1,96 @@
-/**
- * 
- */
 package Presentacion.Controller;
 
 /** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
- * @author joalow
+ * @author GameShop
  * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class Event {
 
-	public static Integer REGISTER_EMPLOYEE = new Integer(100);
+	// EMPLOYEE
+	public static final int REGISTER_EMPLOYEE = 100;
+	public static final int UNSUBSCRIBE_EMPLOYEE = 101;
+	public static final int MODIFY_EMPLOYEE = 102;
+	public static final int READ_EMPLOYEE = 103;
+	public static final int READ_ALL_EMPLOYEES = 104;
+	public static final int RES_REGISTER_EMPLOYEE_OK = 105;
+	public static final int RES_REGISTER_EMPLOYEE_FAILED = -106;
+	public static final int RES_UNSUBSCRIBE_EMPLOYEE_OK = 107;
+	public static final int RES_UNSUBSCRIBE_EMPLOYEE_FAILED = -108;
+	public static final int RES_MODIFY_EMPLOYEE_OK = 109;
+	public static final int RES_MODIFY_EMPLOYEE_FAILED = -110;
+	public static final int RES_READ_EMPLOYEE_OK = 111;
+	public static final int RES_READ_EMPLOYEE_FAILED = -112;
+	public static final int RES_READALL_EMPLOYEES_OK = 113;
+	public static final int RES_READALL_EMPLOYEES_FAILED = -114;
 
-	public static Integer UNSUBSCRIBE_EMPLOYEE = new Integer(101);
-
-	public static Integer MODIFY_EMPLOYEE = new Integer(102);
-
-	public static Integer READ_EMPLOYEE = new Integer(103);
-
-	public static Integer READ_ALL_EMPLOYEES = new Integer(104);
-
-	public static Integer RES_REGISTER_EMPLOYEE_OK = new Integer(105);
-
-	public static Integer RES_REGISTER_EMPLOYEE_FAILED = new Integer(-106);
-
-	public static Integer RES_UNSUBSCRIBE_EMPLOYEE_OK = new Integer(107);
-
-	public static Integer RES_UNSUBSCRIBE_EMPLOYEE_FAILED = new Integer(-108);
-
-	public static Integer RES_MODIFY_EMPLOYEE_OK = new Integer(109);
-
-	public static Integer RES_MODIFY_EMPLOYEE_FAILED = new Integer(-110);
-
-	public static Integer RES_READ_EMPLOYEE_OK = new Integer(111);
-
-	public static Integer RES_READ_EMPLOYEE_FAILED = new Integer(-112);
-
-	public static Integer RES_READALL_EMPLOYEES_OK = new Integer(113);
-
-	public static Integer RES_READALL_EMPLOYEES_FAILED = new Integer(-114);
-
-	public static final Integer REGISTER_PROVIDER = new Integer(200);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static final Integer UNSUBSCRIBE_PROVIDER = new Integer(201);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static final Integer MODIFY_PROVIDER = new Integer(202);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static final Integer READ_PROVIDER = new Integer(203);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static final Integer READ_ALL_PROVIDERS = new Integer(204);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static final Integer RES_REGISTER_PROVIDER_OK = new Integer(205);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static final Integer RES_REGISTER_PROVIDER_FAILED = new Integer(-206);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static final Integer RES_UNSUBSCRIBE_PROVIDER_OK = new Integer(207);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static final Integer RES_UNSUBSCRIBE_PROVIDER_FAILED = new Integer(-208);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static final Integer RES_MODIFY_PROVIDER_OK = new Integer(209);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static final Integer RES_MODIFY_PROVIDER_FAILED = new Integer(-210);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static final Integer RES_READ_PROVIDER_OK = new Integer(211);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static final Integer RES_READ_PROVIDER_FAILED = new Integer(-212);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static final Integer RES_READALL_PROVIDERS_OK = new Integer(213);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static final Integer RES_READALL_PROVIDERS_FAILED = new Integer(-214);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer REGISTER_TICKET = new Integer(300);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer UNSUBSCRIBE_TICKET = new Integer(301);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer MODIFY_TICKET = new Integer(302);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer READ_TICKET = new Integer(303);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer READ_ALL_TICKET = new Integer(304);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_REGISTER_TICKET_OK = new Integer(305);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_REGISTER_TICKET_FAILED = new Integer(-306);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_UNSUBSCRIBE_TICKET_OK = new Integer(307);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_UNSUBSCRIBE_TICKET_FAILED = new Integer(-308);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_MODIFY_TICKET_OK = new Integer(309);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_MODIFY_TICKET_FAILED = new Integer(-310);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_READ_TICKET_OK = new Integer(311);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_READ_TICKET_FAILED = new Integer(-312);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_READALL_TICKET_OK = new Integer(313);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_READALL_TICKET_FAILED = new Integer(-314);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer REGISTER_PRODUCT = new Integer(400);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer UNSUBSCRIBE_PRODUCT = new Integer(401);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer MODIFY_PRODUCT = new Integer(402);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer READ_PRODUCT = new Integer(403);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer READ_ALL_PRODUCT = new Integer(404);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_REGISTER_PRODUCT_OK = new Integer(405);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_REGISTER_PRODUCT_FAILED = new Integer(-406);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_UNSUBSCRIBE_PRODUCT_OK = new Integer(407);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_UNSUBSCRIBE_PRODUCT_FAILED = new Integer(-408);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_MODIFY_PRODUCT_OK = new Integer(409);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_MODIFY_PRODUCT_FAILED = new Integer(-410);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_READ_PRODUCT_OK = new Integer(411);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_READ_PRODUCT_FAILED = new Integer(-412);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_READALL_PRODUCT_OK = new Integer(413);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_READALL_PRODUCT_FAILED = new Integer(-414);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer REGISTER_PLATFORM = new Integer(500);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer UNSUBSCRIBE_PLATFORM = new Integer(501);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer MODIFY_PLATFORM = new Integer(502);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer READ_PLATFORM = new Integer(503);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer READ_ALL_PLATFORMS = new Integer(504);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_REGISTER_PLATFORM_OK = new Integer(505);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_REGISTER_PLATFORM_FAILED = new Integer(-506);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_UNSUBSCRIBE_PLATFORM_OK = new Integer(507);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_UNSUBSCRIBE_PLATFORM_FAILED = new Integer(-508);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_MODIFY_PLATFORM_OK = new Integer(509);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_MODIFY_PLATFORM_FAILED = new Integer(-510);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_READ_PLATFORM_OK = new Integer(511);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_READ_PLATFORM_FAILED = new Integer(-512);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_READALL_PLATFORM_OK = new Integer(513);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_READALL_PLATFORM_FAILED = new Integer(-514);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer READ_ALL_PRODUCTS_FROM_PLATFORM = new Integer(515);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RES_READALL_PRODUCTS_FROM_PLATFORM_OK = new Integer(516);
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public static Integer RESREADALL_PRODUCTS_FROM_PLATFROM_FAILED = new Integer(-517);
+	// PROVIDER
+	public static final int REGISTER_PROVIDER = 200;
+	public static final int UNSUBSCRIBE_PROVIDER = 201;
+	public static final int MODIFY_PROVIDER = 202;
+	public static final int READ_PROVIDER = 203;
+	public static final int READ_ALL_PROVIDERS = 204;
+	public static final int RES_REGISTER_PROVIDER_OK = 205;
+	public static final int RES_REGISTER_PROVIDER_FAILED = -206;
+	public static final int RES_UNSUBSCRIBE_PROVIDER_OK = 207;
+	public static final int RES_UNSUBSCRIBE_PROVIDER_FAILED = -208;
+	public static final int RES_MODIFY_PROVIDER_OK = 209;
+	public static final int RES_MODIFY_PROVIDER_FAILED = -210;
+	public static final int RES_READ_PROVIDER_OK = 211;
+	public static final int RES_READ_PROVIDER_FAILED = -212;
+	public static final int RES_READALL_PROVIDERS_OK = 213;
+	public static final int RES_READALL_PROVIDERS_FAILED = -214;
+	
+	// TICKET
+	public static final int REGISTER_TICKET = 300;
+	public static final int UNSUBSCRIBE_TICKET = 301;
+	public static final int MODIFY_TICKET = 302;
+	public static final int READ_TICKET = 303;
+	public static final int READ_ALL_TICKET = 304;
+	public static final int RES_REGISTER_TICKET_OK = 305;
+	public static final int RES_REGISTER_TICKET_FAILED = -306;
+	public static final int RES_UNSUBSCRIBE_TICKET_OK = 307;
+	public static final int RES_UNSUBSCRIBE_TICKET_FAILED = -308;
+	public static final int RES_MODIFY_TICKET_OK = 309;
+	public static final int RES_MODIFY_TICKET_FAILED = -310;
+	public static final int RES_READ_TICKET_OK = 311;
+	public static final int RES_READ_TICKET_FAILED = -312;
+	public static final int RES_READALL_TICKET_OK = 313;
+	public static final int RES_READALL_TICKET_FAILED = -314;
+	
+	// PRODUCT
+	public static final int REGISTER_PRODUCT = 400;
+	public static final int UNSUBSCRIBE_PRODUCT = 401;
+	public static final int MODIFY_PRODUCT = 402;
+	public static final int READ_PRODUCT = 403;
+	public static final int READ_ALL_PRODUCT = 404;
+	public static final int RES_REGISTER_PRODUCT_OK = 405;
+	public static final int RES_REGISTER_PRODUCT_FAILED = -406;
+	public static final int RES_UNSUBSCRIBE_PRODUCT_OK = 407;
+	public static final int RES_UNSUBSCRIBE_PRODUCT_FAILED = -408;
+	public static final int RES_MODIFY_PRODUCT_OK = 409;
+	public static final int RES_MODIFY_PRODUCT_FAILED = -410;
+	public static final int RES_READ_PRODUCT_OK = 411;
+	public static final int RES_READ_PRODUCT_FAILED = -412;
+	public static final int RES_READALL_PRODUCT_OK = 413;
+	public static final int RES_READALL_PRODUCT_FAILED = -414;
+	
+	// PLATFORM
+	public static final int REGISTER_PLATFORM = 500;
+	public static final int UNSUBSCRIBE_PLATFORM = 501;
+	public static final int MODIFY_PLATFORM = 502;
+	public static final int READ_PLATFORM = 503;
+	public static final int READ_ALL_PLATFORMS = 504;
+	public static final int RES_REGISTER_PLATFORM_OK = 505;
+	public static final int RES_REGISTER_PLATFORM_FAILED = -506;
+	public static final int RES_UNSUBSCRIBE_PLATFORM_OK = 507;
+	public static final int RES_UNSUBSCRIBE_PLATFORM_FAILED = -508;
+	public static final int RES_MODIFY_PLATFORM_OK = 509;
+	public static final int RES_MODIFY_PLATFORM_FAILED = -510;
+	public static final int RES_READ_PLATFORM_OK = 511;
+	public static final int RES_READ_PLATFORM_FAILED = -512;
+	public static final int RES_READALL_PLATFORM_OK = 513;
+	public static final int RES_READALL_PLATFORM_FAILED = -514;
+	public static final int READ_ALL_PRODUCTS_FROM_PLATFORM = 515;
+	public static final int RES_READALL_PRODUCTS_FROM_PLATFORM_OK = 516;
+	public static final int RESREADALL_PRODUCTS_FROM_PLATFROM_FAILED = -517;
 }

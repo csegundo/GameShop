@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
 
 /** 
 * @author GameShop
@@ -40,7 +39,6 @@ public class ShowAll extends JPanel {
 
 	private void initComponents() {		
 		AbstractTableModel model = new AbstractTableModel() {
-			//private final String[] _columnNames = {"ID", "NIF", "Name", "Turn"};
 			@Override
 			public int getColumnCount() {
 				return _columnNames.length;

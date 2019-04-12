@@ -40,4 +40,8 @@ public class GUITicket extends JPanel implements IGUI {
 
 		// end-user-code
 	}
+
+	@Override
+	public void actualiza(Integer e, Integer t) {
+	}
 }

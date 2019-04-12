@@ -1,6 +1,7 @@
 package Presentacion.View;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 
@@ -13,7 +14,6 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 /** 
@@ -56,11 +56,12 @@ public class ShowOne extends JPanel {
 		this.add(Box.createRigidArea(new Dimension(1, 10)));
 		
 		_show = new JButton("Show data");
-		_show.setSize(new Dimension(100, 30));
-		_show.setMinimumSize(new Dimension(100, 30));
-		_show.setMaximumSize(new Dimension(100, 30));
-		_show.setVisible(true);
+		_show.setBounds(50, 50, 100, 30);
+//		_show.setSize(new Dimension(100, 30));
+//		_show.setMinimumSize(new Dimension(100, 30));
+//		_show.setMaximumSize(new Dimension(100, 30));
 		this.add(_show);
+		_show.setVisible(true);
 		
 		this.add(Box.createRigidArea(new Dimension(1, 30)));
 		
@@ -69,11 +70,11 @@ public class ShowOne extends JPanel {
 		_info.setMinimumSize(new Dimension(200, 190));
 		_info.setMaximumSize(new Dimension(200, 190));
 		//_info.setEditable(false);
-		_info.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 2), "Detailed data",
+		_info.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1), "Detailed data",
 				TitledBorder.LEFT, TitledBorder.TOP));
 		_info.setFont(new Font("Arial", 0, 15));
 		_info.setVisible(true);
-		//this.add(_info);
+		this.add(_info);
 		
 		JScrollPane scroll = new JScrollPane(_info);
 		scroll.setPreferredSize(new Dimension(300, 200));
