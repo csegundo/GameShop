@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Presentacion.Controller.Event;
@@ -38,14 +39,16 @@ public class GUIProvider extends JPanel implements IGUI {
 		_rightPane.setVisible(true);
 	}
 	
-	public void actualiza(Integer e, Integer t) {
-		JDialog jd = new JDialog();
+	public void actualiza(Integer e, Object t) {
 		switch(e){
 		case Event.RES_REGISTER_PROVIDER_OK:
-			jd.add(new JLabel("Se ha insertado el proveedor correctamente en la base de datos."));
+			Integer id = (Integer)t;
+			JOptionPane.showConfirmDialog(null, "Se ha insertado el proveedor " + id + " correctamente en la base de datos.", "Success",
+					JOptionPane.INFORMATION_MESSAGE, JOptionPane.OK_OPTION);
 			break;
 		case Event.RES_REGISTER_PROVIDER_FAILED:
-			jd.add(new JLabel("Error al insertar el proveedor en la base de datos."));
+			JOptionPane.showConfirmDialog(null, "Error al insertar el proveedor en la base de datos.", "Failed",
+					JOptionPane.ERROR_MESSAGE, JOptionPane.OK_OPTION);
 			break;
 		}
 		

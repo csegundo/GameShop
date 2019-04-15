@@ -23,5 +23,5 @@ public interface SAProvider {
 
 	public Object readProvider(TProvider tp);
 
-	public List readAllProviders();
+	public List<Object> readAllProviders();
 }

@@ -76,13 +76,11 @@ public class FormProvider extends JDialog {
 	
 	private void cancelButtonAction(){
 		_cancel.addActionListener(new ActionListener(){
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				dispose();
 			}
-			
 		});
 	}
 	

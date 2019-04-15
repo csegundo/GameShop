@@ -37,17 +37,16 @@ public class GUIEmployee extends JPanel implements IGUI {
 	}
 
 	@Override
-	public void actualiza(Integer e, Integer t) {
+	public void actualiza(Integer e, Object t) {
 		switch(e){
 		case Event.RES_REGISTER_EMPLOYEE_OK:
-			JOptionPane.showConfirmDialog(null, "Se ha insertado el proveedor correctamente en la base de datos.", "Success",
+			Integer id = (Integer)t;
+			JOptionPane.showConfirmDialog(null, "Se ha insertado el empleado" + id + "correctamente en la base de datos.", "Success",
 					JOptionPane.INFORMATION_MESSAGE, JOptionPane.OK_OPTION);
-			//jd.add(new JLabel("Se ha insertado el proveedor correctamente en la base de datos."));
 			break;
 		case Event.RES_REGISTER_EMPLOYEE_FAILED:
-			JOptionPane.showConfirmDialog(null, "Error al insertar el proveedor en la base de datos.", "Failed", JOptionPane.ERROR_MESSAGE, 
+			JOptionPane.showConfirmDialog(null, "Error al insertar el empleado en la base de datos.", "Failed", JOptionPane.ERROR_MESSAGE, 
 					JOptionPane.OK_OPTION);
-			//jd.add(new JLabel("Error al insertar el proveedor en la base de datos."));
 			break;
 		}
 	}

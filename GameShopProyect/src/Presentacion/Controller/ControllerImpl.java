@@ -20,8 +20,10 @@ public class ControllerImpl extends Controller {
 		case Event.REGISTER_PROVIDER:
 			sap = SAAbstractFactory.getInstance().createSAProvider();
 			int res = sap.createProvider(t);
-			if(res > 0) gui.actualiza(Event.RES_REGISTER_PROVIDER_OK, new Integer(res));
-			else gui.actualiza(Event.RES_REGISTER_PROVIDER_FAILED, null);
+			if(res > 0)
+				gui.actualiza(Event.RES_REGISTER_PROVIDER_OK, new Integer(res));
+			else if (res <= 0)
+				gui.actualiza(Event.RES_REGISTER_PROVIDER_FAILED, null);
 			break;
 		}
 	}
