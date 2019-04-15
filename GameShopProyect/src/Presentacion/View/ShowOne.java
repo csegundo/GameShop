@@ -14,6 +14,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.TitledBorder;
 
 /** 
@@ -35,6 +36,7 @@ public class ShowOne extends JPanel {
 		this.setPreferredSize(new Dimension(400, 300));
 		this.setMinimumSize(new Dimension(400, 300));
 		this.setMaximumSize(new Dimension(400, 300));
+		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		initComponents();
@@ -56,31 +58,27 @@ public class ShowOne extends JPanel {
 		this.add(Box.createRigidArea(new Dimension(1, 10)));
 		
 		_show = new JButton("Show data");
-		_show.setBounds(50, 50, 100, 30);
-//		_show.setSize(new Dimension(100, 30));
-//		_show.setMinimumSize(new Dimension(100, 30));
-//		_show.setMaximumSize(new Dimension(100, 30));
+		_show.setAlignmentX(CENTER_ALIGNMENT);
+		_show.setSize(new Dimension(100, 30));
+		_show.setMinimumSize(new Dimension(100, 30));
+		_show.setMaximumSize(new Dimension(100, 30));
 		this.add(_show);
 		_show.setVisible(true);
 		
 		this.add(Box.createRigidArea(new Dimension(1, 30)));
 		
 		_info = new JTextArea();
-		_info.setPreferredSize(new Dimension(200, 190));
-		_info.setMinimumSize(new Dimension(200, 190));
-		_info.setMaximumSize(new Dimension(200, 190));
-		//_info.setEditable(false);
+		_info.setWrapStyleWord(true);
+		_info.setLineWrap(true);
+		_info.setPreferredSize(new Dimension(300, 190));
+		_info.setMinimumSize(new Dimension(300, 190));
+		_info.setMaximumSize(new Dimension(300, 190));
+		_info.setEditable(false);
 		_info.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1), "Detailed data",
 				TitledBorder.LEFT, TitledBorder.TOP));
 		_info.setFont(new Font("Arial", 0, 15));
 		_info.setVisible(true);
 		this.add(_info);
-		
-		JScrollPane scroll = new JScrollPane(_info);
-		scroll.setPreferredSize(new Dimension(300, 200));
-		scroll.setMinimumSize(new Dimension(300, 200));
-		scroll.setMaximumSize(new Dimension(300, 200));
-		this.add(scroll);
 		
 		this.add(Box.createVerticalGlue());
 	}

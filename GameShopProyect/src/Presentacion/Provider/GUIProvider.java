@@ -28,6 +28,7 @@ public class GUIProvider extends JPanel implements IGUI {
 	
 	private void alignmentPanels() {
 		this.setLayout(new BorderLayout());
+		
 		this._leftPane = new OperationsPanel(GUIGameshop.TAB_PROVIDER);
 		this.add(_leftPane, BorderLayout.WEST);
 		_leftPane.setVisible(true);

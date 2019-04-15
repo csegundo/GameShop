@@ -10,6 +10,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -47,30 +48,38 @@ public class OperationsPanel extends JPanel {
 		this.setPreferredSize(new Dimension(300, 700));
 		this.setMinimumSize(new Dimension(300, 700));
 		this.setMaximumSize(new Dimension(300, 700));
+		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		
 		this.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
 		this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1), "Operations",
 				TitledBorder.LEFT, TitledBorder.TOP));
+		
 		initComponents();
+		
 		this.setVisible(true);
 	}
 	
 	private void initComponents() {
 		this.add(Box.createVerticalGlue());
-		_registerLabel = new JLabel("Register a new provider by entering the data");
+		_registerLabel = new JLabel("Register a new provider");
+		_registerLabel.setAlignmentX(CENTER_ALIGNMENT);
 		_registerLabel.setVisible(true);
 		this.add(_registerLabel);
 		
 		this.add(Box.createRigidArea(new Dimension(1, 10)));
 		
 		_register = new JButton("Register Provider");
+		_register.setAlignmentX(CENTER_ALIGNMENT);
 		_register.setSize(new Dimension(100, 50));
 		_register.setVisible(true);
 		this.add(_register);
 		
 		this.add(Box.createVerticalGlue());
 		
-		_updaterLabel = new JLabel("Modify or remove a provider from the list");
+		_updaterLabel = new JLabel("Modify or remove a provider");
+		_updaterLabel.setAlignmentX(CENTER_ALIGNMENT);
 		_updaterLabel.setVisible(true);
 		this.add(_updaterLabel);
 		
@@ -78,9 +87,11 @@ public class OperationsPanel extends JPanel {
 		
 		// Aqui llamar a algun metodo que se encargue rellenar la lista con los datos de la base de datos
 		_election = new JComboBox<Object>();
-		_election.setSize(new Dimension(200, 50));
-		_election.setMinimumSize(new Dimension(200, 50));
-		_election.setMaximumSize(new Dimension(200, 50));
+		_election.setAlignmentX(CENTER_ALIGNMENT);
+		_election.setSize(new Dimension(150, 50));
+		_election.setBounds(new Rectangle(50, 150));
+		_election.setMinimumSize(new Dimension(150, 50));
+		_election.setMaximumSize(new Dimension(150, 50));
 		_election.setEditable(false);
 		_election.setVisible(true);
 		this.add(_election);
@@ -88,6 +99,7 @@ public class OperationsPanel extends JPanel {
 		this.add(Box.createRigidArea(new Dimension(1, 20)));
 		
 		_update = new JButton("Modify provider");
+		_update.setAlignmentX(CENTER_ALIGNMENT);
 		_update.setSize(new Dimension(100, 50));
 		_update.setVisible(true);
 		this.add(_update);
@@ -95,6 +107,7 @@ public class OperationsPanel extends JPanel {
 		this.add(Box.createRigidArea(new Dimension(1, 10)));
 		
 		_remove = new JButton("Remove provider");
+		_remove.setAlignmentX(CENTER_ALIGNMENT);
 		_remove.setSize(new Dimension(100, 50));
 		_remove.setVisible(true);
 		this.add(_remove);
@@ -106,7 +119,6 @@ public class OperationsPanel extends JPanel {
 
 	private void registerButtonAction(){
 		_register.addActionListener(new ActionListener(){
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				switch(nameIdentificator){
@@ -123,7 +135,6 @@ public class OperationsPanel extends JPanel {
 					break;
 				}
 			}
-			
 		});
 	}
 }

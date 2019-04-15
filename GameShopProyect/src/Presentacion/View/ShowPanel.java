@@ -26,10 +26,14 @@ public class ShowPanel extends JPanel {
 		this.setPreferredSize(new Dimension(390, 700));
 		this.setMinimumSize(new Dimension(390, 700));
 		this.setMaximumSize(new Dimension(390, 700));
+		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		
 		this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1), "Data information",
 				TitledBorder.LEFT, TitledBorder.TOP));
+		
 		initTabs();
+		
 		this.setVisible(true);
 	}
 

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package Integracion.Provider;
 
 import java.sql.Connection;
@@ -13,16 +10,16 @@ import java.util.List;
 import Transfers.TProvider;
 
 /** 
-* <!-- begin-UML-doc -->
-* <!-- end-UML-doc -->
-* @author joalow
+* @author GameShop
 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 */
 public class DAOProviderImpl implements DAOProvider {
 	
-	public static final String nombreBD = "GameShop";
+	//public static final String nombreBD = "GameShop";
+	public static final String nombreBD = "gameshop";
 	public static final String userID = "root";
-	public static final String userPASS = "gameshop";
+	//public static final String userPASS = "gameshop";
+	public static final String userPASS = "1234";
 
 	public Integer createProvider(TProvider tp) {
 		int id = -1;
@@ -48,31 +45,19 @@ public class DAOProviderImpl implements DAOProvider {
 	}
 
 	public Boolean deleteProvider(TProvider tp) {
-		// begin-user-code
-		// TODO Auto-generated method stub
 		return null;
-		// end-user-code
 	}
 
 	public Boolean updateProvider(TProvider tp) {
-		// begin-user-code
-		// TODO Auto-generated method stub
 		return null;
-		// end-user-code
 	}
 
 	public Object readProvider(TProvider tp) {
-		// begin-user-code
-		// TODO Auto-generated method stub
 		return null;
-		// end-user-code
 	}
 
-	public List readAllProviders() {
-		// begin-user-code
-		// TODO Auto-generated method stub
+	public List<Object> readAllProviders() {
 		return null;
-		// end-user-code
 	}
 
 	public TProvider readProviderByNIF(String s) {
