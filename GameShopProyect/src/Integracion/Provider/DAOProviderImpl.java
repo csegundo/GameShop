@@ -26,8 +26,9 @@ public class DAOProviderImpl implements DAOProvider {
 	public Integer createProvider(TProvider tp) {
 		int id = -1;
 		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + nombreBD, userID, userPASS);
-			PreparedStatement ps = con.prepareStatement("INSERT INTO proveedor VALUES(?,?,?,?)");
+			PreparedStatement ps = con.prepareStatement("INSERT INTO proveedor VALUES(?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setString(1, tp.get_address());
 			ps.setString(2, tp.get_nif());
 			ps.setInt(3, tp.get_phoneNumber());
@@ -39,7 +40,7 @@ public class DAOProviderImpl implements DAOProvider {
 			}
 			con.close();
 			
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		return id;

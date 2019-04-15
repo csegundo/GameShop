@@ -2,6 +2,7 @@ package Presentacion.Controller;
 
 import Negocio.Provider.SAProvider;
 import Negocio.SA.SAAbstractFactory;
+import Presentacion.Provider.GUIProvider;
 import Presentacion.View.IGUI;
 import Transfers.TProvider;
 
@@ -12,7 +13,7 @@ import Transfers.TProvider;
 public class ControllerImpl extends Controller {
 	
 	private SAProvider sap;
-	private IGUI gui;
+	private IGUI gui = new GUIProvider();
 
 	@Override
 	public void action(TProvider t, Integer e) {
