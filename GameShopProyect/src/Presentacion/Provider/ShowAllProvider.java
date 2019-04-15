@@ -7,11 +7,10 @@ import Presentacion.View.ShowAll;
 import java.util.Set;
 
 /** 
-* <!-- begin-UML-doc -->
-* <!-- end-UML-doc -->
-* @author joalow
+* @author GameShop
 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 */
+@SuppressWarnings("serial")
 public class ShowAllProvider extends ShowAll {
 	/** 
 	* <!-- begin-UML-doc -->

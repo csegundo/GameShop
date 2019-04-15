@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
+import Presentacion.Employee.GUIEmployee;
 import Presentacion.Provider.GUIProvider;
 
 /**
@@ -73,11 +74,11 @@ public class GUIGameshop extends JFrame {
 		
 		_tabs.addTab(GUIGameshop.TAB_PLATFORM, null, new JLabel("holaa"), "Platform tab");
 		
-		_tabs.addTab(GUIGameshop.TAB_EMPLOYEE, null, null, "Employee tab");
+		_tabs.addTab(GUIGameshop.TAB_EMPLOYEE, null, new GUIEmployee(), "Employee tab");
 		
-		_tabs.addTab(GUIGameshop.TAB_PRODUCT, null, null, "Product tab");
+		_tabs.addTab(GUIGameshop.TAB_PRODUCT, null, new JLabel("tal"), "Product tab");
 		
-		_tabs.addTab(GUIGameshop.TAB_TICKET, null, null, "Ticket tab");
+		_tabs.addTab(GUIGameshop.TAB_TICKET, null, new JLabel("estan"), "Ticket tab");
 		
 		this.add(_tabs, BorderLayout.CENTER);
 	}
