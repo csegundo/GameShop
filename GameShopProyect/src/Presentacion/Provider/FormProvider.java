@@ -37,9 +37,11 @@ public class FormProvider extends JDialog {
 	public FormProvider(){
 		this.setTitle("Register a provider");
 		this.setIconImage(new ImageIcon("resources/GameShopLogo.png").getImage());
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
 		
 		this.setLayout(new FlowLayout());
-		this.setBounds(new Rectangle(300,150));
+		this.setBounds(new Rectangle(300,140));
 		this.setLocationRelativeTo(null);
 		
 		initComponents();

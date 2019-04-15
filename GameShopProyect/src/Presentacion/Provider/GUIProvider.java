@@ -43,8 +43,8 @@ public class GUIProvider extends JPanel implements IGUI {
 		switch(e){
 		case Event.RES_REGISTER_PROVIDER_OK:
 			Integer id = (Integer)t;
-			JOptionPane.showConfirmDialog(null, "Se ha insertado el proveedor " + id + " correctamente en la base de datos.", "Success",
-					JOptionPane.INFORMATION_MESSAGE, JOptionPane.OK_OPTION);
+			JOptionPane.showMessageDialog(null, "Se ha insertado el proveedor " + id + " correctamente en la base de datos.", "Success",
+					JOptionPane.INFORMATION_MESSAGE);
 			break;
 		case Event.RES_REGISTER_PROVIDER_FAILED:
 			JOptionPane.showConfirmDialog(null, "Error al insertar el proveedor en la base de datos.", "Failed",

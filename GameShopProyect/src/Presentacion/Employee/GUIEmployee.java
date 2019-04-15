@@ -41,8 +41,8 @@ public class GUIEmployee extends JPanel implements IGUI {
 		switch(e){
 		case Event.RES_REGISTER_EMPLOYEE_OK:
 			Integer id = (Integer)t;
-			JOptionPane.showConfirmDialog(null, "Se ha insertado el empleado" + id + "correctamente en la base de datos.", "Success",
-					JOptionPane.INFORMATION_MESSAGE, JOptionPane.OK_OPTION);
+			JOptionPane.showMessageDialog(null, "Se ha insertado el empleado" + id + "correctamente en la base de datos.", "Success",
+					JOptionPane.INFORMATION_MESSAGE);
 			break;
 		case Event.RES_REGISTER_EMPLOYEE_FAILED:
 			JOptionPane.showConfirmDialog(null, "Error al insertar el empleado en la base de datos.", "Failed", JOptionPane.ERROR_MESSAGE, 
