@@ -9,5 +9,6 @@ import javax.swing.JButton;
 */
 @SuppressWarnings("serial")
 public class FormUpdate extends JDialog {
+	
 	private JButton _reactivate;
 }

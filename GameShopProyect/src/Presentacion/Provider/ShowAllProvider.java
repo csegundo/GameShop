@@ -1,10 +1,6 @@
-/**
- * 
- */
 package Presentacion.Provider;
 
 import Presentacion.View.ShowAll;
-import java.util.Set;
 
 /** 
 * @author GameShop
@@ -12,10 +8,6 @@ import java.util.Set;
 */
 @SuppressWarnings("serial")
 public class ShowAllProvider extends ShowAll {
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Set<String> _columnsId = null;
+	
+	private String[] _columnsId = {"ID", "Direction", "NIF", "Phone number"};
 }

@@ -1,8 +1,6 @@
 package Presentacion.View;
 
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 
 import java.awt.Color;
@@ -14,7 +12,6 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.border.TitledBorder;
 
 /** 

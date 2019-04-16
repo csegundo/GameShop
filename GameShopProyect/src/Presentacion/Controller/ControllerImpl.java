@@ -16,15 +16,25 @@ public class ControllerImpl extends Controller {
 	private IGUI gui = new GUIProvider();
 
 	@Override
-	public void action(TProvider t, Integer e) {
-		switch(e) {
+	public void action(Object data, Integer event) {
+		switch(event) {
 		case Event.REGISTER_PROVIDER:
+			TProvider tpr = (TProvider)data;
 			sap = SAAbstractFactory.getInstance().createSAProvider();
-			int res = sap.createProvider(t);
-			if(res > 0)
-				gui.actualiza(Event.RES_REGISTER_PROVIDER_OK, new Integer(res));
-			else if (res <= 0)
+			int resRegisterProv = sap.createProvider(tpr);
+			if(resRegisterProv > 0)
+				gui.actualiza(Event.RES_REGISTER_PROVIDER_OK, new Integer(resRegisterProv));
+			else if (resRegisterProv <= 0)
 				gui.actualiza(Event.RES_REGISTER_PROVIDER_FAILED, null);
+			break;
+		case Event.UNSUBSCRIBE_PROVIDER:
+			TProvider tpu = (TProvider)data;
+			sap = SAAbstractFactory.getInstance().createSAProvider();
+			boolean resDeleteProv = sap.deleteProvider(tpu);
+			if(resDeleteProv)
+				gui.actualiza(Event.RES_UNSUBSCRIBE_PROVIDER_OK, new Integer(tpu.get_id()));
+			else
+				gui.actualiza(Event.RES_UNSUBSCRIBE_PROVIDER_FAILED, null);
 			break;
 		}
 	}

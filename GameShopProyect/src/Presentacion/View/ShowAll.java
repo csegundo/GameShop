@@ -16,9 +16,9 @@ import javax.swing.table.AbstractTableModel;
 public class ShowAll extends JPanel {
 	
 	// TODO numero de filas INDEFINIDO, mirar para coger el numero de filas que hay de datos en la base de datos
-	private final int numRows = 1000;
+	private final int numRows = 100;
 	private final int numColumns = 4;
-	private final String[] _columnNames = {"ID", "NIF", "Name", "Turn", "Active"};
+	private final String[] _columnNames = {"ID", "Direction", "NIF", "Phone number"};
 	
 	private JTable _grid;
 	

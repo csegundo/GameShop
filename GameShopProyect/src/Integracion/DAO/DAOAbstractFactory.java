@@ -8,7 +8,6 @@ import Integracion.Platform.DAOPlatform;
 import Integracion.Product.DAOProduct;
 import Integracion.Provider.DAOProvider;
 import Integracion.Ticket.DAOTicket;
-import Negocio.SA.SAAbstractFactoryImpl;
 
 /** 
 * <!-- begin-UML-doc -->
@@ -26,12 +25,8 @@ public abstract class DAOAbstractFactory {
 	}
 
 	public abstract DAOEmployee createDAOEmployee();
-
 	public abstract DAOPlatform createDAOPlatform();
-
 	public abstract DAOProduct createDAOProduct();
-
 	public abstract DAOProvider createDAOProvider();
-
 	public abstract DAOTicket createDAOTicket();
 }

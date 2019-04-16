@@ -16,5 +16,5 @@ public abstract class Controller {
 		return instance;
 	}
 	
-	public abstract void action(TProvider t, Integer e);
+	public abstract void action(Object data, Integer event);
 }

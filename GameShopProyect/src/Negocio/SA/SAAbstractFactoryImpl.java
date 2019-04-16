@@ -1,6 +1,3 @@
-/**
- * 
- */
 package Negocio.SA;
 
 import Negocio.Employee.SAEmployee;
@@ -15,9 +12,7 @@ import Negocio.Ticket.SATicket;
 import Negocio.Ticket.SATicketImpl;
 
 /** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
- * @author joalow
+ * @author GameShop
  * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class SAAbstractFactoryImpl extends SAAbstractFactory {

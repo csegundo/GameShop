@@ -1,6 +1,7 @@
 package Presentacion.Provider;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Presentacion.Controller.Controller;
@@ -12,6 +13,8 @@ import java.awt.FlowLayout;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -39,6 +42,13 @@ public class FormProvider extends JDialog {
 		this.setIconImage(new ImageIcon("resources/GameShopLogo.png").getImage());
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				closeDialog();
+			}
+		});
 		
 		this.setLayout(new FlowLayout());
 		this.setBounds(new Rectangle(300,140));
@@ -80,10 +90,14 @@ public class FormProvider extends JDialog {
 		_cancel.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				dispose();
+				closeDialog();
 			}
 		});
+	}
+	
+	private void closeDialog() {
+		setVisible(false);
+		dispose();
 	}
 	
 	private void initComponents() {

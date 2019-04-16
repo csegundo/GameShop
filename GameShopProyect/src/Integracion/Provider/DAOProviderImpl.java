@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.mysql.cj.xdevapi.Statement;
-
 import Transfers.TProvider;
 
 /** 
@@ -44,11 +42,27 @@ public class DAOProviderImpl implements DAOProvider {
 			e.printStackTrace();
 		}
 		return id;
-		
 	}
 
 	public Boolean deleteProvider(TProvider tp) {
-		return null;
+		boolean ret = false;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + nombreBD, userID, userPASS);
+			PreparedStatement ps = con.prepareStatement("UPDATE proveedor SET activo=(?) WHERE ID=(?)", PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setBoolean(1, false);
+			ps.setInt(2, tp.get_id());
+			ps.executeUpdate();
+			ResultSet rs = ps.getGeneratedKeys();
+			if(rs.next()){
+				ret = true;
+			}
+			con.close();
+			
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return ret;
 	}
 
 	public Boolean updateProvider(TProvider tp) {

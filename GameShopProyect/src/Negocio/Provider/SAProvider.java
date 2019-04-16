@@ -1,6 +1,3 @@
-/**
- * 
- */
 package Negocio.Provider;
 
 import java.util.List;
@@ -8,9 +5,7 @@ import java.util.List;
 import Transfers.TProvider;
 
 /** 
-* <!-- begin-UML-doc -->
-* <!-- end-UML-doc -->
-* @author joalow
+* @author GameShop
 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 */
 public interface SAProvider {

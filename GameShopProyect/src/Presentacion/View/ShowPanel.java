@@ -41,8 +41,11 @@ public class ShowPanel extends JPanel {
 		_tabs = new JTabbedPane(JTabbedPane.TOP);
 		_tabs.setPreferredSize(new Dimension(400, 300));
 		_tabs.setVisible(true);
+		
+		// TODO caso para PROVEEDOR
 		_tabs.addTab("Show one", null, new ShowOne(), "Show the data of the selected provider");
 		_tabs.addTab("Show all", null, new ShowAll(), "Show the data of all providers");
+		
 		this.add(_tabs);		
 	}
 	
