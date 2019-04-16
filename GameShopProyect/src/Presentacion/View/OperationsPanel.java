@@ -122,8 +122,10 @@ public class OperationsPanel extends JPanel {
 		//ArrayList<Object> data = (ArrayList<Object>) DAOAbstractFactory.getInstance().createDAOProvider().readAllProviders();
 		ArrayList<Object> data = new ArrayList<Object>();
 		data.add(new Integer(85));
+		data.add(new Integer(75));
+		data.add(new Integer(52));
 		for (int i = 0; i < data.size(); ++i) {
-			_election.addItem(data);
+			_election.addItem(data.get(i));
 		}
 	}
 	
