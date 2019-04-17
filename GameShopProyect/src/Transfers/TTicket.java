@@ -15,6 +15,7 @@ public class TTicket {
 	private Boolean _activated;
 	private Integer _employeeId;
 	private List _productsId;
+	private String _log;
 	
 	
 	// CONSTRUCTOR
@@ -54,6 +55,13 @@ public class TTicket {
 	}
 	public void set_productsId(List _productsId) {
 		this._productsId = _productsId;
+	}
+	public String getLog() {
+		return _log;
+	}
+	public void setLog(String log)
+	{
+		this._log = log;
 	}
 	
 	/*public Double getPrice() {
