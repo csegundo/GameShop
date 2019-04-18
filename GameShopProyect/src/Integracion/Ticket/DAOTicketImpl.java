@@ -4,84 +4,34 @@
 package Integracion.Ticket;
 
 import java.util.List;
+
+import Transfers.TTicket;
+
 import java.sql.Timestamp;
 
-/** 
-* <!-- begin-UML-doc -->
-* <!-- end-UML-doc -->
-* @author joalow
-* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-*/
+
 public class DAOTicketImpl implements DAOTicket {
-	/** 
-	* (non-Javadoc)
-	* @see DAOTicket#createTicket(Object tt)
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Integer createTicket(Object tt) {
-		// begin-user-code
-		// TODO Auto-generated method stub
+	
+	public static final String nombreBD = "gameshop";
+	public static final String userID = "root";
+	public static final String userPASS = "1234";
+	
+	public Integer createTicket(TTicket tt) {
 		return null;
-		// end-user-code
 	}
-
-	/** 
-	* (non-Javadoc)
-	* @see DAOTicket#deleteTicket(Object tt)
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Boolean deleteTicket(Object tt) {
-		// begin-user-code
-		// TODO Auto-generated method stub
+	public Boolean deleteTicket(TTicket tt) {
 		return null;
-		// end-user-code
 	}
-
-	/** 
-	* (non-Javadoc)
-	* @see DAOTicket#updateTicket(Object tt)
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Boolean updateTicket(Object tt) {
-		// begin-user-code
-		// TODO Auto-generated method stub
+	public Boolean updateTicket(TTicket tt) {
 		return null;
-		// end-user-code
 	}
-
-	/** 
-	* (non-Javadoc)
-	* @see DAOTicket#readTicket(Object tt)
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Object readTicket(Object tt) {
-		// begin-user-code
-		// TODO Auto-generated method stub
+	public TTicket readTicket(TTicket tt) {
 		return null;
-		// end-user-code
 	}
-
-	/** 
-	* (non-Javadoc)
-	* @see DAOTicket#readAllTickets()
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public List readAllTickets() {
-		// begin-user-code
-		// TODO Auto-generated method stub
+	public List<TTicket> readAllTickets() {
 		return null;
-		// end-user-code
 	}
-
-	/** 
-	* (non-Javadoc)
-	* @see DAOTicket#readByDate(Timestamp d)
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
 	public Integer readByDate(Timestamp d) {
-		// begin-user-code
-		// TODO Auto-generated method stub
 		return null;
-		// end-user-code
 	}
 }

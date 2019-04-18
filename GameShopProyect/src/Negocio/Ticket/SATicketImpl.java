@@ -5,6 +5,10 @@ package Negocio.Ticket;
 
 import java.util.List;
 
+import Integracion.DAO.DAOAbstractFactory;
+import Integracion.Ticket.DAOTicket;
+import Transfers.TTicket;
+
 /** 
 * <!-- begin-UML-doc -->
 * <!-- end-UML-doc -->
@@ -12,62 +16,34 @@ import java.util.List;
 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 */
 public class SATicketImpl implements SATicket {
-	/** 
-	* (non-Javadoc)
-	* @see SATicket#createTicket(Object tt)
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Integer createTicket(Object tt) {
-		// begin-user-code
-		// TODO Auto-generated method stub
+	
+	public Integer createTicket(TTicket tt) {
+		DAOTicket daoTicket = DAOAbstractFactory.getInstance().createDAOTicket();
 		return null;
 		// end-user-code
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see SATicket#deleteTicket(Object tt)
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Boolean deleteTicket(Object tt) {
-		// begin-user-code
-		// TODO Auto-generated method stub
+	public Boolean deleteTicket(TTicket tt) {
+		boolean deleted=false;
+		DAOTicket daoTicket = DAOAbstractFactory.getInstance().createDAOTicket();
+		if(tt!=null)
+		{
+			TTicket aux = daoTicket.readTicket(tt);
+			if(aux!=null)
+				deleted= daoTicket.deleteTicket(tt);
+		}
+		return deleted;
+	}
+
+	public Boolean updateTicket(TTicket tt) {
 		return null;
 		// end-user-code
 	}
-
-	/** 
-	* (non-Javadoc)
-	* @see SATicket#updateTicket(Object tt)
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Boolean updateTicket(Object tt) {
-		// begin-user-code
-		// TODO Auto-generated method stub
+	public Object readTicket(TTicket id) {
 		return null;
 		// end-user-code
 	}
-
-	/** 
-	* (non-Javadoc)
-	* @see SATicket#readTicket(Object id)
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Object readTicket(Object id) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
-
-	/** 
-	* (non-Javadoc)
-	* @see SATicket#readAllTickets()
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public List readAllTickets() {
-		// begin-user-code
-		// TODO Auto-generated method stub
+	public List<TTicket> readAllTickets() {
 		return null;
 		// end-user-code
 	}
