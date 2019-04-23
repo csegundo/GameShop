@@ -12,9 +12,8 @@ public class TTicket {
 	private Double _finalPrice;
 	private Timestamp _date;
 	private Integer _id;
-	private Boolean _activated;
 	private Integer _employeeId;
-	private List _productsId;
+	private List<Object> _productsId;
 	private String _log;
 	
 	
@@ -38,22 +37,16 @@ public class TTicket {
 	public void set_id(Integer _id) {
 		this._id = _id;
 	}
-	public Boolean get_activated() {
-		return _activated;
-	}
-	public void set_activated(Boolean _activated) {
-		this._activated = _activated;
-	}
 	public Integer get_employeeId() {
 		return _employeeId;
 	}
 	public void set_employeeId(Integer _employeeId) {
 		this._employeeId = _employeeId;
 	}
-	public List get_productsId() {
+	public List<Object> get_productsId() {
 		return _productsId;
 	}
-	public void set_productsId(List _productsId) {
+	public void set_productsId(List<Object> _productsId) {
 		this._productsId = _productsId;
 	}
 	public String getLog() {
