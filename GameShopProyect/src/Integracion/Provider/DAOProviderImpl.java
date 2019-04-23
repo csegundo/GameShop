@@ -106,7 +106,6 @@ public class DAOProviderImpl implements DAOProvider {
 
 	public TProvider readProviderByNIF(String s) {
 		
-		//TProvider tpl = new TProvider(); // Inicializar a null (?)
 		TProvider tpl = null;
 		try {
 			/*

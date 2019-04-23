@@ -18,9 +18,13 @@ public class ShowPanel extends JPanel {
 	
 	private JTabbedPane _tabs;
 	private String nameIdentificator;
+	private ShowOne so;
+	private ShowAll sa;
 	
 	public ShowPanel(String nameIdentificator) {
 		this.nameIdentificator = nameIdentificator.toLowerCase();
+		this.so = new ShowOne(nameIdentificator);
+		this.sa = new ShowAll(nameIdentificator);
 		initPanel();
 	}
 
@@ -45,10 +49,14 @@ public class ShowPanel extends JPanel {
 		_tabs.setVisible(true);
 		
 		// TODO caso para PROVEEDOR
-		_tabs.addTab("Show one", null, new ShowOne(), "Show the data of the selected " + nameIdentificator);
-		_tabs.addTab("Show all", null, new ShowAll(), "Show the data of all " + nameIdentificator);
+		_tabs.addTab("Show one", null, so, "Show the data of the selected " + nameIdentificator);
+		_tabs.addTab("Show all", null, sa, "Show the data of all " + nameIdentificator);
 		
 		this.add(_tabs);		
+	}
+	
+	public void setInfoInScreen(String text) {
+		so.set_info(text);
 	}
 	
 }

@@ -58,6 +58,16 @@ public class ControllerImpl extends Controller {
 			else
 				gui.actualiza(Event.RES_UNSUBSCRIBE_PROVIDER_FAILED, null);
 			break;
+			
+		case Event.READ_PROVIDER:
+			Integer id = (Integer)data;
+			sap = SAAbstractFactory.getInstance().createSAProvider();
+			TProvider t = (TProvider)sap.readProvider(id);
+			if (t != null)
+				gui.actualiza(Event.RES_READ_PROVIDER_OK, t);
+			else
+				gui.actualiza(Event.RES_READ_PROVIDER_FAILED, null);
+			break;
 		}
 	}
 	

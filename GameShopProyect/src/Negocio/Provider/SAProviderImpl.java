@@ -41,8 +41,14 @@ public class SAProviderImpl implements SAProvider {
 		return null;
 	}
 
-	public Object readProvider(TProvider tp) {
-		return null;
+	public Object readProvider(Integer id) {
+		TProvider ret = null;
+		DAOProvider daoProvider = DAOAbstractFactory.getInstance().createDAOProvider();
+		
+		if(id != null)
+			ret = (TProvider)daoProvider.readProvider(id);
+		
+		return ret;
 	}
 
 	public List<Object> readAllProviders() {

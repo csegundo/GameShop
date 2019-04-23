@@ -13,6 +13,6 @@ public interface SAProvider {
 	public Integer createProvider(TProvider tp);
 	public Boolean deleteProvider(Integer id);
 	public Boolean updateProvider(TProvider tp);
-	public Object readProvider(TProvider tp);
+	public Object readProvider(Integer id);
 	public List<Object> readAllProviders();
 }

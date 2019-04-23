@@ -19,10 +19,12 @@ public class ShowAll extends JPanel {
 	private final int numRows = 100;
 	private final int numColumns = 4;
 	private final String[] _columnNames = {"ID", "Direction", "NIF", "Phone number"};
+	private String nameIdentificator;
 	
 	private JTable _grid;
 	
-	public ShowAll() {
+	public ShowAll(String nameIdentificator) {
+		this.nameIdentificator = nameIdentificator.toLowerCase();
 		initGUI();
 	}
 

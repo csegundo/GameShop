@@ -6,6 +6,8 @@ import javax.swing.JComboBox;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -13,6 +15,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
+
+import Presentacion.Controller.Controller;
+import Presentacion.Controller.Event;
 
 /** 
 * @author GameShop
@@ -24,8 +29,10 @@ public class ShowOne extends JPanel {
 	private JComboBox<Object> _election;
 	private JButton _show;
 	private JTextArea _info;
+	private String nameIdentificator;
 	
-	public ShowOne() {
+	public ShowOne(String nameIdentificator) {
+		this.nameIdentificator = nameIdentificator.toLowerCase();
 		initGUI();
 	}
 
@@ -39,6 +46,27 @@ public class ShowOne extends JPanel {
 		initComponents();
 		
 		this.setVisible(true);
+	}
+	
+	private void addShowButtonAction() {
+		_show.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				switch(nameIdentificator){
+				case "provider":
+					Controller.getInstance().action(_election.getSelectedItem(), Event.READ_PROVIDER);
+					break;
+				case "platform":
+					break;
+				case "employee":
+					break;
+				case "product":
+					break;
+				case "ticket":
+					break;
+				}
+			}
+		});
 	}
 
 	private void initComponents() {
@@ -64,13 +92,13 @@ public class ShowOne extends JPanel {
 		
 		this.add(Box.createRigidArea(new Dimension(1, 30)));
 		
-		_info = new JTextArea();
+		_info = new JTextArea("");
 		_info.setWrapStyleWord(true);
 		_info.setLineWrap(true);
 		_info.setPreferredSize(new Dimension(300, 190));
 		_info.setMinimumSize(new Dimension(300, 190));
 		_info.setMaximumSize(new Dimension(300, 190));
-		_info.setEditable(false);
+		_info.setEditable(true);
 		_info.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1), "Detailed data",
 				TitledBorder.LEFT, TitledBorder.TOP));
 		_info.setFont(new Font("Arial", 0, 15));
@@ -78,5 +106,16 @@ public class ShowOne extends JPanel {
 		this.add(_info);
 		
 		this.add(Box.createVerticalGlue());
+		
+		addShowButtonAction();
+		fillProviderList();
+	}
+
+	private void fillProviderList() {
+		_election.addItem(new Integer(85));
+	}
+
+	public void set_info(String text) {
+		_info.setText(text);
 	}
 }
