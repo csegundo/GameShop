@@ -71,7 +71,6 @@ public class GUIProvider extends JPanel implements IGUI {
 										"Address: " + tp.get_address() + '\n' +
 										"Phone number: " + tp.get_phoneNumber() + '\n' +
 										"Activated: " + act);
-			System.out.println("k pacha");
 			break;
 			
 		case Event.RES_READ_PROVIDER_FAILED:
