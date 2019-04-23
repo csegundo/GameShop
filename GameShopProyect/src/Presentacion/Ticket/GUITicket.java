@@ -38,7 +38,7 @@ public class GUITicket extends JPanel implements IGUI {
 		this.add(_leftPane, BorderLayout.WEST);
 		_leftPane.setVisible(true);
 		
-		this._rightPane = new ShowPanel();
+		this._rightPane = new ShowPanel(GUIGameshop.TAB_TICKET);
 		this.add(_rightPane, BorderLayout.EAST);
 		_rightPane.setVisible(true);
 	}
@@ -46,22 +46,36 @@ public class GUITicket extends JPanel implements IGUI {
 	@Override
 	public void actualiza(Integer e, Object t) {
 		switch(e){
-		case Event.RES_REGISTER_PROVIDER_OK:
+		case Event.RES_REGISTER_TICKET_OK:
 			Integer id = (Integer)t;
-			JOptionPane.showMessageDialog(null, "Se ha insertado el proveedor " + id + " correctamente en la base de datos.", "Success",
+			JOptionPane.showMessageDialog(null, "Se ha insertado el ticket " + id + " correctamente.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
 			break;
-		case Event.RES_REGISTER_PROVIDER_FAILED:
-			JOptionPane.showConfirmDialog(null, "Error al insertar el proveedor en la base de datos.", "Failed",
+		case Event.RES_REGISTER_TICKET_FAILED:
+			JOptionPane.showConfirmDialog(null, "Error al insertar el ticket.", "Failed",
 					JOptionPane.ERROR_MESSAGE, JOptionPane.OK_OPTION);
 			break;
-		case Event.RES_UNSUBSCRIBE_PROVIDER_OK:
+		case Event.RES_UNSUBSCRIBE_TICKET_OK:
 			Integer a = (Integer)t;
-			JOptionPane.showMessageDialog(null, "Se ha eliminado el proveedor " + a + " correctamente en la base de datos.", "Success",
+			JOptionPane.showMessageDialog(null, "Se ha eliminado el ticket " + a + " correctamente.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
 			break;
-		case Event.RES_UNSUBSCRIBE_PROVIDER_FAILED:
-			JOptionPane.showConfirmDialog(null, "Error al eliminar el proveedor en la base de datos.", "Failed",
+		case Event.RES_UNSUBSCRIBE_TICKET_FAILED:
+			JOptionPane.showConfirmDialog(null, "Error al eliminar el ticket.", "Failed",
+					JOptionPane.ERROR_MESSAGE, JOptionPane.OK_OPTION);
+		case Event.RES_MODIFY_TICKET_OK:
+			Integer b = (Integer)t;
+			JOptionPane.showMessageDialog(null, "Se ha modificado el ticket " + b + " correctamente.", "Success",
+					JOptionPane.INFORMATION_MESSAGE);
+		case Event.RES_MODIFY_TICKET_FAILED:
+			JOptionPane.showConfirmDialog(null, "Error al modificar el ticket.", "Failed",
+					JOptionPane.ERROR_MESSAGE, JOptionPane.OK_OPTION);
+		case Event.RES_READ_TICKET_OK:
+			Integer c = (Integer)t;
+			JOptionPane.showMessageDialog(null, "Se mostrará el ticket " + c , "Success",
+					JOptionPane.INFORMATION_MESSAGE);
+		case Event.RES_READ_TICKET_FAILED:
+			JOptionPane.showConfirmDialog(null, "Error al mostrar el ticket.", "Failed",
 					JOptionPane.ERROR_MESSAGE, JOptionPane.OK_OPTION);
 			break;
 		}

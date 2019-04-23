@@ -11,7 +11,7 @@ import Transfers.TProvider;
 public interface SAProvider {
 
 	public Integer createProvider(TProvider tp);
-	public Boolean deleteProvider(TProvider tp);
+	public Boolean deleteProvider(Integer id);
 	public Boolean updateProvider(TProvider tp);
 	public Object readProvider(TProvider tp);
 	public List<Object> readAllProviders();

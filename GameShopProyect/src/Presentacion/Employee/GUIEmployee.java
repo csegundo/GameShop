@@ -31,7 +31,7 @@ public class GUIEmployee extends JPanel implements IGUI {
 		this.add(_leftPane, BorderLayout.WEST);
 		_leftPane.setVisible(true);
 		
-		this._rightPane = new ShowPanel();
+		this._rightPane = new ShowPanel(GUIGameshop.TAB_EMPLOYEE);
 		this.add(_rightPane, BorderLayout.EAST);
 		_rightPane.setVisible(true);
 	}

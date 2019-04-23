@@ -47,7 +47,7 @@ public class OperationsPanel extends JPanel {
 	private String nameIdentificator;
 	
 	public OperationsPanel(String guiNameIdentificator) {
-		this.nameIdentificator = guiNameIdentificator;
+		this.nameIdentificator = guiNameIdentificator.toLowerCase();
 		initPanel();
 	}
 	
@@ -71,19 +71,19 @@ public class OperationsPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				switch(nameIdentificator){
-				case "Provider":
+				case "provider":
 					new FormProvider();
 					break;
-				case "Platform":
+				case "platform":
 					new FormPlatform();
 					break;
-				case "Employee":
+				case "employee":
 					new FormEmployee();
 					break;
-				case "Product":
+				case "product":
 					new FormProduct();
 					break;
-				case "Ticket":
+				case "ticket":
 					new FormTicket();
 					break;
 				}
@@ -100,18 +100,16 @@ public class OperationsPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				switch(nameIdentificator){
-				case "Provider":
-					TProvider tp = new TProvider();
-					tp.set_id((Integer)_election.getSelectedItem());
-					Controller.getInstance().action(tp, Event.UNSUBSCRIBE_PROVIDER);
+				case "provider":
+					Controller.getInstance().action(_election.getSelectedItem(), Event.UNSUBSCRIBE_PROVIDER);
 					break;
-				case "Platform":
+				case "platform":
 					break;
-				case "Employee":
+				case "employee":
 					break;
-				case "Product":
+				case "product":
 					break;
-				case "Ticket":
+				case "ticket":
 					break;
 				}
 			}
@@ -131,14 +129,14 @@ public class OperationsPanel extends JPanel {
 	
 	private void initComponents() {
 		this.add(Box.createVerticalGlue());
-		_registerLabel = new JLabel("Register a new provider");
+		_registerLabel = new JLabel("Register a new " + nameIdentificator);
 		_registerLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		_registerLabel.setVisible(true);
 		this.add(_registerLabel);
 		
 		this.add(Box.createRigidArea(new Dimension(1, 10)));
 		
-		_register = new JButton("Register Provider");
+		_register = new JButton("Register " + nameIdentificator);
 		_register.setAlignmentX(Component.CENTER_ALIGNMENT);
 		_register.setSize(new Dimension(100, 50));
 		_register.setVisible(true);
@@ -146,7 +144,7 @@ public class OperationsPanel extends JPanel {
 		
 		this.add(Box.createVerticalGlue());
 		
-		_updaterLabel = new JLabel("Modify or remove a provider");
+		_updaterLabel = new JLabel("Modify or remove a " + nameIdentificator);
 		_updaterLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		_updaterLabel.setVisible(true);
 		this.add(_updaterLabel);
@@ -166,7 +164,7 @@ public class OperationsPanel extends JPanel {
 		
 		this.add(Box.createRigidArea(new Dimension(1, 20)));
 		
-		_update = new JButton("Modify provider");
+		_update = new JButton("Modify " + nameIdentificator);
 		_update.setAlignmentX(Component.CENTER_ALIGNMENT);
 		_update.setSize(new Dimension(100, 50));
 		_update.setVisible(true);
@@ -174,7 +172,7 @@ public class OperationsPanel extends JPanel {
 		
 		this.add(Box.createRigidArea(new Dimension(1, 10)));
 		
-		_remove = new JButton("Remove provider");
+		_remove = new JButton("Remove " + nameIdentificator);
 		_remove.setAlignmentX(Component.CENTER_ALIGNMENT);
 		_remove.setSize(new Dimension(100, 50));
 		_remove.setVisible(true);

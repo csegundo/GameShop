@@ -17,8 +17,10 @@ import javax.swing.border.TitledBorder;
 public class ShowPanel extends JPanel {
 	
 	private JTabbedPane _tabs;
+	private String nameIdentificator;
 	
-	public ShowPanel() {
+	public ShowPanel(String nameIdentificator) {
+		this.nameIdentificator = nameIdentificator.toLowerCase();
 		initPanel();
 	}
 
@@ -43,8 +45,8 @@ public class ShowPanel extends JPanel {
 		_tabs.setVisible(true);
 		
 		// TODO caso para PROVEEDOR
-		_tabs.addTab("Show one", null, new ShowOne(), "Show the data of the selected provider");
-		_tabs.addTab("Show all", null, new ShowAll(), "Show the data of all providers");
+		_tabs.addTab("Show one", null, new ShowOne(), "Show the data of the selected " + nameIdentificator);
+		_tabs.addTab("Show all", null, new ShowAll(), "Show the data of all " + nameIdentificator);
 		
 		this.add(_tabs);		
 	}

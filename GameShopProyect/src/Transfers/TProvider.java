@@ -12,15 +12,16 @@ public class TProvider {
 	private Integer _id;
 	private Boolean _activated;
 	
-	// CONSTRUCTOR
+	// CONSTRUCTORES
+	public TProvider(String NIF, String dir, int tphn) {
+		this._nif = NIF;
+		this._address = dir;
+		this._phoneNumber = tphn;
+	}
 	
-//	public TProvider(){
-//		_nif = new String();
-//		_address = new String();
-//		_phoneNumber = new Integer();
-//		_id = new Integer();
-//		_activated = new Boolean();
-//	}
+	public TProvider() {
+		
+	}
 	
 	public String get_nif() {
 		return _nif;

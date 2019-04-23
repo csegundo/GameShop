@@ -52,9 +52,10 @@ public class DAOProviderImpl implements DAOProvider {
 			PreparedStatement ps = con.prepareStatement("UPDATE proveedor SET activo=(?) WHERE ID=(?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setBoolean(1, false);
 			ps.setInt(2, tp.get_id());
-			ps.executeUpdate();
-			ResultSet rs = ps.getGeneratedKeys();
-			if(rs.next()){
+			int res = ps.executeUpdate();
+			//ResultSet rs = ps.getGeneratedKeys();
+			//if(rs.next()){
+			if(res > 0) {
 				ret = true;
 			}
 			con.close();
@@ -69,8 +70,34 @@ public class DAOProviderImpl implements DAOProvider {
 		return null;
 	}
 
-	public Object readProvider(TProvider tp) {
-		return null;
+	public Object readProvider(Integer id) {
+		TProvider tpl = null;
+		try {
+			/*
+			 * STACKOVERFLOW ERROR SOLUTION: (https://stackoverflow.com/questions/26515700/mysql-jdbc-driver-5-1-33-time-zone-issue)
+			 * jdbc:mysql://localhost/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+			 * Hay que descargarse el JAR executable file y añadirlo a la libreria del proyecto para solucionar ese error y en la BD poner:
+			 * SET GLOBAL time_zone = '+3:00'; para arreglar el error de la zona horaria*/
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + nombreBD, userID, userPASS);
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM proveedor WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			//ResultSet rs = ps.getGeneratedKeys();
+			if(rs.next()){
+				tpl = new TProvider();
+				tpl.set_id(rs.getInt(1));
+				tpl.set_address(rs.getString(2));
+				tpl.set_nif(rs.getString(3));
+				tpl.set_phoneNumber(rs.getInt(4));
+				tpl.set_activated(rs.getBoolean(5));
+			}
+			con.close();
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return tpl;
 	}
 
 	public List<Object> readAllProviders() {
@@ -98,11 +125,8 @@ public class DAOProviderImpl implements DAOProvider {
 				tpl.set_id(rs.getInt(1));
 			}
 			con.close();
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
-		}
-		catch (ClassNotFoundException cnfe) {
-			cnfe.printStackTrace();
 		}
 		
 		return tpl;

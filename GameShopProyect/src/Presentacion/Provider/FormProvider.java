@@ -77,10 +77,7 @@ public class FormProvider extends JDialog {
 		_ok.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TProvider tp = new TProvider();
-				tp.set_nif(getNif());
-				tp.set_address(getAddress());
-				tp.set_phoneNumber(getPhoneNumber());
+				TProvider tp = new TProvider(getNif(), getAddress(), getPhoneNumber());
 				Controller.getInstance().action(tp, Event.REGISTER_PROVIDER);
 			}
 		});

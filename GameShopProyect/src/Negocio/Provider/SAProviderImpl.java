@@ -17,22 +17,21 @@ public class SAProviderImpl implements SAProvider {
 		DAOProvider daoProvider = DAOAbstractFactory.getInstance().createDAOProvider();
 		if(tp != null){
 			TProvider tpl = daoProvider.readProviderByNIF(tp.get_nif());
-			//if(tpl != null)
 			if(tpl == null)
 				id = daoProvider.createProvider(tp);
 		}
 		return id;
 	}
 
-	public Boolean deleteProvider(TProvider tp) {
+	public Boolean deleteProvider(Integer id) {
 		boolean ret = false;
 		DAOProvider daopi = DAOAbstractFactory.getInstance().createDAOProvider();
 		
-		if(tp != null) {
-			TProvider tprnif = daopi.readProviderByNIF(tp.get_nif());
+		if(id != null) {
+			TProvider tprnif = (TProvider)daopi.readProvider(id);
 			// Si devuelve un transfer significa que existe y por lo tanto se procede a borrarlo
-			if(tprnif != null)
-				ret = daopi.deleteProvider(tp);
+			if(tprnif != null && tprnif.get_activated())
+				ret = daopi.deleteProvider(tprnif);
 		}
 		
 		return ret;
