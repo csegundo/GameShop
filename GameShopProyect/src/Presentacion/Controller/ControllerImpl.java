@@ -15,6 +15,7 @@ import Presentacion.Platform.GUIPlatform;
 import Presentacion.Product.GUIProduct;
 import Presentacion.Provider.GUIProvider;
 import Presentacion.Ticket.GUITicket;
+import Presentacion.View.FormUpdateProvider;
 import Presentacion.View.GUIGameshop;
 import Presentacion.View.IGUI;
 import Transfers.TProvider;
@@ -34,12 +35,6 @@ public class ControllerImpl extends Controller {
 	private GUIProduct gprd;
 	private GUITicket gt;
 	
-	private SAProvider sap;
-	private SAProduct sapr;
-	private SATicket sat;
-	private SAEmployee sae;
-	private SAPlatform sapl;
-	
 	public ControllerImpl() {
 		gs = new GUIGameshop(Main.applicationName);
 		List<Object> guis = new ArrayList<Object>();
@@ -53,6 +48,8 @@ public class ControllerImpl extends Controller {
 
 	@Override
 	public void action(Object data, Integer event) {
+		Integer id;
+		TProvider tpr;
 		
 		switch(Math.abs(event / 100)) {
 		case 1: gui = ge; break;
@@ -64,9 +61,8 @@ public class ControllerImpl extends Controller {
 		
 		switch(event) {
 		case Event.REGISTER_PROVIDER:
-			TProvider tpr = (TProvider)data;
-			sap = SAAbstractFactory.getInstance().createSAProvider();
-			int resRegisterProv = sap.createProvider(tpr);
+			tpr = (TProvider)data;
+			int resRegisterProv = (SAAbstractFactory.getInstance().createSAProvider()).createProvider(tpr);
 			if(resRegisterProv > 0)
 				gui.actualiza(Event.RES_REGISTER_PROVIDER_OK, new Integer(resRegisterProv));
 			else if (resRegisterProv <= 0)
@@ -74,19 +70,35 @@ public class ControllerImpl extends Controller {
 			break;
 			
 		case Event.UNSUBSCRIBE_PROVIDER:
-			Integer ID = (Integer)data;
-			sap = SAAbstractFactory.getInstance().createSAProvider();
-			boolean resDeleteProv = sap.deleteProvider(ID);
+			id = (Integer)data;
+			boolean resDeleteProv = (SAAbstractFactory.getInstance().createSAProvider()).deleteProvider(id);
 			if(resDeleteProv)
-				gui.actualiza(Event.RES_UNSUBSCRIBE_PROVIDER_OK, ID);
+				gui.actualiza(Event.RES_UNSUBSCRIBE_PROVIDER_OK, id);
 			else
 				gui.actualiza(Event.RES_UNSUBSCRIBE_PROVIDER_FAILED, null);
 			break;
 			
+		case Event.MODIFYBUTTON_PROVIDER:
+			id = (Integer) data;
+			tpr = (TProvider)(SAAbstractFactory.getInstance().createSAProvider()).readProvider(id);
+			if(tpr != null)
+				new FormUpdateProvider(tpr);
+			else
+				gui.actualiza(Event.RES_MODIFY_PROVIDER_FAILED, null);
+			break;
+			
+		case Event.MODIFY_PROVIDER:
+			tpr = (TProvider)data;
+			if(SAAbstractFactory.getInstance().createSAProvider().updateProvider(tpr))
+				gui.actualiza(Event.RES_MODIFY_PROVIDER_OK, null);
+			else
+				gui.actualiza(Event.RES_MODIFY_PROVIDER_FAILED, null);
+			break;
+			
+			
 		case Event.READ_PROVIDER:
-			Integer id = (Integer)data;
-			sap = SAAbstractFactory.getInstance().createSAProvider();
-			TProvider t = (TProvider)sap.readProvider(id);
+			id = (Integer)data;
+			TProvider t = (TProvider)(SAAbstractFactory.getInstance().createSAProvider()).readProvider(id);
 			if (t != null) 
 				gui.actualiza(Event.RES_READ_PROVIDER_OK, t);
 			else
@@ -94,8 +106,7 @@ public class ControllerImpl extends Controller {
 			break;
 			
 		case Event.READ_ALL_PROVIDERS:
-			sap = SAAbstractFactory.getInstance().createSAProvider();
-			List<Object> providers = sap.readAllProviders();
+			List<Object> providers = (SAAbstractFactory.getInstance().createSAProvider()).readAllProviders();
 			if(providers == null)
 				gui.actualiza(Event.RES_READALL_PROVIDERS_FAILED, null);
 			else

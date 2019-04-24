@@ -54,8 +54,7 @@ public class DAOProviderImpl implements DAOProvider {
 			ps.setBoolean(1, false);
 			ps.setInt(2, tp.get_id());
 			int res = ps.executeUpdate();
-			//ResultSet rs = ps.getGeneratedKeys();
-			//if(rs.next()){
+		
 			if(res > 0) {
 				ret = true;
 			}
@@ -68,7 +67,37 @@ public class DAOProviderImpl implements DAOProvider {
 	}
 
 	public Boolean updateProvider(TProvider tp) {
-		return null;
+		
+		boolean ret = false;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + nombreBD, userID, userPASS);
+			PreparedStatement ps = con.prepareStatement("UPDATE proveedor SET activo=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setBoolean(1, tp.get_activated());
+			ps.setInt(2, tp.get_id());
+			int res = ps.executeUpdate();
+			ps = con.prepareStatement("UPDATE proveedor SET NIF=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setString(1, tp.get_nif());
+			ps.setInt(2, tp.get_id());
+			res = ps.executeUpdate();
+			ps = con.prepareStatement("UPDATE proveedor SET direccion=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setString(1, tp.get_address());
+			ps.setInt(2, tp.get_id());
+			res = ps.executeUpdate();
+			ps = con.prepareStatement("UPDATE proveedor SET telefono=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setInt(1, tp.get_phoneNumber());
+			ps.setInt(2, tp.get_id());
+			res = ps.executeUpdate();
+			
+			if(res > 0) {
+				ret = true;
+			}
+			con.close();
+			
+		}catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return ret;
 	}
 
 	public Object readProvider(Integer id) {

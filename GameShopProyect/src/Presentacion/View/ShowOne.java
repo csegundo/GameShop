@@ -82,7 +82,7 @@ public class ShowOne extends JPanel {
 		
 		this.add(Box.createRigidArea(new Dimension(1, 10)));
 		
-		_show = new JButton("Show data");
+		_show = new JButton("Show");
 		_show.setAlignmentX(CENTER_ALIGNMENT);
 		_show.setSize(new Dimension(100, 30));
 		_show.setMinimumSize(new Dimension(100, 30));
@@ -98,7 +98,7 @@ public class ShowOne extends JPanel {
 		_info.setPreferredSize(new Dimension(300, 190));
 		_info.setMinimumSize(new Dimension(300, 190));
 		_info.setMaximumSize(new Dimension(300, 190));
-		_info.setEditable(true);
+		_info.setEditable(false);
 		_info.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1), "Detailed data",
 				TitledBorder.LEFT, TitledBorder.TOP));
 		_info.setFont(new Font("Arial", 0, 15));

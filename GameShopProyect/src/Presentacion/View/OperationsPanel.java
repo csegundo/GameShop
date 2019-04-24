@@ -39,7 +39,7 @@ public class OperationsPanel extends JPanel {
 	private JButton _update;
 	private JLabel _registerLabel;
 	private JLabel _updaterLabel;
-	private FormUpdate _info;
+	private FormUpdateProvider _info;
 
 	private String nameIdentificator;
 	
@@ -89,7 +89,24 @@ public class OperationsPanel extends JPanel {
 	}
 	
 	private void updateButtonAction() {
-		
+		this._update.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				switch(nameIdentificator){
+				case "provider":
+					Controller.getInstance().action(_election.getSelectedItem(), Event.MODIFYBUTTON_PROVIDER);
+					break;
+				case "platform":
+					break;
+				case "employee":
+					break;
+				case "product":
+					break;
+				case "ticket":
+					break;
+				}
+			}
+		});
 	}
 
 	private void deleteButtonAction() {

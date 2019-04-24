@@ -31,10 +31,10 @@ public class FormProvider extends JDialog {
 	private final JLabel _nif = new JLabel("NIF:");
 	private final JLabel _address = new JLabel("Address:");
 	private final JLabel _phone = new JLabel("Phone:");
-	private JTextField _nifText;
-	private JTextField _addressText;
-	private JTextField _phoneText;
-	private JButton _ok;
+	protected JTextField _nifText;
+	protected JTextField _addressText;
+	protected JTextField _phoneText;
+	protected JButton _ok;
 	private JButton _cancel;
 	
 	public FormProvider(){
@@ -61,23 +61,11 @@ public class FormProvider extends JDialog {
 		this.setVisible(true);
 	}
 	
-	private String getNif(){
-		return this._nifText.getText();
-	}
-	
-	private String getAddress(){
-		return this._addressText.getText();
-	}
-	
-	private int getPhoneNumber(){
-		return Integer.parseInt(this._phoneText.getText());
-	}
-	
-	private void okButtonAction(){
+	protected void okButtonAction(){
 		_ok.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TProvider tp = new TProvider(getNif(), getAddress(), getPhoneNumber());
+				TProvider tp = new TProvider(_nifText.getText(), _addressText.getText(), Integer.parseInt(_phoneText.getText()));
 				Controller.getInstance().action(tp, Event.REGISTER_PROVIDER);
 				closeDialog();
 			}
@@ -93,7 +81,7 @@ public class FormProvider extends JDialog {
 		});
 	}
 	
-	private void closeDialog() {
+	protected void closeDialog() {
 		setVisible(false);
 		dispose();
 	}

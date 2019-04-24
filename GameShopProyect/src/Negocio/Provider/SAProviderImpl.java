@@ -37,8 +37,8 @@ public class SAProviderImpl implements SAProvider {
 		return ret;
 	}
 
-	public Boolean updateProvider(TProvider tp) {
-		return null;
+	public Boolean updateProvider(TProvider tp ) {
+		return DAOAbstractFactory.getInstance().createDAOProvider().updateProvider(tp);
 	}
 
 	public Object readProvider(Integer id) {
