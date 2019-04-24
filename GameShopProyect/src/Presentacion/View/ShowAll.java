@@ -43,6 +43,9 @@ public class ShowAll extends JPanel {
 
 	private void initComponents() {		
 		AbstractTableModel model = new AbstractTableModel() {
+			
+			ShowAll s = new ShowAllProvider(nameIdentificator);
+			
 			@Override
 			public int getColumnCount() {
 				return _columnNames.length;
@@ -57,7 +60,7 @@ public class ShowAll extends JPanel {
 				// Ponemos un switch para averiguar en cuál estamos y segun el que sea poner un new ShowAllProvider()... etc
 				switch(nameIdentificator) {
 				case "provider":
-					new ShowAllProvider();
+					//new ShowAllProvider(nameIdentificator);
 					break;
 				case "employee":
 					break;

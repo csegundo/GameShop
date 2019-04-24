@@ -24,7 +24,7 @@ public class ShowPanel extends JPanel {
 	public ShowPanel(String nameIdentificator) {
 		this.nameIdentificator = nameIdentificator.toLowerCase();
 		this.so = new ShowOne(nameIdentificator);
-		this.sa = new ShowAll(nameIdentificator);
+		//this.sa = new ShowAll(nameIdentificator);
 		initPanel();
 	}
 

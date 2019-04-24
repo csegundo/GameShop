@@ -8,6 +8,13 @@ import Presentacion.View.ShowAll;
 */
 @SuppressWarnings("serial")
 public class ShowAllProvider extends ShowAll {
-
+	
 	private String[] _columnsId = {"ID", "Direction", "NIF", "Phone number"};
+
+	public ShowAllProvider(String nameIdentificator) {
+		super(nameIdentificator);
+	}
+
+	
+	
 }

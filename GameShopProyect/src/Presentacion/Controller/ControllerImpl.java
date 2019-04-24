@@ -1,5 +1,6 @@
 package Presentacion.Controller;
 
+import Main.Main;
 import Negocio.Employee.SAEmployee;
 import Negocio.Platform.SAPlatform;
 import Negocio.Product.SAProduct;
@@ -11,6 +12,7 @@ import Presentacion.Platform.GUIPlattform;
 import Presentacion.Product.GUIProduct;
 import Presentacion.Provider.GUIProvider;
 import Presentacion.Ticket.GUITicket;
+import Presentacion.View.GUIGameshop;
 import Presentacion.View.IGUI;
 import Transfers.TProvider;
 
@@ -26,6 +28,11 @@ public class ControllerImpl extends Controller {
 	private SATicket sat;
 	private SAEmployee sae;
 	private SAPlatform sapl;
+	private GUIGameshop gs;
+	
+	public ControllerImpl() {
+		gs = new GUIGameshop(Main.applicationName);
+	}
 
 	@Override
 	public void action(Object data, Integer event) {
@@ -63,7 +70,7 @@ public class ControllerImpl extends Controller {
 			Integer id = (Integer)data;
 			sap = SAAbstractFactory.getInstance().createSAProvider();
 			TProvider t = (TProvider)sap.readProvider(id);
-			if (t != null)
+			if (t != null) 
 				gui.actualiza(Event.RES_READ_PROVIDER_OK, t);
 			else
 				gui.actualiza(Event.RES_READ_PROVIDER_FAILED, null);
