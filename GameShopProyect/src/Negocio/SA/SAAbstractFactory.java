@@ -1,14 +1,9 @@
-/**
- * 
- */
 package Negocio.SA;
 
 import Negocio.Provider.SAProvider;
 
 /** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
- * @author joalow
+ * @author GameShop
  * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public abstract class SAAbstractFactory {
@@ -16,7 +11,8 @@ public abstract class SAAbstractFactory {
 	private static SAAbstractFactory instance;
 
 	public static SAAbstractFactory getInstance() {
-		if(instance == null) instance = new SAAbstractFactoryImpl();
+		if(instance == null)
+			instance = new SAAbstractFactoryImpl();
 		return instance;
 	}
 	

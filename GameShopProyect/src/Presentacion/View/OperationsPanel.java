@@ -3,7 +3,6 @@ package Presentacion.View;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
-import Integracion.DAO.DAOAbstractFactory;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Event;
 import Presentacion.Employee.FormEmployee;
@@ -11,12 +10,10 @@ import Presentacion.Platform.FormPlatform;
 import Presentacion.Product.FormProduct;
 import Presentacion.Provider.FormProvider;
 import Presentacion.Ticket.FormTicket;
-import Transfers.TProvider;
 
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.List;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -122,9 +119,8 @@ public class OperationsPanel extends JPanel {
 		data.add(new Integer(85));
 		data.add(new Integer(75));
 		data.add(new Integer(52));
-		for (int i = 0; i < data.size(); ++i) {
+		for (int i = 0; i < data.size(); ++i) 
 			_election.addItem(data.get(i));
-		}
 	}
 	
 	private void initComponents() {
