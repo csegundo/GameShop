@@ -8,6 +8,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
+import Presentacion.Provider.ShowAllProvider;
+
 /** 
 * @author GameShop
 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
@@ -45,23 +47,33 @@ public class ShowAll extends JPanel {
 			public int getColumnCount() {
 				return _columnNames.length;
 			}
-
 			@Override
 			public int getRowCount() {
 				// TODO CAMBIAR ESTO
 				return numRows;
 			}
-
 			@Override
 			public Object getValueAt(int rowIndex, int columnIndex) {
+				// Ponemos un switch para averiguar en cuál estamos y segun el que sea poner un new ShowAllProvider()... etc
+				switch(nameIdentificator) {
+				case "provider":
+					new ShowAllProvider();
+					break;
+				case "employee":
+					break;
+				case "platform":
+					break;
+				case "ticket":
+					break;
+				case "product":
+					break;
+				}
 				return null;
 			}
-			
 			@Override
 			public String getColumnName(int column){
 				return _columnNames[column];
 			}
-			
 			@Override
 			public boolean isCellEditable(int row, int col) { 
 			    return false; 
