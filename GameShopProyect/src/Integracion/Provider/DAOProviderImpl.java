@@ -16,17 +16,11 @@ import Transfers.TProvider;
 */
 public class DAOProviderImpl implements DAOProvider {
 	
-	//public static final String nombreBD = "GameShop";
-	public static final String nombreBD = "gameshop";
-	public static final String userID = "root";
-	//public static final String userPASS = "gameshop";
-	public static final String userPASS = "1234567890";
-
 	public Integer createProvider(TProvider tp) {
 		int id = -1;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + nombreBD, userID, userPASS);
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			PreparedStatement ps = con.prepareStatement("INSERT INTO proveedor(direccion, NIF, telefono, activo) VALUES(?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setString(1, tp.get_address());
 			ps.setString(2, tp.get_nif());
@@ -49,7 +43,7 @@ public class DAOProviderImpl implements DAOProvider {
 		boolean ret = false;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + nombreBD, userID, userPASS);
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			PreparedStatement ps = con.prepareStatement("UPDATE proveedor SET activo=(?) WHERE ID=(?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setBoolean(1, false);
 			ps.setInt(2, tp.get_id());
@@ -71,7 +65,7 @@ public class DAOProviderImpl implements DAOProvider {
 		boolean ret = false;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + nombreBD, userID, userPASS);
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			PreparedStatement ps = con.prepareStatement("UPDATE proveedor SET activo=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setBoolean(1, tp.get_activated());
 			ps.setInt(2, tp.get_id());
@@ -109,7 +103,7 @@ public class DAOProviderImpl implements DAOProvider {
 			 * Hay que descargarse el JAR executable file y añadirlo a la libreria del proyecto para solucionar ese error y en la BD poner:
 			 * SET GLOBAL time_zone = '+3:00'; para arreglar el error de la zona horaria*/
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + nombreBD, userID, userPASS);
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM proveedor WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
@@ -134,7 +128,7 @@ public class DAOProviderImpl implements DAOProvider {
 		List<Object> l = new ArrayList<Object>();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + nombreBD, userID, userPASS);
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM proveedor", PreparedStatement.RETURN_GENERATED_KEYS);
 			ResultSet rs = ps.executeQuery();
 			//ResultSet rs = ps.getGeneratedKeys();
@@ -164,7 +158,7 @@ public class DAOProviderImpl implements DAOProvider {
 			 * Hay que descargarse el JAR executable file y añadirlo a la libreria del proyecto para solucionar ese error y en la BD poner:
 			 * SET GLOBAL time_zone = '+3:00'; para arreglar el error de la zona horaria*/
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + nombreBD, userID, userPASS);
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			PreparedStatement ps = con.prepareStatement("SELECT NIF FROM proveedor WHERE NIF=?", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setString(1, s);
 			ps.executeQuery();

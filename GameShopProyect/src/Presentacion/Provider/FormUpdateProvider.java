@@ -1,4 +1,4 @@
-package Presentacion.View;
+package Presentacion.Provider;
 
 import javax.swing.JDialog;
 import javax.swing.event.ChangeEvent;
@@ -7,7 +7,6 @@ import javax.swing.event.ChangeListener;
 import Negocio.SA.SAAbstractFactory;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Event;
-import Presentacion.Provider.FormProvider;
 import Transfers.TProvider;
 
 import java.awt.Dimension;
@@ -56,8 +55,10 @@ public class FormUpdateProvider extends FormProvider{
 		this._addressText.setText(_provider.get_address());
 		this._phoneText.setText(_provider.get_phoneNumber().toString());
 		
-		if(_provider.get_activated())
+		if(_provider.get_activated()) {
 			this._reactivate.setEnabled(false);
+			this._reactivate.setSelected(true);
+		}
 	}
 	
 	@Override

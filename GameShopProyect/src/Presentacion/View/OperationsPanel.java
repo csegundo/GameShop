@@ -9,6 +9,7 @@ import Presentacion.Employee.FormEmployee;
 import Presentacion.Platform.FormPlatform;
 import Presentacion.Product.FormProduct;
 import Presentacion.Provider.FormProvider;
+import Presentacion.Provider.FormUpdateProvider;
 import Presentacion.Ticket.FormTicket;
 
 import java.awt.Color;
