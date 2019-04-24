@@ -5,70 +5,57 @@ package Negocio.Employee;
 
 import java.util.List;
 
-/** 
-* <!-- begin-UML-doc -->
-* <!-- end-UML-doc -->
-* @author joalow
-* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-*/
+import Integracion.DAO.DAOAbstractFactory;
+import Integracion.Employee.DAOEmployee;
+import Transfers.TEmployee;
+
 public class SAEmployeeImpl implements SAEmployee {
-	/** 
-	* (non-Javadoc)
-	* @see SAEmployee#createEmployee(Object te)
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Integer createEmployee(Object te) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+
+	@Override
+	public Integer createEmployee(TEmployee te) {
+		int id = -1;
+		DAOEmployee daoEmployee = DAOAbstractFactory.getInstance().createDAOEmployee();
+		if(te != null){
+			TEmployee tpl = daoEmployee.readEmployeeByNIF(te.get_nif());
+			if(tpl == null)
+				id = daoEmployee.createEmployee(te);
+		}
+		return id;
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see SAEmployee#deleteEmployee(Object te)
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Boolean deleteEmployee(Object te) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	@Override
+	public Boolean deleteEmployee(Integer id) {
+		boolean ret = false;
+		DAOEmployee daoEmployee = DAOAbstractFactory.getInstance().createDAOEmployee();
+		
+		if(id != null) {
+			TEmployee ternif = (TEmployee)daoEmployee.readEmployee(id);
+			// Si devuelve un transfer significa que existe y por lo tanto se procede a borrarlo
+			if(ternif != null && ternif.get_activated())
+				ret = daoEmployee.deleteEmployee(ternif);
+		}
+		return ret;
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see SAEmployee#updateEmployee(Object te)
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Boolean updateEmployee(Object te) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	@Override
+	public Boolean updateEmployee(TEmployee te) {
+		return DAOAbstractFactory.getInstance().createDAOEmployee().updateEmployee(te);
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see SAEmployee#readEmployee(Object te)
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Object readEmployee(Object te) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	@Override
+	public Object readEmployee(Integer id) {
+		TEmployee ret = null;
+		DAOEmployee daoProvider = DAOAbstractFactory.getInstance().createDAOEmployee();
+		
+		if(id != null)
+			ret = (TEmployee)daoProvider.readEmployee(id);
+		return ret;
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see SAEmployee#readAllEmployees()
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public List readAllEmployees() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	@Override
+	public List<Object> readAllEmployees() {
+		List<Object> employees = null;
+		employees = DAOAbstractFactory.getInstance().createDAOEmployee().readAllEmployees();
+		return employees;
 	}
 }

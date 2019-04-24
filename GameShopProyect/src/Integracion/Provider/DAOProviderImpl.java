@@ -159,7 +159,7 @@ public class DAOProviderImpl implements DAOProvider {
 			 * SET GLOBAL time_zone = '+3:00'; para arreglar el error de la zona horaria*/
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
-			PreparedStatement ps = con.prepareStatement("SELECT NIF FROM proveedor WHERE NIF=?", PreparedStatement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = con.prepareStatement("SELECT ID FROM proveedor WHERE NIF=?", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setString(1, s);
 			ps.executeQuery();
 			ResultSet rs = ps.getGeneratedKeys();

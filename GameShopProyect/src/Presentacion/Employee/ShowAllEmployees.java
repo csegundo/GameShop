@@ -4,19 +4,89 @@
 package Presentacion.Employee;
 
 import Presentacion.View.ShowAll;
-import java.util.Set;
+import Transfers.TEmployee;
+import java.util.List;
 
-/** 
-* <!-- begin-UML-doc -->
-* <!-- end-UML-doc -->
-* @author joalow
-* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-*/
+
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.AbstractTableModel;
+
 public class ShowAllEmployees extends ShowAll {
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Set<String> _columnsId = null;
+
+	private static final long serialVersionUID = 1L;
+	private String[] _columnsId = { "ID", "Name", "NIF", "Round" };
+	AbstractTableModel model;
+	private List<Object> _employees;
+
+	public ShowAllEmployees(String nameIdentificator, List<Object> l) {
+		super(nameIdentificator);
+		_employees = l;
+		this.initComponents();
+	}
+
+	private void initComponents() {
+		model = new AbstractTableModel() {
+
+			@Override
+			public int getColumnCount() {
+				return _columnsId.length;
+			}
+
+			@Override
+			public int getRowCount() {
+				return _employees == null ? 0 : _employees.size();
+			}
+
+			@Override
+			public Object getValueAt(int rowIndex, int columnIndex) {
+				Object o = null;
+				
+				switch(columnIndex){
+				case 0:
+					o = ((TEmployee)_employees.get(rowIndex)).get_id();
+					break;
+					
+				case 1:
+					o = ((TEmployee)_employees.get(rowIndex)).get_name();
+					break;
+					
+				case 2:
+					o = ((TEmployee)_employees.get(rowIndex)).get_nif();
+					break;
+					
+				case 3:
+					o = ((TEmployee)_employees.get(rowIndex)).getTurn();
+					break;
+				}
+				return o;
+			}
+
+			@Override
+			public String getColumnName(int column) {
+				return _columnsId[column];
+			}
+
+			@Override
+			public boolean isCellEditable(int row, int col) {
+				return false;
+			}
+		};
+
+		_grid = new JTable(model);
+		_grid.setVisible(true);
+		this.add(_grid);
+
+		this.add(new JScrollPane(_grid,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED));
+		
+	}
+	
+	@Override
+	public void update(List<Object> l) {
+		if(this._employees == null || (l != null && l.size() != this._employees.size())) {
+			this._employees = l;
+			this.model.fireTableDataChanged();
+		}
+	}
+
 }

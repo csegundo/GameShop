@@ -7,6 +7,9 @@ import Presentacion.View.InfoDB;
 
 public class Main {
 	
+	//No olvidar meter el campo activo a las entidades en la BD 
+	
+	
 	public static final String applicationName = "GameShop";
 	public static String database;
 	public static String user;
@@ -17,7 +20,7 @@ public class Main {
 			@Override
 			public void run() {
 				Controller.getInstance();
-				new InfoDB();
+				//new InfoDB();
 			}
 		});
 	}

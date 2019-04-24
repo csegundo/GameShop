@@ -5,62 +5,136 @@ package Presentacion.Employee;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import Presentacion.Controller.Controller;
+import Presentacion.Controller.Event;
+import Transfers.TEmployee;
+
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
+
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-/** 
-* <!-- begin-UML-doc -->
-* <!-- end-UML-doc -->
-* @author joalow
-* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-*/
-public class FormEmployee {
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private JLabel _nif;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private JLabel _name;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private JLabel _turn;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
+
+public class FormEmployee extends JDialog {
+	
+	private static final long serialVersionUID = 1L;
+	private final String availableTurns[] = {"Early shift" , "Late shift"};
+	//IMPORTANTE: El turno es un string , no un int
+	private final JLabel _nif = new JLabel("NIF:");
+	private final JLabel _name = new JLabel("Name:");
+	private final JLabel _turn = new JLabel("Round:");
 	private JTextField _nifTex;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
 	private JTextField _nameText;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private JComboBox _turnElection;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
+	private JComboBox<String> _turnElection;
 	private JButton _accept;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
 	private JButton _cancel;
+	
+	public FormEmployee(){
+		this.setTitle("Register a employee");
+		this.setIconImage(new ImageIcon("resources/GameShopLogo.png").getImage());
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				closeDialog();
+			}
+		});
+		
+		this.setLayout(new FlowLayout());
+		this.setBounds(new Rectangle(300,140));
+		this.setLocationRelativeTo(null);
+		
+		initComponents();
+		okButtonAction();
+		cancelButtonAction();
+		
+		this.setVisible(true);
+	}
+	
+	protected void okButtonAction(){
+		this._accept.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TEmployee te = new TEmployee();//(_nifText.getText(), _addressText.getText(), Integer.parseInt(_phoneText.getText()));
+				te.set_name(_nameText.getText());
+				te.set_nif(_nifTex.getText());
+				te.setTurn((String)_turnElection.getSelectedItem());
+				Controller.getInstance().action(te, Event.REGISTER_EMPLOYEE);
+				closeDialog();
+			}
+		});
+	}
+	
+	private void cancelButtonAction(){
+		_cancel.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				closeDialog();
+			}
+		});
+	}
+	
+	protected void closeDialog() {
+		setVisible(false);
+		dispose();
+	}
+	
+	private void initComponents() {
+		//_nif = new JLabel("NIF:");
+		_nifTex = new JTextField();
+		_nifTex.setPreferredSize(new Dimension(220,20));
+		_nifTex.setMaximumSize(new Dimension(220,20));
+		_nifTex.setMinimumSize(new Dimension(220,20));
+		
+		//_address = new JLabel("Address:");
+		_nameText = new JTextField();
+		_nameText.setPreferredSize(new Dimension(220,20));
+		_nameText.setMaximumSize(new Dimension(220,20));
+		_nameText.setMinimumSize(new Dimension(220,20));
+		
+		//_phone = new JLabel("Phone:");
+		_turnElection = new JComboBox<String>();
+		for(int i=0;i<availableTurns.length;i++)
+		{
+			_turnElection.addItem(availableTurns[i]);
+		}
+		_turnElection.setSize(new Dimension(150, 50));
+		_turnElection.setBounds(new Rectangle(50, 150));
+		_turnElection.setMinimumSize(new Dimension(150, 50));
+		_turnElection.setMaximumSize(new Dimension(150, 50));
+		_turnElection.setEditable(false);
+		_turnElection.setVisible(true);
+		
+		_accept = new JButton("OK");
+		_accept.setPreferredSize(new Dimension(70,20));
+		_accept.setMaximumSize(new Dimension(70,20));
+		_accept.setMinimumSize(new Dimension(70,20));
+		
+		_cancel = new JButton("Cancel");
+		
+		
+		this.add(_nif);
+		this.add(Box.createRigidArea(new Dimension(16, 1)));
+		this.add(_nifTex);
+		this.add(_name);
+		this.add(_nameText);
+		this.add(_turn);
+		this.add(Box.createRigidArea(new Dimension(5, 1)));
+		this.add(_turnElection);
+		this.add(_accept);
+		this.add(_cancel);
+	}
 }
