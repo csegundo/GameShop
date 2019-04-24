@@ -19,7 +19,7 @@ public class DAOProviderImpl implements DAOProvider {
 	public static final String nombreBD = "gameshop";
 	public static final String userID = "root";
 	//public static final String userPASS = "gameshop";
-	public static final String userPASS = "1234";
+	public static final String userPASS = "1234567890";
 
 	public Integer createProvider(TProvider tp) {
 		int id = -1;

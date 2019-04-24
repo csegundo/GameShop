@@ -1,5 +1,8 @@
 package Presentacion.Controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Main.Main;
 import Negocio.Employee.SAEmployee;
 import Negocio.Platform.SAPlatform;
@@ -8,7 +11,7 @@ import Negocio.Provider.SAProvider;
 import Negocio.SA.SAAbstractFactory;
 import Negocio.Ticket.SATicket;
 import Presentacion.Employee.GUIEmployee;
-import Presentacion.Platform.GUIPlattform;
+import Presentacion.Platform.GUIPlatform;
 import Presentacion.Product.GUIProduct;
 import Presentacion.Provider.GUIProvider;
 import Presentacion.Ticket.GUITicket;
@@ -23,26 +26,40 @@ import Transfers.TProvider;
 public class ControllerImpl extends Controller {
 	
 	private IGUI gui;
+	private GUIGameshop gs;
+	
+	private GUIProvider gpr;
+	private GUIPlatform gpl;
+	private GUIEmployee ge;
+	private GUIProduct gprd;
+	private GUITicket gt;
+	
 	private SAProvider sap;
 	private SAProduct sapr;
 	private SATicket sat;
 	private SAEmployee sae;
 	private SAPlatform sapl;
-	private GUIGameshop gs;
 	
 	public ControllerImpl() {
 		gs = new GUIGameshop(Main.applicationName);
+		List<Object> guis = new ArrayList<Object>();
+		guis.add((gpr=new GUIProvider()));
+		guis.add((gpl = new GUIPlatform()));
+		guis.add((ge = new GUIEmployee()));
+		guis.add((gprd = new GUIProduct()));
+		guis.add((gt = new GUITicket()));
+		gs.initTabs(guis);
 	}
 
 	@Override
 	public void action(Object data, Integer event) {
 		
 		switch(Math.abs(event / 100)) {
-		case 1: gui = new GUIEmployee(); break;
-		case 2: gui = new GUIProvider(); break;
-		case 3: gui = new GUITicket(); break;
-		case 4: gui = new GUIProduct(); break;
-		case 5: gui = new GUIPlattform(); break;
+		case 1: gui = ge; break;
+		case 2: gui = gpr; break;
+		case 3: gui = gt; break;
+		case 4: gui = gprd; break;
+		case 5: gui = gpl; break;
 		}
 		
 		switch(event) {

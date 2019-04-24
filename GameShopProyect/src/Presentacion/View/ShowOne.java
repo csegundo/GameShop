@@ -92,7 +92,7 @@ public class ShowOne extends JPanel {
 		
 		this.add(Box.createRigidArea(new Dimension(1, 30)));
 		
-		_info = new JTextArea("");
+		_info = new JTextArea();
 		_info.setWrapStyleWord(true);
 		_info.setLineWrap(true);
 		_info.setPreferredSize(new Dimension(300, 190));

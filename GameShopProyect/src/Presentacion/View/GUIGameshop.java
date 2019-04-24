@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -13,7 +14,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
 import Presentacion.Employee.GUIEmployee;
+import Presentacion.Platform.GUIPlatform;
+import Presentacion.Product.GUIProduct;
 import Presentacion.Provider.GUIProvider;
+import Presentacion.Ticket.GUITicket;
 
 /**
 * @author GameShop
@@ -59,26 +63,26 @@ public class GUIGameshop extends JFrame {
 		this.setLayout(new BorderLayout());
 		this.add(new JLabel("  GameShop Application. Developed by UCM FdI students. "
 				+ "Department of Software Engineering and artificial intelligence."), BorderLayout.SOUTH);
-		initTabs();
+		//initTabs();
 		
 		this.setVisible(true);
 	}
 
-	private void initTabs() {
+	public void initTabs(List<Object> guis) {
 		_tabs = new JTabbedPane(JTabbedPane.TOP);
 		_tabs.setPreferredSize(new Dimension(700, 500));
 		_tabs.setMinimumSize(new Dimension(700, 500));
 		_tabs.setMaximumSize(new Dimension(700, 500));
 		
-		_tabs.addTab(GUIGameshop.TAB_PROVIDER, null, new GUIProvider(), "Provider tab");
+		_tabs.addTab(GUIGameshop.TAB_PROVIDER, null, (GUIProvider)guis.get(0), "Provider tab");
 		
-		_tabs.addTab(GUIGameshop.TAB_PLATFORM, null, new JLabel("holaa"), "Platform tab");
+		_tabs.addTab(GUIGameshop.TAB_PLATFORM, null, (GUIPlatform)guis.get(1), "Platform tab");
 		
-		_tabs.addTab(GUIGameshop.TAB_EMPLOYEE, null, new GUIEmployee(), "Employee tab");
+		_tabs.addTab(GUIGameshop.TAB_EMPLOYEE, null, (GUIEmployee) guis.get(2), "Employee tab");
 		
-		_tabs.addTab(GUIGameshop.TAB_PRODUCT, null, new JLabel("tal"), "Product tab");
+		_tabs.addTab(GUIGameshop.TAB_PRODUCT, null, (GUIProduct) guis.get(3), "Product tab");
 		
-		_tabs.addTab(GUIGameshop.TAB_TICKET, null, new JLabel("estan"), "Ticket tab");
+		_tabs.addTab(GUIGameshop.TAB_TICKET, null, (GUITicket) guis.get(4), "Ticket tab");
 		
 		this.add(_tabs, BorderLayout.CENTER);
 	}
