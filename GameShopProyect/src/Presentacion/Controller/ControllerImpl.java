@@ -92,6 +92,15 @@ public class ControllerImpl extends Controller {
 			else
 				gui.actualiza(Event.RES_READ_PROVIDER_FAILED, null);
 			break;
+			
+		case Event.READ_ALL_PROVIDERS:
+			sap = SAAbstractFactory.getInstance().createSAProvider();
+			List<Object> providers = sap.readAllProviders();
+			if(providers == null)
+				gui.actualiza(Event.RES_READALL_PROVIDERS_FAILED, null);
+			else
+				gui.actualiza(Event.RES_READALL_PROVIDERS_OK, providers);
+			break;
 		}
 	}
 	

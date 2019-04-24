@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import Transfers.TProvider;
@@ -101,7 +102,27 @@ public class DAOProviderImpl implements DAOProvider {
 	}
 
 	public List<Object> readAllProviders() {
-		return null;
+		List<Object> l = new ArrayList<Object>();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + nombreBD, userID, userPASS);
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM proveedor", PreparedStatement.RETURN_GENERATED_KEYS);
+			ResultSet rs = ps.executeQuery();
+			//ResultSet rs = ps.getGeneratedKeys();
+			while(rs.next()){
+				TProvider tpl = new TProvider();
+				tpl.set_id(rs.getInt(1));
+				tpl.set_address(rs.getString(2));
+				tpl.set_nif(rs.getString(3));
+				tpl.set_phoneNumber(rs.getInt(4));
+				tpl.set_activated(rs.getBoolean(5));
+				l.add(tpl);
+			}
+			con.close();
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return l;
 	}
 
 	public TProvider readProviderByNIF(String s) {

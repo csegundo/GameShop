@@ -79,6 +79,7 @@ public class FormProvider extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				TProvider tp = new TProvider(getNif(), getAddress(), getPhoneNumber());
 				Controller.getInstance().action(tp, Event.REGISTER_PROVIDER);
+				closeDialog();
 			}
 		});
 	}
@@ -122,9 +123,9 @@ public class FormProvider extends JDialog {
 		_ok.setMinimumSize(new Dimension(70,20));
 		
 		_cancel = new JButton("Cancel");
-		_cancel.setPreferredSize(new Dimension(70,20));
-		_cancel.setMaximumSize(new Dimension(70,20));
-		_cancel.setMinimumSize(new Dimension(70,20));
+		_cancel.setPreferredSize(new Dimension(80,20));
+		_cancel.setMaximumSize(new Dimension(80,20));
+		_cancel.setMinimumSize(new Dimension(80,20));
 		
 		this.add(_nif);
 		this.add(Box.createRigidArea(new Dimension(16, 1)));

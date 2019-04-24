@@ -1,6 +1,7 @@
 package Presentacion.Provider;
 
 import java.awt.BorderLayout;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -38,6 +39,7 @@ public class GUIProvider extends JPanel implements IGUI {
 		_rightPane.setVisible(true);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void actualiza(Integer e, Object t) {
 		switch(e){
@@ -48,8 +50,8 @@ public class GUIProvider extends JPanel implements IGUI {
 			break;
 			
 		case Event.RES_REGISTER_PROVIDER_FAILED:
-			JOptionPane.showConfirmDialog(null, "Error al insertar el proveedor en la base de datos.", "Failed",
-					JOptionPane.ERROR_MESSAGE, JOptionPane.OK_OPTION);
+			JOptionPane.showMessageDialog(this, "Error al insertar el proveedor en la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
+
 			break;
 			
 		case Event.RES_UNSUBSCRIBE_PROVIDER_OK:
@@ -59,8 +61,7 @@ public class GUIProvider extends JPanel implements IGUI {
 			break;
 			
 		case Event.RES_UNSUBSCRIBE_PROVIDER_FAILED:
-			JOptionPane.showConfirmDialog(null, "Error al eliminar el proveedor en la base de datos.", "Failed",
-					JOptionPane.ERROR_MESSAGE, JOptionPane.OK_OPTION);
+			JOptionPane.showMessageDialog(this, "Error al eliminar el proveedor en la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
 			break;
 			
 		case Event.RES_READ_PROVIDER_OK:
@@ -74,8 +75,15 @@ public class GUIProvider extends JPanel implements IGUI {
 			break;
 			
 		case Event.RES_READ_PROVIDER_FAILED:
-			JOptionPane.showConfirmDialog(null, "Error al mostrar el proveedor en la base de datos.", "Failed",
-					JOptionPane.ERROR_MESSAGE, JOptionPane.OK_OPTION);
+			JOptionPane.showMessageDialog(this, "Error al mostrar el proveedor en la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
+			break;
+		
+		case Event.RES_READALL_PROVIDERS_FAILED:
+			JOptionPane.showMessageDialog(this, "Error al mostrar todos los proveedores.","Failed",JOptionPane.ERROR_MESSAGE);			
+			break;
+			
+		case Event.RES_READALL_PROVIDERS_OK:
+			_rightPane.setTable((List<Object>)t);
 			break;
 		}
 	}

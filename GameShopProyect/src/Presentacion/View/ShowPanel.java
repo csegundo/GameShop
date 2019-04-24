@@ -2,12 +2,19 @@ package Presentacion.View;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import Presentacion.Controller.Controller;
+import Presentacion.Controller.Event;
+import Presentacion.Provider.ShowAllProvider;
 
 /** 
 * @author GameShop
@@ -24,6 +31,12 @@ public class ShowPanel extends JPanel {
 	public ShowPanel(String nameIdentificator) {
 		this.nameIdentificator = nameIdentificator.toLowerCase();
 		this.so = new ShowOne(nameIdentificator);
+		switch(nameIdentificator) {
+		case "Provider":
+			this.sa = new ShowAllProvider(nameIdentificator,null);
+			break;
+			
+		}
 		//this.sa = new ShowAll(nameIdentificator);
 		initPanel();
 	}
@@ -52,11 +65,25 @@ public class ShowPanel extends JPanel {
 		_tabs.addTab("Show one", null, so, "Show the data of the selected " + nameIdentificator);
 		_tabs.addTab("Show all", null, sa, "Show the data of all " + nameIdentificator);
 		
+		_tabs.addChangeListener(new ChangeListener() {
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+					if (_tabs.getSelectedIndex() == 1) {
+						Controller.getInstance().action(null, Event.READ_ALL_PROVIDERS);
+					}
+			}
+		});
+		
 		this.add(_tabs);		
 	}
 	
 	public void setInfoInScreen(String text) {
 		so.set_info(text);
+	}
+	
+	public void setTable(List<Object> l) {
+		sa.update(l);
 	}
 	
 }
