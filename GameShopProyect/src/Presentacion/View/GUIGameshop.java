@@ -87,4 +87,8 @@ public class GUIGameshop extends JFrame {
 		this.add(_tabs, BorderLayout.CENTER);
 	}
 	
+	public IGUI getGuiAt(int index){
+		return (IGUI) _tabs.getComponentAt(index);
+	}
+	
 }

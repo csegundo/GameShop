@@ -11,9 +11,9 @@ public class Main {
 	
 	
 	public static final String applicationName = "GameShop";
-	public static String database;
-	public static String user;
-	public static String password;
+	public static String database = "GameShop";
+	public static String user = "root";
+	public static String password = "gameshop";
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
