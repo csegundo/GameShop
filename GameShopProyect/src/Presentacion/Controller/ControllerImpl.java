@@ -29,13 +29,6 @@ public class ControllerImpl extends Controller {
 	private IGUI gui;
 	private GUIGameshop gs;
 	
-	/*
-	private GUIProvider gpr;
-	private GUIPlatform gpl;
-	private GUIEmployee ge;
-	private GUIProduct gprd;
-	private GUITicket gt;*/
-	
 	public ControllerImpl() {
 		gs = new GUIGameshop(Main.applicationName);
 		List<Object> guis = new ArrayList<Object>();
@@ -53,15 +46,7 @@ public class ControllerImpl extends Controller {
 		TProvider tpr;
 		
 		gui = gs.getGuiAt(event/100 - 1);
-		/*
-		switch(Math.abs(event / 100)) {
-		case 1: gui = ge; break;
-		case 2: gui = gpr; break;
-		case 3: gui = gt; break;
-		case 4: gui = gprd; break;
-		case 5: gui = gpl; break;
-		}
-		*/
+
 		switch(event) {
 		case Event.REGISTER_PROVIDER:
 			tpr = (TProvider)data;

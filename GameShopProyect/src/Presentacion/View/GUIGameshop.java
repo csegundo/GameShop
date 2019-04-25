@@ -91,4 +91,5 @@ public class GUIGameshop extends JFrame {
 		return (IGUI) _tabs.getComponentAt(index);
 	}
 	
+	
 }
