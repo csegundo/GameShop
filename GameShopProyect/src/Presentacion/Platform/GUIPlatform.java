@@ -15,6 +15,7 @@ import Presentacion.Controller.Event;
 * @author joalow
 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 */
+@SuppressWarnings("serial")
 public class GUIPlatform extends JPanel implements IGUI {
 	/** 
 	* <!-- begin-UML-doc -->
@@ -28,18 +29,6 @@ public class GUIPlatform extends JPanel implements IGUI {
 	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	*/
 	private ShowPanel _rightPane;
-
-	/** 
-	* (non-Javadoc)
-	* @see IGUI#actualiza(Event e, Object t)
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public void actualiza(Event e, Object t) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-
-		// end-user-code
-	}
 
 	@Override
 	public void actualiza(Integer e, Object t) {

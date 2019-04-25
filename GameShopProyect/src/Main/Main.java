@@ -3,7 +3,6 @@ package Main;
 import javax.swing.SwingUtilities;
 
 import Presentacion.Controller.Controller;
-import Presentacion.View.InfoDB;
 
 public class Main {
 	
