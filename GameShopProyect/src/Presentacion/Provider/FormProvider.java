@@ -1,7 +1,6 @@
 package Presentacion.Provider;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Presentacion.Controller.Controller;
