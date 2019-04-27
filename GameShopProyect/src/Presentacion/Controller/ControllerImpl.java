@@ -4,12 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Main.Main;
-import Negocio.Employee.SAEmployee;
-import Negocio.Platform.SAPlatform;
-import Negocio.Product.SAProduct;
-import Negocio.Provider.SAProvider;
 import Negocio.SA.SAAbstractFactory;
-import Negocio.Ticket.SATicket;
 import Presentacion.Employee.GUIEmployee;
 import Presentacion.Platform.GUIPlatform;
 import Presentacion.Product.GUIProduct;
@@ -18,6 +13,7 @@ import Presentacion.Provider.GUIProvider;
 import Presentacion.Ticket.GUITicket;
 import Presentacion.View.GUIGameshop;
 import Presentacion.View.IGUI;
+import Transfers.TEmployee;
 import Transfers.TProvider;
 
 /** 
@@ -44,6 +40,7 @@ public class ControllerImpl extends Controller {
 	public void action(Object data, Integer event) {
 		Integer id;
 		TProvider tpr;
+		TEmployee tpe;
 		
 		gui = gs.getGuiAt(event/100 - 1);
 
@@ -99,6 +96,16 @@ public class ControllerImpl extends Controller {
 				gui.actualiza(Event.RES_READALL_PROVIDERS_FAILED, null);
 			else
 				gui.actualiza(Event.RES_READALL_PROVIDERS_OK, providers);
+			break;
+			
+			
+		case Event.REGISTER_EMPLOYEE:
+			tpe = (TEmployee)data;
+			int resRegisterEmp = (SAAbstractFactory.getInstance().createSAEmployee()).createEmployee(tpe);
+			if(resRegisterEmp > 0)
+				gui.actualiza(Event.RES_REGISTER_EMPLOYEE_OK, new Integer(resRegisterEmp));
+			else
+				gui.actualiza(Event.RES_REGISTER_PROVIDER_FAILED, null);
 			break;
 		}
 	}

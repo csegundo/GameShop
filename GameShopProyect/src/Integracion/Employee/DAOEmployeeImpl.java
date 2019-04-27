@@ -1,6 +1,3 @@
-/**
- * 
- */
 package Integracion.Employee;
 
 import java.sql.Connection;
@@ -121,8 +118,8 @@ public class DAOEmployeeImpl implements DAOEmployee {
 	}
 
 	@Override
-	public List<Object> readAllEmployees() {
-		List<Object> l = new ArrayList<Object>();
+	public List<TEmployee> readAllEmployees() {
+		List<TEmployee> l = new ArrayList<TEmployee>();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
@@ -151,7 +148,7 @@ public class DAOEmployeeImpl implements DAOEmployee {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
-			PreparedStatement ps = con.prepareStatement("SELECT ID FROM empleado WHERE NIF=?", PreparedStatement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = con.prepareStatement("SELECT NIF FROM empleado WHERE NIF=?", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setString(1, s);
 			ps.executeQuery();
 			ResultSet rs = ps.getGeneratedKeys();

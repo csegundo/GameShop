@@ -53,8 +53,8 @@ public class SAEmployeeImpl implements SAEmployee {
 	}
 
 	@Override
-	public List<Object> readAllEmployees() {
-		List<Object> employees = null;
+	public List<TEmployee> readAllEmployees() {
+		List<TEmployee> employees = null;
 		employees = DAOAbstractFactory.getInstance().createDAOEmployee().readAllEmployees();
 		return employees;
 	}

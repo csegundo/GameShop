@@ -26,21 +26,22 @@ public class GUIEmployee extends JPanel implements IGUI {
 	private void alignmentPanels() {
 		this.setLayout(new BorderLayout());
 		
-		this._leftPane = new OperationsPanel(GUIGameshop.TAB_EMPLOYEE);
+		_leftPane = new OperationsPanel(GUIGameshop.TAB_EMPLOYEE);
 		this.add(_leftPane, BorderLayout.WEST);
 		_leftPane.setVisible(true);
 		
-		this._rightPane = new ShowPanel(GUIGameshop.TAB_EMPLOYEE);
+		_rightPane = new ShowPanel(GUIGameshop.TAB_EMPLOYEE);
 		this.add(_rightPane, BorderLayout.EAST);
 		_rightPane.setVisible(true);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void actualiza(Integer e, Object t) {
 		switch(e){
 		case Event.RES_REGISTER_EMPLOYEE_OK:
 			Integer id = (Integer)t;
-			JOptionPane.showMessageDialog(null, "Se ha insertado el empleado" + id + "correctamente en la base de datos.", "Success",
+			JOptionPane.showMessageDialog(null, "Se ha insertado el empleado " + id + " correctamente en la base de datos.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
 			break;
 		case Event.RES_REGISTER_EMPLOYEE_FAILED:

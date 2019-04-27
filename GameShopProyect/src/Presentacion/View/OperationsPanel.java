@@ -10,8 +10,8 @@ import Presentacion.Employee.FormEmployee;
 import Presentacion.Platform.FormPlatform;
 import Presentacion.Product.FormProduct;
 import Presentacion.Provider.FormProvider;
-import Presentacion.Provider.FormUpdateProvider;
 import Presentacion.Ticket.FormTicket;
+import Transfers.TEmployee;
 import Transfers.TProvider;
 
 import java.awt.Color;
@@ -20,9 +20,6 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -43,7 +40,7 @@ public class OperationsPanel extends JPanel {
 	private JButton _update;
 	private JLabel _registerLabel;
 	private JLabel _updaterLabel;
-	private FormUpdateProvider _info;
+	//private FormUpdateProvider _info;
 
 	private String nameIdentificator;
 	
@@ -137,12 +134,14 @@ public class OperationsPanel extends JPanel {
 	private void addInfoToComboBox() {
 		switch(nameIdentificator){
 		case "provider":
-			for(TProvider add : SAAbstractFactory.getInstance().createSAProvider().readAllProviders())
-				_election.addItem(add.get_id());
+			for(TProvider tpro : SAAbstractFactory.getInstance().createSAProvider().readAllProviders())
+				_election.addItem(tpro.get_id());
 			break;
 		case "platform":
 			break;
 		case "employee":
+			for(TEmployee temp : SAAbstractFactory.getInstance().createSAEmployee().readAllEmployees())
+				_election.addItem(temp.get_id());
 			break;
 		case "product":
 			break;

@@ -68,7 +68,7 @@ public class GUIProvider extends JPanel implements IGUI {
 			JOptionPane.showMessageDialog(this, "Error al intentar modificar el proveedor en la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
 			break;
 			
-		case Event.RES_MODIFY_PRODUCT_OK:
+		case Event.RES_MODIFY_PROVIDER_OK:
 			JOptionPane.showMessageDialog(this, "Proveedor actualizado correctamente en la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
 			break;
 			

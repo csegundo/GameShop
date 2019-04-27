@@ -34,10 +34,10 @@ public class FormEmployee extends JDialog {
 	private final JLabel _nif = new JLabel("NIF:");
 	private final JLabel _name = new JLabel("Name:");
 	private final JLabel _turn = new JLabel("Round:");
-	private JTextField _nifTex;
-	private JTextField _nameText;
-	private JComboBox<String> _turnElection;
-	private JButton _accept;
+	protected JTextField _nifText;
+	protected JTextField _nameText;
+	protected JComboBox<String> _turnElection;
+	protected JButton _accept;
 	private JButton _cancel;
 	
 	public FormEmployee(){
@@ -54,7 +54,7 @@ public class FormEmployee extends JDialog {
 		});
 		
 		this.setLayout(new FlowLayout());
-		this.setBounds(new Rectangle(300,140));
+		this.setBounds(new Rectangle(300, 120));
 		this.setLocationRelativeTo(null);
 		
 		initComponents();
@@ -70,7 +70,7 @@ public class FormEmployee extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				TEmployee te = new TEmployee();//(_nifText.getText(), _addressText.getText(), Integer.parseInt(_phoneText.getText()));
 				te.set_name(_nameText.getText());
-				te.set_nif(_nifTex.getText());
+				te.set_nif(_nifText.getText());
 				te.setTurn((String)_turnElection.getSelectedItem());
 				Controller.getInstance().action(te, Event.REGISTER_EMPLOYEE);
 				closeDialog();
@@ -94,10 +94,10 @@ public class FormEmployee extends JDialog {
 	
 	private void initComponents() {
 		//_nif = new JLabel("NIF:");
-		_nifTex = new JTextField();
-		_nifTex.setPreferredSize(new Dimension(220,20));
-		_nifTex.setMaximumSize(new Dimension(220,20));
-		_nifTex.setMinimumSize(new Dimension(220,20));
+		_nifText = new JTextField();
+		_nifText.setPreferredSize(new Dimension(220,20));
+		_nifText.setMaximumSize(new Dimension(220,20));
+		_nifText.setMinimumSize(new Dimension(220,20));
 		
 		//_address = new JLabel("Address:");
 		_nameText = new JTextField();
@@ -107,10 +107,8 @@ public class FormEmployee extends JDialog {
 		
 		//_phone = new JLabel("Phone:");
 		_turnElection = new JComboBox<String>();
-		for(int i=0;i<availableTurns.length;i++)
-		{
+		for(int i = 0; i < availableTurns.length; ++i)
 			_turnElection.addItem(availableTurns[i]);
-		}
 		_turnElection.setSize(new Dimension(150, 50));
 		_turnElection.setBounds(new Rectangle(50, 150));
 		_turnElection.setMinimumSize(new Dimension(150, 50));
@@ -124,11 +122,13 @@ public class FormEmployee extends JDialog {
 		_accept.setMinimumSize(new Dimension(70,20));
 		
 		_cancel = new JButton("Cancel");
-		
+		_cancel.setPreferredSize(new Dimension(70,20));
+		_cancel.setMaximumSize(new Dimension(70,20));
+		_cancel.setMinimumSize(new Dimension(70,20));
 		
 		this.add(_nif);
-		this.add(Box.createRigidArea(new Dimension(16, 1)));
-		this.add(_nifTex);
+		this.add(Box.createRigidArea(new Dimension(7, 1)));
+		this.add(_nifText);
 		this.add(_name);
 		this.add(_nameText);
 		this.add(_turn);

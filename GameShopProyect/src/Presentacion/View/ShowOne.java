@@ -19,6 +19,7 @@ import javax.swing.border.TitledBorder;
 import Negocio.SA.SAAbstractFactory;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Event;
+import Transfers.TEmployee;
 import Transfers.TProvider;
 
 /** 
@@ -116,12 +117,14 @@ public class ShowOne extends JPanel {
 	private void fillList() {
 		switch(nameIdentificator){
 		case "provider":
-			for(TProvider add : SAAbstractFactory.getInstance().createSAProvider().readAllProviders())
-				_election.addItem(add.get_id());
+			for(TProvider tpro : SAAbstractFactory.getInstance().createSAProvider().readAllProviders())
+				_election.addItem(tpro.get_id());
 			break;
 		case "platform":
 			break;
 		case "employee":
+			for(TEmployee temp : SAAbstractFactory.getInstance().createSAEmployee().readAllEmployees())
+				_election.addItem(temp.get_id());
 			break;
 		case "product":
 			break;

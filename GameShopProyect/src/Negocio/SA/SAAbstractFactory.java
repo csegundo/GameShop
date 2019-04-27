@@ -1,5 +1,6 @@
 package Negocio.SA;
 
+import Negocio.Employee.SAEmployee;
 import Negocio.Provider.SAProvider;
 
 /** 
@@ -16,7 +17,7 @@ public abstract class SAAbstractFactory {
 		return instance;
 	}
 	
-	public abstract Object createSAEmployee();
+	public abstract SAEmployee createSAEmployee();
 	public abstract Object createSAPlattform();
 	public abstract Object createSAProduct();
 	public abstract SAProvider createSAProvider();

@@ -12,5 +12,5 @@ public interface SAEmployee {
 	public Boolean deleteEmployee(Integer id);
 	public Boolean updateEmployee(TEmployee te);
 	public Object readEmployee(Integer id);
-	public List<Object> readAllEmployees();
+	public List<TEmployee> readAllEmployees();
 }

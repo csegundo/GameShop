@@ -12,9 +12,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
+@SuppressWarnings("serial")
 public class ShowAllEmployees extends ShowAll {
 
-	private static final long serialVersionUID = 1L;
 	private String[] _columnsId = { "ID", "Name", "NIF", "Round" };
 	AbstractTableModel model;
 	private List<Object> _employees;
@@ -22,7 +22,7 @@ public class ShowAllEmployees extends ShowAll {
 	public ShowAllEmployees(String nameIdentificator, List<Object> l) {
 		super(nameIdentificator);
 		_employees = l;
-		this.initComponents();
+		initComponents();
 	}
 
 	private void initComponents() {
@@ -74,6 +74,7 @@ public class ShowAllEmployees extends ShowAll {
 		};
 
 		_grid = new JTable(model);
+		setColumnsWidth();
 		_grid.setVisible(true);
 		this.add(_grid);
 
@@ -81,11 +82,17 @@ public class ShowAllEmployees extends ShowAll {
 		
 	}
 	
+	private void setColumnsWidth() {
+		_grid.getColumnModel().getColumn(0).setPreferredWidth(20);
+		_grid.getColumnModel().getColumn(1).setPreferredWidth(150);
+		_grid.getColumnModel().getColumn(2).setPreferredWidth(50);
+	}
+	
 	@Override
 	public void update(List<Object> l) {
-		if(this._employees == null || (l != null && l.size() != this._employees.size())) {
-			this._employees = l;
-			this.model.fireTableDataChanged();
+		if(_employees == null || (l != null && l.size() != _employees.size())) {
+			_employees = l;
+			model.fireTableDataChanged();
 		}
 	}
 

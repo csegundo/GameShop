@@ -6,7 +6,6 @@ package Integracion.Employee;
 import java.util.List;
 
 import Transfers.TEmployee;
-import Transfers.TProvider;
 
 public interface DAOEmployee {
 	
@@ -14,6 +13,6 @@ public interface DAOEmployee {
 	public Boolean deleteEmployee(TEmployee te);
 	public Boolean updateEmployee(TEmployee te);
 	public Object readEmployee(Integer id);
-	public List<Object> readAllEmployees();
+	public List<TEmployee> readAllEmployees();
 	public TEmployee readEmployeeByNIF(String s);
 }
