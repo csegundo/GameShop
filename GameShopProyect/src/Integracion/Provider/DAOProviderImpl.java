@@ -124,8 +124,8 @@ public class DAOProviderImpl implements DAOProvider {
 		return tpl;
 	}
 
-	public List<Object> readAllProviders() {
-		List<Object> l = new ArrayList<Object>();
+	public List<TProvider> readAllProviders() {
+		List<TProvider> l = new ArrayList<TProvider>();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);

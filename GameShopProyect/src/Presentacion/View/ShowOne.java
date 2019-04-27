@@ -16,8 +16,10 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
+import Negocio.SA.SAAbstractFactory;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Event;
+import Transfers.TProvider;
 
 /** 
 * @author GameShop
@@ -108,11 +110,24 @@ public class ShowOne extends JPanel {
 		this.add(Box.createVerticalGlue());
 		
 		addShowButtonAction();
-		fillProviderList();
+		fillList();
 	}
 
-	private void fillProviderList() {
-		_election.addItem(new Integer(85));
+	private void fillList() {
+		switch(nameIdentificator){
+		case "provider":
+			for(TProvider add : SAAbstractFactory.getInstance().createSAProvider().readAllProviders())
+				_election.addItem(add.get_id());
+			break;
+		case "platform":
+			break;
+		case "employee":
+			break;
+		case "product":
+			break;
+		case "ticket":
+			break;
+		}
 	}
 
 	public void set_info(String text) {

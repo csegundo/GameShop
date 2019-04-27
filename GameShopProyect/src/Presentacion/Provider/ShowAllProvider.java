@@ -77,6 +77,7 @@ public class ShowAllProvider extends ShowAll {
 		};
 
 		_grid = new JTable(model);
+		setColumnsWidth();
 		_grid.setVisible(true);
 		this.add(_grid);
 
@@ -84,6 +85,12 @@ public class ShowAllProvider extends ShowAll {
 		
 	}
 	
+	private void setColumnsWidth() {
+		_grid.getColumnModel().getColumn(0).setPreferredWidth(20);
+		_grid.getColumnModel().getColumn(1).setPreferredWidth(150);
+		_grid.getColumnModel().getColumn(2).setPreferredWidth(50);
+	}
+
 	@Override
 	public void update(List<Object> l) {
 		if(this._providers == null || (l != null && l.size() != this._providers.size())) {

@@ -94,7 +94,7 @@ public class ControllerImpl extends Controller {
 			break;
 			
 		case Event.READ_ALL_PROVIDERS:
-			List<Object> providers = (SAAbstractFactory.getInstance().createSAProvider()).readAllProviders();
+			List<TProvider> providers = (SAAbstractFactory.getInstance().createSAProvider()).readAllProviders();
 			if(providers == null)
 				gui.actualiza(Event.RES_READALL_PROVIDERS_FAILED, null);
 			else

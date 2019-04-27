@@ -5,11 +5,7 @@ import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
-
-import Presentacion.Provider.ShowAllProvider;
 
 /** 
 * @author GameShop
@@ -19,7 +15,6 @@ import Presentacion.Provider.ShowAllProvider;
 public abstract class ShowAll extends JPanel {
 	
 	private String nameIdentificator;
-	
 	protected JTable _grid;
 	
 	public ShowAll(String nameIdentificator) {

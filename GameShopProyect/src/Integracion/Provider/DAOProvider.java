@@ -14,6 +14,6 @@ public interface DAOProvider {
 	public Boolean deleteProvider(TProvider tp);
 	public Boolean updateProvider(TProvider tp);
 	public Object readProvider(Integer id);
-	public List<Object> readAllProviders();
+	public List<TProvider> readAllProviders();
 	public TProvider readProviderByNIF(String s);
 }

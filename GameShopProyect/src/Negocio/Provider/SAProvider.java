@@ -14,5 +14,5 @@ public interface SAProvider {
 	public Boolean deleteProvider(Integer id);
 	public Boolean updateProvider(TProvider tp);
 	public Object readProvider(Integer id);
-	public List<Object> readAllProviders();
+	public List<TProvider> readAllProviders();
 }

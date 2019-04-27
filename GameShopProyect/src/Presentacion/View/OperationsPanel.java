@@ -3,6 +3,7 @@ package Presentacion.View;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
+import Negocio.SA.SAAbstractFactory;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Event;
 import Presentacion.Employee.FormEmployee;
@@ -11,6 +12,7 @@ import Presentacion.Product.FormProduct;
 import Presentacion.Provider.FormProvider;
 import Presentacion.Provider.FormUpdateProvider;
 import Presentacion.Ticket.FormTicket;
+import Transfers.TProvider;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -19,6 +21,7 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -132,13 +135,20 @@ public class OperationsPanel extends JPanel {
 	}
 
 	private void addInfoToComboBox() {
-		//ArrayList<Object> data = (ArrayList<Object>) DAOAbstractFactory.getInstance().createDAOProvider().readAllProviders();
-		ArrayList<Object> data = new ArrayList<Object>();
-		data.add(new Integer(85));
-		data.add(new Integer(75));
-		data.add(new Integer(52));
-		for (int i = 0; i < data.size(); ++i) 
-			_election.addItem(data.get(i));
+		switch(nameIdentificator){
+		case "provider":
+			for(TProvider add : SAAbstractFactory.getInstance().createSAProvider().readAllProviders())
+				_election.addItem(add.get_id());
+			break;
+		case "platform":
+			break;
+		case "employee":
+			break;
+		case "product":
+			break;
+		case "ticket":
+			break;
+		}
 	}
 	
 	private void initComponents() {

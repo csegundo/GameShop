@@ -6,6 +6,7 @@ import Presentacion.Controller.Controller;
 import Presentacion.Controller.Event;
 import Transfers.TProvider;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JCheckBox;
@@ -23,10 +24,12 @@ public class FormUpdateProvider extends FormProvider{
 	public FormUpdateProvider(TProvider t) {
 		super();
 		_provider = t;
-		this.setTitle("Update Provider");
+		this.setTitle("Modify a Provider");
+		this.setSize(new Dimension(300, 145));
 		
 		this._reactivate = new JCheckBox("Activated");
-		this._reactivate.setBounds(200, 240, 140, 30);;
+		this._reactivate.setBounds(50, 150, 140, 50); //this._reactivate.setBounds(200, 240, 140, 50);
+		this.add(_reactivate);
 		this._reactivate.addChangeListener(new ChangeListener() {
 
 			@Override
