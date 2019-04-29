@@ -26,9 +26,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 
+@SuppressWarnings("serial")
 public class FormEmployee extends JDialog {
 	
-	private static final long serialVersionUID = 1L;
 	private final String availableTurns[] = {"Early shift" , "Late shift"};
 	//IMPORTANTE: El turno es un string , no un int
 	private final JLabel _nif = new JLabel("NIF:");

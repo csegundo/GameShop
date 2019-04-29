@@ -81,7 +81,7 @@ public class ShowAllProvider extends ShowAll {
 		_grid.setVisible(true);
 		this.add(_grid);
 
-		this.add(new JScrollPane(_grid,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED));
+		this.add(new JScrollPane(_grid, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED));
 		
 	}
 	
