@@ -20,6 +20,7 @@ import Negocio.SA.SAAbstractFactory;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Event;
 import Transfers.TEmployee;
+import Transfers.TPlatform;
 import Transfers.TProvider;
 
 /** 
@@ -60,6 +61,7 @@ public class ShowOne extends JPanel {
 					Controller.getInstance().action(_election.getSelectedItem(), Event.READ_PROVIDER);
 					break;
 				case "platform":
+					Controller.getInstance().action(_election.getSelectedItem(), Event.READ_PLATFORM);
 					break;
 				case "employee":
 					Controller.getInstance().action(_election.getSelectedItem(), Event.READ_EMPLOYEE);
@@ -122,6 +124,8 @@ public class ShowOne extends JPanel {
 				_election.addItem(tpro.get_id());
 			break;
 		case "platform":
+			for(TPlatform tpla : SAAbstractFactory.getInstance().createSAPlatform().readAllPlatforms())
+				_election.addItem(tpla.get_id());
 			break;
 		case "employee":
 			for(TEmployee temp : SAAbstractFactory.getInstance().createSAEmployee().readAllEmployees())

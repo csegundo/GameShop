@@ -5,82 +5,65 @@ package Negocio.Platform;
 
 import java.util.List;
 
-/** 
-* <!-- begin-UML-doc -->
-* <!-- end-UML-doc -->
-* @author joalow
-* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-*/
+import Integracion.DAO.DAOAbstractFactory;
+import Integracion.Platform.DAOPlatform;
+import Transfers.TPlatform;
+
+
 public class SAPlatformImpl implements SAPlatform {
-	/** 
-	* (non-Javadoc)
-	* @see SAPlatform#createPlattfomr(Object tpl)
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Integer createPlattfomr(Object tpl) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+
+	@Override
+	public Integer createPlatform(TPlatform tpla) {
+		int id = -1;
+		DAOPlatform daoPlatform = DAOAbstractFactory.getInstance().createDAOPlatform();
+		if(tpla != null){
+			TPlatform tpl = daoPlatform.readByName(tpla.get_name());
+			if(tpl == null)
+				id = daoPlatform.createPlatform(tpla);
+		}
+		return id;
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see SAPlatform#deletePlattform(Object tpl)
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Boolean deletePlattform(Object tpl) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	@Override
+	public Boolean deletePlatform(Integer id) {
+		boolean ret = false;
+		DAOPlatform daoPlatform = DAOAbstractFactory.getInstance().createDAOPlatform();
+		
+		if(id != null) {
+			TPlatform ternif = daoPlatform.readPlatform(id);
+			// Si devuelve un transfer significa que existe y por lo tanto se procede a borrarlo
+			if(ternif != null && ternif.get_activated())
+				ret = daoPlatform.deletePlatform(id);
+		}
+		return ret;
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see SAPlatform#updatePlattform(Object tpl)
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Boolean updatePlattform(Object tpl) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	@Override
+	public Boolean updatePlatform(TPlatform tpla) {
+		return DAOAbstractFactory.getInstance().createDAOPlatform().updatePlatform(tpla);
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see SAPlatform#readPlattform(Object tpl)
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Object readPlattform(Object tpl) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	@Override
+	public TPlatform readPlatform(Integer id) {
+		TPlatform ret = null;
+		DAOPlatform daoPlatform = DAOAbstractFactory.getInstance().createDAOPlatform();
+		
+		if(id != null)
+			ret = (TPlatform) daoPlatform.readPlatform(id);
+		return ret;
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see SAPlatform#readAllPlattforms()
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public List readAllPlattforms() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	@Override
+	public List<TPlatform> readAllPlatforms() {
+		List<TPlatform> platforms = null;
+		platforms = DAOAbstractFactory.getInstance().createDAOPlatform().readAllPlatforms();
+		return platforms;
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see SAPlatform#readAllProductsOfAPlattform(Object Parameter1)
-	* @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public List readAllProductsOfAPlattform(Object Parameter1) {
-		// begin-user-code
-		// TODO Auto-generated method stub
+	@Override
+	public List<TPlatform> readAllProductsOfAPlatform(Object Parameter1) {
 		return null;
-		// end-user-code
 	}
+	
+	
 }

@@ -15,6 +15,8 @@ import javax.swing.event.ChangeListener;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Event;
 import Presentacion.Employee.ShowAllEmployees;
+import Presentacion.Platform.ShowAllPlatform;
+import Presentacion.Platform.ShowProductsFromPlatform;
 import Presentacion.Provider.ShowAllProvider;
 
 /** 
@@ -42,6 +44,7 @@ public class ShowPanel extends JPanel {
 		case "product":
 			break;
 		case "platform":
+			this.sa = new ShowAllPlatform(nameIdentificator, null);
 			break;
 		case "ticket":
 			break;
@@ -73,7 +76,15 @@ public class ShowPanel extends JPanel {
 		// TODO caso para PROVEEDOR
 		_tabs.addTab("Show one", null, so, "Show the data of the selected " + nameIdentificator);
 		_tabs.addTab("Show all", null, sa, "Show the data of all " + nameIdentificator);
+		if(this.nameIdentificator.equals(GUIGameshop.TAB_PLATFORM)) 
+			//AQUI DEBERIA AÑADIR NUEVA PESTAÑA CON TODAS LOS PRODUCTOS DE UNA PLATAFORMA
+			_tabs.addTab("Show products from platform", null, new ShowProductsFromPlatform(), 
+					"Show all the products related to the selected platform");
 		
+			
+			
+			
+			
 		// ESTO ES LO QUE HABIA ANTES PERO SE DEBERIA DE DIFERENCIAR EN QUE PESTAÑA ESTAMOS NO??
 //		_tabs.addChangeListener(new ChangeListener() {
 //			@Override

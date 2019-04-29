@@ -44,7 +44,7 @@ public class Event {
 	public static final int RES_READALL_PLATFORM_FAILED = -216;
 	public static final int READ_ALL_PRODUCTS_FROM_PLATFORM = 217;
 	public static final int RES_READALL_PRODUCTS_FROM_PLATFORM_OK = 218;
-	public static final int RESREADALL_PRODUCTS_FROM_PLATFROM_FAILED = -219;
+	public static final int RES_READALL_PRODUCTS_FROM_PLATFROM_FAILED = -219;
 
 
 	// EMPLOYEE (3)

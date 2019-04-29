@@ -21,7 +21,7 @@ public class SAAbstractFactoryImpl extends SAAbstractFactory {
 		return new SAEmployeeImpl();
 	}
 
-	public SAPlatform createSAPlattform() {
+	public SAPlatform createSAPlatform() {
 		return new SAPlatformImpl();
 	}
 

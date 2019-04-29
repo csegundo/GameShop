@@ -12,6 +12,7 @@ import Presentacion.Product.FormProduct;
 import Presentacion.Provider.FormProvider;
 import Presentacion.Ticket.FormTicket;
 import Transfers.TEmployee;
+import Transfers.TPlatform;
 import Transfers.TProvider;
 
 import java.awt.Color;
@@ -40,7 +41,6 @@ public class OperationsPanel extends JPanel {
 	private JButton _update;
 	private JLabel _registerLabel;
 	private JLabel _updaterLabel;
-	//private FormUpdateProvider _info;
 
 	private String nameIdentificator;
 	
@@ -98,6 +98,7 @@ public class OperationsPanel extends JPanel {
 					Controller.getInstance().action(_election.getSelectedItem(), Event.MODIFYBUTTON_PROVIDER);
 					break;
 				case "platform":
+					Controller.getInstance().action(_election.getSelectedItem(), Event.MODIFYBUTTON_PLATFORM);
 					break;
 				case "employee":
 					Controller.getInstance().action(_election.getSelectedItem(), Event.MODIFYBUTTON_EMPLOYEE);
@@ -120,6 +121,7 @@ public class OperationsPanel extends JPanel {
 					Controller.getInstance().action(_election.getSelectedItem(), Event.UNSUBSCRIBE_PROVIDER);
 					break;
 				case "platform":
+					Controller.getInstance().action(_election.getSelectedItem(), Event.UNSUBSCRIBE_PLATFORM);
 					break;
 				case "employee":
 					Controller.getInstance().action(_election.getSelectedItem(), Event.UNSUBSCRIBE_EMPLOYEE);
@@ -140,6 +142,8 @@ public class OperationsPanel extends JPanel {
 				_election.addItem(tpro.get_id());
 			break;
 		case "platform":
+			for(TPlatform tpla : SAAbstractFactory.getInstance().createSAPlatform().readAllPlatforms())
+				_election.addItem(tpla.get_id());
 			break;
 		case "employee":
 			for(TEmployee temp : SAAbstractFactory.getInstance().createSAEmployee().readAllEmployees())

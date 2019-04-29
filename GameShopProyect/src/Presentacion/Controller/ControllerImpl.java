@@ -15,6 +15,7 @@ import Presentacion.Ticket.GUITicket;
 import Presentacion.View.GUIGameshop;
 import Presentacion.View.IGUI;
 import Transfers.TEmployee;
+import Transfers.TPlatform;
 import Transfers.TProvider;
 
 /** 
@@ -42,10 +43,13 @@ public class ControllerImpl extends Controller {
 		Integer id;
 		TProvider tpr;
 		TEmployee tpe;
+		TPlatform tpla;
 		
 		gui = gs.getGuiAt(event/100 - 1);
 
 		switch(event) {
+		
+		////////////////////////////////////////////////////////////// PROVIDER ///////////////////////////////////////////////
 		case Event.REGISTER_PROVIDER:
 			tpr = (TProvider)data;
 			int resRegisterProv = (SAAbstractFactory.getInstance().createSAProvider()).createProvider(tpr);
@@ -100,7 +104,7 @@ public class ControllerImpl extends Controller {
 			break;
 			
 			
-			
+		////////////////////////////////////////////////////////////// EMPLOYEE ///////////////////////////////////////////////	
 			
 		case Event.REGISTER_EMPLOYEE:
 			tpe = (TEmployee)data;
@@ -152,6 +156,59 @@ public class ControllerImpl extends Controller {
 				gui.actualiza(Event.RES_READALL_EMPLOYEES_FAILED, null);
 			else
 				gui.actualiza(Event.RES_READALL_EMPLOYEES_OK, employees);
+			break;
+			
+		////////////////////////////////////////////////////////////// PLATFORM ///////////////////////////////////////////////
+			
+		case Event.REGISTER_PLATFORM:
+			tpla = (TPlatform)data;
+			int resRegisterPla = (SAAbstractFactory.getInstance().createSAPlatform()).createPlatform(tpla);
+			if(resRegisterPla > 0)
+				gui.actualiza(Event.RES_REGISTER_PLATFORM_OK, new Integer(resRegisterPla));
+			else
+				gui.actualiza(Event.RES_REGISTER_PLATFORM_FAILED, null);
+			break;
+			
+		case Event.UNSUBSCRIBE_PLATFORM:
+			id = (Integer) data;
+			boolean resDeletePla = (SAAbstractFactory.getInstance().createSAPlatform()).deletePlatform(id);
+			if(resDeleteEmp)
+				gui.actualiza(Event.RES_UNSUBSCRIBE_PLATFORM_OK, id);
+			else
+				gui.actualiza(Event.RES_UNSUBSCRIBE_PLATFORM_FAILED, null);
+			break;
+			
+		case Event.MODIFYBUTTON_PLATFORM:
+			tpla = (TPlatform) data;
+			if(SAAbstractFactory.getInstance().createSAPlatform().updatePlatform(tpla))
+				gui.actualiza(Event.RES_MODIFY_PLATFORM_OK, null);
+			else
+				gui.actualiza(Event.RES_MODIFY_PLATFORM_FAILED, null);
+			break;
+			
+		case Event.MODIFY_PLATFORM:
+			tpla = (TPlatform) data;
+			if(SAAbstractFactory.getInstance().createSAPlatform().updatePlatform(tpla))
+				gui.actualiza(Event.RES_MODIFY_PLATFORM_OK, null);
+			else
+				gui.actualiza(Event.RES_MODIFY_PLATFORM_FAILED, null);
+			break;
+			
+		case Event.READ_PLATFORM:
+			id = (Integer) data;
+			TPlatform tt = (TPlatform) (SAAbstractFactory.getInstance().createSAPlatform()).readPlatform(id);
+			if (tt != null) 
+				gui.actualiza(Event.RES_READ_PLATFORM_OK, te);
+			else
+				gui.actualiza(Event.RES_READ_PLATFORM_FAILED, null);
+			break;
+			
+		case Event.READ_ALL_PLATFORMS:
+			List<TPlatform> platforms = (SAAbstractFactory.getInstance().createSAPlatform()).readAllPlatforms();
+			if(platforms == null)
+				gui.actualiza(Event.RES_READALL_PLATFORM_FAILED, null);
+			else
+				gui.actualiza(Event.RES_READALL_PLATFORM_OK, employees);
 			break;
 		}
 	}

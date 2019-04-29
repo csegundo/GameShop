@@ -4,7 +4,7 @@
 package Presentacion.Platform;
 
 import Presentacion.View.ShowAll;
-import Transfers.TPlattform;
+import Transfers.TPlatform;
 
 import java.util.List;
 
@@ -44,11 +44,11 @@ public class ShowAllPlatform extends ShowAll {
 				
 				switch(columnIndex){
 				case 0:
-					o = ((TPlattform)_platforms.get(rowIndex)).get_id();
+					o = ((TPlatform)_platforms.get(rowIndex)).get_id();
 					break;
 					
 				case 1:
-					o = ((TPlattform)_platforms.get(rowIndex)).get_name();
+					o = ((TPlatform)_platforms.get(rowIndex)).get_name();
 					break;
 				}
 				return o;

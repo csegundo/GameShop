@@ -4,13 +4,23 @@ package Transfers;
  * @author GameShop
  * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class TPlattform {
+public class TPlatform {
 	
 	private String _name;
 	private Integer _id;
 	private Boolean _activated;
 	
 	// CONSTRUCTOR
+	
+	public TPlatform(String name){
+		this._name = name;
+	}
+	
+	public TPlatform(){	
+	}
+	
+	//Getters and setters
+	
 	
 	public String get_name() {
 		return _name;

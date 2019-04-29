@@ -1,6 +1,7 @@
 package Negocio.SA;
 
 import Negocio.Employee.SAEmployee;
+import Negocio.Platform.SAPlatform;
 import Negocio.Provider.SAProvider;
 
 /** 
@@ -18,7 +19,7 @@ public abstract class SAAbstractFactory {
 	}
 	
 	public abstract SAEmployee createSAEmployee();
-	public abstract Object createSAPlattform();
+	public abstract SAPlatform createSAPlatform();
 	public abstract Object createSAProduct();
 	public abstract SAProvider createSAProvider();
 	public abstract Object createSATicket();
