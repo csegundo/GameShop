@@ -45,10 +45,10 @@ public class SAEmployeeImpl implements SAEmployee {
 	@Override
 	public Object readEmployee(Integer id) {
 		TEmployee ret = null;
-		DAOEmployee daoProvider = DAOAbstractFactory.getInstance().createDAOEmployee();
+		DAOEmployee daoEmployee = DAOAbstractFactory.getInstance().createDAOEmployee();
 		
 		if(id != null)
-			ret = (TEmployee)daoProvider.readEmployee(id);
+			ret = (TEmployee)daoEmployee.readEmployee(id);
 		return ret;
 	}
 

@@ -5,6 +5,7 @@ import java.util.List;
 
 import Main.Main;
 import Negocio.SA.SAAbstractFactory;
+import Presentacion.Employee.FormUpdateEmployee;
 import Presentacion.Employee.GUIEmployee;
 import Presentacion.Platform.GUIPlatform;
 import Presentacion.Product.GUIProduct;
@@ -99,6 +100,8 @@ public class ControllerImpl extends Controller {
 			break;
 			
 			
+			
+			
 		case Event.REGISTER_EMPLOYEE:
 			tpe = (TEmployee)data;
 			int resRegisterEmp = (SAAbstractFactory.getInstance().createSAEmployee()).createEmployee(tpe);
@@ -106,6 +109,49 @@ public class ControllerImpl extends Controller {
 				gui.actualiza(Event.RES_REGISTER_EMPLOYEE_OK, new Integer(resRegisterEmp));
 			else
 				gui.actualiza(Event.RES_REGISTER_PROVIDER_FAILED, null);
+			break;
+			
+		case Event.UNSUBSCRIBE_EMPLOYEE:
+			id = (Integer)data;
+			boolean resDeleteEmp = (SAAbstractFactory.getInstance().createSAEmployee()).deleteEmployee(id);
+			if(resDeleteEmp)
+				gui.actualiza(Event.RES_UNSUBSCRIBE_EMPLOYEE_OK, id);
+			else
+				gui.actualiza(Event.RES_UNSUBSCRIBE_EMPLOYEE_FAILED, null);
+			break;
+			
+		case Event.MODIFYBUTTON_EMPLOYEE:
+			id = (Integer)data;
+			tpe = (TEmployee)(SAAbstractFactory.getInstance().createSAEmployee()).readEmployee(id);
+			if(tpe != null)
+				new FormUpdateEmployee(tpe);
+			else
+				gui.actualiza(Event.RES_MODIFY_EMPLOYEE_FAILED, null);
+			break;
+			
+		case Event.MODIFY_EMPLOYEE:
+			tpe = (TEmployee)data;
+			if(SAAbstractFactory.getInstance().createSAEmployee().updateEmployee(tpe))
+				gui.actualiza(Event.RES_MODIFY_EMPLOYEE_OK, null);
+			else
+				gui.actualiza(Event.RES_MODIFY_EMPLOYEE_FAILED, null);
+			break;
+			
+		case Event.READ_EMPLOYEE:
+			id = (Integer)data;
+			TEmployee te = (TEmployee)(SAAbstractFactory.getInstance().createSAEmployee()).readEmployee(id);
+			if (te != null) 
+				gui.actualiza(Event.RES_READ_EMPLOYEE_OK, te);
+			else
+				gui.actualiza(Event.RES_READ_EMPLOYEE_FAILED, null);
+			break;
+			
+		case Event.READ_ALL_EMPLOYEES:
+			List<TEmployee> employees = (SAAbstractFactory.getInstance().createSAEmployee()).readAllEmployees();
+			if(employees == null)
+				gui.actualiza(Event.RES_READALL_EMPLOYEES_FAILED, null);
+			else
+				gui.actualiza(Event.RES_READALL_EMPLOYEES_OK, employees);
 			break;
 		}
 	}

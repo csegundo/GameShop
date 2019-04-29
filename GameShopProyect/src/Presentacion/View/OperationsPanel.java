@@ -100,6 +100,7 @@ public class OperationsPanel extends JPanel {
 				case "platform":
 					break;
 				case "employee":
+					Controller.getInstance().action(_election.getSelectedItem(), Event.MODIFYBUTTON_EMPLOYEE);
 					break;
 				case "product":
 					break;
@@ -121,6 +122,7 @@ public class OperationsPanel extends JPanel {
 				case "platform":
 					break;
 				case "employee":
+					Controller.getInstance().action(_election.getSelectedItem(), Event.UNSUBSCRIBE_EMPLOYEE);
 					break;
 				case "product":
 					break;

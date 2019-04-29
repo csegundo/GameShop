@@ -63,7 +63,7 @@ public class GUIEmployee extends JPanel implements IGUI {
 			break;
 			
 		case Event.RES_MODIFY_EMPLOYEE_OK:
-			JOptionPane.showMessageDialog(this, "Empleado actualizado correctamente en la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
+			JOptionPane.showMessageDialog(this, "Empleado actualizado correctamente en la base de datos.","Failed",JOptionPane.INFORMATION_MESSAGE);		
 			break;
 			
 		case Event.RES_READ_EMPLOYEE_OK:

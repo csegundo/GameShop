@@ -62,6 +62,7 @@ public class ShowOne extends JPanel {
 				case "platform":
 					break;
 				case "employee":
+					Controller.getInstance().action(_election.getSelectedItem(), Event.READ_EMPLOYEE);
 					break;
 				case "product":
 					break;
