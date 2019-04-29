@@ -7,6 +7,7 @@ import Main.Main;
 import Negocio.SA.SAAbstractFactory;
 import Presentacion.Employee.FormUpdateEmployee;
 import Presentacion.Employee.GUIEmployee;
+import Presentacion.Platform.FormUpdatePlatform;
 import Presentacion.Platform.GUIPlatform;
 import Presentacion.Product.GUIProduct;
 import Presentacion.Provider.FormUpdateProvider;
@@ -136,7 +137,7 @@ public class ControllerImpl extends Controller {
 		case Event.MODIFY_EMPLOYEE:
 			tpe = (TEmployee)data;
 			if(SAAbstractFactory.getInstance().createSAEmployee().updateEmployee(tpe))
-				gui.actualiza(Event.RES_MODIFY_EMPLOYEE_OK, null);
+				gui.actualiza(Event.RES_MODIFY_EMPLOYEE_OK, tpe.get_id());
 			else
 				gui.actualiza(Event.RES_MODIFY_EMPLOYEE_FAILED, null);
 			break;
@@ -172,16 +173,18 @@ public class ControllerImpl extends Controller {
 		case Event.UNSUBSCRIBE_PLATFORM:
 			id = (Integer) data;
 			boolean resDeletePla = (SAAbstractFactory.getInstance().createSAPlatform()).deletePlatform(id);
-			if(resDeleteEmp)
+			if(resDeletePla)
 				gui.actualiza(Event.RES_UNSUBSCRIBE_PLATFORM_OK, id);
 			else
 				gui.actualiza(Event.RES_UNSUBSCRIBE_PLATFORM_FAILED, null);
 			break;
 			
 		case Event.MODIFYBUTTON_PLATFORM:
-			tpla = (TPlatform) data;
-			if(SAAbstractFactory.getInstance().createSAPlatform().updatePlatform(tpla))
-				gui.actualiza(Event.RES_MODIFY_PLATFORM_OK, null);
+			//tpla = (TPlatform) data;
+			id = (Integer)data;
+			tpla = (TPlatform)SAAbstractFactory.getInstance().createSAPlatform().readPlatform(id);
+			if(tpla != null)
+				new FormUpdatePlatform();
 			else
 				gui.actualiza(Event.RES_MODIFY_PLATFORM_FAILED, null);
 			break;
@@ -189,7 +192,7 @@ public class ControllerImpl extends Controller {
 		case Event.MODIFY_PLATFORM:
 			tpla = (TPlatform) data;
 			if(SAAbstractFactory.getInstance().createSAPlatform().updatePlatform(tpla))
-				gui.actualiza(Event.RES_MODIFY_PLATFORM_OK, null);
+				gui.actualiza(Event.RES_MODIFY_PLATFORM_OK, tpla.get_id());
 			else
 				gui.actualiza(Event.RES_MODIFY_PLATFORM_FAILED, null);
 			break;
@@ -198,7 +201,7 @@ public class ControllerImpl extends Controller {
 			id = (Integer) data;
 			TPlatform tt = (TPlatform) (SAAbstractFactory.getInstance().createSAPlatform()).readPlatform(id);
 			if (tt != null) 
-				gui.actualiza(Event.RES_READ_PLATFORM_OK, te);
+				gui.actualiza(Event.RES_READ_PLATFORM_OK, tt);
 			else
 				gui.actualiza(Event.RES_READ_PLATFORM_FAILED, null);
 			break;
@@ -208,7 +211,7 @@ public class ControllerImpl extends Controller {
 			if(platforms == null)
 				gui.actualiza(Event.RES_READALL_PLATFORM_FAILED, null);
 			else
-				gui.actualiza(Event.RES_READALL_PLATFORM_OK, employees);
+				gui.actualiza(Event.RES_READALL_PLATFORM_OK, platforms);
 			break;
 		}
 	}

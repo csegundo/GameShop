@@ -1,6 +1,3 @@
-/**
- * 
- */
 package Presentacion.Platform;
 
 import javax.swing.JLabel;
