@@ -27,6 +27,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import Integracion.DAO.*;
@@ -45,6 +46,7 @@ public class InfoDB extends JDialog {
 	private JButton _ok;
 	private JCheckBox _create;
 	private boolean finished;
+	private JPanel panel;
 	
 	public InfoDB() {
 		this.setTitle("DB information");
@@ -59,8 +61,11 @@ public class InfoDB extends JDialog {
 			}
 		});
 		
-		this.setLayout(new FlowLayout());
-		this.setBounds(new Rectangle(220, 270));
+		panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		this.setLayout(new BorderLayout());
+		this.add(panel, BorderLayout.CENTER);
+		this.setBounds(new Rectangle(220, 230));
 		this.setLocationRelativeTo(null);
 		
 		initGUI();
@@ -79,6 +84,7 @@ public class InfoDB extends JDialog {
 		_bdText = new JTextField();
 		_bdText.setAlignmentX(Component.CENTER_ALIGNMENT);
 		_bdText.setText("GameShop");
+		_bdText.setToolTipText("Write the database that you want to use");
 		_bdText.setSize(250, 30);
 		_bdText.setPreferredSize(new Dimension(200,30));
 		_bdText.setMaximumSize(new Dimension(200,30));
@@ -91,6 +97,7 @@ public class InfoDB extends JDialog {
 		_nameText = new JTextField();
 		_nameText.setAlignmentX(Component.CENTER_ALIGNMENT);
 		_nameText.setText("root");
+		_nameText.setToolTipText("Write the username who will use the database");
 		_nameText.setSize(250, 30);
 		_nameText.setPreferredSize(new Dimension(200,30));
 		_nameText.setMaximumSize(new Dimension(200,30));
@@ -102,6 +109,7 @@ public class InfoDB extends JDialog {
 		
 		_passwText = new JPasswordField();
 		_passwText.setAlignmentX(Component.CENTER_ALIGNMENT);
+		_passwText.setToolTipText("Write the password of the selected database");
 		_passwText.setSize(250, 30);	
 		_passwText.setPreferredSize(new Dimension(200,30));
 		_passwText.setMaximumSize(new Dimension(200,30));
@@ -113,21 +121,21 @@ public class InfoDB extends JDialog {
 		_ok.setMaximumSize(new Dimension(150,30));
 		_ok.setMinimumSize(new Dimension(150,30));
 		
-		_create = new JCheckBox("Crear nueva base de datos");
+		_create = new JCheckBox("Create the new database");
 		_create.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		createOkButtonAction();
 		
-		this.add(_bd);
-		this.add(_bdText);
-		this.add(Box.createRigidArea(new Dimension(112, 1)));
-		this.add(_name);
-		this.add(_nameText);
-		this.add(Box.createRigidArea(new Dimension(70, 1)));
-		this.add(_passw);
-		this.add(_passwText);
-		this.add(_create);
-		this.add(_ok);
+		panel.add(_bd);
+		panel.add(_bdText);
+		panel.add(Box.createRigidArea(new Dimension(112, 1)));
+		panel.add(_name);
+		panel.add(_nameText);
+		panel.add(Box.createRigidArea(new Dimension(70, 1)));
+		panel.add(_passw);
+		panel.add(_passwText);
+		panel.add(_create);
+		panel.add(_ok);
 	}
 	
 	private void createOkButtonAction() {
@@ -142,7 +150,7 @@ public class InfoDB extends JDialog {
 				if (_create.isSelected()) {
 					try
 					{
-						Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306" + Main.Main.database, Main.Main.user, Main.Main.password);
+						Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306", Main.Main.user, Main.Main.password);
 						Stmt = conn.createStatement();
 	
 						Stmt.execute("CREATE DATABASE gameshop");
@@ -156,10 +164,9 @@ public class InfoDB extends JDialog {
 						r.runScript(rd);
 						finished = true;
 					}	
-					catch (Exception e)
-					{
+					catch (Exception e){
 					   /* Se lanza una excepción si no se encuentra en ejecutable o el fichero no es ejecutable. */
-						JOptionPane.showMessageDialog(null, "Error al crear una nueva base de datos.","Failed",JOptionPane.ERROR_MESSAGE);			
+						JOptionPane.showMessageDialog(null, "Error while creating the database.","Failed",JOptionPane.ERROR_MESSAGE);			
 					} finally {
 						try {
 							if(Stmt!=null) 
