@@ -128,11 +128,11 @@ public class FormTicket extends JDialog {
 		this.setVisible(true);
 	}
 	
-	private void addComponentToDialog(JComponent c) {
+	protected void addComponentToDialog(JComponent c) {
 		this.add(c);
 	}
 	
-	private void sizeComponent(JComponent c, Dimension d) {
+	protected void sizeComponent(JComponent c, Dimension d) {
 		c.setPreferredSize(d);
 		c.setMinimumSize(d);
 		c.setMaximumSize(d);

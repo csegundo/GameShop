@@ -18,6 +18,6 @@ public interface SATicket {
 	public Integer createTicket(TTicket tt);
 	public Boolean deleteTicket(TTicket tt);
 	public Boolean updateTicket(TTicket tt);
-	public Object readTicket(TTicket id);
-	public List<TTicket> readAllTickets();
+	public Object readTicket(Integer id);
+	public List<Object> readAllTickets();
 }

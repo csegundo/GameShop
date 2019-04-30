@@ -12,10 +12,6 @@ import java.sql.Timestamp;
 
 public class DAOTicketImpl implements DAOTicket {
 	
-	public static final String nombreBD = "gameshop";
-	public static final String userID = "root";
-	public static final String userPASS = "1234";
-	
 	public Integer createTicket(TTicket tt) {
 		return null;
 	}
@@ -28,7 +24,7 @@ public class DAOTicketImpl implements DAOTicket {
 	public TTicket readTicket(TTicket tt) {
 		return null;
 	}
-	public List<TTicket> readAllTickets() {
+	public List<Object> readAllTickets() {
 		return null;
 	}
 	public Integer readByDate(Timestamp d) {

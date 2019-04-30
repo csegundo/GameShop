@@ -39,11 +39,11 @@ public class SATicketImpl implements SATicket {
 		return null;
 		// end-user-code
 	}
-	public Object readTicket(TTicket id) {
+	public Object readTicket(Integer id) {
 		return null;
 		// end-user-code
 	}
-	public List<TTicket> readAllTickets() {
+	public List<Object> readAllTickets() {
 		return null;
 		// end-user-code
 	}

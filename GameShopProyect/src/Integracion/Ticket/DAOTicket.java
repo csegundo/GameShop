@@ -15,6 +15,6 @@ public interface DAOTicket {
 	public Boolean deleteTicket(TTicket tt);
 	public Boolean updateTicket(TTicket tt);
 	public TTicket readTicket(TTicket tt);
-	public List<TTicket> readAllTickets();
+	public List<Object> readAllTickets();
 	public Integer readByDate(Timestamp d);
 }

@@ -14,9 +14,11 @@ import Presentacion.Product.FormProduct;
 import Presentacion.Provider.FormProvider;
 import Presentacion.Provider.FormUpdateProvider;
 import Presentacion.Ticket.FormTicket;
+import Presentacion.Ticket.FormUpdateTicket;
 import Transfers.TEmployee;
 import Transfers.TPlatform;
 import Transfers.TProvider;
+import Transfers.TTicket;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -128,6 +130,12 @@ public class OperationsPanel extends JPanel {
 				case "product":
 					break;
 				case "ticket":
+					//id = (Integer) _election.getSelectedItem();
+					//TTicket tt = (TTicket)(SAAbstractFactory.getInstance().createSATicket()).readTicket(id);
+					//if(tt != null)
+						new FormUpdateTicket(null/*tt*/);
+					//else
+						//JOptionPane.showMessageDialog(null, "Error al leer un proveedor de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
 					break;
 				}
 			}

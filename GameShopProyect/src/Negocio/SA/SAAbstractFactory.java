@@ -2,7 +2,9 @@ package Negocio.SA;
 
 import Negocio.Employee.SAEmployee;
 import Negocio.Platform.SAPlatform;
+import Negocio.Product.SAProduct;
 import Negocio.Provider.SAProvider;
+import Negocio.Ticket.SATicket;
 
 /** 
  * @author GameShop
@@ -20,7 +22,7 @@ public abstract class SAAbstractFactory {
 	
 	public abstract SAEmployee createSAEmployee();
 	public abstract SAPlatform createSAPlatform();
-	public abstract Object createSAProduct();
+	public abstract SAProduct createSAProduct();
 	public abstract SAProvider createSAProvider();
-	public abstract Object createSATicket();
+	public abstract SATicket createSATicket();
 }
