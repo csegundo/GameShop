@@ -13,7 +13,7 @@ public interface SAPlatform {
 	public Boolean deletePlatform(Integer id);
 	public Boolean updatePlatform(TPlatform tpla);
 	public TPlatform readPlatform(Integer id);
-	public List<TPlatform> readAllPlatforms();
-	public List<TPlatform> readAllProductsOfAPlatform(Object Parameter1);
+	public List<Object> readAllPlatforms();
+	public List<Object> readAllProductsOfAPlatform(Object item);
 	
 }

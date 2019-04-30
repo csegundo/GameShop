@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -117,25 +118,30 @@ public class ShowOne extends JPanel {
 		fillList();
 	}
 
-	private void fillList() {
+	public void fillList() {
+		_election.removeAllItems();
 		switch(nameIdentificator){
 		case "provider":
-			for(TProvider tpro : SAAbstractFactory.getInstance().createSAProvider().readAllProviders())
-				_election.addItem(tpro.get_id());
+			for(Object tpro : SAAbstractFactory.getInstance().createSAProvider().readAllProviders())
+				_election.addItem(((TProvider) tpro).get_id());
 			break;
 		case "platform":
-			for(TPlatform tpla : SAAbstractFactory.getInstance().createSAPlatform().readAllPlatforms())
-				_election.addItem(tpla.get_id());
+			for(Object tpla : SAAbstractFactory.getInstance().createSAPlatform().readAllPlatforms())
+				_election.addItem(((TPlatform) tpla).get_id());
 			break;
 		case "employee":
-			for(TEmployee temp : SAAbstractFactory.getInstance().createSAEmployee().readAllEmployees())
-				_election.addItem(temp.get_id());
+			for(Object temp : SAAbstractFactory.getInstance().createSAEmployee().readAllEmployees())
+				_election.addItem(((TEmployee) temp).get_id());
 			break;
 		case "product":
 			break;
 		case "ticket":
 			break;
 		}
+	}
+	
+	public void update(List<Object> l) {
+		fillList();
 	}
 
 	public void set_info(String text) {

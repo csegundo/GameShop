@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import Negocio.SA.SAAbstractFactory;
 import Presentacion.Controller.Event;
 import Presentacion.View.GUIGameshop;
 import Presentacion.View.IGUI;
@@ -42,11 +43,14 @@ public class GUIProvider extends JPanel implements IGUI {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void actualiza(Integer e, Object t) {
+		Integer id;
 		switch(e){
 		case Event.RES_REGISTER_PROVIDER_OK:
-			Integer id = (Integer)t;
+			id = (Integer)t;
 			JOptionPane.showMessageDialog(null, "Se ha insertado el proveedor " + id + " correctamente en la base de datos.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
+			_rightPane.update((SAAbstractFactory.getInstance().createSAProvider()).readAllProviders());
+			_leftPane.addInfoToComboBox();
 			break;
 			
 		case Event.RES_REGISTER_PROVIDER_FAILED:
@@ -55,8 +59,8 @@ public class GUIProvider extends JPanel implements IGUI {
 			break;
 			
 		case Event.RES_UNSUBSCRIBE_PROVIDER_OK:
-			Integer a = (Integer)t;
-			JOptionPane.showMessageDialog(null, "Se ha eliminado el proveedor " + a + " correctamente en la base de datos.", "Success",
+			id = (Integer)t;
+			JOptionPane.showMessageDialog(null, "Se ha eliminado el proveedor " + id + " correctamente en la base de datos.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
 			break;
 			
@@ -69,7 +73,7 @@ public class GUIProvider extends JPanel implements IGUI {
 			break;
 			
 		case Event.RES_MODIFY_PROVIDER_OK:
-			JOptionPane.showMessageDialog(this, "Proveedor actualizado correctamente en la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
+			JOptionPane.showMessageDialog(this, "Proveedor actualizado correctamente en la base de datos.","Failed",JOptionPane.INFORMATION_MESSAGE);		
 			break;
 			
 		case Event.RES_READ_PROVIDER_OK:
@@ -91,7 +95,7 @@ public class GUIProvider extends JPanel implements IGUI {
 			break;
 			
 		case Event.RES_READALL_PROVIDERS_OK:
-			_rightPane.setTable((List<Object>)t);
+			_rightPane.update((List<Object>)t);
 			break;
 		}
 	}

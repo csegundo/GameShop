@@ -118,8 +118,8 @@ public class DAOEmployeeImpl implements DAOEmployee {
 	}
 
 	@Override
-	public List<TEmployee> readAllEmployees() {
-		List<TEmployee> l = new ArrayList<TEmployee>();
+	public List<Object> readAllEmployees() {
+		List<Object> l = new ArrayList<Object>();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
@@ -148,10 +148,10 @@ public class DAOEmployeeImpl implements DAOEmployee {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
-			PreparedStatement ps = con.prepareStatement("SELECT NIF FROM empleado WHERE NIF=?", PreparedStatement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM empleado WHERE NIF=?", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setString(1, s);
-			ps.executeQuery();
-			ResultSet rs = ps.getGeneratedKeys();
+			ResultSet rs = ps.executeQuery();
+			//ResultSet rs = ps.getGeneratedKeys();
 			if(rs.next()){
 				tel = new TEmployee();
 				tel.set_id(rs.getInt(1));

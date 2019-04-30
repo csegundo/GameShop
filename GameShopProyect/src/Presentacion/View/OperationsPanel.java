@@ -7,9 +7,12 @@ import Negocio.SA.SAAbstractFactory;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Event;
 import Presentacion.Employee.FormEmployee;
+import Presentacion.Employee.FormUpdateEmployee;
 import Presentacion.Platform.FormPlatform;
+import Presentacion.Platform.FormUpdatePlatform;
 import Presentacion.Product.FormProduct;
 import Presentacion.Provider.FormProvider;
+import Presentacion.Provider.FormUpdateProvider;
 import Presentacion.Ticket.FormTicket;
 import Transfers.TEmployee;
 import Transfers.TPlatform;
@@ -21,12 +24,15 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /** 
 * @author GameShop
@@ -93,15 +99,31 @@ public class OperationsPanel extends JPanel {
 		this._update.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				Integer id;
 				switch(nameIdentificator){
 				case "provider":
-					Controller.getInstance().action(_election.getSelectedItem(), Event.MODIFYBUTTON_PROVIDER);
+					id = (Integer) _election.getSelectedItem();
+					TProvider tpr = (TProvider)(SAAbstractFactory.getInstance().createSAProvider()).readProvider(id);
+					if(tpr != null)
+						new FormUpdateProvider(tpr);
+					else
+						JOptionPane.showMessageDialog(null, "Error al leer un proveedor de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
 					break;
 				case "platform":
-					Controller.getInstance().action(_election.getSelectedItem(), Event.MODIFYBUTTON_PLATFORM);
+					id = (Integer)_election.getSelectedItem();
+					TPlatform tpla = (TPlatform)SAAbstractFactory.getInstance().createSAPlatform().readPlatform(id);
+					if(tpla != null)
+						new FormUpdatePlatform();
+					else
+						JOptionPane.showMessageDialog(null, "Error al leer una plataforma de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
 					break;
 				case "employee":
-					Controller.getInstance().action(_election.getSelectedItem(), Event.MODIFYBUTTON_EMPLOYEE);
+					id = (Integer)_election.getSelectedItem();
+					TEmployee tpe = (TEmployee)(SAAbstractFactory.getInstance().createSAEmployee()).readEmployee(id);
+					if(tpe != null)
+						new FormUpdateEmployee(tpe);
+					else
+						JOptionPane.showMessageDialog(null, "Error al leer un empleado de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
 					break;
 				case "product":
 					break;
@@ -135,19 +157,20 @@ public class OperationsPanel extends JPanel {
 		});
 	}
 
-	private void addInfoToComboBox() {
+	public void addInfoToComboBox() {
+		_election.removeAllItems();
 		switch(nameIdentificator){
 		case "provider":
-			for(TProvider tpro : SAAbstractFactory.getInstance().createSAProvider().readAllProviders())
-				_election.addItem(tpro.get_id());
+			for(Object tpro : SAAbstractFactory.getInstance().createSAProvider().readAllProviders())
+				_election.addItem(((TProvider) tpro).get_id());
 			break;
 		case "platform":
-			for(TPlatform tpla : SAAbstractFactory.getInstance().createSAPlatform().readAllPlatforms())
-				_election.addItem(tpla.get_id());
+			for(Object tpla : SAAbstractFactory.getInstance().createSAPlatform().readAllPlatforms())
+				_election.addItem(((TPlatform) tpla).get_id());
 			break;
 		case "employee":
-			for(TEmployee temp : SAAbstractFactory.getInstance().createSAEmployee().readAllEmployees())
-				_election.addItem(temp.get_id());
+			for(Object temp : SAAbstractFactory.getInstance().createSAEmployee().readAllEmployees())
+				_election.addItem(((TEmployee) temp).get_id());
 			break;
 		case "product":
 			break;

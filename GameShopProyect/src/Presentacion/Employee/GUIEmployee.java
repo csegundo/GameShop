@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import Negocio.SA.SAAbstractFactory;
 import Presentacion.Controller.Event;
 import Presentacion.View.GUIGameshop;
 import Presentacion.View.IGUI;
@@ -43,6 +44,8 @@ public class GUIEmployee extends JPanel implements IGUI {
 			Integer id = (Integer)t;
 			JOptionPane.showMessageDialog(null, "Se ha insertado el empleado " + id + " correctamente en la base de datos.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
+			_rightPane.update((SAAbstractFactory.getInstance().createSAEmployee()).readAllEmployees());
+			_leftPane.addInfoToComboBox();
 			break;
 		case Event.RES_REGISTER_EMPLOYEE_FAILED:
 			JOptionPane.showConfirmDialog(null, "Error al insertar el empleado en la base de datos.", "Failed", JOptionPane.ERROR_MESSAGE, 
@@ -85,7 +88,7 @@ public class GUIEmployee extends JPanel implements IGUI {
 			break;
 			
 		case Event.RES_READALL_EMPLOYEES_OK:
-			_rightPane.setTable((List<Object>)t);
+			_rightPane.update((List<Object>)t);
 			break;
 		}
 	}

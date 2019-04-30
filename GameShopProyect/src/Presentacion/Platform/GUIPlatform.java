@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import Negocio.SA.SAAbstractFactory;
 import Presentacion.View.GUIGameshop;
 import Presentacion.View.IGUI;
 import Presentacion.View.OperationsPanel;
@@ -51,6 +52,8 @@ public class GUIPlatform extends JPanel implements IGUI {
 			Integer id = (Integer)t;
 			JOptionPane.showMessageDialog(null, "Se ha insertado la plataforma " + 
 					id + " correctamente en la base de datos.", "Success", JOptionPane.INFORMATION_MESSAGE);
+			_rightPane.update((SAAbstractFactory.getInstance().createSAPlatform()).readAllPlatforms());
+			_leftPane.addInfoToComboBox();
 			break;
 			
 		case Event.RES_REGISTER_PLATFORM_FAILED:
@@ -76,7 +79,8 @@ public class GUIPlatform extends JPanel implements IGUI {
 			
 		case Event.RES_MODIFY_PLATFORM_OK:
 			JOptionPane.showMessageDialog(this, "Plataforma actualizada correctamente en la base de datos.",
-					"Failed",JOptionPane.ERROR_MESSAGE);		
+					"Failed",JOptionPane.ERROR_MESSAGE);	
+			_rightPane.update((List<Object>)t);
 			break;
 			
 		case Event.RES_READ_PLATFORM_OK:
@@ -98,10 +102,12 @@ public class GUIPlatform extends JPanel implements IGUI {
 			break;
 			
 		case Event.RES_READALL_PLATFORM_OK:
-			_rightPane.setTable((List<Object>)t);
+			_rightPane.update((List<Object>)t);
 			break;
 			
 		case Event.RES_READALL_PRODUCTS_FROM_PLATFORM_OK:
+			// code
+			_rightPane.update((List<Object>)t);
 			break;
 			
 		case Event.RES_READALL_PRODUCTS_FROM_PLATFROM_FAILED:

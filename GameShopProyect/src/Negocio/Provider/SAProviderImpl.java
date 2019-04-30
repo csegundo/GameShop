@@ -15,8 +15,8 @@ public class SAProviderImpl implements SAProvider {
 	public Integer createProvider(TProvider tp) {
 		int id = -1;
 		DAOProvider daoProvider = DAOAbstractFactory.getInstance().createDAOProvider();
-		if(tp != null){
-			TProvider tpl = daoProvider.readProviderByNIF(tp.get_nif());
+		if(tp != null && validateData(tp)){
+			TProvider tpl = (TProvider) daoProvider.readProviderByNIF(tp.get_nif());
 			if(tpl == null)
 				id = daoProvider.createProvider(tp);
 		}
@@ -51,10 +51,14 @@ public class SAProviderImpl implements SAProvider {
 		return ret;
 	}
 
-	public List<TProvider> readAllProviders() {
-		List<TProvider> providers = null;
+	public List<Object> readAllProviders() {
+		List<Object> providers = null;
 		providers = DAOAbstractFactory.getInstance().createDAOProvider().readAllProviders();
 		return providers;
+	}
+
+	private boolean validateData(TProvider tp) {
+		return true;
 	}
 
 }

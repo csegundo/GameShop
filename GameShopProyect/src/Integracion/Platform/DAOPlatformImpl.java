@@ -119,8 +119,8 @@ public class DAOPlatformImpl implements DAOPlatform {
 	}
 
 	@Override
-	public List<TPlatform> readAllPlatforms() {
-		List<TPlatform> l = new ArrayList<TPlatform>();
+	public List<Object> readAllPlatforms() {
+		List<Object> l = new ArrayList<Object>();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" +
@@ -143,7 +143,7 @@ public class DAOPlatformImpl implements DAOPlatform {
 	}
 
 	@Override
-	public List<TPlatform> readAllProductsOfAPlatform(Object Parameter1){
+	public List<Object> readAllProductsOfAPlatform(Object Parameter1){
 		return null; //COMPLETAR
 	}
 	
@@ -152,13 +152,10 @@ public class DAOPlatformImpl implements DAOPlatform {
 		TPlatform tel = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" +
-					Main.Main.database, Main.Main.user, Main.Main.password);
-			PreparedStatement ps = con.prepareStatement("SELECT nombre FROM plataforma WHERE nombre=?",
-					PreparedStatement.RETURN_GENERATED_KEYS);
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
+			PreparedStatement ps = con.prepareStatement("SELECT nombre FROM plataforma WHERE nombre=?",	PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setString(1, s);
-			ps.executeQuery();
-			ResultSet rs = ps.getGeneratedKeys();
+			ResultSet rs = ps.executeQuery();
 			if(rs.next()){
 				tel = new TPlatform();
 				tel.set_id(rs.getInt(1));

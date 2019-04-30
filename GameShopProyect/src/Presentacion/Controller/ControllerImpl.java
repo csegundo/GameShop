@@ -69,15 +69,6 @@ public class ControllerImpl extends Controller {
 				gui.actualiza(Event.RES_UNSUBSCRIBE_PROVIDER_FAILED, null);
 			break;
 			
-		case Event.MODIFYBUTTON_PROVIDER:
-			id = (Integer) data;
-			tpr = (TProvider)(SAAbstractFactory.getInstance().createSAProvider()).readProvider(id);
-			if(tpr != null)
-				new FormUpdateProvider(tpr);
-			else
-				gui.actualiza(Event.RES_MODIFY_PROVIDER_FAILED, null);
-			break;
-			
 		case Event.MODIFY_PROVIDER:
 			tpr = (TProvider)data;
 			if(SAAbstractFactory.getInstance().createSAProvider().updateProvider(tpr))
@@ -85,7 +76,6 @@ public class ControllerImpl extends Controller {
 			else
 				gui.actualiza(Event.RES_MODIFY_PROVIDER_FAILED, null);
 			break;
-			
 			
 		case Event.READ_PROVIDER:
 			id = (Integer)data;
@@ -97,7 +87,7 @@ public class ControllerImpl extends Controller {
 			break;
 			
 		case Event.READ_ALL_PROVIDERS:
-			List<TProvider> providers = (SAAbstractFactory.getInstance().createSAProvider()).readAllProviders();
+			List<Object> providers = (SAAbstractFactory.getInstance().createSAProvider()).readAllProviders();
 			if(providers == null)
 				gui.actualiza(Event.RES_READALL_PROVIDERS_FAILED, null);
 			else
@@ -113,7 +103,7 @@ public class ControllerImpl extends Controller {
 			if(resRegisterEmp > 0)
 				gui.actualiza(Event.RES_REGISTER_EMPLOYEE_OK, new Integer(resRegisterEmp));
 			else
-				gui.actualiza(Event.RES_REGISTER_PROVIDER_FAILED, null);
+				gui.actualiza(Event.RES_REGISTER_EMPLOYEE_FAILED, null);
 			break;
 			
 		case Event.UNSUBSCRIBE_EMPLOYEE:
@@ -123,15 +113,6 @@ public class ControllerImpl extends Controller {
 				gui.actualiza(Event.RES_UNSUBSCRIBE_EMPLOYEE_OK, id);
 			else
 				gui.actualiza(Event.RES_UNSUBSCRIBE_EMPLOYEE_FAILED, null);
-			break;
-			
-		case Event.MODIFYBUTTON_EMPLOYEE:
-			id = (Integer)data;
-			tpe = (TEmployee)(SAAbstractFactory.getInstance().createSAEmployee()).readEmployee(id);
-			if(tpe != null)
-				new FormUpdateEmployee(tpe);
-			else
-				gui.actualiza(Event.RES_MODIFY_EMPLOYEE_FAILED, null);
 			break;
 			
 		case Event.MODIFY_EMPLOYEE:
@@ -152,7 +133,7 @@ public class ControllerImpl extends Controller {
 			break;
 			
 		case Event.READ_ALL_EMPLOYEES:
-			List<TEmployee> employees = (SAAbstractFactory.getInstance().createSAEmployee()).readAllEmployees();
+			List<Object> employees = (SAAbstractFactory.getInstance().createSAEmployee()).readAllEmployees();
 			if(employees == null)
 				gui.actualiza(Event.RES_READALL_EMPLOYEES_FAILED, null);
 			else
@@ -178,17 +159,7 @@ public class ControllerImpl extends Controller {
 			else
 				gui.actualiza(Event.RES_UNSUBSCRIBE_PLATFORM_FAILED, null);
 			break;
-			
-		case Event.MODIFYBUTTON_PLATFORM:
-			//tpla = (TPlatform) data;
-			id = (Integer)data;
-			tpla = (TPlatform)SAAbstractFactory.getInstance().createSAPlatform().readPlatform(id);
-			if(tpla != null)
-				new FormUpdatePlatform();
-			else
-				gui.actualiza(Event.RES_MODIFY_PLATFORM_FAILED, null);
-			break;
-			
+		
 		case Event.MODIFY_PLATFORM:
 			tpla = (TPlatform) data;
 			if(SAAbstractFactory.getInstance().createSAPlatform().updatePlatform(tpla))
@@ -207,7 +178,7 @@ public class ControllerImpl extends Controller {
 			break;
 			
 		case Event.READ_ALL_PLATFORMS:
-			List<TPlatform> platforms = (SAAbstractFactory.getInstance().createSAPlatform()).readAllPlatforms();
+			List<Object> platforms = (SAAbstractFactory.getInstance().createSAPlatform()).readAllPlatforms();
 			if(platforms == null)
 				gui.actualiza(Event.RES_READALL_PLATFORM_FAILED, null);
 			else

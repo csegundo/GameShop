@@ -13,6 +13,6 @@ public interface DAOEmployee {
 	public Boolean deleteEmployee(TEmployee te);
 	public Boolean updateEmployee(TEmployee te);
 	public Object readEmployee(Integer id);
-	public List<TEmployee> readAllEmployees();
-	public TEmployee readEmployeeByNIF(String s);
+	public List<Object> readAllEmployees();
+	public TEmployee readEmployeeByNIF(String nif);
 }

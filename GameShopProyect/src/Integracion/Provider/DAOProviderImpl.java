@@ -124,8 +124,8 @@ public class DAOProviderImpl implements DAOProvider {
 		return tpl;
 	}
 
-	public List<TProvider> readAllProviders() {
-		List<TProvider> l = new ArrayList<TProvider>();
+	public List<Object> readAllProviders() {
+		List<Object> l = new ArrayList<Object>();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
@@ -161,8 +161,8 @@ public class DAOProviderImpl implements DAOProvider {
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			PreparedStatement ps = con.prepareStatement("SELECT ID FROM proveedor WHERE NIF=?", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setString(1, s);
-			ps.executeQuery();
-			ResultSet rs = ps.getGeneratedKeys();
+			ResultSet rs = ps.executeQuery();
+			//ResultSet rs = ps.getGeneratedKeys();
 			if(rs.next()){
 				tpl = new TProvider();
 				tpl.set_id(rs.getInt(1));
