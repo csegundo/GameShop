@@ -42,7 +42,7 @@ public class FormTicket extends JDialog{
 	private JButton _accept;
 	private JButton _cancel;
 	private JTable _grid;
-	private String[]_columnIds = {"ID", "Name", "Platform"};
+	private String[]_columnIds = {"ID", "Name", "Platform", "Amount"};
 	
 	public FormTicket(){
 		this.setTitle("Add new ticket");
@@ -121,7 +121,7 @@ public class FormTicket extends JDialog{
 		_remove.setMaximumSize(new Dimension(120,20));
 		_remove.setMinimumSize(new Dimension(120,20));
 		
-		_grid.setSize(new Dimension(100, 100));
+		_grid.setBounds(new Rectangle(100, 100));
 		_grid.setPreferredSize(new Dimension(100, 100));
 		_grid.setMinimumSize(new Dimension(100, 100));
 		_grid.setMaximumSize(new Dimension(100, 100));
@@ -140,7 +140,6 @@ public class FormTicket extends JDialog{
 		
 		this.add(_employeeId);
 		this.add(_employeeElection);
-		this.add(Box.createRigidArea(new Dimension(80, 1)));
 		this.add(_products);
 		this.add(_productsElection);
 		this.add(_amount);

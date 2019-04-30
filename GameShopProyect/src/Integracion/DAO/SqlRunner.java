@@ -60,8 +60,8 @@ public class SqlRunner {
                 if (trimmedLine.startsWith("--") || trimmedLine.startsWith("//") || trimmedLine.startsWith("#")) {
 
                     // Line is a comment
-                    out.println(trimmedLine);
-                    out.flush();
+                    /*out.println(trimmedLine);
+                    out.flush();*/
 
                 } else if (trimmedLine.endsWith(this.delimiter)) {
 
@@ -90,9 +90,9 @@ public class SqlRunner {
                     ResultSet rs = null;
                     try {
                         stmt = conn.createStatement();
-                        out.println();
+                        /*out.println();
                         out.println(command);
-                        out.flush();
+                        out.flush();*/
                         boolean hasResults = false;
                         if (this.stopOnError) {
                             hasResults = stmt.execute(command.toString());
@@ -117,23 +117,23 @@ public class SqlRunner {
                             final int cols = md.getColumnCount();
                             for (int i = 0; i < cols; i++) {
                                 final String name = md.getColumnLabel(i + 1);
-                                out.print(name + "\t");
+                                //out.print(name + "\t");
                             }
-                            out.println("");
-                            out.flush();
+                            /*out.println("");
+                            out.flush();*/
 
                             // Print result rows
                             while (rs.next()) {
                                 for (int i = 1; i <= cols; i++) {
                                     final String value = rs.getString(i);
-                                    out.print(value + "\t");
+                                    //out.print(value + "\t");
                                 }
-                                out.println("");
+                                //out.println("");
                             }
-                            out.flush();
+                            //out.flush();
                         } else {
-                            out.println("Updated: " + stmt.getUpdateCount());
-                            out.flush();
+                            //out.println("Updated: " + stmt.getUpdateCount());
+                            //out.flush();
                         }
                         command = null;
                     } finally {

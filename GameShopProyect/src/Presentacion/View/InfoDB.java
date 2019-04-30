@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 
-import java.awt.FlowLayout;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,7 +29,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+
 import Integracion.DAO.*;
+import Presentacion.Controller.Controller;
 
 
 
@@ -45,10 +47,14 @@ public class InfoDB extends JDialog {
 	private JPasswordField _passwText;
 	private JButton _ok;
 	private JCheckBox _create;
-	private boolean finished;
 	private JPanel panel;
 	
 	public InfoDB() {
+		try{
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        }catch(Exception ex){
+        	System.err.println("ERROR lookAndFeel");
+        }
 		this.setTitle("DB information");
 		this.setIconImage(new ImageIcon("resources/GameShopLogo.png").getImage());
 		this.setResizable(false);
@@ -75,15 +81,13 @@ public class InfoDB extends JDialog {
 	
 	private void initGUI() {
 		
-		finished = false;
-		
 		_bd = new JLabel("Database ");
 		_bd.setAlignmentX(Component.CENTER_ALIGNMENT);
 		_bd.setVisible(true);
 		
 		_bdText = new JTextField();
 		_bdText.setAlignmentX(Component.CENTER_ALIGNMENT);
-		_bdText.setText("GameShop");
+		_bdText.setText("gameshop");
 		_bdText.setToolTipText("Write the database that you want to use");
 		_bdText.setSize(250, 30);
 		_bdText.setPreferredSize(new Dimension(200,30));
@@ -147,14 +151,18 @@ public class InfoDB extends JDialog {
 				Main.Main.user = _nameText.getText();
 				Main.Main.password = String.valueOf(_passwText.getPassword());
 				Statement Stmt = null;
-				if (_create.isSelected()) {
-					try
-					{
-						Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306", Main.Main.user, Main.Main.password);
+				
+				Connection conn;
+				try {
+					conn = DriverManager.getConnection("jdbc:mysql://localhost:3306", Main.Main.user, Main.Main.password);
+				
+					if (_create.isSelected()) {
+					
+						//Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306", Main.Main.user, Main.Main.password);
 						Stmt = conn.createStatement();
 	
-						Stmt.execute("CREATE DATABASE gameshop");
-						Stmt.execute("USE gameshop");
+						Stmt.execute("CREATE DATABASE " + Main.Main.database);
+						Stmt.execute("USE " + Main.Main.database);
 						Stmt.execute("SET GLOBAL time_zone = '+3:00'");
 						
 						String aSQLScriptFilePath = "resources/GameShopTables.sql";			   
@@ -162,27 +170,23 @@ public class InfoDB extends JDialog {
 						Reader rd = new FileReader(new File(aSQLScriptFilePath));
 						SqlRunner r = new SqlRunner(conn,prnt,prnt,true,false);
 						r.runScript(rd);
-						finished = true;
-					}	
-					catch (Exception e){
-					   /* Se lanza una excepción si no se encuentra en ejecutable o el fichero no es ejecutable. */
-						JOptionPane.showMessageDialog(null, "Error while creating the database.","Failed",JOptionPane.ERROR_MESSAGE);			
-					} finally {
-						try {
-							if(Stmt!=null) 
-								Stmt.close();
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}
+					}
+					dispose();
+					Controller.getInstance();
+				}
+				catch (Exception e){
+				   /* Se lanza una excepción si no se encuentra en ejecutable o el fichero no es ejecutable. */
+					JOptionPane.showMessageDialog(null, "Error while creating the database.","Failed",JOptionPane.ERROR_MESSAGE);			
+				} finally {
+					try {
+						if(Stmt!=null) 
+							Stmt.close();
+					} catch (SQLException e) {
+						JOptionPane.showMessageDialog(null, "Error while creating the database.","Failed",JOptionPane.ERROR_MESSAGE);
 					}
 				}
-					dispose();
 			}
 		});
-	}
-	
-	public boolean getState() {
-		return this.finished;
 	}
 
 }
