@@ -55,7 +55,6 @@ public class GUIProvider extends JPanel implements IGUI {
 			
 		case Event.RES_REGISTER_PROVIDER_FAILED:
 			JOptionPane.showMessageDialog(this, "Error al insertar el proveedor en la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
-
 			break;
 			
 		case Event.RES_UNSUBSCRIBE_PROVIDER_OK:

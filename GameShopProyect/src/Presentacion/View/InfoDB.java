@@ -157,8 +157,7 @@ public class InfoDB extends JDialog {
 					conn = DriverManager.getConnection("jdbc:mysql://localhost:3306", Main.Main.user, Main.Main.password);
 				
 					if (_create.isSelected()) {
-					
-						//Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306", Main.Main.user, Main.Main.password);
+				
 						Stmt = conn.createStatement();
 	
 						Stmt.execute("CREATE DATABASE " + Main.Main.database);
@@ -176,7 +175,7 @@ public class InfoDB extends JDialog {
 				}
 				catch (Exception e){
 				   /* Se lanza una excepción si no se encuentra en ejecutable o el fichero no es ejecutable. */
-					JOptionPane.showMessageDialog(null, "Error while creating the database.","Failed",JOptionPane.ERROR_MESSAGE);			
+					JOptionPane.showMessageDialog(null, "Error JDBC connection.","Failed",JOptionPane.ERROR_MESSAGE);			
 				} finally {
 					try {
 						if(Stmt!=null) 

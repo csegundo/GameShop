@@ -17,6 +17,7 @@ import Presentacion.Ticket.FormTicket;
 import Presentacion.Ticket.FormUpdateTicket;
 import Transfers.TEmployee;
 import Transfers.TPlatform;
+import Transfers.TProduct;
 import Transfers.TProvider;
 import Transfers.TTicket;
 
@@ -101,10 +102,9 @@ public class OperationsPanel extends JPanel {
 		this._update.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Integer id;
+				Integer	id = (Integer)_election.getSelectedItem();
 				switch(nameIdentificator){
 				case "provider":
-					id = (Integer) _election.getSelectedItem();
 					TProvider tpr = (TProvider)(SAAbstractFactory.getInstance().createSAProvider()).readProvider(id);
 					if(tpr != null)
 						new FormUpdateProvider(tpr);
@@ -112,7 +112,6 @@ public class OperationsPanel extends JPanel {
 						JOptionPane.showMessageDialog(null, "Error al leer un proveedor de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
 					break;
 				case "platform":
-					id = (Integer)_election.getSelectedItem();
 					TPlatform tpla = (TPlatform)SAAbstractFactory.getInstance().createSAPlatform().readPlatform(id);
 					if(tpla != null)
 						new FormUpdatePlatform();
@@ -120,7 +119,6 @@ public class OperationsPanel extends JPanel {
 						JOptionPane.showMessageDialog(null, "Error al leer una plataforma de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
 					break;
 				case "employee":
-					id = (Integer)_election.getSelectedItem();
 					TEmployee tpe = (TEmployee)(SAAbstractFactory.getInstance().createSAEmployee()).readEmployee(id);
 					if(tpe != null)
 						new FormUpdateEmployee(tpe);
@@ -128,6 +126,11 @@ public class OperationsPanel extends JPanel {
 						JOptionPane.showMessageDialog(null, "Error al leer un empleado de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
 					break;
 				case "product":
+					TProduct tprd = (TProduct)(SAAbstractFactory.getInstance().createSAProduct()).readProduct(id);
+					if(tprd != null)
+						new FormUpdateProduct(tprd);
+					else
+						JOptionPane.showMessageDialog(null, "Error when reading a product from the database.","Failed",JOptionPane.ERROR_MESSAGE);		
 					break;
 				case "ticket":
 					//id = (Integer) _election.getSelectedItem();
@@ -157,6 +160,7 @@ public class OperationsPanel extends JPanel {
 					Controller.getInstance().action(_election.getSelectedItem(), Event.UNSUBSCRIBE_EMPLOYEE);
 					break;
 				case "product":
+					Controller.getInstance().action(_election.getSelectedItem(), Event.UNSUBSCRIBE_PRODUCT);
 					break;
 				case "ticket":
 					break;
@@ -181,6 +185,8 @@ public class OperationsPanel extends JPanel {
 				_election.addItem(((TEmployee) temp).get_id());
 			break;
 		case "product":
+			for(Object temp : SAAbstractFactory.getInstance().createSAProduct().readAllProducts())
+				_election.addItem(((TProduct) temp).get_id());
 			break;
 		case "ticket":
 			break;
