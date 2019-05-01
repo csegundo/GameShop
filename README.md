@@ -1,8 +1,6 @@
 # GameShop
 
 _**GameShop** it´s a desktop application which is used to manage videogame stores._
-https://insiders.liveshare.vsengsaas.visualstudio.com/join?0C749EC3142330A4A56C293504EED1487CB2
-
 
 ## Starting... 🚀
 _During this development phase, it will only be programmed to guarantee a total operation of the application._
