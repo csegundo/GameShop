@@ -40,11 +40,10 @@ public class GUIGameshop extends JFrame {
 	}
 
 	private void initGUI() {
-		// TODO MIRAR LA DOCUMENTACION DEL lookAndFell();
 		try{
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         }catch(Exception ex){
-        	System.err.println("ERROR lookAndFeel");
+        	System.err.println("Error. The look and feel that is set is not available for your current operating system.");
         }
 		this.setSize(new Dimension(700, 500));
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
