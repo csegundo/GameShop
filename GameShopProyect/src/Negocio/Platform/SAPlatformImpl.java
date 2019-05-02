@@ -12,7 +12,7 @@ public class SAPlatformImpl implements SAPlatform {
 	@Override
 	public Integer createPlatform(TPlatform tpla) {
 		int id = -1;
-		if(tpla != null && !tpla.get_name().equals("")){ //Comprobamos que el transfer no esta vacio, y que hay nombre introducido.
+		if(tpla != null && !tpla.get_name().trim().equals("")){ //Comprobamos que el transfer no esta vacio, y que hay nombre introducido.
 			DAOPlatform daoPlatform = DAOAbstractFactory.getInstance().createDAOPlatform();
 			TPlatform tpl = daoPlatform.readByName(tpla.get_name());
 			if(tpl == null)
