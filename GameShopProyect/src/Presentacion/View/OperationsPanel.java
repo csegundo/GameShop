@@ -11,6 +11,7 @@ import Presentacion.Employee.FormUpdateEmployee;
 import Presentacion.Platform.FormPlatform;
 import Presentacion.Platform.FormUpdatePlatform;
 import Presentacion.Product.FormProduct;
+import Presentacion.Product.FormUpdateProduct;
 import Presentacion.Provider.FormProvider;
 import Presentacion.Provider.FormUpdateProvider;
 import Presentacion.Ticket.FormTicket;
@@ -114,7 +115,7 @@ public class OperationsPanel extends JPanel {
 				case "platform":
 					TPlatform tpla = (TPlatform)SAAbstractFactory.getInstance().createSAPlatform().readPlatform(id);
 					if(tpla != null)
-						new FormUpdatePlatform();
+						new FormUpdatePlatform(tpla);
 					else
 						JOptionPane.showMessageDialog(null, "Error al leer una plataforma de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
 					break;
@@ -185,8 +186,8 @@ public class OperationsPanel extends JPanel {
 				_election.addItem(((TEmployee) temp).get_id());
 			break;
 		case "product":
-			for(Object temp : SAAbstractFactory.getInstance().createSAProduct().readAllProducts())
-				_election.addItem(((TProduct) temp).get_id());
+			//for(Object temp : SAAbstractFactory.getInstance().createSAProduct().readAllProducts())
+			//	_election.addItem(((TProduct) temp).get_id());
 			break;
 		case "ticket":
 			break;

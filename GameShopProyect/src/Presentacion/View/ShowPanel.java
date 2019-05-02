@@ -76,9 +76,9 @@ public class ShowPanel extends JPanel {
 		// TODO caso para PROVEEDOR
 		_tabs.addTab("Show one", null, so, "Show the data of the selected " + nameIdentificator);
 		_tabs.addTab("Show all", null, sa, "Show the data of all " + nameIdentificator);
-		if(this.nameIdentificator.equals(GUIGameshop.TAB_PLATFORM)) 
+		if(this.nameIdentificator.equalsIgnoreCase(GUIGameshop.TAB_PLATFORM)) 
 			//AQUI DEBERIA AÑADIR NUEVA PESTAÑA CON TODAS LOS PRODUCTOS DE UNA PLATAFORMA
-			_tabs.addTab("Show products from platform", null, new ShowProductsFromPlatform(), 
+			_tabs.addTab("Show products from one", null, new ShowProductsFromPlatform(this.nameIdentificator), 
 					"Show all the products related to the selected platform");
 		
 			
