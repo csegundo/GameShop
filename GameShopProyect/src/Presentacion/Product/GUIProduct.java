@@ -4,14 +4,20 @@
 package Presentacion.Product;
 
 import java.awt.BorderLayout;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import Negocio.SA.SAAbstractFactory;
 import Presentacion.View.GUIGameshop;
 import Presentacion.View.IGUI;
 import Presentacion.View.OperationsPanel;
 import Presentacion.View.ShowPanel;
+import Transfers.TAccessory;
+import Transfers.TGame;
+import Transfers.TProduct;
+import Transfers.TProvider;
 import Presentacion.Controller.Event;
 
 /** 
@@ -41,26 +47,53 @@ public class GUIProduct extends JPanel implements IGUI {
 		Integer id ;
 		switch(e) {
 		case Event.RES_REGISTER_PRODUCT_OK:
+			id = (Integer)t;
+			JOptionPane.showMessageDialog(null, "Se ha insertado el producto " + id + " correctamente en la base de datos.", "Success",
+					JOptionPane.INFORMATION_MESSAGE);
+			_rightPane.update((SAAbstractFactory.getInstance().createSAProduct()).readAllProducts());
+			_leftPane.addInfoToComboBox();
 			break;
 		case Event.RES_REGISTER_PRODUCT_FAILED:
 			JOptionPane.showMessageDialog(this, "Error when inserting the product into the database.","Failed",JOptionPane.ERROR_MESSAGE);		
 			break;
 		case Event.RES_UNSUBSCRIBE_PRODUCT_OK:
+			id = (Integer)t;
+			JOptionPane.showMessageDialog(null, "Se ha eliminado el proveedor " + id + " correctamente en la base de datos.", "Success",
+					JOptionPane.INFORMATION_MESSAGE);
 			break;
 		case Event.RES_UNSUBSCRIBE_PRODUCT_FAILED:
 			JOptionPane.showMessageDialog(this, "Error when unsubscribing the product from the database.","Failed",JOptionPane.ERROR_MESSAGE);		
 			break;
 		case Event.RES_MODIFY_PRODUCT_OK:
+			JOptionPane.showMessageDialog(this, "Proveedor actualizado correctamente en la base de datos.","Failed",JOptionPane.INFORMATION_MESSAGE);		
 			break;
 		case Event.RES_MODIFY_PRODUCT_FAILED:
 			JOptionPane.showMessageDialog(this, "Error when modifying the product from the database.","Failed",JOptionPane.ERROR_MESSAGE);		
 			break;
 		case Event.RES_READ_PRODUCT_OK:
+			TProduct tp = (TProduct)t;
+			String act = tp.get_activated() ? "Yes" : "No";
+			String text = "ID: " + tp.get_id() + '\n' + 
+					"Name: " + tp.get_name() + '\n'+
+					"Type: " + tp.get_type() + '\n' +
+					"Stock: " + tp.get_stock() + '\n' +
+					"PVP: " + tp.get_pvp() + '\n' +
+					"Provider ID: " + tp.get_providerId() + '\n' +
+					"Platform ID: " + tp.get_platformId() + '\n' +
+					"Activated: " + act + '\n';
+			if(tp.get_type().equals(TProduct.accessory))
+				text += "Brand: " + ((TAccessory)tp).get_brand() + '\n' +
+						"Color: " + ((TAccessory)tp).get_color() + '\n' ;
+			else
+				text += "Gender: " +((TGame)tp).get_gender() + '\n' +
+						"Description:\n" + ((TGame)tp).get_description() + '\n';
+			_rightPane.setInfoInScreen(text);
 			break;
 		case Event.RES_READ_PRODUCT_FAILED:
 			JOptionPane.showMessageDialog(this, "Error when reading the product from the database.","Failed",JOptionPane.ERROR_MESSAGE);		
 			break;
 		case Event.RES_READALL_PRODUCT_OK:
+			_rightPane.update((List<Object>)t);
 			break;
 		case Event.RES_READALL_PRODUCT_FAILED:
 			JOptionPane.showMessageDialog(this, "Error when reading all products from the database.","Failed",JOptionPane.ERROR_MESSAGE);		

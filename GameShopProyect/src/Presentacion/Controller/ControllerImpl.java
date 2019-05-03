@@ -17,6 +17,7 @@ import Presentacion.View.GUIGameshop;
 import Presentacion.View.IGUI;
 import Transfers.TEmployee;
 import Transfers.TPlatform;
+import Transfers.TProduct;
 import Transfers.TProvider;
 
 /** 
@@ -45,6 +46,7 @@ public class ControllerImpl extends Controller {
 		TProvider tpr;
 		TEmployee tpe;
 		TPlatform tpla;
+		TProduct tprod;
 		
 		gui = gs.getGuiAt(event/100 - 1);
 
@@ -139,6 +141,48 @@ public class ControllerImpl extends Controller {
 			else
 				gui.actualiza(Event.RES_READALL_EMPLOYEES_OK, employees);
 			break;
+		////////////////////////////////////////////////////////////// PRODUCT ////////////////////////////////////////////////
+			
+		case Event.REGISTER_PRODUCT:
+			tprod = (TProduct) data;
+			int resRegister= (SAAbstractFactory.getInstance().createSAProduct()).createProduct(tprod);
+			if(resRegister > 0)
+				gui.actualiza(Event.RES_REGISTER_PRODUCT_OK, new Integer(resRegister));
+			else
+				gui.actualiza(Event.RES_REGISTER_PRODUCT_FAILED, null);
+			break;
+			
+		case Event.UNSUBSCRIBE_PRODUCT:
+			boolean resDelete = (SAAbstractFactory.getInstance().createSAProduct()).deleteProduct(data);
+			if(resDelete)
+				gui.actualiza(Event.RES_UNSUBSCRIBE_PRODUCT_OK, ((TProduct)data).get_id());
+			else
+				gui.actualiza(Event.RES_UNSUBSCRIBE_PRODUCT_FAILED, null);
+			break;
+			
+		case Event.MODIFY_PRODUCT:
+			tprod = (TProduct) data;
+			if(SAAbstractFactory.getInstance().createSAProduct().updateProduct(tprod))
+				gui.actualiza(Event.RES_MODIFY_PRODUCT_OK, tprod.get_id());
+			else
+				gui.actualiza(Event.RES_MODIFY_PRODUCT_FAILED, null);
+			break;
+			
+		case Event.READ_PRODUCT:
+			tprod = (TProduct) (SAAbstractFactory.getInstance().createSAProduct()).readProduct(data);
+			if (tprod != null) 
+				gui.actualiza(Event.RES_READ_PRODUCT_OK, tprod);
+			else
+				gui.actualiza(Event.RES_READ_PRODUCT_FAILED, null);
+			break;
+			
+		case Event.READ_ALL_PRODUCT:
+			List<Object> products = (SAAbstractFactory.getInstance().createSAProduct()).readAllProducts();
+			if(products == null)
+				gui.actualiza(Event.RES_READALL_PRODUCT_FAILED, null);
+			else
+				gui.actualiza(Event.RES_READALL_PRODUCT_OK, products);
+			break;
 			
 		////////////////////////////////////////////////////////////// PLATFORM ///////////////////////////////////////////////
 			
@@ -184,6 +228,12 @@ public class ControllerImpl extends Controller {
 			else
 				gui.actualiza(Event.RES_READALL_PLATFORM_OK, platforms);
 			break;
+		case Event.READ_ALL_PRODUCTS_FROM_PLATFORM:
+			List<Object> prods = SAAbstractFactory.getInstance().createSAPlatform().readAllProductsOfAPlatform(data);
+			if(prods != null)
+				gui.actualiza(Event.RES_READALL_PRODUCTS_FROM_PLATFORM_OK, prods);
+			else
+				gui.actualiza(Event.RES_READALL_PRODUCTS_FROM_PLATFROM_FAILED, null);
 		}
 	}
 	

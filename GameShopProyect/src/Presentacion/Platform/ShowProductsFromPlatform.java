@@ -25,6 +25,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -32,14 +33,14 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 
 
+@SuppressWarnings("serial")
 public class ShowProductsFromPlatform extends ShowAllProducts {
 
-	private JComboBox _election;
+	private JComboBox<Object> _election;
 	private JButton _show;
-	private JTable _grid;
 	
-	public ShowProductsFromPlatform(String nameIdentificator) {
-		super(nameIdentificator);
+	public ShowProductsFromPlatform(String nameIdentificator,List<Object> l) {
+		super(nameIdentificator,l);
 		initGUI();
 	}
 
@@ -59,7 +60,8 @@ public class ShowProductsFromPlatform extends ShowAllProducts {
 		_show.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Controller.getInstance().action(_election.getSelectedItem(), Event.READ_PLATFORM);
+				TPlatform tpla = SAAbstractFactory.getInstance().createSAPlatform().readPlatform((Integer)_election.getSelectedItem());
+				Controller.getInstance().action(tpla, Event.READ_ALL_PRODUCTS_FROM_PLATFORM);
 			}
 		});
 	}

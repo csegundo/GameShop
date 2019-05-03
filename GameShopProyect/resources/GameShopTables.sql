@@ -1,4 +1,3 @@
-
 CREATE TABLE `empleado` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
@@ -26,24 +25,39 @@ CREATE TABLE `proveedor` (
   PRIMARY KEY (`ID`)
 );
 
-CREATE TABLE `producto` (
+CREATE TABLE `accesorio` (
 	`ID` int(11) NOT NULL AUTO_INCREMENT,
 	`nombre` varchar(45) NOT NULL,
 	`PVP` float NOT NULL,
-	`descripcion` varchar(150) NOT NULL,
 	`stock` int(11) NOT NULL,
-	`tipo` varchar(45) NOT NULL,
-	`genero` varchar(45) NOT NULL,
 	`IDProveedor` int(11) NOT NULL,
 	`IDPlataforma` int(11) NOT NULL,
 	`activo` tinyint(1) NOT NULL,
+	`marca` varchar(45) NOT NULL,
+	`color` varchar(45) NOT NULL,
 	PRIMARY KEY (`ID`),
 	KEY `IDPlataforma_idx` (`IDPlataforma`),
 	KEY `IDProveedor_idx` (`IDProveedor`),
-	CONSTRAINT `IDPlataforma` FOREIGN KEY (`IDPlataforma`) REFERENCES `plataforma` (`ID`),
-	CONSTRAINT `IDProveedor` FOREIGN KEY (`IDProveedor`) REFERENCES `proveedor` (`ID`)
+	CONSTRAINT `IDPlataformaA` FOREIGN KEY (`IDPlataforma`) REFERENCES `plataforma` (`ID`),
+	CONSTRAINT `IDProveedorA` FOREIGN KEY (`IDProveedor`) REFERENCES `proveedor` (`ID`)
 );
 
+CREATE TABLE `juego` (
+	`ID` int(11) NOT NULL AUTO_INCREMENT,
+	`nombre` varchar(45) NOT NULL,
+	`PVP` float NOT NULL,
+	`stock` int(11) NOT NULL,
+	`IDProveedor` int(11) NOT NULL,
+	`IDPlataforma` int(11) NOT NULL,
+	`activo` tinyint(1) NOT NULL,
+	`descripcion` varchar(150) NOT NULL,
+	`genero` varchar(45) NOT NULL,
+	PRIMARY KEY (`ID`),
+	KEY `IDPlataforma_idx` (`IDPlataforma`),
+	KEY `IDProveedor_idx` (`IDProveedor`),
+	CONSTRAINT `IDPlataformaJ` FOREIGN KEY (`IDPlataforma`) REFERENCES `plataforma` (`ID`),
+	CONSTRAINT `IDProveedorJ` FOREIGN KEY (`IDProveedor`) REFERENCES `proveedor` (`ID`)
+);
 
 CREATE TABLE `ticket` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,

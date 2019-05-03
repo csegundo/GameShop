@@ -103,31 +103,35 @@ public class OperationsPanel extends JPanel {
 		this._update.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Integer	id = (Integer)_election.getSelectedItem();
+				Object	id;
 				switch(nameIdentificator){
 				case "provider":
-					TProvider tpr = (TProvider)(SAAbstractFactory.getInstance().createSAProvider()).readProvider(id);
+					id = (Integer)_election.getSelectedItem();
+					TProvider tpr = (TProvider)(SAAbstractFactory.getInstance().createSAProvider()).readProvider((Integer)id);
 					if(tpr != null)
 						new FormUpdateProvider(tpr);
 					else
+						id = (Integer)_election.getSelectedItem();
 						JOptionPane.showMessageDialog(null, "Error al leer un proveedor de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
 					break;
 				case "platform":
-					TPlatform tpla = (TPlatform)SAAbstractFactory.getInstance().createSAPlatform().readPlatform(id);
+					id = (Integer)_election.getSelectedItem();
+					TPlatform tpla = (TPlatform)SAAbstractFactory.getInstance().createSAPlatform().readPlatform((Integer)id);
 					if(tpla != null)
 						new FormUpdatePlatform(tpla);
 					else
 						JOptionPane.showMessageDialog(null, "Error al leer una plataforma de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
 					break;
 				case "employee":
-					TEmployee tpe = (TEmployee)(SAAbstractFactory.getInstance().createSAEmployee()).readEmployee(id);
+					id = (Integer)_election.getSelectedItem();
+					TEmployee tpe = (TEmployee)(SAAbstractFactory.getInstance().createSAEmployee()).readEmployee((Integer)id);
 					if(tpe != null)
 						new FormUpdateEmployee(tpe);
 					else
 						JOptionPane.showMessageDialog(null, "Error al leer un empleado de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
 					break;
 				case "product":
-					TProduct tprd = (TProduct)(SAAbstractFactory.getInstance().createSAProduct()).readProduct(id);
+					TProduct tprd = (TProduct)(SAAbstractFactory.getInstance().createSAProduct()).readProduct(IGUI.getInfoFromBox((String)_election.getSelectedItem()));
 					if(tprd != null)
 						new FormUpdateProduct(tprd);
 					else
@@ -161,7 +165,7 @@ public class OperationsPanel extends JPanel {
 					Controller.getInstance().action(_election.getSelectedItem(), Event.UNSUBSCRIBE_EMPLOYEE);
 					break;
 				case "product":
-					Controller.getInstance().action(_election.getSelectedItem(), Event.UNSUBSCRIBE_PRODUCT);
+					Controller.getInstance().action(IGUI.getInfoFromBox((String)_election.getSelectedItem()), Event.UNSUBSCRIBE_PRODUCT);
 					break;
 				case "ticket":
 					break;
@@ -186,13 +190,14 @@ public class OperationsPanel extends JPanel {
 				_election.addItem(((TEmployee) temp).get_id());
 			break;
 		case "product":
-			//for(Object temp : SAAbstractFactory.getInstance().createSAProduct().readAllProducts())
-			//	_election.addItem(((TProduct) temp).get_id());
+			for(Object temp : SAAbstractFactory.getInstance().createSAProduct().readAllProducts())
+				_election.addItem(((TProduct) temp).get_id()+"-"+((TProduct)temp).get_type());
 			break;
 		case "ticket":
 			break;
 		}
 	}
+	
 	
 	private void initComponents() {
 		this.add(Box.createVerticalGlue());

@@ -107,7 +107,7 @@ public class DAOProviderImpl implements DAOProvider {
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM proveedor WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
-			//ResultSet rs = ps.getGeneratedKeys();
+			
 			if(rs.next()){
 				tpl = new TProvider();
 				tpl.set_id(rs.getInt(1));
@@ -131,7 +131,7 @@ public class DAOProviderImpl implements DAOProvider {
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM proveedor", PreparedStatement.RETURN_GENERATED_KEYS);
 			ResultSet rs = ps.executeQuery();
-			//ResultSet rs = ps.getGeneratedKeys();
+			
 			while(rs.next()){
 				TProvider tpl = new TProvider();
 				tpl.set_id(rs.getInt(1));

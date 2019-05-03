@@ -13,9 +13,9 @@ public interface DAOProduct {
 	public Integer createProduct(Object tpr);
 	public Boolean deleteProduct(Object tpr);
 	public Boolean updateProduct(Object tpr);
-	public Object readProduct(Object tpr);
-	public List<TProduct> readAllProducts();
-	public Integer readProductByName(String s);
+	public Object readProduct(Object tp);
+	public List<Object> readAllProducts();
+	public TProduct readProductByName(Object tpr);
 	public List<Object> readAllProductsOfAPlattform(Object tpl);
 	// METODO PARA DIFERENCIAR DE SI ES UN JUEGO O UN ACCESORIO
 }

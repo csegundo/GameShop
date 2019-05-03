@@ -1,6 +1,7 @@
 package Presentacion.View;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 
 import java.awt.Color;
@@ -22,6 +23,7 @@ import Presentacion.Controller.Controller;
 import Presentacion.Controller.Event;
 import Transfers.TEmployee;
 import Transfers.TPlatform;
+import Transfers.TProduct;
 import Transfers.TProvider;
 
 /** 
@@ -68,6 +70,7 @@ public class ShowOne extends JPanel {
 					Controller.getInstance().action(_election.getSelectedItem(), Event.READ_EMPLOYEE);
 					break;
 				case "product":
+					Controller.getInstance().action(IGUI.getInfoFromBox((String)_election.getSelectedItem()), Event.READ_PRODUCT);
 					break;
 				case "ticket":
 					break;
@@ -75,6 +78,7 @@ public class ShowOne extends JPanel {
 			}
 		});
 	}
+	
 
 	private void initComponents() {
 		this.add(Box.createVerticalGlue());
@@ -110,7 +114,7 @@ public class ShowOne extends JPanel {
 				TitledBorder.LEFT, TitledBorder.TOP));
 		_info.setFont(new Font("Arial", 0, 15));
 		_info.setVisible(true);
-		this.add(_info);
+		this.add(new JScrollPane(_info, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED));
 		
 		this.add(Box.createVerticalGlue());
 		
@@ -134,6 +138,8 @@ public class ShowOne extends JPanel {
 				_election.addItem(((TEmployee) temp).get_id());
 			break;
 		case "product":
+			for(Object temp : SAAbstractFactory.getInstance().createSAProduct().readAllProducts())
+				_election.addItem(((TProduct) temp).get_id()+"-"+((TProduct)temp).get_type());
 			break;
 		case "ticket":
 			break;

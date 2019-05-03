@@ -17,6 +17,7 @@ import Presentacion.Controller.Event;
 import Presentacion.Employee.ShowAllEmployees;
 import Presentacion.Platform.ShowAllPlatform;
 import Presentacion.Platform.ShowProductsFromPlatform;
+import Presentacion.Product.ShowAllProducts;
 import Presentacion.Provider.ShowAllProvider;
 
 /** 
@@ -30,8 +31,10 @@ public class ShowPanel extends JPanel {
 	private String nameIdentificator;
 	private ShowOne so;
 	private ShowAll sa;
+	private ShowProductsFromPlatform sp;
 	
 	public ShowPanel(String nameIdentificator) {
+		sp = null;
 		this.nameIdentificator = nameIdentificator.toLowerCase();
 		this.so = new ShowOne(nameIdentificator);
 		switch(this.nameIdentificator) {
@@ -42,6 +45,7 @@ public class ShowPanel extends JPanel {
 			this.sa = new ShowAllEmployees(nameIdentificator, null);
 			break;
 		case "product":
+			this.sa = new ShowAllProducts(nameIdentificator, null);
 			break;
 		case "platform":
 			this.sa = new ShowAllPlatform(nameIdentificator, null);
@@ -49,7 +53,6 @@ public class ShowPanel extends JPanel {
 		case "ticket":
 			break;
 		}
-		//this.sa = new ShowAll(nameIdentificator);
 		initPanel();
 	}
 
@@ -78,21 +81,9 @@ public class ShowPanel extends JPanel {
 		_tabs.addTab("Show all", null, sa, "Show the data of all " + nameIdentificator);
 		if(this.nameIdentificator.equalsIgnoreCase(GUIGameshop.TAB_PLATFORM)) 
 			//AQUI DEBERIA AÑADIR NUEVA PESTAÑA CON TODAS LOS PRODUCTOS DE UNA PLATAFORMA
-			_tabs.addTab("Show products from one", null, new ShowProductsFromPlatform(this.nameIdentificator), 
+			_tabs.addTab("Show products from one", null, (this.sp = new ShowProductsFromPlatform(this.nameIdentificator,null)), 
 					"Show all the products related to the selected platform");
 		
-			
-			
-			
-			
-		// ESTO ES LO QUE HABIA ANTES PERO SE DEBERIA DE DIFERENCIAR EN QUE PESTAÑA ESTAMOS NO??
-//		_tabs.addChangeListener(new ChangeListener() {
-//			@Override
-//			public void stateChanged(ChangeEvent e) {
-//				if(_tabs.getSelectedIndex() == 1) 
-//					Controller.getInstance().action(null, Event.READ_ALL_PROVIDERS);
-//			}
-//		});
 		_tabs.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
@@ -120,6 +111,8 @@ public class ShowPanel extends JPanel {
 	public void update(List<Object> l) {
 		sa.update(l);
 		so.fillList();
+		if (sp != null)
+			sp.update(l);
 	}
 	
 }

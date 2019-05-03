@@ -114,6 +114,9 @@ public class GUIPlatform extends JPanel implements IGUI {
 			break;
 			
 		case Event.RES_READALL_PRODUCTS_FROM_PLATFROM_FAILED:
+			JOptionPane.showMessageDialog(this, "Error al mostrar todas los productos de una plataforma.",
+					"Failed",JOptionPane.ERROR_MESSAGE);			
+
 			break;
 		}
 	}

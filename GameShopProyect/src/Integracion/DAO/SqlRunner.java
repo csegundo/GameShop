@@ -40,13 +40,21 @@ public class SqlRunner {
             if (originalAutoCommit != this.autoCommit) {
                 this.connection.setAutoCommit(this.autoCommit);
             }
-            this.runScript(this.connection, reader);
-        } finally {
-            this.connection.setAutoCommit(originalAutoCommit);
+            try {
+            	
+            	 this.runScript(this.connection, reader);
+            }catch(Exception e){
+        	Statement Stmt = connection.createStatement();
+        	System.out.println("ERROOOOOOOOOR");
+        	
+			Stmt.execute("DROP DATABASE " + Main.Main.database);
+            }
+        }finally {
+        	this.connection.setAutoCommit(originalAutoCommit);
         }
     }
 
-    private void runScript(final Connection conn, final Reader reader) {
+    private void runScript(final Connection conn, final Reader reader) throws Exception{
         StringBuffer command = null;
         try {
             final LineNumberReader lineReader = new LineNumberReader(reader);
