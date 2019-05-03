@@ -154,11 +154,13 @@ public class InfoDB extends JDialog {
 				
 				Connection conn;
 				try {
-					conn = DriverManager.getConnection("jdbc:mysql://localhost:3306", Main.Main.user, Main.Main.password);
+					//conn = DriverManager.getConnection("jdbc:mysql://localhost:3306", Main.Main.user, Main.Main.password);
+					conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", Main.Main.user, Main.Main.password);
+					Stmt = conn.createStatement();
 				
 					if (_create.isSelected()) {
 				
-						Stmt = conn.createStatement();
+						//Stmt = conn.createStatement();
 	
 						Stmt.execute("CREATE DATABASE " + Main.Main.database);
 						Stmt.execute("USE " + Main.Main.database);
@@ -170,6 +172,7 @@ public class InfoDB extends JDialog {
 						SqlRunner r = new SqlRunner(conn,prnt,prnt,true,false);
 						r.runScript(rd);
 					}
+					Stmt.execute("SET GLOBAL time_zone = '+3:00'");
 					dispose();
 					Controller.getInstance();
 				}
