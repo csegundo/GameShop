@@ -98,7 +98,7 @@ public class ShowAllProducts extends ShowAll {
 	@Override
 	public void update(List<Object> l) {
 		if(_products == null || (l != null && l.size() != _products.size())) {
-		_products = l;
+			_products = l;
 			model.fireTableDataChanged();
 		}
 	}

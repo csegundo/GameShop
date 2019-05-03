@@ -37,6 +37,7 @@ public class ShowPanel extends JPanel {
 		sp = null;
 		this.nameIdentificator = nameIdentificator.toLowerCase();
 		this.so = new ShowOne(nameIdentificator);
+		this.sp = new ShowProductsFromPlatform(nameIdentificator, null);
 		switch(this.nameIdentificator) {
 		case "provider":
 			this.sa = new ShowAllProvider(nameIdentificator, null);

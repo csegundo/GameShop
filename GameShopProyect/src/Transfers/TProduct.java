@@ -10,7 +10,7 @@ public class TProduct {
 	public static final String accessory = "Accessory";
  	
 	private String _name;
-	private Integer _stock = 0; // La cantidad total en el almacen
+	private Integer _stock; // La cantidad total en el almacen
 	private Double _pvp;
 	private Integer _id;
 	private String _type;

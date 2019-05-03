@@ -180,7 +180,7 @@ public class DAOProductImpl implements DAOProduct {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			PreparedStatement ps;
-			if(((TProduct) tp).get_type().equals(TProduct.accessory)) {
+			if(((TProduct) tp).get_type().equalsIgnoreCase(TProduct.accessory)) {
 				ps = con.prepareStatement("SELECT * FROM accesorio WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
 				tpr = new TAccessory();
 			}else {
@@ -192,6 +192,7 @@ public class DAOProductImpl implements DAOProduct {
 	
 			if(rs.next()){
 
+				// TODO no faltaria aqui el UNITS PROVIDED?
 				((TProduct)tpr).set_id(rs.getInt(1));
 				((TProduct)tpr).set_name(rs.getString(2));
 				((TProduct)tpr).set_pvp(rs.getDouble(3));

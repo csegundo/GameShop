@@ -1,14 +1,12 @@
 package Presentacion.Ticket;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -16,15 +14,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.AbstractTableModel;
 
+import Integracion.DAO.DAOAbstractFactory;
 import Negocio.SA.SAAbstractFactory;
 import Transfers.TEmployee;
 import Transfers.TProduct;
@@ -42,9 +42,11 @@ public class FormTicket extends JDialog {
 	private JButton _remove;
 	private JButton _accept;
 	private JButton _cancel;
+	private AbstractTableModel model;
 	private JTable _grid;
 	private String[]_columnIds = {"ID", "Name", "Platform", "Amount"};
 	private JScrollPane _jsp;
+	private List<Object> _productsSelected = new ArrayList<Object>();
 	
 	public FormTicket(){
 		this.setTitle("Add new ticket");
@@ -64,8 +66,10 @@ public class FormTicket extends JDialog {
 		this.setLocationRelativeTo(null);
 		
 		initComponents();
+		fillRegisterTicketLists();
 		okButtonAction();
 		cancelButtonAction();
+		addButtonAction();
 	}
 	
 	private void cancelButtonAction() {
@@ -81,7 +85,7 @@ public class FormTicket extends JDialog {
 		_accept.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				// Dar de alta un ticket si _productsElection.size() > 0
 			}
 		});
 	}
@@ -91,20 +95,48 @@ public class FormTicket extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				TProduct toAdd = new TProduct();
-				toAdd.set_id((Integer)_productsElection.getSelectedItem());
+				// En [0] tenemos el ID, en [1] el nombre del producto y en [2] el tipo
+				String[] info = ((String)(_productsElection.getSelectedItem())).split(" - ");
+				toAdd.set_id(Integer.parseInt(info[0]));
+				toAdd.set_name(info[1]);
+				toAdd.set_type(info[2]);
 				toAdd.set_unitsProvided((Integer)_numberOfproduct.getValue());
-				/* Hay que añadirlo ahora a la tabla de informacion del alta de ticket:
-				 * 1) Acceder a la BD para pillar el ID del producto y su plataforma (con readByName)
-				 * 2) */
+				// Si existe en la BD un producto con ese nombre y tipo, nos devuelve todos sus datos y lo metemos a la tabla
+				TProduct all = (TProduct)SAAbstractFactory.getInstance().createSAProduct().readProduct(toAdd);
+				all.set_unitsProvided(toAdd.get_unitsProvided()); /* Esto lo hago pues en la BD no hay campo de units_provided,
+				 													 cuando se añada, quitar esto y sumarle las unidades del toAdd al all */
+				if(all != null && !addStockToAnExistingProduct(toAdd)) 
+					_productsSelected.add(all);
 				
+				model.fireTableDataChanged();
 			}
 		});
 	}
 	
+	// Mira a ver si el producto que queremos añadir existe, y si es cierto, añade stock += stockNuevo y sino, no hace nada
+	private boolean addStockToAnExistingProduct(Object tpr) {
+		boolean exit = false;
+		TProduct tp = (TProduct)tpr;
+		for(int i = 0; i < _productsSelected.size() && !exit; ++i) {
+			if(((TProduct)_productsSelected.get(i)).get_id() == tp.get_id()) {
+				((TProduct)_productsSelected.get(i)).set_unitsProvided(tp.get_unitsProvided() + ((TProduct)_productsSelected.get(i)).get_unitsProvided());
+				exit = true;
+			}
+		}
+		return exit;
+	}
+	
 	private void fillRegisterTicketLists() {
+		String type;
 		// Rellenar la lista de los productos
-		for(Object tp : SAAbstractFactory.getInstance().createSAProduct().readAllProducts())
-			_productsElection.addItem(((TProduct) tp).get_name());
+		for(Object tp : SAAbstractFactory.getInstance().createSAProduct().readAllProducts()) {
+			if(((TProduct) tp).get_type().equalsIgnoreCase(TProduct.game))
+				type = TProduct.game;
+			else
+				type = TProduct.accessory;
+			/* Aqui ponemos el id, nombre y el tipo para luego hacer SPLIT("-") y saber si es juego o accesorio */
+			_productsElection.addItem(((TProduct) tp).get_id() + " - " + ((TProduct) tp).get_name() + " - " + type);
+		}
 		
 		// Rellenar la lista de los empelados disponibles en la base de datos
 		for(Object te : SAAbstractFactory.getInstance().createSAEmployee().readAllEmployees())
@@ -167,18 +199,34 @@ public class FormTicket extends JDialog {
 	}
 	
 	private void initTable() {
-		AbstractTableModel model = new AbstractTableModel() {
+		model = new AbstractTableModel() {
 			@Override
 			public int getColumnCount() {
 				return _columnIds.length;
 			}
 			@Override
 			public int getRowCount() {
-				return 10;
+				return _productsSelected.size() == 0 ? 0 : _productsSelected.size();
 			}
 			@Override
-			public Object getValueAt(int arg0, int arg1) {
-				return null;
+			public Object getValueAt(int rowIndex, int columnIndex) {
+				Object o = null;
+				
+				switch(columnIndex){
+				case 0:
+					o = ((TProduct)_productsSelected.get(rowIndex)).get_id();
+					break;
+				case 1:
+					o = ((TProduct)_productsSelected.get(rowIndex)).get_name();
+					break;
+				case 2:
+					o = ((TProduct)_productsSelected.get(rowIndex)).get_platformId();
+					break;
+				case 3:
+					o = ((TProduct)_productsSelected.get(rowIndex)).get_unitsProvided();
+					break;
+				}
+				return o;
 			}
 			@Override
 			public String getColumnName(int column) {
@@ -200,8 +248,8 @@ public class FormTicket extends JDialog {
 	
 	private void setColumnsWidth() {
 		columnWidth(0, 40);
-		columnWidth(1, 110);
-		columnWidth(2, 80);
+		columnWidth(1, 140);
+		columnWidth(2, 50);
 		columnWidth(3, 50);
 	}
 	
