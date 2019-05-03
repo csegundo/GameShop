@@ -194,6 +194,8 @@ public class OperationsPanel extends JPanel {
 				_election.addItem(((TProduct) temp).get_id()+"-"+((TProduct)temp).get_type());
 			break;
 		case "ticket":
+			/*for(Object tt : SAAbstractFactory.getInstance().createSATicket().readAllTickets())
+				_election.addItem(((TTicket)tt).get_id());*/
 			break;
 		}
 	}

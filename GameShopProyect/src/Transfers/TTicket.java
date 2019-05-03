@@ -13,11 +13,14 @@ public class TTicket {
 	private Timestamp _date;
 	private Integer _id;
 	private Integer _employeeId;
-	private List<Object> _productsId;
+	private List<TProduct> _productsId;
 	private String _log;
 	
-	
 	// CONSTRUCTOR
+	
+	public TTicket(Integer employeeID, List<Object> productsList) {
+		
+	}
 	
 	public Double get_finalPrice() {
 		return _finalPrice;
@@ -43,10 +46,10 @@ public class TTicket {
 	public void set_employeeId(Integer _employeeId) {
 		this._employeeId = _employeeId;
 	}
-	public List<Object> get_productsId() {
+	public List<TProduct> get_productsId() {
 		return _productsId;
 	}
-	public void set_productsId(List<Object> _productsId) {
+	public void set_productsId(List<TProduct> _productsId) {
 		this._productsId = _productsId;
 	}
 	public String getLog() {

@@ -25,6 +25,7 @@ import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.AbstractTableModel;
 
+import Negocio.SA.SAAbstractFactory;
 import Transfers.TEmployee;
 import Transfers.TProduct;
 
@@ -34,8 +35,8 @@ public class FormTicket extends JDialog {
 	private JLabel _employeeId = new JLabel("Employee");
 	private JLabel _products = new JLabel("Products");
 	private JLabel _amount = new JLabel("Amount");
-	private JComboBox<TEmployee> _employeeElection = new JComboBox<TEmployee>();
-	private JComboBox<TProduct> _productsElection = new JComboBox<TProduct>();
+	private JComboBox<Object> _employeeElection = new JComboBox<Object>();
+	private JComboBox<Object> _productsElection = new JComboBox<Object>();
 	private JSpinner _numberOfproduct = new JSpinner(new SpinnerNumberModel(1, 1, 100, 1));
 	private JButton _add;
 	private JButton _remove;
@@ -43,7 +44,6 @@ public class FormTicket extends JDialog {
 	private JButton _cancel;
 	private JTable _grid;
 	private String[]_columnIds = {"ID", "Name", "Platform", "Amount"};
-	private JPanel j = new JPanel();
 	private JScrollPane _jsp;
 	
 	public FormTicket(){
@@ -85,6 +85,32 @@ public class FormTicket extends JDialog {
 			}
 		});
 	}
+	
+	private void addButtonAction() {
+		_add.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TProduct toAdd = new TProduct();
+				toAdd.set_id((Integer)_productsElection.getSelectedItem());
+				toAdd.set_unitsProvided((Integer)_numberOfproduct.getValue());
+				/* Hay que añadirlo ahora a la tabla de informacion del alta de ticket:
+				 * 1) Acceder a la BD para pillar el ID del producto y su plataforma (con readByName)
+				 * 2) */
+				
+			}
+		});
+	}
+	
+	private void fillRegisterTicketLists() {
+		// Rellenar la lista de los productos
+		for(Object tp : SAAbstractFactory.getInstance().createSAProduct().readAllProducts())
+			_productsElection.addItem(((TProduct) tp).get_name());
+		
+		// Rellenar la lista de los empelados disponibles en la base de datos
+		for(Object te : SAAbstractFactory.getInstance().createSAEmployee().readAllEmployees())
+			_employeeElection.addItem(((TEmployee) te).get_id());
+	}
+	
 	
 	
 	

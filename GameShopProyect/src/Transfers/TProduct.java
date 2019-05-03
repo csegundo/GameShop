@@ -10,14 +10,14 @@ public class TProduct {
 	public static final String accessory = "Accessory";
  	
 	private String _name;
-	private Integer _stock;
+	private Integer _stock = 0; // La cantidad total en el almacen
 	private Double _pvp;
 	private Integer _id;
 	private String _type;
 	private Integer _providerId;
 	private Integer _platformId;
 	private Boolean _activated;
-	private Integer _unitsProvided;
+	private Integer _unitsProvided = 0; // La cantidad que vamos a vender
 	
 	public TProduct(String name, Integer stock, Double pvp, String type, Integer provider, Integer platform) {
 		this._name = name;
@@ -31,6 +31,7 @@ public class TProduct {
 	}
 
 	public TProduct() {
+		// Constructor vacío
 	}
 
 	public String get_name() {

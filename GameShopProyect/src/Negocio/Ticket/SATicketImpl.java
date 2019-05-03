@@ -19,6 +19,8 @@ public class SATicketImpl implements SATicket {
 	
 	public Integer createTicket(TTicket tt) {
 		DAOTicket daoTicket = DAOAbstractFactory.getInstance().createDAOTicket();
+		
+		// TODO damos por hecho en el DAO que la lista no llega vacia ===> Comprobar aqui si esta vacia o no
 		return null;
 		// end-user-code
 	}
