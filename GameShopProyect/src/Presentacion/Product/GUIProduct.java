@@ -66,6 +66,8 @@ public class GUIProduct extends JPanel implements IGUI {
 			break;
 		case Event.RES_MODIFY_PRODUCT_OK:
 			JOptionPane.showMessageDialog(this, "Proveedor actualizado correctamente en la base de datos.","Failed",JOptionPane.INFORMATION_MESSAGE);		
+			_rightPane.update((SAAbstractFactory.getInstance().createSAProduct()).readAllProducts());
+			_leftPane.addInfoToComboBox();
 			break;
 		case Event.RES_MODIFY_PRODUCT_FAILED:
 			JOptionPane.showMessageDialog(this, "Error when modifying the product from the database.","Failed",JOptionPane.ERROR_MESSAGE);		

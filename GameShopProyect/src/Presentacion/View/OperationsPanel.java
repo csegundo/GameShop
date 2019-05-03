@@ -106,16 +106,15 @@ public class OperationsPanel extends JPanel {
 				Object	id;
 				switch(nameIdentificator){
 				case "provider":
-					id = (Integer)_election.getSelectedItem();
+					id = Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]);
 					TProvider tpr = (TProvider)(SAAbstractFactory.getInstance().createSAProvider()).readProvider((Integer)id);
 					if(tpr != null)
 						new FormUpdateProvider(tpr);
 					else
-						id = (Integer)_election.getSelectedItem();
 						JOptionPane.showMessageDialog(null, "Error al leer un proveedor de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
 					break;
 				case "platform":
-					id = (Integer)_election.getSelectedItem();
+					id = Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]);
 					TPlatform tpla = (TPlatform)SAAbstractFactory.getInstance().createSAPlatform().readPlatform((Integer)id);
 					if(tpla != null)
 						new FormUpdatePlatform(tpla);
@@ -123,7 +122,7 @@ public class OperationsPanel extends JPanel {
 						JOptionPane.showMessageDialog(null, "Error al leer una plataforma de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
 					break;
 				case "employee":
-					id = (Integer)_election.getSelectedItem();
+					id = Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]);
 					TEmployee tpe = (TEmployee)(SAAbstractFactory.getInstance().createSAEmployee()).readEmployee((Integer)id);
 					if(tpe != null)
 						new FormUpdateEmployee(tpe);
@@ -156,16 +155,20 @@ public class OperationsPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				switch(nameIdentificator){
 				case "provider":
-					Controller.getInstance().action(_election.getSelectedItem(), Event.UNSUBSCRIBE_PROVIDER);
+					Controller.getInstance().action(Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]),
+							Event.UNSUBSCRIBE_PROVIDER);
 					break;
 				case "platform":
-					Controller.getInstance().action(_election.getSelectedItem(), Event.UNSUBSCRIBE_PLATFORM);
+					Controller.getInstance().action(Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]),
+							Event.UNSUBSCRIBE_PLATFORM);
 					break;
 				case "employee":
-					Controller.getInstance().action(_election.getSelectedItem(), Event.UNSUBSCRIBE_EMPLOYEE);
+					Controller.getInstance().action(Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]),
+							Event.UNSUBSCRIBE_EMPLOYEE);
 					break;
 				case "product":
-					Controller.getInstance().action(IGUI.getInfoFromBox((String)_election.getSelectedItem()), Event.UNSUBSCRIBE_PRODUCT);
+					Controller.getInstance().action(IGUI.getInfoFromBox((String)_election.getSelectedItem()),
+							Event.UNSUBSCRIBE_PRODUCT);
 					break;
 				case "ticket":
 					break;
@@ -179,15 +182,15 @@ public class OperationsPanel extends JPanel {
 		switch(nameIdentificator){
 		case "provider":
 			for(Object tpro : SAAbstractFactory.getInstance().createSAProvider().readAllProviders())
-				_election.addItem(((TProvider) tpro).get_id());
+				_election.addItem(((TProvider) tpro).get_id() + " - " + ((TProvider) tpro).get_nif());
 			break;
 		case "platform":
 			for(Object tpla : SAAbstractFactory.getInstance().createSAPlatform().readAllPlatforms())
-				_election.addItem(((TPlatform) tpla).get_id());
+				_election.addItem(((TPlatform) tpla).get_id().toString() + " - " + ((TPlatform) tpla).get_name());
 			break;
 		case "employee":
 			for(Object temp : SAAbstractFactory.getInstance().createSAEmployee().readAllEmployees())
-				_election.addItem(((TEmployee) temp).get_id());
+				_election.addItem(((TEmployee) temp).get_id() + " - " + ((TEmployee) temp).get_name());
 			break;
 		case "product":
 			for(Object temp : SAAbstractFactory.getInstance().createSAProduct().readAllProducts())

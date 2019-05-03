@@ -89,10 +89,8 @@ public class ShowAllEmployees extends ShowAll {
 	
 	@Override
 	public void update(List<Object> l) {
-		if(_employees == null || (l != null && l.size() != _employees.size())) {
-			_employees = l;
-			model.fireTableDataChanged();
-		}
+		_employees = l;
+		model.fireTableDataChanged();
 	}
 
 }

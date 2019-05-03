@@ -73,6 +73,8 @@ public class GUIProvider extends JPanel implements IGUI {
 			
 		case Event.RES_MODIFY_PROVIDER_OK:
 			JOptionPane.showMessageDialog(this, "Proveedor actualizado correctamente en la base de datos.","Failed",JOptionPane.INFORMATION_MESSAGE);		
+			_rightPane.update((SAAbstractFactory.getInstance().createSAProvider()).readAllProviders());
+			_leftPane.addInfoToComboBox();
 			break;
 			
 		case Event.RES_READ_PROVIDER_OK:

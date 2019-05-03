@@ -76,10 +76,8 @@ public class ShowAllPlatform extends ShowAll {
 	
 	@Override
 	public void update(List<Object> l) {
-		if(this._platforms == null || (l != null && l.size() != this._platforms.size())) {
-			this._platforms = l;
-			this.model.fireTableDataChanged();
-		}
+		this._platforms = l;
+		this.model.fireTableDataChanged();
 	}
 
 }

@@ -92,10 +92,8 @@ public class ShowAllProvider extends ShowAll {
 
 	@Override
 	public void update(List<Object> l) {
-		if(_providers == null || (l != null && l.size() != _providers.size())) {
-			_providers = l;
-			model.fireTableDataChanged();
-		}
+		_providers = l;
+		model.fireTableDataChanged();
 	}
 
 }

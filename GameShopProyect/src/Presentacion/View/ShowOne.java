@@ -61,16 +61,20 @@ public class ShowOne extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				switch(nameIdentificator){
 				case "provider":
-					Controller.getInstance().action(_election.getSelectedItem(), Event.READ_PROVIDER);
+					Controller.getInstance().action(Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]),
+							Event.READ_PROVIDER);
 					break;
 				case "platform":
-					Controller.getInstance().action(_election.getSelectedItem(), Event.READ_PLATFORM);
+					Controller.getInstance().action(Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]),
+							Event.READ_PLATFORM);
 					break;
 				case "employee":
-					Controller.getInstance().action(_election.getSelectedItem(), Event.READ_EMPLOYEE);
+					Controller.getInstance().action(Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]),
+							Event.READ_EMPLOYEE);
 					break;
 				case "product":
-					Controller.getInstance().action(IGUI.getInfoFromBox((String)_election.getSelectedItem()), Event.READ_PRODUCT);
+					Controller.getInstance().action(IGUI.getInfoFromBox((String)_election.getSelectedItem()),
+							Event.READ_PRODUCT);
 					break;
 				case "ticket":
 					break;
@@ -127,15 +131,15 @@ public class ShowOne extends JPanel {
 		switch(nameIdentificator){
 		case "provider":
 			for(Object tpro : SAAbstractFactory.getInstance().createSAProvider().readAllProviders())
-				_election.addItem(((TProvider) tpro).get_id());
+				_election.addItem(((TProvider) tpro).get_id() + " - " + ((TProvider) tpro).get_nif());
 			break;
 		case "platform":
 			for(Object tpla : SAAbstractFactory.getInstance().createSAPlatform().readAllPlatforms())
-				_election.addItem(((TPlatform) tpla).get_id());
+				_election.addItem(((TPlatform) tpla).get_id().toString() + " - " + ((TPlatform) tpla).get_name());
 			break;
 		case "employee":
 			for(Object temp : SAAbstractFactory.getInstance().createSAEmployee().readAllEmployees())
-				_election.addItem(((TEmployee) temp).get_id());
+				_election.addItem(((TEmployee) temp).get_id() + " - " + ((TEmployee) temp).get_name());
 			break;
 		case "product":
 			for(Object temp : SAAbstractFactory.getInstance().createSAProduct().readAllProducts())
@@ -143,7 +147,7 @@ public class ShowOne extends JPanel {
 			break;
 		case "ticket":
 			/*for(Object tt : SAAbstractFactory.getInstance().createSATicket().readAllTickets())
-			_election.addItem(((TTicket)tt).get_id());*/
+				_election.addItem(((TTicket)tt).get_id());*/
 			break;
 		}
 	}

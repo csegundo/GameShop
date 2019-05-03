@@ -80,6 +80,8 @@ public class GUIPlatform extends JPanel implements IGUI {
 		case Event.RES_MODIFY_PLATFORM_OK:
 			JOptionPane.showMessageDialog(this, "Plataforma actualizada correctamente en la base de datos.",
 					"Failed",JOptionPane.INFORMATION_MESSAGE);
+			_rightPane.update((SAAbstractFactory.getInstance().createSAPlatform()).readAllPlatforms());
+			_leftPane.addInfoToComboBox();
 			break;
 			
 		case Event.RES_READ_PLATFORM_OK:
