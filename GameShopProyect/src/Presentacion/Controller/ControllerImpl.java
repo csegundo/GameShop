@@ -19,6 +19,7 @@ import Transfers.TEmployee;
 import Transfers.TPlatform;
 import Transfers.TProduct;
 import Transfers.TProvider;
+import Transfers.TTicket;
 
 /** 
  * @author GameShop
@@ -47,6 +48,7 @@ public class ControllerImpl extends Controller {
 		TEmployee tpe;
 		TPlatform tpla;
 		TProduct tprod;
+		TTicket tti;
 		
 		gui = gs.getGuiAt(event/100 - 1);
 
@@ -235,6 +237,25 @@ public class ControllerImpl extends Controller {
 				gui.actualiza(Event.RES_READALL_PRODUCTS_FROM_PLATFORM_OK, prods);
 			else
 				gui.actualiza(Event.RES_READALL_PRODUCTS_FROM_PLATFROM_FAILED, null);
+			break;
+			
+		////////////////////////////////////////////////////////////// TICKET ///////////////////////////////////////////////	
+		case Event.REGISTER_TICKET:
+			tti = (TTicket)data;
+			int resRegisterTicket = (SAAbstractFactory.getInstance().createSATicket().createTicket(tti));
+			if(resRegisterTicket > 0)
+				gui.actualiza(Event.RES_REGISTER_TICKET_OK, new Integer(resRegisterTicket));
+			else
+				gui.actualiza(Event.RES_REGISTER_TICKET_FAILED, null);
+			break;
+		case Event.UNSUBSCRIBE_TICKET:
+			break;
+		case Event.MODIFY_TICKET:
+			break;
+		case Event.READ_TICKET:
+			break;
+		case Event.READ_ALL_TICKET:
+			break;
 		}
 	}
 	

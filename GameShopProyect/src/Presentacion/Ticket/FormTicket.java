@@ -1,6 +1,7 @@
 package Presentacion.Ticket;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
@@ -26,8 +27,11 @@ import javax.swing.table.AbstractTableModel;
 
 import Integracion.DAO.DAOAbstractFactory;
 import Negocio.SA.SAAbstractFactory;
+import Presentacion.Controller.Controller;
+import Presentacion.Controller.Event;
 import Transfers.TEmployee;
 import Transfers.TProduct;
+import Transfers.TTicket;
 
 @SuppressWarnings("serial")
 public class FormTicket extends JDialog {
@@ -70,6 +74,7 @@ public class FormTicket extends JDialog {
 		okButtonAction();
 		cancelButtonAction();
 		addButtonAction();
+		removeButtonAction();
 	}
 	
 	private void cancelButtonAction() {
@@ -85,7 +90,30 @@ public class FormTicket extends JDialog {
 		_accept.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Dar de alta un ticket si _productsElection.size() > 0
+				if(_productsSelected.size() > 0) {
+					// info ==> en [0] tenemos el ID del empleado y en [1] tenemos el nombre
+					String[] info = ((String)(_employeeElection.getSelectedItem())).split(" - ");
+					TTicket tt = new TTicket(Integer.parseInt(info[0]), _productsSelected);
+					Controller.getInstance().action(tt, Event.REGISTER_TICKET);
+					closeDialog();
+				}
+			}
+		});
+	}
+	
+	private void removeButtonAction() {
+		_remove.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int selectedRow = _grid.getSelectedRow();
+				if(selectedRow != -1) {
+					int removeCant = (Integer)_numberOfproduct.getValue();
+					int unitsOfSelectedProduct = ((TProduct)_productsSelected.get(selectedRow)).get_unitsProvided();
+					if(unitsOfSelectedProduct >= removeCant) {
+						((TProduct)_productsSelected.get(selectedRow)).set_unitsProvided(unitsOfSelectedProduct - removeCant);
+						model.fireTableDataChanged();
+					}
+				}
 			}
 		});
 	}
@@ -139,8 +167,9 @@ public class FormTicket extends JDialog {
 		}
 		
 		// Rellenar la lista de los empelados disponibles en la base de datos
-		for(Object te : SAAbstractFactory.getInstance().createSAEmployee().readAllEmployees())
-			_employeeElection.addItem(((TEmployee) te).get_id());
+		for(Object te : SAAbstractFactory.getInstance().createSAEmployee().readAllEmployees()) {
+			_employeeElection.addItem(((TEmployee) te).get_id() + " - " + ((TEmployee) te).get_name());
+		}
 	}
 	
 	

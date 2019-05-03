@@ -1,6 +1,7 @@
 package Transfers;
 
-import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /** 
@@ -10,16 +11,18 @@ import java.util.List;
 public class TTicket {
 	
 	private Double _finalPrice;
-	private Timestamp _date;
+	private Date _date;
 	private Integer _id;
 	private Integer _employeeId;
-	private List<TProduct> _productsId;
-	private String _log;
+	private List<Object> _productsId;
+	private String _log; // TODO al final lo dejamos???
 	
 	// CONSTRUCTOR
 	
 	public TTicket(Integer employeeID, List<Object> productsList) {
-		
+		_date = Calendar.getInstance().getTime();
+		_employeeId = employeeID;
+		_productsId = productsList;
 	}
 	
 	public Double get_finalPrice() {
@@ -28,10 +31,10 @@ public class TTicket {
 	public void set_finalPrice(Double _finalPrice) {
 		this._finalPrice = _finalPrice;
 	}
-	public Timestamp get_date() {
+	public Date get_date() {
 		return _date;
 	}
-	public void set_date(Timestamp _date) {
+	public void set_date(Date _date) {
 		this._date = _date;
 	}
 	public Integer get_id() {
@@ -46,10 +49,10 @@ public class TTicket {
 	public void set_employeeId(Integer _employeeId) {
 		this._employeeId = _employeeId;
 	}
-	public List<TProduct> get_productsId() {
+	public List<Object> get_productsId() {
 		return _productsId;
 	}
-	public void set_productsId(List<TProduct> _productsId) {
+	public void set_productsId(List<Object> _productsId) {
 		this._productsId = _productsId;
 	}
 	public String getLog() {
