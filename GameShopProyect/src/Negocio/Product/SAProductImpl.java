@@ -80,6 +80,14 @@ public class SAProductImpl implements SAProduct {
 			if(((TGame)tpr).get_gender().isEmpty())
 				return false;
 		}
+		
+		int stock = ((TProduct)tpr).get_unitsProvided();
+		if(((TProduct)tpr).get_unitsProvided() > ((TProduct)tpr).get_stock())
+			((TProduct)tpr).set_unitsProvided(((TProduct)tpr).get_unitsProvided()-((TProduct)tpr).get_stock());
+		else
+			((TProduct)tpr).set_unitsProvided(0);
+		((TProduct)tpr).set_stock(stock);
+		
 		return  DAOAbstractFactory.getInstance().createDAOProduct().updateProduct(tpr);
 	}
 

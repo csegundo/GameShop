@@ -27,21 +27,22 @@ public class DAOProductImpl implements DAOProduct {
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			PreparedStatement ps;
 			if(((TProduct) tp).get_type().equals(TProduct.accessory))
-				ps = con.prepareStatement("INSERT INTO accesorio(nombre, PVP, stock, IDProveedor,IDPlataforma,activo,marca,color) VALUES(?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+				ps = con.prepareStatement("INSERT INTO accesorio(nombre, PVP, stock, IDProveedor,IDPlataforma,activo,unidadesProv,marca,color) VALUES(?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			else
-				ps = con.prepareStatement("INSERT INTO juego(nombre, PVP, stock, IDProveedor,IDPlataforma,activo,descripcion,genero) VALUES(?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+				ps = con.prepareStatement("INSERT INTO juego(nombre, PVP, stock, IDProveedor,IDPlataforma,activo,unidadesProv,descripcion,genero) VALUES(?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setString(1, ((TProduct) tp).get_name());
 			ps.setDouble(2, ((TProduct) tp).get_pvp());
 			ps.setInt(3, ((TProduct) tp).get_stock());
 			ps.setInt(4, ((TProduct) tp).get_providerId());
 			ps.setInt(5, ((TProduct) tp).get_platformId());
 			ps.setBoolean(6, true);
+			ps.setInt(7,((TProduct)tp).get_unitsProvided());
 			if(((TProduct) tp).get_type().equals(TProduct.accessory)) {
-				ps.setString(7, ((TAccessory)tp).get_brand());
-				ps.setString(8, ((TAccessory) tp).get_color());
+				ps.setString(8, ((TAccessory)tp).get_brand());
+				ps.setString(9, ((TAccessory) tp).get_color());
 			}else {
-				ps.setString(7, ((TGame) tp).get_description());
-				ps.setString(8, ((TGame) tp).get_gender());
+				ps.setString(8, ((TGame) tp).get_description());
+				ps.setString(9, ((TGame) tp).get_gender());
 			}
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
@@ -87,12 +88,7 @@ public class DAOProductImpl implements DAOProduct {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			PreparedStatement ps;
-			String table;
-			if(((TProduct) tp).get_type().equals(TProduct.accessory))
-				table = "accesorio";
-			else
-				table = "juego";
-			
+
 			if(((TProduct) tp).get_type().equals(TProduct.accessory))
 				ps = con.prepareStatement("UPDATE accesorio SET activo=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
 			else
@@ -136,6 +132,14 @@ public class DAOProductImpl implements DAOProduct {
 			ps.setInt(1, ((TProduct)tp).get_providerId());
 			res = ps.executeUpdate();
 			
+			if(((TProduct) tp).get_type().equals(TProduct.accessory))
+				ps = con.prepareStatement("UPDATE accesorio SET unidadesProv=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+			else
+				ps = con.prepareStatement("UPDATE juego SET unidadesProv=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setInt(2, ((TProduct)tp).get_id());
+			ps.setInt(1, ((TProduct)tp).get_unitsProvided());
+			res = ps.executeUpdate();
+			
 			if(((TProduct) tp).get_type().equals(TProduct.accessory)) {
 				ps = con.prepareStatement("UPDATE accesorio SET marca=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
 				ps.setInt(2, ((TProduct)tp).get_id());
@@ -172,11 +176,6 @@ public class DAOProductImpl implements DAOProduct {
 	public Object readProduct(Object tp) {
 		TProduct tpr = null;
 		try {
-			/*
-			 * STACKOVERFLOW ERROR SOLUTION: (https://stackoverflow.com/questions/26515700/mysql-jdbc-driver-5-1-33-time-zone-issue)
-			 * jdbc:mysql://localhost/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-			 * Hay que descargarse el JAR executable file y añadirlo a la libreria del proyecto para solucionar ese error y en la BD poner:
-			 * SET GLOBAL time_zone = '+3:00'; para arreglar el error de la zona horaria*/
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			PreparedStatement ps;
@@ -192,7 +191,6 @@ public class DAOProductImpl implements DAOProduct {
 	
 			if(rs.next()){
 
-				// TODO no faltaria aqui el UNITS PROVIDED?
 				((TProduct)tpr).set_id(rs.getInt(1));
 				((TProduct)tpr).set_name(rs.getString(2));
 				((TProduct)tpr).set_pvp(rs.getDouble(3));
@@ -200,13 +198,14 @@ public class DAOProductImpl implements DAOProduct {
 				((TProduct)tpr).set_providerId(rs.getInt(5));
 				((TProduct)tpr).set_platformId(rs.getInt(6));
 				((TProduct)tpr).set_activated(rs.getBoolean(7));
+				((TProduct)tpr).set_unitsProvided(rs.getInt(8));
 				if(((TProduct) tp).get_type().equals(TProduct.accessory)) {
-					((TAccessory)tpr).set_brand(rs.getString(8));
-					((TAccessory)tpr).set_color(rs.getString(9));
+					((TAccessory)tpr).set_brand(rs.getString(9));
+					((TAccessory)tpr).set_color(rs.getString(10));
 					((TAccessory)tpr).set_type(TProduct.accessory);
 				}else {
-					((TGame)tpr).set_description(rs.getString(8));
-					((TGame)tpr).set_gender(rs.getString(9));
+					((TGame)tpr).set_description(rs.getString(9));
+					((TGame)tpr).set_gender(rs.getString(10));
 					((TGame)tpr).set_type(TProduct.game);
 				}
 			}else
@@ -235,8 +234,9 @@ public class DAOProductImpl implements DAOProduct {
 				tp.set_providerId(rs.getInt(5));
 				tp.set_platformId(rs.getInt(6));
 				tp.set_activated(rs.getBoolean(7));
-				tp.set_brand(rs.getString(8));
-				tp.set_color(rs.getString(9));
+				tp.set_unitsProvided(rs.getInt(8));
+				tp.set_brand(rs.getString(9));
+				tp.set_color(rs.getString(10));
 				tp.set_type(TProduct.accessory);
 				l.add(tp);
 			}
@@ -253,8 +253,9 @@ public class DAOProductImpl implements DAOProduct {
 				tp.set_providerId(rs.getInt(5));
 				tp.set_platformId(rs.getInt(6));
 				tp.set_activated(rs.getBoolean(7));
-				tp.set_description(rs.getString(8));
-				tp.set_gender(rs.getString(9));
+				tp.set_unitsProvided(rs.getInt(8));
+				tp.set_description(rs.getString(9));
+				tp.set_gender(rs.getString(10));
 				tp.set_type(TProduct.game);
 				l.add(tp);
 			}
@@ -269,11 +270,6 @@ public class DAOProductImpl implements DAOProduct {
 	public TProduct readProductByName(Object tpr) {
 		TProduct tp = null;
 		try {
-			/*
-			 * STACKOVERFLOW ERROR SOLUTION: (https://stackoverflow.com/questions/26515700/mysql-jdbc-driver-5-1-33-time-zone-issue)
-			 * jdbc:mysql://localhost/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-			 * Hay que descargarse el JAR executable file y añadirlo a la libreria del proyecto para solucionar ese error y en la BD poner:
-			 * SET GLOBAL time_zone = '+3:00'; para arreglar el error de la zona horaria*/
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			PreparedStatement ps;

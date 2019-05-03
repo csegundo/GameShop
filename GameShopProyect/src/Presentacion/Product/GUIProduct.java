@@ -82,7 +82,8 @@ public class GUIProduct extends JPanel implements IGUI {
 					"PVP: " + tp.get_pvp() + '\n' +
 					"Provider ID: " + tp.get_providerId() + '\n' +
 					"Platform ID: " + tp.get_platformId() + '\n' +
-					"Activated: " + act + '\n';
+					"Activated: " + act + '\n'+
+					"Units Provided: " + tp.get_unitsProvided() + '\n';
 			if(tp.get_type().equals(TProduct.accessory))
 				text += "Brand: " + ((TAccessory)tp).get_brand() + '\n' +
 						"Color: " + ((TAccessory)tp).get_color() + '\n' ;

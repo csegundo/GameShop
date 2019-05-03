@@ -165,8 +165,9 @@ public class DAOPlatformImpl implements DAOPlatform {
 				tp.set_providerId(rs.getInt(5));
 				tp.set_platformId(rs.getInt(6));
 				tp.set_activated(rs.getBoolean(7));
-				tp.set_brand(rs.getString(8));
-				tp.set_color(rs.getString(9));
+				tp.set_unitsProvided(rs.getInt(8));
+				tp.set_brand(rs.getString(9));
+				tp.set_color(rs.getString(10));
 				tp.set_type(TProduct.accessory);
 				l.add(tp);
 			}
@@ -184,8 +185,9 @@ public class DAOPlatformImpl implements DAOPlatform {
 				tp.set_providerId(rs.getInt(5));
 				tp.set_platformId(rs.getInt(6));
 				tp.set_activated(rs.getBoolean(7));
-				tp.set_description(rs.getString(8));
-				tp.set_gender(rs.getString(9));
+				tp.set_unitsProvided(rs.getInt(8));
+				tp.set_description(rs.getString(9));
+				tp.set_gender(rs.getString(10));
 				tp.set_type(TProduct.game);
 				l.add(tp);
 			}
