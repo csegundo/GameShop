@@ -111,8 +111,12 @@ public class ShowPanel extends JPanel {
 	public void update(List<Object> l) {
 		sa.update(l);
 		so.fillList();
-		if (sp != null)
-			sp.update(l);
+		sp.fillList();
+	}
+	
+	public void updateProductFromPlatform(List<Object> l){
+		sp.update(l);
+		sp.fillList();
 	}
 	
 }

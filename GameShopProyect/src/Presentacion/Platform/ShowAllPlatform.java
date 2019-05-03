@@ -66,8 +66,9 @@ public class ShowAllPlatform extends ShowAll {
 		};
 
 		_grid = new JTable(model);
+		_grid.getColumnModel().getColumn(0).setPreferredWidth(20);
+		_grid.getColumnModel().getColumn(1).setPreferredWidth(250);
 		_grid.setVisible(true);
-		this.add(_grid);
 
 		this.add(new JScrollPane(_grid,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED));
 		

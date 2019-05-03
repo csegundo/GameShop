@@ -83,7 +83,6 @@ public class ShowAllProducts extends ShowAll {
 		_grid = new JTable(model);
 		setColumnsWidth();
 		_grid.setVisible(true);
-		this.add(_grid);
 
 		this.add(new JScrollPane(_grid, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED));
 		

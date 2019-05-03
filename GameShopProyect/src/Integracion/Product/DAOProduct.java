@@ -16,6 +16,5 @@ public interface DAOProduct {
 	public Object readProduct(Object tp);
 	public List<Object> readAllProducts();
 	public TProduct readProductByName(Object tpr);
-	public List<Object> readAllProductsOfAPlattform(Object tpl);
 	// METODO PARA DIFERENCIAR DE SI ES UN JUEGO O UN ACCESORIO
 }

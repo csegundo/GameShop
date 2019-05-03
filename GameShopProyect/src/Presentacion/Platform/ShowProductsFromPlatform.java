@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package Presentacion.Platform;
 
 import javax.swing.JPanel;
@@ -45,14 +43,8 @@ public class ShowProductsFromPlatform extends ShowAllProducts {
 	}
 
 	private void initGUI() {
-		this.setPreferredSize(new Dimension(400, 300));
-		this.setMinimumSize(new Dimension(400, 300));
-		this.setMaximumSize(new Dimension(400, 300));
-		
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		
+	
 		initComponents();
-		
 		this.setVisible(true);
 	}
 	
@@ -61,13 +53,16 @@ public class ShowProductsFromPlatform extends ShowAllProducts {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				TPlatform tpla = SAAbstractFactory.getInstance().createSAPlatform().readPlatform((Integer)_election.getSelectedItem());
-				Controller.getInstance().action(tpla, Event.READ_ALL_PRODUCTS_FROM_PLATFORM);
+				Controller.getInstance().action(tpla.get_id(), Event.READ_ALL_PRODUCTS_FROM_PLATFORM);
 			}
 		});
 	}
 	
 	private void initComponents() {
+		
 		this.add(Box.createVerticalGlue());
+		
+		this.add(Box.createRigidArea(new Dimension(1, 10)));
 		
 		_election = new JComboBox<Object>();
 		_election.setPreferredSize(new Dimension(200, 20));

@@ -229,7 +229,8 @@ public class ControllerImpl extends Controller {
 				gui.actualiza(Event.RES_READALL_PLATFORM_OK, platforms);
 			break;
 		case Event.READ_ALL_PRODUCTS_FROM_PLATFORM:
-			List<Object> prods = SAAbstractFactory.getInstance().createSAPlatform().readAllProductsOfAPlatform(data);
+			id = (Integer) data;
+			List<Object> prods = SAAbstractFactory.getInstance().createSAPlatform().readAllProductsOfAPlatform(id);
 			if(prods != null)
 				gui.actualiza(Event.RES_READALL_PRODUCTS_FROM_PLATFORM_OK, prods);
 			else

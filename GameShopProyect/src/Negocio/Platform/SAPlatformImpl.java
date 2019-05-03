@@ -57,8 +57,8 @@ public class SAPlatformImpl implements SAPlatform {
 	}
 
 	@Override
-	public List<Object> readAllProductsOfAPlatform(Object tp) {
-		return DAOAbstractFactory.getInstance().createDAOProduct().readAllProductsOfAPlattform(tp);
+	public List<Object> readAllProductsOfAPlatform(Integer id) {
+		return DAOAbstractFactory.getInstance().createDAOPlatform().readAllProductsOfAPlatform(id);
 	}
 	
 	

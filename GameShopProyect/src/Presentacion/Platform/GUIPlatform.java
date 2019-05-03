@@ -65,8 +65,6 @@ public class GUIPlatform extends JPanel implements IGUI {
 			Integer a = (Integer)t;
 			JOptionPane.showMessageDialog(null, "Se ha eliminado la plataforma " +
 					a + " correctamente de la base de datos.", "Success", JOptionPane.INFORMATION_MESSAGE);
-			_rightPane.update((SAAbstractFactory.getInstance().createSAPlatform()).readAllPlatforms());
-			_leftPane.addInfoToComboBox();
 			break;
 			
 		case Event.RES_UNSUBSCRIBE_PLATFORM_FAILED:
@@ -81,9 +79,7 @@ public class GUIPlatform extends JPanel implements IGUI {
 			
 		case Event.RES_MODIFY_PLATFORM_OK:
 			JOptionPane.showMessageDialog(this, "Plataforma actualizada correctamente en la base de datos.",
-					"Failed",JOptionPane.INFORMATION_MESSAGE);	
-			_rightPane.update((SAAbstractFactory.getInstance().createSAPlatform()).readAllPlatforms());
-			_leftPane.addInfoToComboBox();
+					"Failed",JOptionPane.INFORMATION_MESSAGE);
 			break;
 			
 		case Event.RES_READ_PLATFORM_OK:
@@ -109,8 +105,7 @@ public class GUIPlatform extends JPanel implements IGUI {
 			break;
 			
 		case Event.RES_READALL_PRODUCTS_FROM_PLATFORM_OK:
-			// code
-			_rightPane.update((List<Object>)t);
+			_rightPane.updateProductFromPlatform((List<Object>)t);
 			break;
 			
 		case Event.RES_READALL_PRODUCTS_FROM_PLATFROM_FAILED:

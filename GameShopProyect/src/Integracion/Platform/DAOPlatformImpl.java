@@ -8,7 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Transfers.TAccessory;
+import Transfers.TGame;
 import Transfers.TPlatform;
+import Transfers.TProduct;
 
 
 public class DAOPlatformImpl implements DAOPlatform {
@@ -143,8 +146,55 @@ public class DAOPlatformImpl implements DAOPlatform {
 	}
 
 	@Override
-	public List<Object> readAllProductsOfAPlatform(Object Parameter1){
-		return null; //COMPLETAR
+	public List<Object> readAllProductsOfAPlatform(Integer id){
+		List<Object> l = new ArrayList<Object>();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" +
+					Main.Main.database, Main.Main.user, Main.Main.password);
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM accesorio WHERE IDPlataforma=?",
+					PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				TAccessory tp = new TAccessory();
+				tp.set_id(rs.getInt(1));
+				tp.set_name(rs.getString(2));
+				tp.set_pvp(rs.getDouble(3));
+				tp.set_stock(rs.getInt(4));
+				tp.set_providerId(rs.getInt(5));
+				tp.set_platformId(rs.getInt(6));
+				tp.set_activated(rs.getBoolean(7));
+				tp.set_brand(rs.getString(8));
+				tp.set_color(rs.getString(9));
+				tp.set_type(TProduct.accessory);
+				l.add(tp);
+			}
+			
+			ps = con.prepareStatement("SELECT * FROM juego WHERE IDPlataforma=?", PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				TGame tp = new TGame();
+				tp.set_id(rs.getInt(1));
+				tp.set_name(rs.getString(2));
+				tp.set_pvp(rs.getDouble(3));
+				tp.set_stock(rs.getInt(4));
+				tp.set_providerId(rs.getInt(5));
+				tp.set_platformId(rs.getInt(6));
+				tp.set_activated(rs.getBoolean(7));
+				tp.set_description(rs.getString(8));
+				tp.set_gender(rs.getString(9));
+				tp.set_type(TProduct.game);
+				l.add(tp);
+			}
+			
+			con.close();
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return l;
 	}
 	
 	@Override
@@ -158,7 +208,7 @@ public class DAOPlatformImpl implements DAOPlatform {
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()){
 				tel = new TPlatform();
-				tel.set_id(rs.getInt(1));
+				tel.set_name(rs.getString(1));
 			}
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
