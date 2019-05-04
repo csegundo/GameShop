@@ -10,18 +10,16 @@ import Integracion.Ticket.DAOTicket;
 import Transfers.TTicket;
 
 /** 
-* <!-- begin-UML-doc -->
-* <!-- end-UML-doc -->
-* @author joalow
+* @author gameshop
 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 */
 public class SATicketImpl implements SATicket {
 	
 	public Integer createTicket(TTicket tt) {
-		DAOTicket daoTicket = DAOAbstractFactory.getInstance().createDAOTicket();
-		
+		//DAOTicket daoTicket = DAOAbstractFactory.getInstance().createDAOTicket();
+		return DAOAbstractFactory.getInstance().createDAOTicket().createTicket(tt); 
 		// TODO damos por hecho en el DAO que la lista no llega vacia ===> Comprobar aqui si esta vacia o no
-		return null;
+		//return null;
 		// end-user-code
 	}
 

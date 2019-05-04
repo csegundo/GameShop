@@ -143,7 +143,7 @@ public class ShowOne extends JPanel {
 			break;
 		case "product":
 			for(Object temp : SAAbstractFactory.getInstance().createSAProduct().readAllProducts())
-				_election.addItem(((TProduct) temp).get_id()+"-"+((TProduct)temp).get_type());
+				_election.addItem(((TProduct) temp).get_id()+"-"+((TProduct)temp).get_type()+"-"+((TProduct)temp).get_name());
 			break;
 		case "ticket":
 			/*for(Object tt : SAAbstractFactory.getInstance().createSATicket().readAllTickets())

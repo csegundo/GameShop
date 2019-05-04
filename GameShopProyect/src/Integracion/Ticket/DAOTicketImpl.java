@@ -1,6 +1,5 @@
 package Integracion.Ticket;
 
-import java.util.Date;
 import java.util.List;
 
 import Transfers.TProduct;
@@ -19,42 +18,26 @@ public class DAOTicketImpl implements DAOTicket {
 	public Integer createTicket(TTicket tt) {
 		int id = -1;
 		try {
-			Date d = tt.get_date();
-			List<TProduct> prod = tt.get_productsId();
-			TProduct pr = prod.get(0);
+			List<Object> prod = tt.get_products();
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			
-			PreparedStatement ps = con.prepareStatement("INSERT INTO ticket(idEmpl, fecha, precioFinal, idProd , nombre , plataforma, cantidad, precio) VALUES(?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setInt(1, tt.get_employeeId());
-			ps.setDate(2, (java.sql.Date) d); //SI ALGO PETA , PROBABLEMENTE ES ESTO
-			ps.setDouble(3,tt.get_finalPrice());
-			ps.setInt(4, pr.get_id());
-			ps.setString(5, pr.get_name());
-			ps.setInt(6,pr.get_platformId());
-			ps.setInt(7, pr.get_unitsProvided());
-			ps.setDouble(8, pr.get_pvp());
-			ps.executeUpdate();
-			ResultSet rs = ps.getGeneratedKeys();
-			if(rs.next()){
-				id = rs.getInt(1);
-			}
-			int i=1;
-			while(i<prod.size())
-			{
-				pr=prod.get(i);
-				PreparedStatement ps2 = con.prepareStatement("INSERT INTO ticket(ID, idEmpl, fecha, precioFinal, idProd , nombre , plataforma, cantidad, precio) VALUES(?,?,?,?,?,?,?,?,?)");
-				ps.setInt(1, id);
-				ps2.setInt(2, tt.get_employeeId());
-				ps2.setDate(3, (java.sql.Date) d); //SI ALGO PETA , PROBABLEMENTE ES ESTO
-				ps2.setDouble(4,tt.get_finalPrice());
-				ps2.setInt(5, pr.get_id());
-				ps2.setString(6, pr.get_name());
-				ps2.setInt(7,pr.get_platformId());
-				ps2.setInt(8, pr.get_unitsProvided());
-				ps2.setDouble(9, pr.get_pvp());
+			for(int i = 0 ; i < prod.size(); ++i) {
+				PreparedStatement ps = con.prepareStatement("INSERT INTO ticket(idEmpl, fecha, precioFinal, idProd , nombre , idPlat, cantidad, precio) VALUES(?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+				TProduct pr = (TProduct) prod.get(0);
+				ps.setInt(1, tt.get_employeeId());
+				ps.setTimestamp(2, tt.get_date()); 
+				ps.setDouble(3,tt.get_finalPrice());
+				ps.setInt(4, pr.get_id());
+				ps.setString(5, pr.get_name());
+				ps.setInt(6,pr.get_platformId());
+				ps.setInt(7, pr.get_unitsProvided());
+				ps.setDouble(8, pr.get_pvp());
 				ps.executeUpdate();
-				i++;
+				ResultSet rs = ps.getGeneratedKeys();
+				if(rs.next()){
+					id = rs.getInt(1);
+				}
 			}
 			con.close();
 			

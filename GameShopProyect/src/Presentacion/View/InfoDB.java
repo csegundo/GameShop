@@ -87,7 +87,7 @@ public class InfoDB extends JDialog {
 		
 		_bdText = new JTextField();
 		_bdText.setAlignmentX(Component.CENTER_ALIGNMENT);
-		_bdText.setText("gameshopapplication");
+		_bdText.setText("gameshop");
 		_bdText.setToolTipText("Write the database that you want to use");
 		_bdText.setSize(250, 30);
 		_bdText.setPreferredSize(new Dimension(200,30));

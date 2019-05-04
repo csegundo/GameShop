@@ -17,7 +17,7 @@ public interface IGUI {
 			i++;
 		}++i;
 		int n = str.length();
-		while(i < str.length()) {
+		while(i < str.length() && str.charAt(i) != '-') {
 			type += str.charAt(i);
 			++i;
 		}

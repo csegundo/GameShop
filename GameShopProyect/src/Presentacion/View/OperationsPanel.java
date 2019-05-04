@@ -194,7 +194,7 @@ public class OperationsPanel extends JPanel {
 			break;
 		case "product":
 			for(Object temp : SAAbstractFactory.getInstance().createSAProduct().readAllProducts())
-				_election.addItem(((TProduct) temp).get_id()+"-"+((TProduct)temp).get_type());
+				_election.addItem(((TProduct) temp).get_id()+"-"+((TProduct)temp).get_type()+"-"+((TProduct)temp).get_name());
 			break;
 		case "ticket":
 			/*for(Object tt : SAAbstractFactory.getInstance().createSATicket().readAllTickets())
@@ -231,10 +231,10 @@ public class OperationsPanel extends JPanel {
 		// Aqui llamar a algun metodo que se encargue rellenar la lista con los datos de la base de datos
 		_election = new JComboBox<Object>();
 		_election.setAlignmentX(Component.CENTER_ALIGNMENT);
-		_election.setSize(new Dimension(150, 50));
-		_election.setBounds(new Rectangle(50, 150));
-		_election.setMinimumSize(new Dimension(150, 50));
-		_election.setMaximumSize(new Dimension(150, 50));
+		_election.setSize(new Dimension(200, 50));
+		_election.setBounds(new Rectangle(200, 150));
+		_election.setMinimumSize(new Dimension(200, 50));
+		_election.setMaximumSize(new Dimension(200, 50));
 		_election.setEditable(false);
 		_election.setVisible(true);
 		this.add(_election);

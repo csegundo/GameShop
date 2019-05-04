@@ -80,11 +80,11 @@ public class FormUpdateProduct extends FormProduct {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				_tprod.set_name(_nameText.getText());
-				_tprod.set_unitsProvided((Integer)_stockInt.getValue());
+				_tprod.set_unitsProvided(_initStock);
 				_tprod.set_providerId((Integer)Integer.parseInt((String)IGUI.getInfoFromBox((String)_providerElection.getSelectedItem())));
 				_tprod.set_platformId((Integer)Integer.parseInt((String)IGUI.getInfoFromBox((String)_platformElection.getSelectedItem())));
 				_tprod.set_pvp((Double)_pvpDoub.getValue());
-				_tprod.set_stock(_initStock);
+				_tprod.set_stock((Integer)_stockInt.getValue());
 				
 				_tprod.set_activated(_reactivate.isSelected());
 				

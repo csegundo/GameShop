@@ -25,7 +25,6 @@ import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.AbstractTableModel;
 
-import Integracion.DAO.DAOAbstractFactory;
 import Negocio.SA.SAAbstractFactory;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Event;
@@ -50,6 +49,7 @@ public class FormTicket extends JDialog {
 	private JTable _grid;
 	private String[]_columnIds = {"ID", "Name", "Platform", "Amount"};
 	private JScrollPane _jsp;
+	
 	private List<Object> _productsSelected = new ArrayList<Object>();
 	
 	public FormTicket(){
@@ -94,6 +94,11 @@ public class FormTicket extends JDialog {
 					// info ==> en [0] tenemos el ID del empleado y en [1] tenemos el nombre
 					String[] info = ((String)(_employeeElection.getSelectedItem())).split(" - ");
 					TTicket tt = new TTicket(Integer.parseInt(info[0]), _productsSelected);
+					Double suma = (double) 0;
+					for(Object t : _productsSelected)
+						suma += ((TProduct)t).get_pvp();
+					
+					tt.set_finalPrice(suma);
 					Controller.getInstance().action(tt, Event.REGISTER_TICKET);
 					closeDialog();
 				}
@@ -109,15 +114,24 @@ public class FormTicket extends JDialog {
 				if(selectedRow != -1) {
 					int removeCant = (Integer)_numberOfproduct.getValue();
 					int unitsOfSelectedProduct = ((TProduct)_productsSelected.get(selectedRow)).get_unitsProvided();
-					if(unitsOfSelectedProduct >= removeCant) {
+					if(unitsOfSelectedProduct > removeCant) {
 						((TProduct)_productsSelected.get(selectedRow)).set_unitsProvided(unitsOfSelectedProduct - removeCant);
+						model.fireTableDataChanged();
+					}/***********/
+					else {
+						_productsSelected.remove(selectedRow);
 						model.fireTableDataChanged();
 					}
 				}
 			}
 		});
 	}
-	
+	/**********************************************************************
+	 ***																***
+	 ***		PONER SOLO UNA ROW POR PRODUCTO(NO >1 ROW por producto) ***
+	 ***																***
+	 **********************************************************************
+	 */
 	private void addButtonAction() {
 		_add.addActionListener(new ActionListener() {
 			@Override
@@ -128,19 +142,27 @@ public class FormTicket extends JDialog {
 				toAdd.set_id(Integer.parseInt(info[0]));
 				toAdd.set_name(info[1]);
 				toAdd.set_type(info[2]);
-				toAdd.set_unitsProvided((Integer)_numberOfproduct.getValue());
+				//toAdd.set_unitsProvided((Integer)_numberOfproduct.getValue());
 				// Si existe en la BD un producto con ese nombre y tipo, nos devuelve todos sus datos y lo metemos a la tabla
 				TProduct all = (TProduct)SAAbstractFactory.getInstance().createSAProduct().readProduct(toAdd);
-				all.set_unitsProvided(toAdd.get_unitsProvided()); /* Esto lo hago pues en la BD no hay campo de units_provided,
+				/*all.set_unitsProvided(toAdd.get_unitsProvided());  Esto lo hago pues en la BD no hay campo de units_provided,
 				 													 cuando se añada, quitar esto y sumarle las unidades del toAdd al all */
-				if(all != null && !addStockToAnExistingProduct(toAdd)) 
-					_productsSelected.add(all);
 				
-				model.fireTableDataChanged();
+				all.set_unitsProvided((Integer)_numberOfproduct.getValue());
+				//if(all != null && !addStockToAnExistingProduct(toAdd)) 
+				if(all != null) {
+					_productsSelected.add(all);
+					model.fireTableDataChanged();
+				}
 			}
 		});
 	}
-	
+	/**********************************************************************
+	 * **																***
+	 ** 		HACER CAMBIOS Y COMPROBACIONES YA EN EL SA				***
+	 ***																***
+	 **********************************************************************
+	 *
 	// Mira a ver si el producto que queremos añadir existe, y si es cierto, añade stock += stockNuevo y sino, no hace nada
 	private boolean addStockToAnExistingProduct(Object tpr) {
 		boolean exit = false;
@@ -152,7 +174,7 @@ public class FormTicket extends JDialog {
 			}
 		}
 		return exit;
-	}
+	}*/
 	
 	private void fillRegisterTicketLists() {
 		String type;

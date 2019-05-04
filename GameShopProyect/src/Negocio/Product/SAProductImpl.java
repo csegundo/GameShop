@@ -61,7 +61,7 @@ public class SAProductImpl implements SAProduct {
 		
 		if(((TProduct)tpr).get_name().trim().isEmpty())
 			return false;
-		if(((TProduct)tpr).get_unitsProvided() < 0)
+		if(((TProduct)tpr).get_stock() < 0)
 			return false;
 		if(((TProduct)tpr).get_pvp() < 0)
 			return false;
@@ -81,12 +81,10 @@ public class SAProductImpl implements SAProduct {
 				return false;
 		}
 		
-		int stock = ((TProduct)tpr).get_unitsProvided();
-		if(((TProduct)tpr).get_unitsProvided() > ((TProduct)tpr).get_stock())
-			((TProduct)tpr).set_unitsProvided(((TProduct)tpr).get_unitsProvided()-((TProduct)tpr).get_stock());
+		if(((TProduct)tpr).get_stock() > ((TProduct)tpr).get_unitsProvided())
+			((TProduct)tpr).set_unitsProvided(((TProduct)tpr).get_stock()-((TProduct)tpr).get_unitsProvided());
 		else
 			((TProduct)tpr).set_unitsProvided(0);
-		((TProduct)tpr).set_stock(stock);
 		
 		return  DAOAbstractFactory.getInstance().createDAOProduct().updateProduct(tpr);
 	}

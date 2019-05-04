@@ -11,7 +11,7 @@ public class Main {
 	public static final String applicationName = "GameShop";
 	public static String database = "gameshop";
 	public static String user = "root";
-	public static String password = "gameshop";
+	public static String password = "1234567890";
 
 
 	public static void main(String[] args) {

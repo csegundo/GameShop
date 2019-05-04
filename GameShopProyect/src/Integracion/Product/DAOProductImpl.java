@@ -83,6 +83,7 @@ public class DAOProductImpl implements DAOProduct {
 	}
 
 	public Boolean updateProduct(Object tp) {
+		
 		boolean ret = false;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -132,12 +133,23 @@ public class DAOProductImpl implements DAOProduct {
 			ps.setInt(1, ((TProduct)tp).get_providerId());
 			res = ps.executeUpdate();
 			
-			if(((TProduct) tp).get_type().equals(TProduct.accessory))
+			int sum = 0;
+			if(((TProduct) tp).get_type().equals(TProduct.accessory)) {
+				ps = con.prepareStatement("SELECT * FROM accesorio WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+				ps.setInt(1, ((TProduct)tp).get_id());
+				ResultSet rs = ps.executeQuery();
+				if(rs.next())
+					sum = rs.getInt(8);
 				ps = con.prepareStatement("UPDATE accesorio SET unidadesProv=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			else
+			}else {
+				ps = con.prepareStatement("SELECT * FROM juego WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+				ps.setInt(1, ((TProduct)tp).get_id());
+				ResultSet rs = ps.executeQuery();
+				if(rs.next())
+					sum = rs.getInt(8);
 				ps = con.prepareStatement("UPDATE juego SET unidadesProv=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setInt(2, ((TProduct)tp).get_id());
-			ps.setInt(1, ((TProduct)tp).get_unitsProvided());
+			}ps.setInt(2, ((TProduct)tp).get_id());
+			ps.setInt(1, ((TProduct)tp).get_unitsProvided() + sum);
 			res = ps.executeUpdate();
 			
 			if(((TProduct) tp).get_type().equals(TProduct.accessory)) {

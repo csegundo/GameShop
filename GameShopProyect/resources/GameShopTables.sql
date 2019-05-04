@@ -34,6 +34,7 @@ CREATE TABLE `accesorio` (
 	`IDPlataforma` int(11) NOT NULL,
 	`activo` tinyint(1) NOT NULL,
 	`unidadesProv` int (11) NOT NULL,
+	`marca` varchar(45) NOT NULL,
 	`color` varchar(45) NOT NULL,
 	PRIMARY KEY (`ID`),
 	KEY `IDPlataforma_idx` (`IDPlataforma`),
@@ -62,10 +63,15 @@ CREATE TABLE `juego` (
 
 CREATE TABLE `ticket` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `precio_final` float NOT NULL,
-  `fecha` date NOT NULL,
-  `IDEmpleado` int(11) NOT NULL,
+  `IDEmpl` int(11) NOT NULL,
+  `fecha` timestamp NOT NULL,
+  `precioFinal` float NOT NULL,
+  `idProd`int(11) NOT NULL,
+  `nombre`varchar(45) NOT NULL,
+  `idPlat`int(11) NOT NULL,
+  `cantidad`int(11) NOT NULL,
+  `precio` float NOT NULL,
   PRIMARY KEY (`ID`),
-  KEY `IDEmpleado_idx` (`IDEmpleado`),
-  CONSTRAINT `IDEmpleado` FOREIGN KEY (`IDEmpleado`) REFERENCES `empleado` (`ID`)
+  KEY `IDEmpl_idx` (`IDEmpl`),
+  CONSTRAINT `IDEmpl` FOREIGN KEY (`IDEmpl`) REFERENCES `empleado` (`ID`)
 );
