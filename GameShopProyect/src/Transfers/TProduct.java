@@ -10,14 +10,14 @@ public class TProduct {
 	public static final String accessory = "Accessory";
  	
 	private String _name;
-	private Integer _stock; // La cantidad total en el almacen
+	private Integer _stock; // La cantidad total de ese producto en la tienda
 	private Double _pvp;
 	private Integer _id;
 	private String _type;
 	private Integer _providerId;
 	private Integer _platformId;
 	private Boolean _activated;
-	private Integer _unitsProvided = 0; // La cantidad que vamos a vender
+	private Integer _unitsProvided; // La cantidad que nos suministra un proveedor
 	private String _description;
 	
 	public TProduct(String name, Integer stock, Double pvp, String type, Integer provider, Integer platform, String desc) {

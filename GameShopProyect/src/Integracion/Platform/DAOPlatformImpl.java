@@ -152,12 +152,13 @@ public class DAOPlatformImpl implements DAOPlatform {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" +
 					Main.Main.database, Main.Main.user, Main.Main.password);
-			PreparedStatement ps = con.prepareStatement("SELECT * FROM accesorio WHERE IDPlataforma=?",
+			//PreparedStatement ps = con.prepareStatement("SELECT * FROM accesorio WHERE IDPlataforma=?",
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM producto WHERE IDPlataforma=?",
 					PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
-				TAccessory tp = new TAccessory();
+				/*TAccessory tp = new TAccessory();
 				tp.set_id(rs.getInt(1));
 				tp.set_name(rs.getString(2));
 				tp.set_pvp(rs.getDouble(3));
@@ -169,10 +170,10 @@ public class DAOPlatformImpl implements DAOPlatform {
 				tp.set_brand(rs.getString(9));
 				tp.set_color(rs.getString(10));
 				tp.set_type(TProduct.accessory);
-				l.add(tp);
+				l.add(tp);*/
 			}
 			
-			ps = con.prepareStatement("SELECT * FROM juego WHERE IDPlataforma=?", PreparedStatement.RETURN_GENERATED_KEYS);
+			/*ps = con.prepareStatement("SELECT * FROM juego WHERE IDPlataforma=?", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 			
@@ -190,7 +191,7 @@ public class DAOPlatformImpl implements DAOPlatform {
 				tp.set_gender(rs.getString(10));
 				tp.set_type(TProduct.game);
 				l.add(tp);
-			}
+			}*/
 			
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {

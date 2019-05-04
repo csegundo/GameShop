@@ -114,13 +114,10 @@ public class FormTicket extends JDialog {
 				int selectedRow = _grid.getSelectedRow();
 				if(selectedRow != -1) {
 					int removeCant = (Integer)_numberOfproduct.getValue();
-					int unitsOfSelectedProduct = ((TProduct)_productsSelected.get(selectedRow)).get_unitsProvided();
-					if(unitsOfSelectedProduct > removeCant) {
+					int unitsOfSelectedProduct = ((TProduct)_productsSelected.get(selectedRow)).get_unitsProvided() -
+												 ((TProduct)_productsSelected.get(selectedRow)).get_stock();
+					if(unitsOfSelectedProduct >= removeCant) {
 						((TProduct)_productsSelected.get(selectedRow)).set_unitsProvided(unitsOfSelectedProduct - removeCant);
-						model.fireTableDataChanged();
-					}
-					else {
-						_productsSelected.remove(selectedRow);
 						model.fireTableDataChanged();
 					}
 				}
@@ -138,23 +135,21 @@ public class FormTicket extends JDialog {
 				toAdd.set_id(Integer.parseInt(info[0]));
 				toAdd.set_name(info[1]);
 				toAdd.set_type(info[2]);
-				toAdd.set_unitsProvided((Integer)_numberOfproduct.getValue());
-				// Si existe en la BD un producto con ese nombre y tipo, nos devuelve todos sus datos y lo metemos a la tabla
-				TProduct all = (TProduct)SAAbstractFactory.getInstance().createSAProduct().readProduct(toAdd);
-				all.set_unitsProvided(toAdd.get_unitsProvided());  //Esto lo hago pues en la BD no hay campo de units_provided,
-				 												   //cuando se añada, quitar esto y sumarle las unidades del toAdd al all
+				Integer unitsToSell = (Integer)_numberOfproduct.getValue();
 				
-				all.set_unitsProvided((Integer)_numberOfproduct.getValue());
-				if(all != null && !addStockToAnExistingProduct(toAdd))
+				// Si existe en la BD un producto con ese id, nombre y tipo, nos devuelve todos sus datos
+				TProduct all = (TProduct)SAAbstractFactory.getInstance().createSAProduct().readProduct(toAdd.get_id());
+				if(all != null && /*!addItemToAnExistingProduct(toAdd) &&*/ all.get_stock() >= unitsToSell) {
+					all.set_stock(all.get_stock() - unitsToSell);
 					_productsSelected.add(all);
+				}
 				
 				model.fireTableDataChanged();
 			}
 		});
 	}
 	
-	// Mira a ver si el producto que queremos añadir existe, y si es cierto, añade stock += stockNuevo y sino, no hace nada
-	private boolean addStockToAnExistingProduct(Object tpr) {
+	private boolean addItemToAnExistingProduct(Object tpr) {
 		boolean exit = false;
 		TProduct tp = (TProduct)tpr;
 		for(int i = 0; i < _productsSelected.size() && !exit; ++i) {
@@ -265,7 +260,8 @@ public class FormTicket extends JDialog {
 							((TProduct)_productsSelected.get(rowIndex)).get_platformId()))).get_name();
 					break;
 				case 3:
-					o = ((TProduct)_productsSelected.get(rowIndex)).get_unitsProvided();
+					o = ((TProduct)_productsSelected.get(rowIndex)).get_unitsProvided() - 
+							((TProduct)_productsSelected.get(rowIndex)).get_stock();
 					break;
 				}
 				return o;
