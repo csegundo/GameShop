@@ -180,7 +180,7 @@ public class FormProduct extends JDialog {
 			this.add(new JLabel("Description:"));
 			this.add(Box.createRigidArea(new Dimension(220,1)));
 			this._description = new JTextArea();
-			this._description.setFont(new Font("Arial", 0, 15));
+			this._description.setFont(new Font("Arial", 0, 11));
 			this._description.setLineWrap(true);
 			this._description.setWrapStyleWord(true);
 			this._description.setPreferredSize(new Dimension(270,120));	

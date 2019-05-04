@@ -120,7 +120,7 @@ public class ShowOne extends JPanel {
 		_info.setEditable(false);
 		_info.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1), "Detailed data",
 				TitledBorder.LEFT, TitledBorder.TOP));
-		_info.setFont(new Font("Arial", 0, 15));
+		_info.setFont(new Font("Arial", 0, 11));
 		_info.setVisible(true);
 		this.add(new JScrollPane(_info, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED));
 		
