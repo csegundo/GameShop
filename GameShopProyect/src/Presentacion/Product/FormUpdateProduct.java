@@ -79,10 +79,13 @@ public class FormUpdateProduct extends FormProduct {
 		_ok.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				_tprod.set_name(_nameText.getText());
 				_tprod.set_unitsProvided(_initStock);
-				_tprod.set_providerId((Integer)Integer.parseInt((String)IGUI.getInfoFromBox((String)_providerElection.getSelectedItem())));
-				_tprod.set_platformId((Integer)Integer.parseInt((String)IGUI.getInfoFromBox((String)_platformElection.getSelectedItem())));
+				String [] info = ((String)_providerElection.getSelectedItem()).split(" - ");
+				_tprod.set_providerId((Integer)Integer.parseInt(info[0]));
+				info = ((String)_platformElection.getSelectedItem()).split(" - ");
+				_tprod.set_platformId((Integer)Integer.parseInt(info[0]));
 				_tprod.set_pvp((Double)_pvpDoub.getValue());
 				_tprod.set_stock((Integer)_stockInt.getValue());
 				

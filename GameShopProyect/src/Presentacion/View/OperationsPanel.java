@@ -130,7 +130,11 @@ public class OperationsPanel extends JPanel {
 						JOptionPane.showMessageDialog(null, "Error al leer un empleado de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
 					break;
 				case "product":
-					TProduct tprd = (TProduct)(SAAbstractFactory.getInstance().createSAProduct()).readProduct(IGUI.getInfoFromBox((String)_election.getSelectedItem()));
+					TProduct tp = new TProduct();
+					String[] info = _election.getSelectedItem().toString().split(" - ");
+					tp.set_id(Integer.parseInt(info[0]));
+					tp.set_type(info[1]);
+					TProduct tprd = (TProduct)(SAAbstractFactory.getInstance().createSAProduct()).readProduct(tp);
 					if(tprd != null)
 						new FormUpdateProduct(tprd);
 					else

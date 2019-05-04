@@ -209,17 +209,15 @@ public class FormProduct extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				String[] info = ((String)_providerElection.getSelectedItem()).split(" - ");
+				String[] info1 = ((String)_providerElection.getSelectedItem()).split(" - ");
+				String[] info2 = ((String)_platformElection.getSelectedItem()).split(" - "); 
 				TProduct tprod;
-				if(elected.equals(TProduct.game)) {
-					tprod = new TGame(_nameText.getText(), (Integer)_stockInt.getValue(), (Double)_pvpDoub.getValue(),
-									  );
-					//tprod = new TGame(_nameText.getText(), (Integer)_stockInt.getValue(), (Double) _pvpDoub.getValue(), (Integer)Integer.parseInt((String)IGUI.getInfoFromBox((String)_providerElection.getSelectedItem())),
-							//(Integer)Integer.parseInt((String)IGUI.getInfoFromBox((String)_platformElection.getSelectedItem())),_description.getText(),_genderText.getText());
-				}
+				if(elected.equals(TProduct.game))				
+					tprod = new TGame(_nameText.getText(), (Integer)_stockInt.getValue(), (Double) _pvpDoub.getValue(), (Integer)Integer.parseInt(info1[0]),
+							(Integer)Integer.parseInt(info2[0]),_description.getText(),_genderText.getText());
 				else
-					tprod = new TAccessory(_nameText.getText(),(Integer)_stockInt.getValue(),(Double) _pvpDoub.getValue(), (Integer)Integer.parseInt((String)IGUI.getInfoFromBox((String)_providerElection.getSelectedItem())),
-							(Integer)Integer.parseInt((String)IGUI.getInfoFromBox((String)_platformElection.getSelectedItem())),_brand.getText(),_color.getText());
+					tprod = new TAccessory(_nameText.getText(),(Integer)_stockInt.getValue(),(Double) _pvpDoub.getValue(), (Integer)Integer.parseInt(info1[0]),
+							(Integer)Integer.parseInt(info2[0]),_brand.getText(),_color.getText());
 				
 				Controller.getInstance().action(tprod, Event.REGISTER_PRODUCT);
 				setVisible(false);

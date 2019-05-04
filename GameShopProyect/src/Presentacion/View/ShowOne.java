@@ -73,7 +73,11 @@ public class ShowOne extends JPanel {
 							Event.READ_EMPLOYEE);
 					break;
 				case "product":
-					Controller.getInstance().action(IGUI.getInfoFromBox((String)_election.getSelectedItem()),
+					TProduct tp = new TProduct();
+					String[] info = _election.getSelectedItem().toString().split(" - ");
+					tp.set_id(Integer.parseInt(info[0]));
+					tp.set_type(info[1]);
+ 					Controller.getInstance().action(tp,
 							Event.READ_PRODUCT);
 					break;
 				case "ticket":
@@ -143,7 +147,7 @@ public class ShowOne extends JPanel {
 			break;
 		case "product":
 			for(Object temp : SAAbstractFactory.getInstance().createSAProduct().readAllProducts())
-				_election.addItem(((TProduct) temp).get_id()+"-"+((TProduct)temp).get_type()+"-"+((TProduct)temp).get_name());
+				_election.addItem(((TProduct) temp).get_id()+" - "+((TProduct)temp).get_type()+" - "+((TProduct)temp).get_name());
 			break;
 		case "ticket":
 			/*for(Object tt : SAAbstractFactory.getInstance().createSATicket().readAllTickets())
