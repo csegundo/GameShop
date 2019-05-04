@@ -10,10 +10,10 @@ import Transfers.TProduct;
 */
 public interface SAProduct {
 	
-	public Integer createProduct(Object tpr);
-	public Boolean deleteProduct(Object tpr);
-	public Boolean updateProduct(Object tpr);
-	public Object readProduct(Object tpr);
+	public Integer createProduct(TProduct tpr);
+	public Boolean deleteProduct(Integer id);
+	public Boolean updateProduct(TProduct tpr);
+	public Object readProduct(Integer id);
 	public List<Object> readAllProducts();
 	// METODO PARA DIFERENCIAR ENTRE ACCESORIO O JUEGO
 }

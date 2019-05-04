@@ -54,6 +54,7 @@ public class GUIEmployee extends JPanel implements IGUI {
 			Integer a = (Integer)t;
 			JOptionPane.showMessageDialog(null, "The employee " + a + " has been properly unsubscribed.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
+			_rightPane.update((SAAbstractFactory.getInstance().createSAEmployee()).readAllEmployees());
 			break;
 			
 		case Event.RES_UNSUBSCRIBE_EMPLOYEE_FAILED:

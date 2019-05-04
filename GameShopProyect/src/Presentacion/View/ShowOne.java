@@ -73,11 +73,7 @@ public class ShowOne extends JPanel {
 							Event.READ_EMPLOYEE);
 					break;
 				case "product":
-					TProduct tp = new TProduct();
-					String[] info = _election.getSelectedItem().toString().split(" - ");
-					tp.set_id(Integer.parseInt(info[0]));
-					tp.set_type(info[1]);
- 					Controller.getInstance().action(tp,
+					Controller.getInstance().action(Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]),
 							Event.READ_PRODUCT);
 					break;
 				case "ticket":

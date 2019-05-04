@@ -25,15 +25,18 @@ CREATE TABLE `proveedor` (
   PRIMARY KEY (`ID`)
 );
 
+/*
+
 CREATE TABLE `accesorio` (
-	`ID` int(11) NOT NULL AUTO_INCREMENT,
-	`nombre` varchar(45) NOT NULL,
-	`PVP` float NOT NULL,
-	`stock` int(11) NOT NULL,
+	`ID` int(11) NOT NULL AUTO_INCREMENT,--
+	`nombre` varchar(45) NOT NULL,--
+	`PVP` float NOT NULL,--
+	`stock` int(11) NOT NULL,--
 	`IDProveedor` int(11) NOT NULL,
 	`IDPlataforma` int(11) NOT NULL,
 	`activo` tinyint(1) NOT NULL,
 	`unidadesProv` int (11) NOT NULL,
+
 	`marca` varchar(45) NOT NULL,
 	`color` varchar(45) NOT NULL,
 	PRIMARY KEY (`ID`),
@@ -44,16 +47,17 @@ CREATE TABLE `accesorio` (
 );
 
 CREATE TABLE `juego` (
-	`ID` int(11) NOT NULL AUTO_INCREMENT,
-	`nombre` varchar(45) NOT NULL,
-	`PVP` float NOT NULL,
-	`stock` int(11) NOT NULL,
+	`ID` int(11) NOT NULL AUTO_INCREMENT,--
+	`nombre` varchar(45) NOT NULL,--
+	`PVP` float NOT NULL,--
+	`stock` int(11) NOT NULL,--
 	`IDProveedor` int(11) NOT NULL,
 	`IDPlataforma` int(11) NOT NULL,
 	`activo` tinyint(1) NOT NULL,
 	`unidadesProv` int (11) NOT NULL,
-	`descripcion` varchar(150) NOT NULL,
-	`genero` varchar(45) NOT NULL,
+
+	`descripcion` varchar(150) NOT NULL,--
+	`genero` varchar(45) NOT NULL,--
 	PRIMARY KEY (`ID`),
 	KEY `IDPlataforma_idx` (`IDPlataforma`),
 	KEY `IDProveedor_idx` (`IDProveedor`),
@@ -61,6 +65,33 @@ CREATE TABLE `juego` (
 	CONSTRAINT `IDProveedorJ` FOREIGN KEY (`IDProveedor`) REFERENCES `proveedor` (`ID`)
 );
 
+*/
+
+CREATE TABLE `producto` (
+	`ID` int(11) NOT NULL AUTO_INCREMENT,
+	`nombre` varchar(45) NOT NULL,
+	`descripcion` varchar(150) NOT NULL,
+	`PVP` float NOT NULL,
+	`stock` int(11) NOT NULL,
+	`IDProveedor` int(11) NOT NULL,
+	`IDPlataforma` int(11) NOT NULL,
+	`activo` tinyint(1) NOT NULL,
+	`unidadesProv` int (11) NOT NULL,
+
+	`genero` varchar(45) NOT NULL,
+
+	`marca` varchar(45) NOT NULL,
+	`color` varchar(45) NOT NULL,
+    
+    `tipo` varchar(30) NOT NULL,
+	
+	PRIMARY KEY (`ID`),
+	KEY `IDPlataforma_idx` (`IDPlataforma`),
+	KEY `IDProveedor_idx` (`IDProveedor`),
+	CONSTRAINT `IDPlataformaP` FOREIGN KEY (`IDPlataforma`) REFERENCES `plataforma` (`ID`),
+	CONSTRAINT `IDProveedorP` FOREIGN KEY (`IDProveedor`) REFERENCES `proveedor` (`ID`)
+);
+/*
 CREATE TABLE `ticket` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `IDEmpl` int(11) NOT NULL,
@@ -75,3 +106,4 @@ CREATE TABLE `ticket` (
   KEY `IDEmpl_idx` (`IDEmpl`),
   CONSTRAINT `IDEmpl` FOREIGN KEY (`IDEmpl`) REFERENCES `empleado` (`ID`)
 );
+*/

@@ -61,6 +61,7 @@ public class GUIProvider extends JPanel implements IGUI {
 			id = (Integer)t;
 			JOptionPane.showMessageDialog(null, "The provider " + id + " has been successfully unsubscribed.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
+			_rightPane.update((SAAbstractFactory.getInstance().createSAProvider()).readAllProviders());
 			break;
 			
 		case Event.RES_UNSUBSCRIBE_PROVIDER_FAILED:
@@ -73,7 +74,7 @@ public class GUIProvider extends JPanel implements IGUI {
 			
 		case Event.RES_MODIFY_PROVIDER_OK:
 			id = (Integer)t;
-			JOptionPane.showMessageDialog(this, "Provider " + id + " correctly updated in the database.","Success",JOptionPane.INFORMATION_MESSAGE);		
+			JOptionPane.showMessageDialog(this, "Provider correctly updated in the database.","Success",JOptionPane.INFORMATION_MESSAGE);		
 			_rightPane.update((SAAbstractFactory.getInstance().createSAProvider()).readAllProviders());
 			_leftPane.addInfoToComboBox();
 			break;

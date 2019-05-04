@@ -18,8 +18,9 @@ public class TProduct {
 	private Integer _platformId;
 	private Boolean _activated;
 	private Integer _unitsProvided = 0; // La cantidad que vamos a vender
+	private String _description;
 	
-	public TProduct(String name, Integer stock, Double pvp, String type, Integer provider, Integer platform) {
+	public TProduct(String name, Integer stock, Double pvp, String type, Integer provider, Integer platform, String desc) {
 		this._name = name;
 		this._unitsProvided = stock;
 		this._stock = stock;
@@ -28,6 +29,7 @@ public class TProduct {
 		this._providerId = provider;
 		this._platformId = platform;
 		this._activated = true;
+		this._description = desc;
 	}
 
 	public TProduct() {
@@ -89,4 +91,11 @@ public class TProduct {
 		this._unitsProvided = _unitsProvided;
 	}
 	
+	public String get_description() {
+		return _description;
+	}
+
+	public void set_description(String _description) {
+		this._description = _description;
+	}
 }

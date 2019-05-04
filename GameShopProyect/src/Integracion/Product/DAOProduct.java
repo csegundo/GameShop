@@ -10,11 +10,11 @@ import Transfers.TProduct;
 */
 public interface DAOProduct {
 	
-	public Integer createProduct(Object tpr);
-	public Boolean deleteProduct(Object tpr);
-	public Boolean updateProduct(Object tpr);
-	public Object readProduct(Object tp);
+	public Integer createProduct(TProduct tpr);
+	public Boolean deleteProduct(Integer id);
+	public Boolean updateProduct(TProduct tpr);
+	public TProduct readProduct(Integer id);
 	public List<Object> readAllProducts();
-	public TProduct readProductByName(Object tpr);
+	public TProduct readProductByName(String s);
 	// METODO PARA DIFERENCIAR DE SI ES UN JUEGO O UN ACCESORIO
 }

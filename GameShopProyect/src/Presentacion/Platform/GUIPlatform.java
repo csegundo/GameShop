@@ -65,6 +65,7 @@ public class GUIPlatform extends JPanel implements IGUI {
 			Integer a = (Integer)t;
 			JOptionPane.showMessageDialog(null, "Platform " + a + " has been successfully unsubscribed.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
+			_rightPane.update((SAAbstractFactory.getInstance().createSAPlatform()).readAllPlatforms());
 			break;
 			
 		case Event.RES_UNSUBSCRIBE_PLATFORM_FAILED:

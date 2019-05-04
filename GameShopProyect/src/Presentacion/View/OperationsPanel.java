@@ -130,11 +130,8 @@ public class OperationsPanel extends JPanel {
 						JOptionPane.showMessageDialog(null, "Error al leer un empleado de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
 					break;
 				case "product":
-					TProduct tp = new TProduct();
-					String[] info = _election.getSelectedItem().toString().split(" - ");
-					tp.set_id(Integer.parseInt(info[0]));
-					tp.set_type(info[1]);
-					TProduct tprd = (TProduct)(SAAbstractFactory.getInstance().createSAProduct()).readProduct(tp);
+					id = Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]);
+					TProduct tprd = (TProduct)(SAAbstractFactory.getInstance().createSAProduct()).readProduct((Integer)id);
 					if(tprd != null)
 						new FormUpdateProduct(tprd);
 					else
@@ -171,11 +168,8 @@ public class OperationsPanel extends JPanel {
 							Event.UNSUBSCRIBE_EMPLOYEE);
 					break;
 				case "product":
-					TProduct tp = new TProduct();
-					String[] info = _election.getSelectedItem().toString().split(" - ");
-					tp.set_id(Integer.parseInt(info[0]));
-					tp.set_type(info[1]);
-					Controller.getInstance().action(tp, Event.UNSUBSCRIBE_PRODUCT);
+					Controller.getInstance().action(Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]),
+							Event.UNSUBSCRIBE_PRODUCT);
 					break;
 				case "ticket":
 					break;

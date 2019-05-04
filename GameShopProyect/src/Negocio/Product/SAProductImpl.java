@@ -15,47 +15,44 @@ import Transfers.TGame;
 */
 public class SAProductImpl implements SAProduct {
 	
-	public Integer createProduct(Object tpr) {
+	public Integer createProduct(TProduct tpr) {
+		int id = -1;
 		TPlatform tpl;
 		TProvider tprd;
 		
-		if(((TProduct)tpr).get_name().trim().isEmpty())
-			return 0;
-		if(((TProduct)tpr).get_unitsProvided() <= 0)
-			return 0;
-		if(((TProduct)tpr).get_pvp() < 0)
-			return 0;
-		if((tpl = DAOAbstractFactory.getInstance().createDAOPlatform().readPlatform(((TProduct)tpr).get_platformId())) == null || !tpl.get_activated())
-			return 0;
-		if((tprd = (TProvider) DAOAbstractFactory.getInstance().createDAOProvider().readProvider(((TProduct)tpr).get_providerId())) == null || !tprd.get_activated())
-			return 0;
-		if(((TProduct)tpr).get_type() == TProduct.accessory) {
-			if(((TAccessory)tpr).get_brand().isEmpty())
-				return 0;
-			if(((TAccessory)tpr).get_color().isEmpty())
-				return 0;
-		}else {
-			if(((TGame)tpr).get_description().isEmpty())
-				return 0;
-			if(((TGame)tpr).get_gender().isEmpty())
-				return 0;
+		if(!tpr.get_name().trim().isEmpty() && tpr.get_unitsProvided() > 0 && 
+				tpr.get_pvp() >= 0){
+			tpl = DAOAbstractFactory.getInstance().createDAOPlatform().readPlatform(tpr.get_platformId());
+			if(tpl != null && tpl.get_activated()){ //Si la plataforma existe y esta activada:
+				tprd = (TProvider) DAOAbstractFactory.getInstance().createDAOProvider().readProvider(tpr.get_providerId());
+				if(tprd != null && tprd.get_activated()){
+					if(tpr.get_type() == TProduct.accessory && !((TAccessory)tpr).get_brand().isEmpty() &&
+							!((TAccessory)tpr).get_color().isEmpty() ||
+							tpr.get_type() == TProduct.game && !((TGame)tpr).get_description().isEmpty() &&
+							!((TGame)tpr).get_gender().isEmpty()){
+						
+						TProduct tp = DAOAbstractFactory.getInstance().createDAOProduct().readProductByName(tpr.get_name());
+						if(tp == null)
+							id = DAOAbstractFactory.getInstance().createDAOProduct().createProduct(tpr);
+					}
+				}
+			}
 		}
-		
-		TProduct tp;
-		if ((tp = DAOAbstractFactory.getInstance().createDAOProduct().readProductByName((TProduct)tpr)) != null)
-			return 0;
-		
-		return DAOAbstractFactory.getInstance().createDAOProduct().createProduct(tpr);
+		return id;
 	}
 
-	public Boolean deleteProduct(Object tpr) {
-		TProduct tp = (TProduct) DAOAbstractFactory.getInstance().createDAOProduct().readProduct(tpr);
-		if (tp.get_activated())
-			return DAOAbstractFactory.getInstance().createDAOProduct().deleteProduct(tp);
-		return false;
+	public Boolean deleteProduct(Integer id) {
+		boolean ret = false;
+		if(id != null) {
+			TProduct tp = DAOAbstractFactory.getInstance().createDAOProduct().readProduct(id);
+			if(tp != null && tp.get_activated()){
+				ret = DAOAbstractFactory.getInstance().createDAOProduct().deleteProduct(id);
+			}
+		}
+		return ret;
 	}
 
-	public Boolean updateProduct(Object tpr) {
+	public Boolean updateProduct(TProduct tpr) {
 		TPlatform tpl;
 		TProvider tprd;
 		
@@ -89,8 +86,8 @@ public class SAProductImpl implements SAProduct {
 		return  DAOAbstractFactory.getInstance().createDAOProduct().updateProduct(tpr);
 	}
 
-	public Object readProduct(Object tpr) {
-		return DAOAbstractFactory.getInstance().createDAOProduct().readProduct(tpr);
+	public Object readProduct(Integer id) {
+		return DAOAbstractFactory.getInstance().createDAOProduct().readProduct(id);
 	}
 
 	public List<Object> readAllProducts() {

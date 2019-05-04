@@ -49,7 +49,7 @@ public class GUIProduct extends JPanel implements IGUI {
 		switch(e) {
 		case Event.RES_REGISTER_PRODUCT_OK:
 			id = (Integer)t;
-			JOptionPane.showMessageDialog(null, "Product " + id + " has been inserted correctly in the database.", "Success",
+			JOptionPane.showMessageDialog(null, "Product " + id + " has been correctly inserted in the database.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
 			_rightPane.update((SAAbstractFactory.getInstance().createSAProduct()).readAllProducts());
 			_leftPane.addInfoToComboBox();
@@ -61,6 +61,7 @@ public class GUIProduct extends JPanel implements IGUI {
 			id = (Integer)t;
 			JOptionPane.showMessageDialog(null, "Product " + id + " has been removed correctly.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
+			_rightPane.update((SAAbstractFactory.getInstance().createSAProduct()).readAllProducts());
 			break;
 		case Event.RES_UNSUBSCRIBE_PRODUCT_FAILED:
 			JOptionPane.showMessageDialog(this, "Error when unsubscribing the product from the database.","Failed",JOptionPane.ERROR_MESSAGE);		
@@ -89,8 +90,8 @@ public class GUIProduct extends JPanel implements IGUI {
 				text += "Brand: " + ((TAccessory)tp).get_brand() + '\n' +
 						"Color: " + ((TAccessory)tp).get_color() + '\n' ;
 			else
-				text += "Gender: " +((TGame)tp).get_gender() + '\n' +
-						"Description:" + ((TGame)tp).get_description() + '\n';
+				text += "Gender: " +((TGame)tp).get_gender() + '\n';
+			text+= "Description: " + tp.get_description() + '\n';
 			_rightPane.setInfoInScreen(text);
 			break;
 		case Event.RES_READ_PRODUCT_FAILED:

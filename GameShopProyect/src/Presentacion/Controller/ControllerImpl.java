@@ -155,9 +155,10 @@ public class ControllerImpl extends Controller {
 			break;
 			
 		case Event.UNSUBSCRIBE_PRODUCT:
-			boolean resDelete = (SAAbstractFactory.getInstance().createSAProduct()).deleteProduct(data);
+			id = (Integer)data;
+			boolean resDelete = (SAAbstractFactory.getInstance().createSAProduct()).deleteProduct(id);
 			if(resDelete)
-				gui.actualiza(Event.RES_UNSUBSCRIBE_PRODUCT_OK, ((TProduct)data).get_id());
+				gui.actualiza(Event.RES_UNSUBSCRIBE_PRODUCT_OK, id);
 			else
 				gui.actualiza(Event.RES_UNSUBSCRIBE_PRODUCT_FAILED, null);
 			break;
@@ -171,7 +172,8 @@ public class ControllerImpl extends Controller {
 			break;
 			
 		case Event.READ_PRODUCT:
-			tprod = (TProduct) (SAAbstractFactory.getInstance().createSAProduct()).readProduct(data);
+			id = (Integer)data;
+			tprod = (TProduct) (SAAbstractFactory.getInstance().createSAProduct()).readProduct(id);
 			if (tprod != null) 
 				gui.actualiza(Event.RES_READ_PRODUCT_OK, tprod);
 			else

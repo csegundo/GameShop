@@ -108,9 +108,9 @@ public class FormProduct extends JDialog {
 		
 		this.setResizable(true);
 		if(elected.equals(TProduct.game))
-			this.setBounds(new Rectangle(300, 370));
+			this.setBounds(new Rectangle(300, 380));
 		else
-			this.setBounds(new Rectangle(300, 260));
+			this.setBounds(new Rectangle(300, 400));
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		
@@ -176,7 +176,7 @@ public class FormProduct extends JDialog {
 			this._platformElection.addItem(((TPlatform) tpla).get_id() + " - " + ((TPlatform)tpla).get_name());
 		this.add(this._platformElection);
 		
-		if (elected.equals(TProduct.game)) {
+		
 			this.add(new JLabel("Description:"));
 			this.add(Box.createRigidArea(new Dimension(220,1)));
 			this._description = new JTextArea();
@@ -187,7 +187,7 @@ public class FormProduct extends JDialog {
 			jp = new JScrollPane(this._description);
 			jp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 			this.add(jp);
-		}
+		
 		
 		this.add(Box.createRigidArea(new Dimension(300,10)));
 		this._ok = new JButton("Ok");
@@ -217,7 +217,8 @@ public class FormProduct extends JDialog {
 							(Integer)Integer.parseInt(info2[0]),_description.getText(),_genderText.getText());
 				else
 					tprod = new TAccessory(_nameText.getText(),(Integer)_stockInt.getValue(),(Double) _pvpDoub.getValue(), (Integer)Integer.parseInt(info1[0]),
-							(Integer)Integer.parseInt(info2[0]),_brand.getText(),_color.getText());
+							(Integer)Integer.parseInt(info2[0]),_brand.getText(),_color.getText(),
+							_description.getText());
 				
 				Controller.getInstance().action(tprod, Event.REGISTER_PRODUCT);
 				setVisible(false);

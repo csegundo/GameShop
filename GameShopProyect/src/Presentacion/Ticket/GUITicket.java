@@ -60,7 +60,7 @@ public class GUITicket extends JPanel implements IGUI {
 					JOptionPane.ERROR_MESSAGE);
 		case Event.RES_MODIFY_TICKET_OK:
 			Integer b = (Integer)t;
-			JOptionPane.showMessageDialog(null, "Ticket " + b + " successfully updated in the database.", "Success",
+			JOptionPane.showMessageDialog(null, "Ticket successfully updated in the database.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
 		case Event.RES_MODIFY_TICKET_FAILED:
 			JOptionPane.showConfirmDialog(null, "Error while modifying the ticket in the database.", "Failed",

@@ -20,30 +20,34 @@ import Transfers.TProvider;
 */
 public class DAOProductImpl implements DAOProduct {
 	
-	public Integer createProduct(Object tp) {
+	public Integer createProduct(TProduct tpr) {
 		int id = -1;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			PreparedStatement ps;
-			if(((TProduct) tp).get_type().equals(TProduct.accessory))
-				ps = con.prepareStatement("INSERT INTO accesorio(nombre, PVP, stock, IDProveedor,IDPlataforma,activo,unidadesProv,marca,color) VALUES(?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
-			else
-				ps = con.prepareStatement("INSERT INTO juego(nombre, PVP, stock, IDProveedor,IDPlataforma,activo,unidadesProv,descripcion,genero) VALUES(?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setString(1, ((TProduct) tp).get_name());
-			ps.setDouble(2, ((TProduct) tp).get_pvp());
-			ps.setInt(3, ((TProduct) tp).get_stock());
-			ps.setInt(4, ((TProduct) tp).get_providerId());
-			ps.setInt(5, ((TProduct) tp).get_platformId());
-			ps.setBoolean(6, true);
-			ps.setInt(7,((TProduct)tp).get_unitsProvided());
-			if(((TProduct) tp).get_type().equals(TProduct.accessory)) {
-				ps.setString(8, ((TAccessory)tp).get_brand());
-				ps.setString(9, ((TAccessory) tp).get_color());
+			ps = con.prepareStatement("INSERT INTO producto(nombre,descripcion,PVP,stock,IDProveedor,IDPlataforma,activo,"
+					+ "unidadesProv,genero,marca,color,tipo) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
+					PreparedStatement.RETURN_GENERATED_KEYS);
+			
+			ps.setString(1, tpr.get_name());
+			ps.setString(2, tpr.get_description());
+			ps.setDouble(3, tpr.get_pvp());
+			ps.setInt(4, tpr.get_stock());
+			ps.setInt(5, tpr.get_providerId());
+			ps.setInt(6, tpr.get_platformId());
+			ps.setBoolean(7, true);
+			ps.setInt(8, tpr.get_unitsProvided());
+			if(tpr.get_type().equals(TProduct.accessory)) {
+				ps.setString(9, "null");
+				ps.setString(10, ((TAccessory)tpr).get_brand());
+				ps.setString(11, ((TAccessory) tpr).get_color());
 			}else {
-				ps.setString(8, ((TGame) tp).get_description());
-				ps.setString(9, ((TGame) tp).get_gender());
+				ps.setString(9, ((TGame) tpr).get_gender());
+				ps.setString(10, "null");
+				ps.setString(11, "null");
 			}
+			ps.setString(12, tpr.get_type());
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 			if(rs.next()){
@@ -57,20 +61,16 @@ public class DAOProductImpl implements DAOProduct {
 		return id;
 	}
 
-	public Boolean deleteProduct(Object tp) {
+	public Boolean deleteProduct(Integer id) {
 		boolean ret = false;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
-			PreparedStatement ps ;
-			if(((TProduct) tp).get_type().equals(TProduct.accessory))
-				ps = con.prepareStatement("UPDATE accesorio SET activo=(?) WHERE ID=(?)", PreparedStatement.RETURN_GENERATED_KEYS);
-			else
-				ps = con.prepareStatement("UPDATE juego SET activo=(?) WHERE ID=(?)", PreparedStatement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = con.prepareStatement("UPDATE producto SET activo=(?) WHERE ID=(?)", 
+					PreparedStatement.RETURN_GENERATED_KEYS);;
 			ps.setBoolean(1, false);
-			ps.setInt(2, ((TProduct)tp).get_id());
+			ps.setInt(2, id);
 			int res = ps.executeUpdate();
-		
 			if(res > 0) {
 				ret = true;
 			}
@@ -82,95 +82,75 @@ public class DAOProductImpl implements DAOProduct {
 		return ret;
 	}
 
-	public Boolean updateProduct(Object tp) {
+	@SuppressWarnings("resource")
+	public Boolean updateProduct(TProduct tpr) {
 		
 		boolean ret = false;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
-			PreparedStatement ps;
-
-			if(((TProduct) tp).get_type().equals(TProduct.accessory))
-				ps = con.prepareStatement("UPDATE accesorio SET activo=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			else
-				ps = con.prepareStatement("UPDATE juego SET activo=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setBoolean(1, ((TProduct)tp).get_activated());
-			ps.setString(2, ((TProduct)tp).get_id().toString());
+			PreparedStatement ps = con.prepareStatement("UPDATE producto SET activo=? WHERE ID=?",
+					PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setBoolean(1, tpr.get_activated());
+			ps.setInt(2, tpr.get_id());
 			int res = ps.executeUpdate();
-			if(((TProduct) tp).get_type().equals(TProduct.accessory))
-				ps = con.prepareStatement("UPDATE accesorio SET nombre=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			else
-				ps = con.prepareStatement("UPDATE juego SET nombre=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setInt(2, ((TProduct)tp).get_id());
-			ps.setString(1, ((TProduct)tp).get_name());
+			
+			ps = con.prepareStatement("UPDATE producto SET nombre=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setInt(2, tpr.get_id());
+			ps.setString(1, tpr.get_name());
 			res = ps.executeUpdate();
-			if(((TProduct) tp).get_type().equals(TProduct.accessory))
-				ps = con.prepareStatement("UPDATE accesorio SET stock=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			else
-				ps = con.prepareStatement("UPDATE juego SET stock=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setInt(2, ((TProduct)tp).get_id());
-			ps.setInt(1, ((TProduct)tp).get_stock());
+			
+			ps = con.prepareStatement("UPDATE producto SET descripcion=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setInt(2, tpr.get_id());
+			ps.setString(1, tpr.get_description());
 			res = ps.executeUpdate();
-			if(((TProduct) tp).get_type().equals(TProduct.accessory))
-				ps = con.prepareStatement("UPDATE accesorio SET pvp=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			else
-				ps = con.prepareStatement("UPDATE juego SET pvp=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setInt(2, ((TProduct)tp).get_id());
-			ps.setDouble(1, ((TProduct)tp).get_pvp());
+			
+			ps = con.prepareStatement("UPDATE producto SET stock=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setInt(2, tpr.get_id());
+			ps.setInt(1, tpr.get_stock());
 			res = ps.executeUpdate();
-			if(((TProduct) tp).get_type().equals(TProduct.accessory))
-				ps = con.prepareStatement("UPDATE accesorio SET IDPlataforma=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			else
-				ps = con.prepareStatement("UPDATE juego SET IDPlataforma=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setInt(2, ((TProduct)tp).get_id());
-			ps.setInt(1, ((TProduct)tp).get_platformId());
+			
+			ps = con.prepareStatement("UPDATE producto SET pvp=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setInt(2, tpr.get_id());
+			ps.setDouble(1, tpr.get_pvp());
 			res = ps.executeUpdate();
-			if(((TProduct) tp).get_type().equals(TProduct.accessory))
-				ps = con.prepareStatement("UPDATE accesorio SET IDProveedor=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			else
-				ps = con.prepareStatement("UPDATE juego SET IDProveedor=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setInt(2, ((TProduct)tp).get_id());
-			ps.setInt(1, ((TProduct)tp).get_providerId());
+			
+			ps = con.prepareStatement("UPDATE producto SET IDPlataforma=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setInt(2, tpr.get_id());
+			ps.setInt(1, tpr.get_platformId());
+			res = ps.executeUpdate();
+			
+			ps = con.prepareStatement("UPDATE producto SET IDProveedor=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setInt(2, tpr.get_id());
+			ps.setInt(1, tpr.get_providerId());
 			res = ps.executeUpdate();
 			
 			int sum = 0;
-			if(((TProduct) tp).get_type().equals(TProduct.accessory)) {
-				ps = con.prepareStatement("SELECT * FROM accesorio WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-				ps.setInt(1, ((TProduct)tp).get_id());
-				ResultSet rs = ps.executeQuery();
-				if(rs.next())
-					sum = rs.getInt(8);
-				ps = con.prepareStatement("UPDATE accesorio SET unidadesProv=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			}else {
-				ps = con.prepareStatement("SELECT * FROM juego WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-				ps.setInt(1, ((TProduct)tp).get_id());
-				ResultSet rs = ps.executeQuery();
-				if(rs.next())
-					sum = rs.getInt(8);
-				ps = con.prepareStatement("UPDATE juego SET unidadesProv=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			}ps.setInt(2, ((TProduct)tp).get_id());
-			ps.setInt(1, ((TProduct)tp).get_unitsProvided() + sum);
+			ps = con.prepareStatement("SELECT * FROM producto WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setInt(1, tpr.get_id());
+			ResultSet rs = ps.executeQuery();
+			if(rs.next())
+				sum = rs.getInt(8);
+			ps = con.prepareStatement("UPDATE producto SET unidadesProv=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setInt(2, tpr.get_id());
+			ps.setInt(1, tpr.get_unitsProvided() + sum);
 			res = ps.executeUpdate();
 			
-			if(((TProduct) tp).get_type().equals(TProduct.accessory)) {
-				ps = con.prepareStatement("UPDATE accesorio SET marca=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-				ps.setInt(2, ((TProduct)tp).get_id());
-				ps.setString(1, ((TAccessory)tp).get_brand());
+			if(tpr.get_type().equals(TProduct.accessory)) {
+				ps = con.prepareStatement("UPDATE producto SET marca=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+				ps.setInt(2, tpr.get_id());
+				ps.setString(1, ((TAccessory) tpr).get_brand());
 				res = ps.executeUpdate();
 				
-				ps = con.prepareStatement("UPDATE accesorio SET color=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-				ps.setInt(2, ((TProduct)tp).get_id());
-				ps.setString(1, ((TAccessory)tp).get_color());
-				res = ps.executeUpdate();
-			}else {
-				ps = con.prepareStatement("UPDATE juego SET descripcion=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-				ps.setInt(2, ((TProduct)tp).get_id());
-				ps.setString(1, ((TGame)tp).get_description());
-				res = ps.executeUpdate();
-				
-				ps = con.prepareStatement("UPDATE juego SET genero=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-				ps.setInt(2, ((TProduct)tp).get_id());
-				ps.setString(1, ((TGame)tp).get_gender());
+				ps = con.prepareStatement("UPDATE producto SET color=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+				ps.setInt(2, tpr.get_id());
+				ps.setString(1, ((TAccessory) tpr).get_color());
+				res = ps.executeUpdate();	
+			}
+			else {
+				ps = con.prepareStatement("UPDATE producto SET genero=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+				ps.setInt(2, tpr.get_id());
+				ps.setString(1, ((TGame) tpr).get_gender());
 				res = ps.executeUpdate();
 			}
 			
@@ -185,48 +165,46 @@ public class DAOProductImpl implements DAOProduct {
 		return ret;
 	}
 
-	public Object readProduct(Object tp) {
-		TProduct tpr = null;
+	public TProduct readProduct(Integer id) {
+		TProduct tp = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
-			PreparedStatement ps;
-			if(((TProduct) tp).get_type().equalsIgnoreCase(TProduct.accessory)) {
-				ps = con.prepareStatement("SELECT * FROM accesorio WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-				tpr = new TAccessory();
-			}else {
-				ps = con.prepareStatement("SELECT * FROM juego WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-				tpr= new TGame();
-			}
-			ps.setInt(1, ((TProduct)tp).get_id());
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM producto WHERE ID=?",
+					PreparedStatement.RETURN_GENERATED_KEYS);;
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 	
 			if(rs.next()){
-
-				((TProduct)tpr).set_id(rs.getInt(1));
-				((TProduct)tpr).set_name(rs.getString(2));
-				((TProduct)tpr).set_pvp(rs.getDouble(3));
-				((TProduct)tpr).set_stock(rs.getInt(4));
-				((TProduct)tpr).set_providerId(rs.getInt(5));
-				((TProduct)tpr).set_platformId(rs.getInt(6));
-				((TProduct)tpr).set_activated(rs.getBoolean(7));
-				((TProduct)tpr).set_unitsProvided(rs.getInt(8));
-				if(((TProduct) tp).get_type().equals(TProduct.accessory)) {
-					((TAccessory)tpr).set_brand(rs.getString(9));
-					((TAccessory)tpr).set_color(rs.getString(10));
-					((TAccessory)tpr).set_type(TProduct.accessory);
-				}else {
-					((TGame)tpr).set_description(rs.getString(9));
-					((TGame)tpr).set_gender(rs.getString(10));
-					((TGame)tpr).set_type(TProduct.game);
+				if(rs.getString(13).equalsIgnoreCase(TProduct.game)){
+					tp = new TGame();
+					((TGame) tp).set_gender(rs.getString(10));
+					tp.set_type(TProduct.game);
 				}
-			}else
+				else{
+					tp = new TAccessory();
+					((TAccessory) tp).set_brand(rs.getString(11));
+					((TAccessory) tp).set_color(rs.getString(12));
+					tp.set_type(TProduct.accessory);
+				}
+				
+				tp.set_id(rs.getInt(1));
+				tp.set_name(rs.getString(2));
+				tp.set_description(rs.getString(3));
+				tp.set_pvp(rs.getDouble(4));
+				tp.set_stock(rs.getInt(5));
+				tp.set_providerId(rs.getInt(6));
+				tp.set_platformId(rs.getInt(7));
+				tp.set_activated(rs.getBoolean(8));
+				tp.set_unitsProvided(rs.getInt(9));
+			}
+			
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		
-		return tpr;
+		return tp;
 	}
 
 	public List<Object> readAllProducts() {
@@ -234,41 +212,33 @@ public class DAOProductImpl implements DAOProduct {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
-			PreparedStatement ps = con.prepareStatement("SELECT * FROM accesorio", PreparedStatement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM producto", PreparedStatement.RETURN_GENERATED_KEYS);
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()){
-				TAccessory tp = new TAccessory();
+				TProduct tp;
+				if(rs.getString(13).equalsIgnoreCase(TProduct.game)){
+					tp = new TGame();
+					((TGame) tp).set_gender(rs.getString(10));
+					tp.set_type(TProduct.game);
+				}
+				else{
+					tp = new TAccessory();
+					((TAccessory) tp).set_brand(rs.getString(11));
+					((TAccessory) tp).set_color(rs.getString(12));
+					tp.set_type(TProduct.accessory);
+				}
+				
 				tp.set_id(rs.getInt(1));
 				tp.set_name(rs.getString(2));
-				tp.set_pvp(rs.getDouble(3));
-				tp.set_stock(rs.getInt(4));
-				tp.set_providerId(rs.getInt(5));
-				tp.set_platformId(rs.getInt(6));
-				tp.set_activated(rs.getBoolean(7));
-				tp.set_unitsProvided(rs.getInt(8));
-				tp.set_brand(rs.getString(9));
-				tp.set_color(rs.getString(10));
-				tp.set_type(TProduct.accessory);
-				l.add(tp);
-			}
-			
-			ps = con.prepareStatement("SELECT * FROM juego", PreparedStatement.RETURN_GENERATED_KEYS);
-			rs = ps.executeQuery();
-			
-			while(rs.next()){
-				TGame tp = new TGame();
-				tp.set_id(rs.getInt(1));
-				tp.set_name(rs.getString(2));
-				tp.set_pvp(rs.getDouble(3));
-				tp.set_stock(rs.getInt(4));
-				tp.set_providerId(rs.getInt(5));
-				tp.set_platformId(rs.getInt(6));
-				tp.set_activated(rs.getBoolean(7));
-				tp.set_unitsProvided(rs.getInt(8));
-				tp.set_description(rs.getString(9));
-				tp.set_gender(rs.getString(10));
-				tp.set_type(TProduct.game);
+				tp.set_description(rs.getString(3));
+				tp.set_pvp(rs.getDouble(4));
+				tp.set_stock(rs.getInt(5));
+				tp.set_providerId(rs.getInt(6));
+				tp.set_platformId(rs.getInt(7));
+				tp.set_activated(rs.getBoolean(8));
+				tp.set_unitsProvided(rs.getInt(9));
+				
 				l.add(tp);
 			}
 			
@@ -279,17 +249,14 @@ public class DAOProductImpl implements DAOProduct {
 		return l;
 	}
 	
-	public TProduct readProductByName(Object tpr) {
+	public TProduct readProductByName(String s) {
 		TProduct tp = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			PreparedStatement ps;
-			if(((TProduct)tpr).get_type().equals(TProduct.accessory))
-				ps= con.prepareStatement("SELECT ID FROM accesorio WHERE nombre=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			else
-				ps= con.prepareStatement("SELECT ID FROM juego WHERE nombre=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setString(1, ((TProduct)tpr).get_name());
+			ps= con.prepareStatement("SELECT ID FROM producto WHERE nombre=?", PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setString(1, s);
 			ResultSet rs = ps.executeQuery();
 
 			if(rs.next()){

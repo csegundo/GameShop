@@ -112,6 +112,7 @@ public class ShowPanel extends JPanel {
 	public void update(List<Object> l) {
 		sa.update(l);
 		so.fillList();
+		so.set_info("");
 		sp.fillList();
 	}
 	
