@@ -47,32 +47,33 @@ public class GUIProvider extends JPanel implements IGUI {
 		switch(e){
 		case Event.RES_REGISTER_PROVIDER_OK:
 			id = (Integer)t;
-			JOptionPane.showMessageDialog(null, "Se ha insertado el proveedor " + id + " correctamente en la base de datos.", "Success",
+			JOptionPane.showMessageDialog(null, "Provider " + id + " has been correctly insertes into the database.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
 			_rightPane.update((SAAbstractFactory.getInstance().createSAProvider()).readAllProviders());
 			_leftPane.addInfoToComboBox();
 			break;
 			
 		case Event.RES_REGISTER_PROVIDER_FAILED:
-			JOptionPane.showMessageDialog(this, "Error al insertar el proveedor en la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
+			JOptionPane.showMessageDialog(this, "Error entering the provider in the database.","Failed",JOptionPane.ERROR_MESSAGE);		
 			break;
 			
 		case Event.RES_UNSUBSCRIBE_PROVIDER_OK:
 			id = (Integer)t;
-			JOptionPane.showMessageDialog(null, "Se ha eliminado el proveedor " + id + " correctamente en la base de datos.", "Success",
+			JOptionPane.showMessageDialog(null, "The provider " + id + " has been successfully unsubscribed.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
 			break;
 			
 		case Event.RES_UNSUBSCRIBE_PROVIDER_FAILED:
-			JOptionPane.showMessageDialog(this, "Error al eliminar el proveedor en la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
+			JOptionPane.showMessageDialog(this, "Error while removing the provider in the database.","Failed",JOptionPane.ERROR_MESSAGE);		
 			break;
 			
 		case Event.RES_MODIFY_PROVIDER_FAILED:
-			JOptionPane.showMessageDialog(this, "Error al intentar modificar el proveedor en la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
+			JOptionPane.showMessageDialog(this, "Error while modifying the provider in the database.","Failed",JOptionPane.ERROR_MESSAGE);		
 			break;
 			
 		case Event.RES_MODIFY_PROVIDER_OK:
-			JOptionPane.showMessageDialog(this, "Proveedor actualizado correctamente en la base de datos.","Failed",JOptionPane.INFORMATION_MESSAGE);		
+			id = (Integer)t;
+			JOptionPane.showMessageDialog(this, "Provider " + id + " correctly updated in the database.","Success",JOptionPane.INFORMATION_MESSAGE);		
 			_rightPane.update((SAAbstractFactory.getInstance().createSAProvider()).readAllProviders());
 			_leftPane.addInfoToComboBox();
 			break;
@@ -88,11 +89,11 @@ public class GUIProvider extends JPanel implements IGUI {
 			break;
 			
 		case Event.RES_READ_PROVIDER_FAILED:
-			JOptionPane.showMessageDialog(this, "Error al mostrar el proveedor en la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
+			JOptionPane.showMessageDialog(this, "Error showing the provider in the database.","Failed",JOptionPane.ERROR_MESSAGE);		
 			break;
 		
 		case Event.RES_READALL_PROVIDERS_FAILED:
-			JOptionPane.showMessageDialog(this, "Error al mostrar todos los proveedores.","Failed",JOptionPane.ERROR_MESSAGE);			
+			JOptionPane.showMessageDialog(this, "Error showing all providers.","Failed",JOptionPane.ERROR_MESSAGE);			
 			break;
 			
 		case Event.RES_READALL_PROVIDERS_OK:

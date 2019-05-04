@@ -42,13 +42,14 @@ public class GUIProduct extends JPanel implements IGUI {
 		_rightPane.setVisible(true);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void actualiza(Integer e, Object t) {
 		Integer id ;
 		switch(e) {
 		case Event.RES_REGISTER_PRODUCT_OK:
 			id = (Integer)t;
-			JOptionPane.showMessageDialog(null, "Se ha insertado el producto " + id + " correctamente en la base de datos.", "Success",
+			JOptionPane.showMessageDialog(null, "Product " + id + " has been inserted correctly in the database.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
 			_rightPane.update((SAAbstractFactory.getInstance().createSAProduct()).readAllProducts());
 			_leftPane.addInfoToComboBox();
@@ -58,14 +59,14 @@ public class GUIProduct extends JPanel implements IGUI {
 			break;
 		case Event.RES_UNSUBSCRIBE_PRODUCT_OK:
 			id = (Integer)t;
-			JOptionPane.showMessageDialog(null, "Se ha eliminado el proveedor " + id + " correctamente en la base de datos.", "Success",
+			JOptionPane.showMessageDialog(null, "Product " + id + " has been removed correctly.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
 			break;
 		case Event.RES_UNSUBSCRIBE_PRODUCT_FAILED:
 			JOptionPane.showMessageDialog(this, "Error when unsubscribing the product from the database.","Failed",JOptionPane.ERROR_MESSAGE);		
 			break;
 		case Event.RES_MODIFY_PRODUCT_OK:
-			JOptionPane.showMessageDialog(this, "Proveedor actualizado correctamente en la base de datos.","Failed",JOptionPane.INFORMATION_MESSAGE);		
+			JOptionPane.showMessageDialog(this, "Product correctly updated in the database.","Success",JOptionPane.INFORMATION_MESSAGE);		
 			_rightPane.update((SAAbstractFactory.getInstance().createSAProduct()).readAllProducts());
 			_leftPane.addInfoToComboBox();
 			break;
@@ -89,7 +90,7 @@ public class GUIProduct extends JPanel implements IGUI {
 						"Color: " + ((TAccessory)tp).get_color() + '\n' ;
 			else
 				text += "Gender: " +((TGame)tp).get_gender() + '\n' +
-						"Description:\n" + ((TGame)tp).get_description() + '\n';
+						"Description:" + ((TGame)tp).get_description() + '\n';
 			_rightPane.setInfoInScreen(text);
 			break;
 		case Event.RES_READ_PRODUCT_FAILED:

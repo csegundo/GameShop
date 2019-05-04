@@ -142,15 +142,14 @@ public class FormTicket extends JDialog {
 				toAdd.set_id(Integer.parseInt(info[0]));
 				toAdd.set_name(info[1]);
 				toAdd.set_type(info[2]);
-				//toAdd.set_unitsProvided((Integer)_numberOfproduct.getValue());
+				toAdd.set_unitsProvided((Integer)_numberOfproduct.getValue());
 				// Si existe en la BD un producto con ese nombre y tipo, nos devuelve todos sus datos y lo metemos a la tabla
 				TProduct all = (TProduct)SAAbstractFactory.getInstance().createSAProduct().readProduct(toAdd);
-				/*all.set_unitsProvided(toAdd.get_unitsProvided());  Esto lo hago pues en la BD no hay campo de units_provided,
-				 													 cuando se añada, quitar esto y sumarle las unidades del toAdd al all */
+				all.set_unitsProvided(toAdd.get_unitsProvided());  //Esto lo hago pues en la BD no hay campo de units_provided,
+				 												   //cuando se añada, quitar esto y sumarle las unidades del toAdd al all
 				
 				all.set_unitsProvided((Integer)_numberOfproduct.getValue());
-				//if(all != null && !addStockToAnExistingProduct(toAdd)) 
-				if(all != null) {
+				if(all != null && !addStockToAnExistingProduct(toAdd)) {
 					_productsSelected.add(all);
 					model.fireTableDataChanged();
 				}
@@ -158,11 +157,11 @@ public class FormTicket extends JDialog {
 		});
 	}
 	/**********************************************************************
-	 * **																***
-	 ** 		HACER CAMBIOS Y COMPROBACIONES YA EN EL SA				***
+	 ***																***
+	 ***		HACER CAMBIOS Y COMPROBACIONES YA EN EL SA				***
 	 ***																***
 	 **********************************************************************
-	 *
+	 **/
 	// Mira a ver si el producto que queremos añadir existe, y si es cierto, añade stock += stockNuevo y sino, no hace nada
 	private boolean addStockToAnExistingProduct(Object tpr) {
 		boolean exit = false;
@@ -174,7 +173,7 @@ public class FormTicket extends JDialog {
 			}
 		}
 		return exit;
-	}*/
+	}
 	
 	private void fillRegisterTicketLists() {
 		String type;
@@ -184,11 +183,11 @@ public class FormTicket extends JDialog {
 				type = TProduct.game;
 			else
 				type = TProduct.accessory;
-			/* Aqui ponemos el id, nombre y el tipo para luego hacer SPLIT("-") y saber si es juego o accesorio */
+			/* Aqui ponemos el id, nombre y el tipo para luego hacer SPLIT(" - ") y saber si es juego o accesorio */
 			_productsElection.addItem(((TProduct) tp).get_id() + " - " + ((TProduct) tp).get_name() + " - " + type);
 		}
 		
-		// Rellenar la lista de los empelados disponibles en la base de datos
+		// Rellenar la lista de los empleados disponibles en la base de datos
 		for(Object te : SAAbstractFactory.getInstance().createSAEmployee().readAllEmployees()) {
 			_employeeElection.addItem(((TEmployee) te).get_id() + " - " + ((TEmployee) te).get_name());
 		}
@@ -313,9 +312,5 @@ public class FormTicket extends JDialog {
 	protected void closeDialog() {
 		setVisible(false);
 		dispose();
-	}
-	
-	private Integer getIDEmp(){
-		return _employeeElection.getSelectedIndex(); //devuelve el ID o la posicion ?
 	}
 }

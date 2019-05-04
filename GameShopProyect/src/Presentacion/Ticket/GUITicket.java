@@ -43,35 +43,40 @@ public class GUITicket extends JPanel implements IGUI {
 		switch(e){
 		case Event.RES_REGISTER_TICKET_OK:
 			Integer id = (Integer)t;
-			JOptionPane.showMessageDialog(null, "Se ha insertado el ticket " + id + " correctamente.", "Success",
+			JOptionPane.showMessageDialog(null, "Ticket " + id + " has been correctly inserted into the database.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
 			break;
 		case Event.RES_REGISTER_TICKET_FAILED:
-			JOptionPane.showConfirmDialog(null, "Error al insertar el ticket.", "Failed",
-					JOptionPane.ERROR_MESSAGE, JOptionPane.OK_OPTION);
+			JOptionPane.showConfirmDialog(null, "Error inserting the ticket in the database.", "Failed",
+					JOptionPane.ERROR_MESSAGE);
 			break;
 		case Event.RES_UNSUBSCRIBE_TICKET_OK:
 			Integer a = (Integer)t;
-			JOptionPane.showMessageDialog(null, "Se ha eliminado el ticket " + a + " correctamente.", "Success",
+			JOptionPane.showMessageDialog(null, "The ticket " + a + " has been properly unsubscribed.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
 			break;
 		case Event.RES_UNSUBSCRIBE_TICKET_FAILED:
-			JOptionPane.showConfirmDialog(null, "Error al eliminar el ticket.", "Failed",
-					JOptionPane.ERROR_MESSAGE, JOptionPane.OK_OPTION);
+			JOptionPane.showConfirmDialog(null, "Error deleting the ticket in the database.", "Failed",
+					JOptionPane.ERROR_MESSAGE);
 		case Event.RES_MODIFY_TICKET_OK:
 			Integer b = (Integer)t;
-			JOptionPane.showMessageDialog(null, "Se ha modificado el ticket " + b + " correctamente.", "Success",
+			JOptionPane.showMessageDialog(null, "Ticket " + b + " successfully updated in the database.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
 		case Event.RES_MODIFY_TICKET_FAILED:
-			JOptionPane.showConfirmDialog(null, "Error al modificar el ticket.", "Failed",
-					JOptionPane.ERROR_MESSAGE, JOptionPane.OK_OPTION);
+			JOptionPane.showConfirmDialog(null, "Error while modifying the ticket in the database.", "Failed",
+					JOptionPane.ERROR_MESSAGE);
 		case Event.RES_READ_TICKET_OK:
 			Integer c = (Integer)t;
-			JOptionPane.showMessageDialog(null, "Se mostrará el ticket " + c , "Success",
-					JOptionPane.INFORMATION_MESSAGE);
+			// COOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOODDDDDDDDDDDDDDDDDDDDEEEEEEEEEEEEEEEEEEEEEEEEEE
 		case Event.RES_READ_TICKET_FAILED:
-			JOptionPane.showConfirmDialog(null, "Error al mostrar el ticket.", "Failed",
-					JOptionPane.ERROR_MESSAGE, JOptionPane.OK_OPTION);
+			JOptionPane.showConfirmDialog(null, "Error showing a ticket in the database.", "Failed",
+					JOptionPane.ERROR_MESSAGE);
+			break;
+		case Event.RES_READALL_TICKET_OK:
+			// COOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOODDDDDDDDDDDDDDDDDDDDEEEEEEEEEEEEEEEEEEEEEEEEEE
+			break;
+		case Event.RES_READALL_TICKET_FAILED:
+			JOptionPane.showMessageDialog(this, "Error showing all tickets in the database.","Failed",JOptionPane.ERROR_MESSAGE);
 			break;
 		}
 	}

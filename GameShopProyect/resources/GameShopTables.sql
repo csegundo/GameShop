@@ -2,7 +2,7 @@ CREATE TABLE `empleado` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
   `NIF` varchar(9) NOT NULL,
-  `turno` varchar(10) NOT NULL,
+  `turno` varchar(15) NOT NULL,
   `activo` tinyint(1) NOT NULL,
 
   PRIMARY KEY (`ID`)

@@ -50,36 +50,36 @@ public class GUIPlatform extends JPanel implements IGUI {
 		switch(e){
 		case Event.RES_REGISTER_PLATFORM_OK:
 			Integer id = (Integer)t;
-			JOptionPane.showMessageDialog(null, "Se ha insertado la plataforma " + 
-					id + " correctamente en la base de datos.", "Success", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "The platform " + id + " has been successfully inserted.", "Success", 
+					JOptionPane.INFORMATION_MESSAGE);
 			_rightPane.update((SAAbstractFactory.getInstance().createSAPlatform()).readAllPlatforms());
 			_leftPane.addInfoToComboBox();
 			break;
 			
 		case Event.RES_REGISTER_PLATFORM_FAILED:
-			JOptionPane.showMessageDialog(this, "Error al insertar la plataforma en la base de datos.",
+			JOptionPane.showMessageDialog(this, "Error inserting the platform in the database.",
 					"Failed",JOptionPane.ERROR_MESSAGE);
 			break;
 			
 		case Event.RES_UNSUBSCRIBE_PLATFORM_OK:
 			Integer a = (Integer)t;
-			JOptionPane.showMessageDialog(null, "Se ha eliminado la plataforma " +
-					a + " correctamente de la base de datos.", "Success", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Platform " + a + " has been successfully unsubscribed.", "Success",
+					JOptionPane.INFORMATION_MESSAGE);
 			break;
 			
 		case Event.RES_UNSUBSCRIBE_PLATFORM_FAILED:
-			JOptionPane.showMessageDialog(this, "Error al eliminar la plataforma de la base de datos.",
+			JOptionPane.showMessageDialog(this, "Error removing the platform from the database.",
 					"Failed",JOptionPane.ERROR_MESSAGE);		
 			break;
 			
 		case Event.RES_MODIFY_PLATFORM_FAILED:
 			JOptionPane.showMessageDialog(this, "Error al intentar modificar la plataforma en la base de datos.",
-					"Failed",JOptionPane.ERROR_MESSAGE);		
+					"Failed",JOptionPane.ERROR_MESSAGE);	
 			break;
 			
 		case Event.RES_MODIFY_PLATFORM_OK:
-			JOptionPane.showMessageDialog(this, "Plataforma actualizada correctamente en la base de datos.",
-					"Failed",JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Platform updated correctly in the database.",
+					"Success",JOptionPane.INFORMATION_MESSAGE);
 			_rightPane.update((SAAbstractFactory.getInstance().createSAPlatform()).readAllPlatforms());
 			_leftPane.addInfoToComboBox();
 			break;
@@ -93,13 +93,12 @@ public class GUIPlatform extends JPanel implements IGUI {
 			break;
 			
 		case Event.RES_READ_PLATFORM_FAILED:
-			JOptionPane.showMessageDialog(this, "Error al mostrar la plataforma.",
-					"Failed",JOptionPane.ERROR_MESSAGE);		
+			JOptionPane.showMessageDialog(this, "Error showing the platform.",
+					"Failed",JOptionPane.ERROR_MESSAGE);
 			break;
 		
 		case Event.RES_READALL_PLATFORM_FAILED:
-			JOptionPane.showMessageDialog(this, "Error al mostrar todas las plataformas.",
-					"Failed",JOptionPane.ERROR_MESSAGE);			
+			JOptionPane.showMessageDialog(this, "Error showing all platforms.", "Failed", JOptionPane.ERROR_MESSAGE);			
 			break;
 			
 		case Event.RES_READALL_PLATFORM_OK:
@@ -111,7 +110,7 @@ public class GUIPlatform extends JPanel implements IGUI {
 			break;
 			
 		case Event.RES_READALL_PRODUCTS_FROM_PLATFROM_FAILED:
-			JOptionPane.showMessageDialog(this, "Error al mostrar todas los productos de una plataforma.",
+			JOptionPane.showMessageDialog(this, "Error showing all products from one platform.",
 					"Failed",JOptionPane.ERROR_MESSAGE);			
 
 			break;

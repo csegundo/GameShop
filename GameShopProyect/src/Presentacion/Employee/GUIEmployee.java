@@ -42,31 +42,30 @@ public class GUIEmployee extends JPanel implements IGUI {
 		switch(e){
 		case Event.RES_REGISTER_EMPLOYEE_OK:
 			Integer id = (Integer)t;
-			JOptionPane.showMessageDialog(null, "Se ha insertado el empleado " + id + " correctamente en la base de datos.", "Success",
+			JOptionPane.showMessageDialog(null, "Employee " + id + " has been correctly inserted into the database.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
 			_rightPane.update((SAAbstractFactory.getInstance().createSAEmployee()).readAllEmployees());
 			_leftPane.addInfoToComboBox();
 			break;
 		case Event.RES_REGISTER_EMPLOYEE_FAILED:
-			JOptionPane.showConfirmDialog(null, "Error al insertar el empleado en la base de datos.", "Failed", JOptionPane.ERROR_MESSAGE, 
-					JOptionPane.OK_OPTION);
+			JOptionPane.showConfirmDialog(null, "Error inserting the employee in the database.", "Failed", JOptionPane.ERROR_MESSAGE);
 			break;
 		case Event.RES_UNSUBSCRIBE_EMPLOYEE_OK:
 			Integer a = (Integer)t;
-			JOptionPane.showMessageDialog(null, "Se ha eliminado al empleado " + a + " correctamente en la base de datos.", "Success",
+			JOptionPane.showMessageDialog(null, "The employee " + a + " has been properly unsubscribed.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
 			break;
 			
 		case Event.RES_UNSUBSCRIBE_EMPLOYEE_FAILED:
-			JOptionPane.showMessageDialog(this, "Error al eliminar al empleado en la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
+			JOptionPane.showMessageDialog(this, "Error deleting the employee in the database.","Failed",JOptionPane.ERROR_MESSAGE);		
 			break;
 			
 		case Event.RES_MODIFY_EMPLOYEE_FAILED:
-			JOptionPane.showMessageDialog(this, "Error al intentar modificar el empleado en la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
+			JOptionPane.showMessageDialog(this, "Error while modifying the employee in the database.","Failed",JOptionPane.ERROR_MESSAGE);		
 			break;
 			
 		case Event.RES_MODIFY_EMPLOYEE_OK:
-			JOptionPane.showMessageDialog(this, "Empleado actualizado correctamente en la base de datos.","Failed",JOptionPane.INFORMATION_MESSAGE);		
+			JOptionPane.showMessageDialog(this, "Employee successfully updated in the database.","Success",JOptionPane.INFORMATION_MESSAGE);		
 			_rightPane.update((SAAbstractFactory.getInstance().createSAEmployee()).readAllEmployees());
 			_leftPane.addInfoToComboBox();
 			break;
@@ -82,11 +81,11 @@ public class GUIEmployee extends JPanel implements IGUI {
 			break;
 			
 		case Event.RES_READ_EMPLOYEE_FAILED:
-			JOptionPane.showMessageDialog(this, "Error al mostrar el empleado en la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
+			JOptionPane.showMessageDialog(this, "Error showing an employee in the database.","Failed",JOptionPane.ERROR_MESSAGE);
 			break;
 		
 		case Event.RES_READALL_EMPLOYEES_FAILED:
-			JOptionPane.showMessageDialog(this, "Error al mostrar todos los empleados.","Failed",JOptionPane.ERROR_MESSAGE);			
+			JOptionPane.showMessageDialog(this, "Error showing all employees in the database.","Failed",JOptionPane.ERROR_MESSAGE);
 			break;
 			
 		case Event.RES_READALL_EMPLOYEES_OK:

@@ -46,7 +46,7 @@ public class FormPlatform extends JDialog{
 		});
 		
 		this.setLayout(new FlowLayout());
-		this.setBounds(new Rectangle(300, 80));
+		this.setBounds(new Rectangle(300, 90));
 		this.setLocationRelativeTo(null);
 		
 		initComponents();

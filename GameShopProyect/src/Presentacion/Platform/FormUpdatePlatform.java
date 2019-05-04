@@ -1,6 +1,7 @@
 package Presentacion.Platform;
 
 import java.awt.Dimension;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,10 +22,12 @@ public class FormUpdatePlatform extends FormPlatform {
 	public FormUpdatePlatform(TPlatform t) {
 		super();
 		_platform = t;
+		this.setLocationRelativeTo(null);
 		this.setTitle("Modify a Platform");
-		this.setSize(new Dimension(300, 80));
+		this.setSize(new Dimension(300, 92));
 		
 		this._reactivate = new JCheckBox("Activated");
+		//this.setBounds(new Rectangle(300, 92));
 		this._reactivate.setBounds(50, 150, 140, 50);
 		this.add(_reactivate);
 		this._reactivate.addChangeListener(new ChangeListener() {
