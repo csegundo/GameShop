@@ -29,6 +29,7 @@ import Negocio.SA.SAAbstractFactory;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Event;
 import Transfers.TEmployee;
+import Transfers.TPlatform;
 import Transfers.TProduct;
 import Transfers.TTicket;
 
@@ -117,7 +118,7 @@ public class FormTicket extends JDialog {
 					if(unitsOfSelectedProduct > removeCant) {
 						((TProduct)_productsSelected.get(selectedRow)).set_unitsProvided(unitsOfSelectedProduct - removeCant);
 						model.fireTableDataChanged();
-					}/***********/
+					}
 					else {
 						_productsSelected.remove(selectedRow);
 						model.fireTableDataChanged();
@@ -126,12 +127,7 @@ public class FormTicket extends JDialog {
 			}
 		});
 	}
-	/**********************************************************************
-	 ***																***
-	 ***		PONER SOLO UNA ROW POR PRODUCTO(NO >1 ROW por producto) ***
-	 ***																***
-	 **********************************************************************
-	 */
+	
 	private void addButtonAction() {
 		_add.addActionListener(new ActionListener() {
 			@Override
@@ -149,19 +145,14 @@ public class FormTicket extends JDialog {
 				 												   //cuando se añada, quitar esto y sumarle las unidades del toAdd al all
 				
 				all.set_unitsProvided((Integer)_numberOfproduct.getValue());
-				if(all != null && !addStockToAnExistingProduct(toAdd)) {
+				if(all != null && !addStockToAnExistingProduct(toAdd))
 					_productsSelected.add(all);
-					model.fireTableDataChanged();
-				}
+				
+				model.fireTableDataChanged();
 			}
 		});
 	}
-	/**********************************************************************
-	 ***																***
-	 ***		HACER CAMBIOS Y COMPROBACIONES YA EN EL SA				***
-	 ***																***
-	 **********************************************************************
-	 **/
+	
 	// Mira a ver si el producto que queremos añadir existe, y si es cierto, añade stock += stockNuevo y sino, no hace nada
 	private boolean addStockToAnExistingProduct(Object tpr) {
 		boolean exit = false;
@@ -270,7 +261,8 @@ public class FormTicket extends JDialog {
 					o = ((TProduct)_productsSelected.get(rowIndex)).get_name();
 					break;
 				case 2:
-					o = ((TProduct)_productsSelected.get(rowIndex)).get_platformId();
+					o = ((TPlatform)(SAAbstractFactory.getInstance().createSAPlatform().readPlatform(
+							((TProduct)_productsSelected.get(rowIndex)).get_platformId()))).get_name();
 					break;
 				case 3:
 					o = ((TProduct)_productsSelected.get(rowIndex)).get_unitsProvided();
