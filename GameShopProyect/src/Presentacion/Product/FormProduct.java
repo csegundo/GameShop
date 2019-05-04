@@ -1,6 +1,3 @@
-/**
- * 
- */
 package Presentacion.Product;
 
 import javax.swing.JLabel;
@@ -25,6 +22,7 @@ import javax.swing.JTextArea;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -72,7 +70,7 @@ public class FormProduct extends JDialog {
 		});
 		
 		this.setLayout(new FlowLayout());
-		this.setBounds(new Rectangle(300, 80));
+		this.setBounds(new Rectangle(300, 60));
 		this.setLocationRelativeTo(null);
 		
 		this._typeElection = new JComboBox<Object>();
@@ -110,7 +108,7 @@ public class FormProduct extends JDialog {
 		
 		this.setResizable(true);
 		if(elected.equals(TProduct.game))
-			this.setBounds(new Rectangle(300, 400));
+			this.setBounds(new Rectangle(300, 370));
 		else
 			this.setBounds(new Rectangle(300, 260));
 		this.setLocationRelativeTo(null);
@@ -119,26 +117,31 @@ public class FormProduct extends JDialog {
 		this.add(new JLabel("Name:"));
 		this._nameText = new JTextField();
 		this._nameText.setPreferredSize(new Dimension(220,20));
+		this.add(Box.createRigidArea(new Dimension(8, 1)));
 		this.add(this._nameText);
 		
 		this.add(new JLabel("Type:"));
 		this._typeElection.setPreferredSize(new Dimension(220,20));
 		this._typeElection.setSelectedIndex(index);
 		this._typeElection.setEnabled(false);
+		this.add(Box.createRigidArea(new Dimension(10, 1)));
 		this.add(this._typeElection);
 		
 		if(elected.equals(TProduct.game)) {
 			this.add(new JLabel("Gender:"));
 			this._genderText = new JTextField();
 			this._genderText.setPreferredSize(new Dimension(220,20));
+			this.add(Box.createRigidArea(new Dimension(1, 1)));
 			this.add(this._genderText);
 		}else {
 			this.add(new JLabel("Brand:"));
+			this.add(Box.createRigidArea(new Dimension(4,1)));
 			this._brand = new JTextField();
 			this._brand.setPreferredSize(new Dimension(220,20));
 			this.add(this._brand);
 			
 			this.add(new JLabel("Color:"));
+			this.add(Box.createRigidArea(new Dimension(5,1)));
 			this._color = new JTextField();
 			this._color.setPreferredSize(new Dimension(220,20));
 			this.add(this._color);
@@ -146,34 +149,40 @@ public class FormProduct extends JDialog {
 		this.add(Box.createRigidArea(new Dimension(300,20)));
 		
 		this.add(new JLabel("Stock:"));
-		this._stockInt = new JSpinner();
+		this._stockInt = new JSpinner(new SpinnerNumberModel(1, 1, 1000, 1));
 		this._stockInt.setPreferredSize(new Dimension(60,20));
 		this.add(this._stockInt);
+		
+		this.add(Box.createRigidArea(new Dimension(10,1)));
 		
 		this.add(new JLabel("Provider:"));
 		this._providerElection = new JComboBox<Object>();
 		this._providerElection.setPreferredSize(new Dimension(100,20));
 		for(Object tpro : SAAbstractFactory.getInstance().createSAProvider().readAllProviders())
-			this._providerElection.addItem(((TProvider) tpro).get_id() + "-"+ ((TProvider)tpro).get_nif());
+			this._providerElection.addItem(((TProvider) tpro).get_id() + " - "+ ((TProvider)tpro).get_nif());
 		this.add(this._providerElection);
 		
 		this.add(new JLabel("PVP:"));
-		this._pvpDoub = new JSpinner(new SpinnerNumberModel(0.0,0.0,1000.0,0.5));
+		this._pvpDoub = new JSpinner(new SpinnerNumberModel(0.0,0.0,5000.0,0.5));
 		this._pvpDoub.setPreferredSize(new Dimension(70,20));
 		this.add(this._pvpDoub);
+		
+		this.add(Box.createRigidArea(new Dimension(5,1)));
 		
 		this.add(new JLabel("Platform:"));
 		this._platformElection = new JComboBox<Object>();
 		this._platformElection.setPreferredSize(new Dimension(100,20));
 		for(Object tpla : SAAbstractFactory.getInstance().createSAPlatform().readAllPlatforms())
-			this._platformElection.addItem(((TPlatform) tpla).get_id() + "-" + ((TPlatform)tpla).get_name());
+			this._platformElection.addItem(((TPlatform) tpla).get_id() + " - " + ((TPlatform)tpla).get_name());
 		this.add(this._platformElection);
 		
 		if (elected.equals(TProduct.game)) {
-			this.add(Box.createRigidArea(new Dimension(220,10)));
 			this.add(new JLabel("Description:"));
 			this.add(Box.createRigidArea(new Dimension(220,1)));
 			this._description = new JTextArea();
+			this._description.setFont(new Font("Arial", 0, 15));
+			this._description.setLineWrap(true);
+			this._description.setWrapStyleWord(true);
 			this._description.setPreferredSize(new Dimension(270,120));	
 			jp = new JScrollPane(this._description);
 			jp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -200,10 +209,14 @@ public class FormProduct extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				String[] info = ((String)_providerElection.getSelectedItem()).split(" - ");
 				TProduct tprod;
-				if(elected.equals(TProduct.game))
-					tprod = new TGame(_nameText.getText(),(Integer)_stockInt.getValue(),(Double) _pvpDoub.getValue(), (Integer)Integer.parseInt((String)IGUI.getInfoFromBox((String)_providerElection.getSelectedItem())),
-							(Integer)Integer.parseInt((String)IGUI.getInfoFromBox((String)_platformElection.getSelectedItem())),_description.getText(),_genderText.getText());
+				if(elected.equals(TProduct.game)) {
+					tprod = new TGame(_nameText.getText(), (Integer)_stockInt.getValue(), (Double)_pvpDoub.getValue(),
+									  );
+					//tprod = new TGame(_nameText.getText(), (Integer)_stockInt.getValue(), (Double) _pvpDoub.getValue(), (Integer)Integer.parseInt((String)IGUI.getInfoFromBox((String)_providerElection.getSelectedItem())),
+							//(Integer)Integer.parseInt((String)IGUI.getInfoFromBox((String)_platformElection.getSelectedItem())),_description.getText(),_genderText.getText());
+				}
 				else
 					tprod = new TAccessory(_nameText.getText(),(Integer)_stockInt.getValue(),(Double) _pvpDoub.getValue(), (Integer)Integer.parseInt((String)IGUI.getInfoFromBox((String)_providerElection.getSelectedItem())),
 							(Integer)Integer.parseInt((String)IGUI.getInfoFromBox((String)_platformElection.getSelectedItem())),_brand.getText(),_color.getText());

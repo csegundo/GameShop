@@ -9,7 +9,6 @@ public class TGame extends TProduct {
 		super(name, stock, pvp, TProduct.game, provider, platform);
 		this._description = description;
 		this._gender = gender;
-		
 	}
 
 	public TGame() {
