@@ -14,11 +14,13 @@ public class SAProviderImpl implements SAProvider {
 
 	public Integer createProvider(TProvider tp) {
 		int id = -1;
-		DAOProvider daoProvider = DAOAbstractFactory.getInstance().createDAOProvider();
-		if(tp != null && validateData(tp)){
-			TProvider tpl = (TProvider) daoProvider.readProviderByNIF(tp.get_nif());
-			if(tpl == null)
-				id = daoProvider.createProvider(tp);
+		if(validateData(tp)) {
+			DAOProvider daoProvider = DAOAbstractFactory.getInstance().createDAOProvider();
+			if(tp != null && validateData(tp)){
+				TProvider tpl = (TProvider) daoProvider.readProviderByNIF(tp.get_nif());
+				if(tpl == null)
+					id = daoProvider.createProvider(tp);
+			}
 		}
 		return id;
 	}
@@ -38,7 +40,7 @@ public class SAProviderImpl implements SAProvider {
 	}
 
 	public Boolean updateProvider(TProvider tp ) {
-		return DAOAbstractFactory.getInstance().createDAOProvider().updateProvider(tp);
+		return validateData(tp) ? DAOAbstractFactory.getInstance().createDAOProvider().updateProvider(tp) : false;
 	}
 
 	public Object readProvider(Integer id) {
@@ -58,7 +60,10 @@ public class SAProviderImpl implements SAProvider {
 	}
 
 	private boolean validateData(TProvider tp) {
-		return true;
+		if(tp == null || tp.get_nif().length() != 9 || tp.get_address().length() > 50 || tp.get_phoneNumber().toString().length() != 9)
+			return false;
+		else
+			return true;
 	}
 
 }

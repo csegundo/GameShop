@@ -64,9 +64,17 @@ public class FormProvider extends JDialog {
 		_ok.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TProvider tp = new TProvider(_nifText.getText(), _addressText.getText(), Integer.parseInt(_phoneText.getText()));
-				Controller.getInstance().action(tp, Event.REGISTER_PROVIDER);
-				closeDialog();
+				try {
+					Integer phone = Integer.parseInt(_phoneText.getText());
+					String nif = _nifText.getText();
+					String address = _addressText.getText();
+					TProvider tp = new TProvider(nif, address, phone);
+					Controller.getInstance().action(tp, Event.REGISTER_PROVIDER);
+					closeDialog();
+				} catch(Exception ex) {
+					closeDialog();
+					Controller.getInstance().action(null, Event.REGISTER_PROVIDER);
+				}
 			}
 		});
 	}
