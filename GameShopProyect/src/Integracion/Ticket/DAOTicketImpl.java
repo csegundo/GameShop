@@ -28,14 +28,22 @@ public class DAOTicketImpl implements DAOTicket {
 			for(int i = 0 ; i < prod.size(); ++i) {
 				PreparedStatement ps = con.prepareStatement("INSERT INTO ticket(idEmpl, fecha, precioFinal, idProd , nombre , idPlat, cantidad, precio) VALUES(?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 				TProduct pr = (TProduct) prod.get(0);
-				ps.setInt(2, tt.get_employeeId());
+				/*ps.setInt(2, tt.get_employeeId());
 				ps.setTimestamp(3, tt.get_date()); 
 				ps.setDouble(4,tt.get_finalPrice());
 				ps.setInt(5, pr.get_id());
 				ps.setString(6, pr.get_name());
 				ps.setInt(7,pr.get_platformId());
 				ps.setInt(8, pr.get_unitsProvided());
-				ps.setDouble(9, pr.get_pvp());
+				ps.setDouble(9, pr.get_pvp());*/
+				ps.setInt(1, tt.get_employeeId());
+				ps.setTimestamp(2, tt.get_date()); 
+				ps.setDouble(3,tt.get_finalPrice());
+				ps.setInt(4, pr.get_id());
+				ps.setString(5, pr.get_name());
+				ps.setInt(6,pr.get_platformId());
+				ps.setInt(7, pr.get_unitsProvided());
+				ps.setDouble(8, pr.get_pvp());
 				ps.executeUpdate();
 				ResultSet rs = ps.getGeneratedKeys();
 				if(rs.next()){

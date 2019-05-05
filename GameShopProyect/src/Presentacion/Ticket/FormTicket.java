@@ -100,8 +100,8 @@ public class FormTicket extends JDialog {
 						suma += ((TProduct)t).get_pvp();
 					
 					tt.set_finalPrice(suma);
-					Controller.getInstance().action(tt, Event.REGISTER_TICKET);
 					closeDialog();
+					Controller.getInstance().action(tt, Event.REGISTER_TICKET);
 				}
 			}
 		});
