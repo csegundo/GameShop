@@ -59,15 +59,31 @@ public class FormUpdateProvider extends FormProvider{
 	}
 	
 	@Override
-	protected void okButtonAction(){ //LLAMAR/CREAR EVENT.UPDATE_PROVIDER
+	protected void okButtonAction(){
 		_ok.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				_provider.set_nif(_nifText.getText());
+				
+				try {
+					Integer phone = Integer.parseInt(_phoneText.getText());
+					String nif = _nifText.getText();
+					String address = _addressText.getText();
+					_provider.set_nif(nif);
+					_provider.set_address(address);
+					_provider.set_phoneNumber(phone);
+					closeDialog();
+					Controller.getInstance().action(_provider, Event.MODIFY_PROVIDER);
+				} catch(Exception ex) {
+					closeDialog();
+					Controller.getInstance().action(null, Event.MODIFY_PROVIDER);
+				}
+				
+				// LO DE ANTES:
+				/*_provider.set_nif(_nifText.getText());
 				_provider.set_address(_addressText.getText());
 				_provider.set_phoneNumber(Integer.parseInt(_phoneText.getText()));
 				Controller.getInstance().action(_provider, Event.MODIFY_PROVIDER);
-				closeDialog();
+				closeDialog();*/
 			}
 		});
 	}
