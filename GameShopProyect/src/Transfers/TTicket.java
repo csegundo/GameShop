@@ -22,6 +22,10 @@ public class TTicket {
 		_employeeId = employeeID;
 		_products = productsList;
 	}
+	public TTicket()
+	{
+		
+	}
 	
 	public Double get_finalPrice() {
 		return _finalPrice;

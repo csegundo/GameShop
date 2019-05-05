@@ -16,5 +16,6 @@ public interface DAOTicket {
 	public Boolean updateTicket(TTicket tt);
 	public TTicket readTicket(TTicket tt);
 	public List<Object> readAllTickets();
-	public Integer readByDate(Timestamp d);
+	public TTicket readByDate(Timestamp d); //estaba a Integer (devolvia el id) , lo he cambiado a TTicket porque
+											//lo del id es un puto jaleo. ~Vitali
 }
