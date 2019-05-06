@@ -95,11 +95,7 @@ public class FormTicket extends JDialog {
 					// info ==> en [0] tenemos el ID del empleado y en [1] tenemos el nombre
 					String[] info = ((String)(_employeeElection.getSelectedItem())).split(" - ");
 					TTicket tt = new TTicket(Integer.parseInt(info[0]), _productsSelected);
-					Double suma = (double) 0;
-					for(Object t : _productsSelected)
-						suma += ((TProduct)t).get_pvp();
 					
-					tt.set_finalPrice(suma);
 					closeDialog();
 					Controller.getInstance().action(tt, Event.REGISTER_TICKET);
 				}
@@ -139,7 +135,7 @@ public class FormTicket extends JDialog {
 				
 				// Si existe en la BD un producto con ese id, nombre y tipo, nos devuelve todos sus datos
 				TProduct all = (TProduct)SAAbstractFactory.getInstance().createSAProduct().readProduct(toAdd.get_id());
-				if(all != null && /*!addItemToAnExistingProduct(toAdd) &&*/ all.get_stock() >= unitsToSell) {
+				if(all != null && !addItemToAnExistingProduct(toAdd) && all.get_stock() >= unitsToSell) {
 					all.set_stock(all.get_stock() - unitsToSell);
 					_productsSelected.add(all);
 				}

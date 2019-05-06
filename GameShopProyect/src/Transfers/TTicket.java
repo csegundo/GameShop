@@ -13,7 +13,6 @@ public class TTicket {
 	private Integer _id;
 	private Integer _employeeId;
 	private List<Object> _products; //ANTES ESTABA productsID????
-	private String _log; // TODO al final lo dejamos???
 	
 	// CONSTRUCTOR
 	
@@ -56,12 +55,5 @@ public class TTicket {
 	}
 	public void set_products(List<Object> _productsId) {
 		this._products = _productsId;
-	}
-	public String getLog() {
-		return _log;
-	}
-	public void setLog(String log)
-	{
-		this._log = log;
 	}
 }

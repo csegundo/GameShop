@@ -13,8 +13,8 @@ public class SATicketImpl implements SATicket {
 	
 	public Integer createTicket(TTicket tt) {
 		//DAOTicket daoTicket = DAOAbstractFactory.getInstance().createDAOTicket();
-		if(ProdListNotEmpty(tt) && CorrectInputData(tt))
-		{
+		if(prodListNotEmpty(tt) && correctInputData(tt)){
+			// code ==> Calcular precio final y modificar el stock de los productos en la BD de producto
 			return DAOAbstractFactory.getInstance().createDAOTicket().createTicket(tt); 
 		}
 		else
@@ -57,11 +57,12 @@ public class SATicketImpl implements SATicket {
 		return tickets;
 	}
 	
-	private boolean ProdListNotEmpty(TTicket tt)
+	private boolean prodListNotEmpty(TTicket tt)
 	{ //damos por hecho en el DAO que la lista no llega vacia ===> Aqui se comprueba si esta vacia o no
 		return tt.get_products().size()>0;
 	}
-	private boolean CorrectInputData(TTicket tt)
+	
+	private boolean correctInputData(TTicket tt)
 	{ //comprobamos que todos los datos introducidos son correctos y existen
 	
 		//Empleado existe y esta activo
