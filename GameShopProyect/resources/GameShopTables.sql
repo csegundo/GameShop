@@ -59,7 +59,7 @@ CREATE TABLE `ticket` (
   `fecha` TIMESTAMP NOT NULL,
   `precioFinal` FLOAT NOT NULL,
   PRIMARY KEY (`ID`),
-  CONSTRAINT `IDEmpleado` FOREIGN KEY (`ID`) REFERENCES `gameshopapplication`.`empleado` (`ID`)
+  CONSTRAINT `IDEmpleado` FOREIGN KEY (`ID`) REFERENCES `empleado` (`ID`)
 );
 
 
