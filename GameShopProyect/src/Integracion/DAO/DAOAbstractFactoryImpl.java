@@ -4,35 +4,35 @@
 package Integracion.DAO;
 
 import Integracion.Employee.DAOEmployee;
-import Integracion.Employee.DAOEmployeeImpl;
+import Integracion.Employee.TestDAOEmployee;
 import Integracion.Platform.DAOPlatform;
-import Integracion.Platform.DAOPlatformImpl;
+import Integracion.Platform.TestDAOPlatform;
 import Integracion.Product.DAOProduct;
-import Integracion.Product.DAOProductImpl;
+import Integracion.Product.TestDAOProduct;
 import Integracion.Provider.DAOProvider;
-import Integracion.Provider.DAOProviderImpl;
+import Integracion.Provider.TestDAOProvider;
 import Integracion.Ticket.DAOTicket;
-import Integracion.Ticket.DAOTicketImpl;
+import Integracion.Ticket.TestDAOTicket;
 
 
 public class DAOAbstractFactoryImpl extends DAOAbstractFactory {
 	public DAOEmployee createDAOEmployee() {
-		return new DAOEmployeeImpl();
+		return new TestDAOEmployee();
 	}
 
 	public DAOPlatform createDAOPlatform() {
-		return new DAOPlatformImpl();
+		return new TestDAOPlatform();
 	}
 
 	public DAOProduct createDAOProduct() {
-		return new DAOProductImpl();
+		return new TestDAOProduct();
 	}
 
 	public DAOProvider createDAOProvider() {
-		return new DAOProviderImpl();
+		return new TestDAOProvider();
 	}
 
 	public DAOTicket createDAOTicket() {
-		return new DAOTicketImpl();
+		return new TestDAOTicket();
 	}
 }

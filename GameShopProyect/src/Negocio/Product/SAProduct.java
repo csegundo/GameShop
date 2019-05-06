@@ -15,5 +15,4 @@ public interface SAProduct {
 	public Boolean updateProduct(TProduct tpr);
 	public Object readProduct(Integer id);
 	public List<Object> readAllProducts();
-	// METODO PARA DIFERENCIAR ENTRE ACCESORIO O JUEGO
 }
