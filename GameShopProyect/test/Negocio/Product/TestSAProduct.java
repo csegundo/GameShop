@@ -24,7 +24,7 @@ public class TestSAProduct {
 	
 	@Test
 	public void testCreateProduct(TProduct tpr) {
-		
+		//assertEquals(0, actual);
 		/*int id = -1;
 		TPlatform tpl;
 		TProvider tprd;

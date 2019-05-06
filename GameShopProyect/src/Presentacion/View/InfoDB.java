@@ -151,20 +151,20 @@ public class InfoDB extends JDialog {
 				Main.Main.user = _nameText.getText();
 				Main.Main.password = String.valueOf(_passwText.getPassword());
 				Statement Stmt = null;
-				
-				Connection conn;
+				Connection conn = null;
 				try {
-					//conn = DriverManager.getConnection("jdbc:mysql://localhost:3306", Main.Main.user, Main.Main.password);
-					conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", Main.Main.user, Main.Main.password);
+					conn =  DriverManager.getConnection("jdbc:mysql://localhost:3306/?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", Main.Main.user, Main.Main.password);
 					Stmt = conn.createStatement();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				try {
 				
+					Stmt.execute("SET GLOBAL time_zone = '+3:00'");
 					if (_create.isSelected()) {
-				
-						//Stmt = conn.createStatement();
 	
 						Stmt.execute("CREATE DATABASE " + Main.Main.database);
 						Stmt.execute("USE " + Main.Main.database);
-						Stmt.execute("SET GLOBAL time_zone = '+3:00'");
 						
 						String aSQLScriptFilePath = "resources/GameShopTables.sql";			   
 						PrintWriter prnt = new PrintWriter(System.out);
@@ -172,13 +172,16 @@ public class InfoDB extends JDialog {
 						SqlRunner r = new SqlRunner(conn,prnt,prnt,true,false);
 						r.runScript(rd);
 					}
-					Stmt.execute("SET GLOBAL time_zone = '+3:00'");
 					dispose();
 					Controller.getInstance();
 				}
 				catch (Exception e){
-				   /* Se lanza una excepción si no se encuentra en ejecutable o el fichero no es ejecutable. */
 					JOptionPane.showMessageDialog(null, "Error JDBC connection.","Failed",JOptionPane.ERROR_MESSAGE);
+					try {
+						Stmt.execute("DROP SCHEMA " + Main.Main.database);
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
 				} finally {
 					try {
 						if(Stmt!=null) 
