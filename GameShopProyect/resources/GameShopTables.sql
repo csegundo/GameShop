@@ -52,22 +52,14 @@ CREATE TABLE `producto` (
 	CONSTRAINT `IDProveedorP` FOREIGN KEY (`IDProveedor`) REFERENCES `proveedor` (`ID`)
 );
 
-/*
-CREATE TABLE `ticket` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `IDEmpl` int(11) NOT NULL,
-  `fecha` timestamp NOT NULL,
-  `precioFinal` float NOT NULL,
-  `idProd`int(11) NOT NULL,
-  `nombre`varchar(45) NOT NULL,
-  `idPlat`int(11) NOT NULL,
-  `cantidad`int(11) NOT NULL,
-  `precio` float NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `IDEmpl_idx` (`IDEmpl`),
-  CONSTRAINT `IDEmpl` FOREIGN KEY (`IDEmpl`) REFERENCES `empleado` (`ID`)
+
+CREATE OR REPLACE TABLE ticket (
+	ID VARCHAR2(10) NOT NULL,
+	fecha TIMESTAMP NOT NULL,
+	precioFinal NUMBER(6,2) NOT NULL,
+	IDEmpleado VARCHAR2(5) REFERENCES empleado (ID),
+	PRIMARY KEY(IDEmpleado, ID)
 );
-*/
 
 CREATE TABLE `asociado` (
   `IDProducto` INT(11) NOT NULL,
