@@ -19,6 +19,7 @@ import Presentacion.Platform.ShowAllPlatform;
 import Presentacion.Platform.ShowProductsFromPlatform;
 import Presentacion.Product.ShowAllProducts;
 import Presentacion.Provider.ShowAllProvider;
+import Presentacion.Ticket.ShowAllTickets;
 
 /** 
 * @author GameShop
@@ -52,6 +53,7 @@ public class ShowPanel extends JPanel {
 			this.sa = new ShowAllPlatform(nameIdentificator, null);
 			break;
 		case "ticket":
+			this.sa =new ShowAllTickets(nameIdentificator,null);
 			break;
 		}
 		initPanel();

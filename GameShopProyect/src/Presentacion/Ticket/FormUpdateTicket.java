@@ -17,6 +17,7 @@ public class FormUpdateTicket extends FormTicket {
 		super();
 		this.setTitle("Modify a ticket");
 		this.setSize(new Dimension(320, 300));
+		super.disableEmployeeElection();
 		initCheckBox();
 		_tTicket = tt;
 	}

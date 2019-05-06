@@ -119,7 +119,7 @@ public class DAOTicketImpl implements DAOTicket {
 	public TTicket readTicket(TTicket tt) {
 		TTicket tp = null;
 		List<Object> listprod = new ArrayList<Object>();
-		TProduct tprod = null;
+		TProduct tprod = new TProduct();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);

@@ -154,8 +154,8 @@ public class InfoDB extends JDialog {
 				
 				Connection conn;
 				try {
-					conn = DriverManager.getConnection("jdbc:mysql://localhost:3306", Main.Main.user, Main.Main.password);
-					//conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", Main.Main.user, Main.Main.password);
+					//conn = DriverManager.getConnection("jdbc:mysql://localhost:3306", Main.Main.user, Main.Main.password);
+					conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", Main.Main.user, Main.Main.password);
 					Stmt = conn.createStatement();
 				
 					if (_create.isSelected()) {

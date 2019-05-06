@@ -301,4 +301,8 @@ public class FormTicket extends JDialog {
 		setVisible(false);
 		dispose();
 	}
+	protected void disableEmployeeElection()
+	{
+		this._employeeElection.setEnabled(false);
+	}
 }
