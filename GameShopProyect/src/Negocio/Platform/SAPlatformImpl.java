@@ -36,7 +36,8 @@ public class SAPlatformImpl implements SAPlatform {
 
 	@Override
 	public Boolean updatePlatform(TPlatform tpla) {
-		return DAOAbstractFactory.getInstance().createDAOPlatform().updatePlatform(tpla);
+		return (tpla != null && !tpla.get_name().trim().equals("")) ?
+				DAOAbstractFactory.getInstance().createDAOPlatform().updatePlatform(tpla) : false;
 	}
 
 	@Override
