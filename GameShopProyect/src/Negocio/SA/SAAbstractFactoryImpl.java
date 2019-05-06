@@ -1,15 +1,16 @@
 package Negocio.SA;
 
 import Negocio.Employee.SAEmployee;
+
 import Negocio.Employee.TestSAEmployee;
 import Negocio.Platform.SAPlatform;
-import Negocio.Platform.TestSAPlatform;
+import Negocio.Platform.SAPlatformImpl;
 import Negocio.Product.SAProduct;
-import Negocio.Product.TestSAProduct;
+import Negocio.Product.SAProductImpl;
 import Negocio.Provider.SAProvider;
-import Negocio.Provider.TestSAProvider;
+import Negocio.Provider.SAProviderImpl;
 import Negocio.Ticket.SATicket;
-import Negocio.Ticket.TestSATicket;
+import Negocio.Ticket.SATicketImpl;
 
 /** 
  * @author GameShop
@@ -22,19 +23,19 @@ public class SAAbstractFactoryImpl extends SAAbstractFactory {
 	}
 
 	public SAPlatform createSAPlatform() {
-		return new TestSAPlatform();
+		return new SAPlatformImpl();
 	}
 
 	public SAProduct createSAProduct() {
-		return new TestSAProduct();
+		return new SAProductImpl();
 	}
 
 	public SAProvider createSAProvider() {
-		return new TestSAProvider();
+		return new SAProviderImpl();
 	}
 
 	public SATicket createSATicket() {
-		return new TestSATicket();
+		return new SATicketImpl();
 	}
 
 	

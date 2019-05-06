@@ -1,6 +1,13 @@
 package Negocio.Product;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import Integracion.DAO.DAOAbstractFactory;
 import Transfers.TPlatform;
@@ -13,10 +20,12 @@ import Transfers.TGame;
 * @author GameShop
 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 */
-public class TestSAProduct implements SAProduct {
+public class TestSAProduct {
 	
-	public Integer createProduct(TProduct tpr) {
-		int id = -1;
+	@Test
+	public void testCreateProduct(TProduct tpr) {
+		
+		/*int id = -1;
 		TPlatform tpl;
 		TProvider tprd;
 		
@@ -37,8 +46,8 @@ public class TestSAProduct implements SAProduct {
 					}
 				}
 			}
-		}
-		return id;
+		}*/
+		//return id;
 	}
 
 	public Boolean deleteProduct(Integer id) {
