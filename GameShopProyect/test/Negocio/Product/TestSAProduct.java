@@ -2,55 +2,30 @@ package Negocio.Product;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
-import Integracion.DAO.DAOAbstractFactory;
-import Transfers.TPlatform;
+import Negocio.SA.SAAbstractFactory;
 import Transfers.TProduct;
-import Transfers.TProvider;
 import Transfers.TAccessory;
 import Transfers.TGame;
-
 /** 
 * @author GameShop
 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 */
 public class TestSAProduct {
 	
+	private SAProduct sa = SAAbstractFactory.getInstance().createSAProduct();
+	
 	@Test
-	public void testCreateProduct(TProduct tpr) {
-		//assertEquals(0, actual);
-		/*int id = -1;
-		TPlatform tpl;
-		TProvider tprd;
-		
-		if(!tpr.get_name().trim().isEmpty() && tpr.get_unitsProvided() > 0 && 
-				tpr.get_pvp() >= 0){
-			tpl = DAOAbstractFactory.getInstance().createDAOPlatform().readPlatform(tpr.get_platformId());
-			if(tpl != null && tpl.get_activated()){ //Si la plataforma existe y esta activada:
-				tprd = (TProvider) DAOAbstractFactory.getInstance().createDAOProvider().readProvider(tpr.get_providerId());
-				if(tprd != null && tprd.get_activated()){
-					if(tpr.get_type() == TProduct.accessory && !((TAccessory)tpr).get_brand().isEmpty() &&
-							!((TAccessory)tpr).get_color().isEmpty() ||
-							tpr.get_type() == TProduct.game && !((TGame)tpr).get_description().isEmpty() &&
-							!((TGame)tpr).get_gender().isEmpty()){
-						
-						TProduct tp = DAOAbstractFactory.getInstance().createDAOProduct().readProductByName(tpr.get_name());
-						if(tp == null)
-							id = DAOAbstractFactory.getInstance().createDAOProduct().createProduct(tpr);
-					}
-				}
-			}
-		}*/
-		//return id;
+	public void testCreateProduct() {
+		//int results = sa.createProduct(new TGame("name",1,2.5,TProduct.accessory,1,1,"esto es una descripcion <150 caracteres."));
+		//assertEquals(3, results);
+		int results = sa.createProduct(new TAccessory("name2",1,0.0,1,1,"SONY","ROJO","Esto es una descripcion <150 caracteres."));
+		assertEquals(3, results);
 	}
 
-	public Boolean deleteProduct(Integer id) {
+	/*public Boolean deleteProduct(Integer id) {
 		boolean ret = false;
 		if(id != null) {
 			TProduct tp = DAOAbstractFactory.getInstance().createDAOProduct().readProduct(id);
@@ -101,5 +76,5 @@ public class TestSAProduct {
 
 	public List<Object> readAllProducts() {
 		return DAOAbstractFactory.getInstance().createDAOProduct().readAllProducts();
-	}
+	}*/
 }
