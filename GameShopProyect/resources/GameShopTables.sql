@@ -53,13 +53,15 @@ CREATE TABLE `producto` (
 );
 
 
-CREATE OR REPLACE TABLE ticket (
-	ID VARCHAR2(10) NOT NULL,
-	fecha TIMESTAMP NOT NULL,
-	precioFinal NUMBER(6,2) NOT NULL,
-	IDEmpleado VARCHAR2(5) REFERENCES empleado (ID),
-	PRIMARY KEY(IDEmpleado, ID)
+CREATE TABLE `ticket` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `IDEmpleado` INT(11) NOT NULL,
+  `fecha` TIMESTAMP NOT NULL,
+  `precioFinal` FLOAT NOT NULL,
+  PRIMARY KEY (`ID`),
+  CONSTRAINT `IDEmpleado` FOREIGN KEY (`ID`) REFERENCES `gameshopapplication`.`empleado` (`ID`)
 );
+
 
 CREATE TABLE `asociado` (
   `IDProducto` INT(11) NOT NULL,

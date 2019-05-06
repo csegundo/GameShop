@@ -25,23 +25,9 @@ public class DAOTicketImpl implements DAOTicket {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			
-			for(int i = 0 ; i < prod.size(); ++i) {
-				PreparedStatement ps = con.prepareStatement("INSERT INTO ticket(idEmpl, fecha, precioFinal, idProd , nombre, cantidad, precio) VALUES(?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
-				TProduct pr = (TProduct) prod.get(0);
-				ps.setInt(1, tt.get_employeeId());
-				ps.setTimestamp(2, tt.get_date()); 
-				ps.setDouble(3,tt.get_finalPrice());
-				ps.setInt(4, pr.get_id());
-				ps.setString(5, pr.get_name());
-				//ps.setInt(6,pr.get_platformId());
-				ps.setInt(6, pr.get_unitsProvided());
-				ps.setDouble(7, pr.get_pvp());
-				ps.executeUpdate();
-				ResultSet rs = ps.getGeneratedKeys();
-				if(rs.next()){
-					id = rs.getInt(1);
-				}
-			}
+			PreparedStatement ps = con.prepareStatement("INSERT INTO ticket(idEmpl, fecha, precioFinal, idProd , nombre, cantidad, precio) VALUES(?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+
+			
 			con.close();
 			
 		} catch (SQLException | ClassNotFoundException e) {
