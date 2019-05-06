@@ -60,12 +60,12 @@ public class DAOTicketImpl implements DAOTicket {
 	public Boolean deleteTicket(TTicket tt) {
 		boolean ret = false;
 		try {
-			java.sql.Date date = new java.sql.Date(tt.get_date().getTime()); //CREEEEEEEEEEEEEEEEO QUE FUNCIONA (?)
+			//java.sql.Date date = new java.sql.Date(tt.get_date().getTime()); //CREEEEEEEEEEEEEEEEO QUE FUNCIONA (?)
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			PreparedStatement ps = con.prepareStatement("DELETE ticket WHERE IDEmpleado=(?) AND fecha =(?) AND precio_final = (?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, tt.get_employeeId());
-			ps.setDate(2, date);
+			ps.setTimestamp(2, tt.get_date());
 			ps.setDouble(3, tt.get_finalPrice());
 			int res = ps.executeUpdate();
 		
@@ -179,7 +179,7 @@ public class DAOTicketImpl implements DAOTicket {
 	public TTicket readByDate(Timestamp d) {
 		TTicket tp = null;
 		List<Object> listprod = new ArrayList<Object>();
-		TProduct tprod = null;
+		TProduct tprod = new TProduct();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);

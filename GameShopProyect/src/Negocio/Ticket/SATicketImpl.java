@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package Negocio.Ticket;
 
 import java.util.List;
@@ -44,7 +42,6 @@ public class SATicketImpl implements SATicket {
 	public Object readTicket(Integer id) {
 		TTicket ret = null;
 		DAOTicket daoTicket = DAOAbstractFactory.getInstance().createDAOTicket();
-		
 		if(id != null)
 		{
 			TTicket aux = new TTicket();
@@ -53,6 +50,7 @@ public class SATicketImpl implements SATicket {
 		}
 		return ret;
 	}
+	
 	public List<Object> readAllTickets() {
 		List<Object> tickets = null;
 		tickets = DAOAbstractFactory.getInstance().createDAOTicket().readAllTickets();
