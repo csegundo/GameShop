@@ -18,11 +18,9 @@ public class SAProviderImpl implements SAProvider {
 		int id = -1;
 		if(validateData(tp)) {
 			DAOProvider daoProvider = DAOAbstractFactory.getInstance().createDAOProvider();
-			if(tp != null && validateData(tp)){
-				TProvider tpl = (TProvider) daoProvider.readProviderByNIF(tp.get_nif());
-				if(tpl == null)
-					id = daoProvider.createProvider(tp);
-			}
+			TProvider tpl = (TProvider) daoProvider.readProviderByNIF(tp.get_nif());
+			if(tpl == null)
+				id = daoProvider.createProvider(tp);
 		}
 		return id;
 	}
@@ -78,7 +76,7 @@ public class SAProviderImpl implements SAProvider {
 		
 		upperLetter = (NIF.substring(8)).toUpperCase();
 		
-		if(!NIFnumbers(NIF) && NIFletter(NIF).equals(upperLetter))
+		if(NIFnumbers(NIF) && NIFletter(NIF).equals(upperLetter))
 			return true;
 		else return false;
 	}
