@@ -13,9 +13,22 @@ public class SATicketImpl implements SATicket {
 	
 	public Integer createTicket(TTicket tt) {
 		//DAOTicket daoTicket = DAOAbstractFactory.getInstance().createDAOTicket();
-		if(prodListNotEmpty(tt) && correctInputData(tt)){
-			// code ==> Calcular precio final y modificar el stock de los productos en la BD de producto
-			return DAOAbstractFactory.getInstance().createDAOTicket().createTicket(tt); 
+		if(prodListNotEmpty(tt) && correctInputData(tt))
+		{ //modificar stock de cada producto , calcular precio final
+			Integer res;
+			double preciofin=0.0;
+			int units=0;
+			for(int i=0;i<tt.get_products().size();i++)
+			{
+				TProduct tp = (TProduct) tt.get_products().get(i);
+				units = tp.get_unitsProvided();
+				tp = DAOAbstractFactory.getInstance().createDAOProduct().readProduct(tp.get_id());
+				preciofin = preciofin + (tp.get_pvp()*units);
+				tp.set_stock(tp.get_stock()-units);
+				DAOAbstractFactory.getInstance().createDAOProduct().updateProduct(tp);
+			}
+			 res = DAOAbstractFactory.getInstance().createDAOTicket().createTicket(tt); 
+			 return res;
 		}
 		else
 		{
