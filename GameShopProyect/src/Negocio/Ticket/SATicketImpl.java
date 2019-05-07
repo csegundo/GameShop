@@ -24,12 +24,19 @@ public class SATicketImpl implements SATicket {
 				units = tp.get_unitsInTicket();
 				tp = DAOAbstractFactory.getInstance().createDAOProduct().readProduct(tp.get_id());
 				preciofin += (tp.get_pvp() * units);
+				tp.set_unitsProvided(tp.get_stock());
 				tp.set_stock(tp.get_stock() - units);
+				
+				if(((TProduct)tp).get_stock() > ((TProduct)tp).get_unitsProvided())
+					((TProduct)tp).set_unitsProvided(((TProduct)tp).get_stock()-((TProduct)tp).get_unitsProvided());
+				else
+					((TProduct)tp).set_unitsProvided(0);
+				
 				DAOAbstractFactory.getInstance().createDAOProduct().updateProduct(tp);
 			}
 			tti.set_finalPrice(preciofin);
-			 res = DAOAbstractFactory.getInstance().createDAOTicket().createTicket(tti);
-			 return res;
+			res = DAOAbstractFactory.getInstance().createDAOTicket().createTicket(tti);
+			return res;
 		}
 		else
 			return -1;

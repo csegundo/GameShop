@@ -62,6 +62,7 @@ public class GUITicket extends JPanel implements IGUI {
 			JOptionPane.showMessageDialog(null, "The ticket " + a + " has been properly unsubscribed.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
 			_rightPane.update((SAAbstractFactory.getInstance().createSAPlatform()).readAllPlatforms());
+			_leftPane.addInfoToComboBox();
 			break;
 			
 		case Event.RES_UNSUBSCRIBE_TICKET_FAILED:

@@ -68,7 +68,7 @@ public class DAOProductImpl implements DAOProduct {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			PreparedStatement ps = con.prepareStatement("UPDATE producto SET activo=(?) WHERE ID=(?)", 
-					PreparedStatement.RETURN_GENERATED_KEYS);;
+					PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setBoolean(1, false);
 			ps.setInt(2, id);
 			int res = ps.executeUpdate();
@@ -132,7 +132,7 @@ public class DAOProductImpl implements DAOProduct {
 			ps.setInt(1, tpr.get_id());
 			ResultSet rs = ps.executeQuery();
 			if(rs.next())
-				sum = rs.getInt(8);
+				sum = rs.getInt(9);
 			ps = con.prepareStatement("UPDATE producto SET unidadesProv=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setInt(2, tpr.get_id());
 			ps.setInt(1, tpr.get_unitsProvided() + sum);
