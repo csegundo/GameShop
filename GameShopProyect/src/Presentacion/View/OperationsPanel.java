@@ -172,6 +172,8 @@ public class OperationsPanel extends JPanel {
 							Event.UNSUBSCRIBE_PRODUCT);
 					break;
 				case "ticket":
+					Controller.getInstance().action(Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]),
+							Event.UNSUBSCRIBE_TICKET);
 					break;
 				}
 			}
@@ -198,8 +200,8 @@ public class OperationsPanel extends JPanel {
 				_election.addItem(((TProduct) temp).get_id() + " - " + ((TProduct)temp).get_type() + " - " + ((TProduct)temp).get_name());
 			break;
 		case "ticket":
-			/*for(Object tt : SAAbstractFactory.getInstance().createSATicket().readAllTickets())
-				_election.addItem(((TTicket)tt).get_id());*/
+			for(Object tt : SAAbstractFactory.getInstance().createSATicket().readAllTickets())
+				_election.addItem(((TTicket)tt).get_id() + " - " + ((TTicket)tt).get_date());
 			break;
 		}
 	}

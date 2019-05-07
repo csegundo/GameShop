@@ -83,6 +83,7 @@ public class FormTicket extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				closeDialog();
+				_productsSelected.clear();
 			}
 		});
 	}
@@ -110,12 +111,15 @@ public class FormTicket extends JDialog {
 				int selectedRow = _grid.getSelectedRow();
 				if(selectedRow != -1) {
 					int removeCant = (Integer)_numberOfproduct.getValue();
-					int unitsOfSelectedProduct = ((TProduct)_productsSelected.get(selectedRow)).get_unitsProvided() -
-												 ((TProduct)_productsSelected.get(selectedRow)).get_stock();
-					if(unitsOfSelectedProduct >= removeCant) {
-						((TProduct)_productsSelected.get(selectedRow)).set_unitsProvided(unitsOfSelectedProduct - removeCant);
-						model.fireTableDataChanged();
+					int unitsInTicketOfSelectedProduct = ((TProduct)_productsSelected.get(selectedRow)).get_unitsInTicket();
+					if(unitsInTicketOfSelectedProduct > removeCant) {
+						((TProduct)_productsSelected.get(selectedRow)).set_unitsInTicket(
+								((TProduct)_productsSelected.get(selectedRow)).get_unitsInTicket() - removeCant);
 					}
+					else if(unitsInTicketOfSelectedProduct == removeCant)
+						_productsSelected.remove(selectedRow);
+					
+					model.fireTableDataChanged();
 				}
 			}
 		});
@@ -132,11 +136,12 @@ public class FormTicket extends JDialog {
 				toAdd.set_name(info[1]);
 				toAdd.set_type(info[2]);
 				Integer unitsToSell = (Integer)_numberOfproduct.getValue();
+				toAdd.set_unitsInTicket(unitsToSell);
 				
 				// Si existe en la BD un producto con ese id, nombre y tipo, nos devuelve todos sus datos
 				TProduct all = (TProduct)SAAbstractFactory.getInstance().createSAProduct().readProduct(toAdd.get_id());
 				if(all != null && !addItemToAnExistingProduct(toAdd) && all.get_stock() >= unitsToSell) {
-					all.set_stock(all.get_stock() - unitsToSell);
+					all.set_unitsInTicket(unitsToSell);
 					_productsSelected.add(all);
 				}
 				
@@ -150,7 +155,7 @@ public class FormTicket extends JDialog {
 		TProduct tp = (TProduct)tpr;
 		for(int i = 0; i < _productsSelected.size() && !exit; ++i) {
 			if(((TProduct)_productsSelected.get(i)).get_id() == tp.get_id()) {
-				((TProduct)_productsSelected.get(i)).set_unitsProvided(tp.get_unitsProvided() + ((TProduct)_productsSelected.get(i)).get_unitsProvided());
+				((TProduct)_productsSelected.get(i)).set_unitsInTicket(tp.get_unitsInTicket() + ((TProduct)_productsSelected.get(i)).get_unitsInTicket());
 				exit = true;
 			}
 		}
@@ -256,8 +261,7 @@ public class FormTicket extends JDialog {
 							((TProduct)_productsSelected.get(rowIndex)).get_platformId()))).get_name();
 					break;
 				case 3:
-					o = ((TProduct)_productsSelected.get(rowIndex)).get_unitsProvided() - 
-							((TProduct)_productsSelected.get(rowIndex)).get_stock();
+					o = ((TProduct)_productsSelected.get(rowIndex)).get_unitsInTicket();
 					break;
 				}
 				return o;
@@ -297,8 +301,8 @@ public class FormTicket extends JDialog {
 		setVisible(false);
 		dispose();
 	}
-	protected void disableEmployeeElection()
-	{
+	
+	protected void disableEmployeeElection(){
 		this._employeeElection.setEnabled(false);
 	}
 }

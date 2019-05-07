@@ -12,18 +12,15 @@ public class TTicket {
 	private Timestamp _date;
 	private Integer _id;
 	private Integer _employeeId;
-	private List<Object> _products; //ANTES ESTABA productsID????
+	private List<Object> _products;
 	
 	// CONSTRUCTOR
-	
 	public TTicket(Integer employeeID, List<Object> productsList) {
 		_date = new Timestamp(System.currentTimeMillis());
 		_employeeId = employeeID;
 		_products = productsList;
 	}
-	public TTicket()
-	{
-		
+	public TTicket(){
 	}
 	
 	public Double get_finalPrice() {

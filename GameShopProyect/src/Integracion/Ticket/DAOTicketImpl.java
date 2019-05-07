@@ -21,12 +21,28 @@ public class DAOTicketImpl implements DAOTicket {
 	public Integer createTicket(TTicket tt) {
 		int id = -1;
 		try {
-			List<Object> prod = tt.get_products();
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
+			PreparedStatement ps = con.prepareStatement("INSERT INTO ticket(IDEmpleado, fecha, precioFinal) VALUES(?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setInt(1, tt.get_employeeId());
+			ps.setTimestamp(2, tt.get_date());
+			ps.setDouble(3, tt.get_finalPrice());
+			ps.executeUpdate();
 			
-			PreparedStatement ps = con.prepareStatement("INSERT INTO ticket(idEmpl, fecha, precioFinal, idProd , nombre, cantidad, precio) VALUES(?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
-
+			ResultSet rs = ps.getGeneratedKeys();
+			List<Object> l = tt.get_products();
+			
+			if(rs.next()) {
+				id = rs.getInt(1);
+				for(int i = 0; i < l.size(); ++i) {
+					ps = con.prepareStatement("INSERT INTO asociado(IDProducto, IDTicket, IDEmpleado, cantidad) VALUES(?,?,?,?)");
+					ps.setInt(1, ((TProduct)l.get(i)).get_id());
+					ps.setInt(2, id);
+					ps.setInt(3, tt.get_employeeId());
+					ps.setDouble(4, ((TProduct)l.get(i)).get_unitsInTicket());
+					ps.executeUpdate();
+				}
+			}
 			
 			con.close();
 			
@@ -35,21 +51,27 @@ public class DAOTicketImpl implements DAOTicket {
 		}
 		return id;
 	}
-	public Boolean deleteTicket(TTicket tt) {
+	public Boolean deleteTicket(Integer id) {
 		boolean ret = false;
 		try {
-			//java.sql.Date date = new java.sql.Date(tt.get_date().getTime()); //CREEEEEEEEEEEEEEEEO QUE FUNCIONA (?)
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
-			PreparedStatement ps = con.prepareStatement("DELETE ticket WHERE IDEmpleado=(?) AND fecha =(?) AND precio_final = (?)", PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setInt(1, tt.get_employeeId());
-			ps.setTimestamp(2, tt.get_date());
-			ps.setDouble(3, tt.get_finalPrice());
+			PreparedStatement ps = con.prepareStatement("DELETE FROM asociado WHERE IDTicket=?");
+			ps.setInt(1, id);
 			int res = ps.executeUpdate();
 		
 			if(res > 0) {
 				ret = true;
 			}
+			
+			ps = con.prepareStatement("DELETE FROM ticket WHERE ID=?");
+			ps.setInt(1, id);
+			int res2 = ps.executeUpdate();
+		
+			if(res2 > 0) {
+				ret = true;
+			}
+			
 			con.close();
 			
 		} catch (SQLException | ClassNotFoundException e) {
@@ -57,6 +79,7 @@ public class DAOTicketImpl implements DAOTicket {
 		}
 		return ret;
 	}
+	
 	public Boolean updateTicket(TTicket tt) {
 		/*boolean ret = false;
 		try {

@@ -251,6 +251,12 @@ public class ControllerImpl extends Controller {
 				gui.actualiza(Event.RES_REGISTER_TICKET_FAILED, null);
 			break;
 		case Event.UNSUBSCRIBE_TICKET:
+			id = (Integer) data;
+			boolean resDeleteTi = (SAAbstractFactory.getInstance().createSATicket()).deleteTicket(id);
+			if(resDeleteTi)
+				gui.actualiza(Event.RES_UNSUBSCRIBE_TICKET_OK, id);
+			else
+				gui.actualiza(Event.RES_UNSUBSCRIBE_TICKET_FAILED, null);
 			break;
 		case Event.MODIFY_TICKET:
 			tti = (TTicket) data;

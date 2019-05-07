@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 public interface DAOTicket {
 	
 	public Integer createTicket(TTicket tt);
-	public Boolean deleteTicket(TTicket tt);
+	public Boolean deleteTicket(Integer id);
 	public Boolean updateTicket(TTicket tt);
 	public TTicket readTicket(TTicket tt);
 	public List<Object> readAllTickets();
