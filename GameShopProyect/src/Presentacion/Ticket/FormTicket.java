@@ -44,7 +44,7 @@ public class FormTicket extends JDialog {
 	private JSpinner _numberOfproduct = new JSpinner(new SpinnerNumberModel(1, 1, 100, 1));
 	private JButton _add;
 	private JButton _remove;
-	private JButton _accept;
+	protected JButton _accept;
 	private JButton _cancel;
 	private AbstractTableModel model;
 	private JTable _grid;

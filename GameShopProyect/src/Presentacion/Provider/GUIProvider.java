@@ -81,12 +81,13 @@ public class GUIProvider extends JPanel implements IGUI {
 			
 		case Event.RES_READ_PROVIDER_OK:
 			TProvider tp = (TProvider)t;
-			String act = tp.get_activated() ? "Yes" : "No";
-			_rightPane.setInfoInScreen("ID: " + tp.get_id() + '\n' + 
+			/*String act = tp.get_activated() ? "Yes" : "No";*/
+			/*_rightPane.setInfoInScreen("ID: " + tp.get_id() + '\n' + 
 										"NIF: " + tp.get_nif() + '\n' +
 										"Address: " + tp.get_address() + '\n' +
 										"Phone number: " + tp.get_phoneNumber() + '\n' +
-										"Activated: " + act);
+										"Activated: " + act);*/
+			_rightPane.setInfoInScreen(tp.toString());
 			break;
 			
 		case Event.RES_READ_PROVIDER_FAILED:

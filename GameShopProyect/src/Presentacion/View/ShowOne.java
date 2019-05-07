@@ -25,6 +25,7 @@ import Transfers.TEmployee;
 import Transfers.TPlatform;
 import Transfers.TProduct;
 import Transfers.TProvider;
+import Transfers.TTicket;
 
 /** 
 * @author GameShop
@@ -77,6 +78,8 @@ public class ShowOne extends JPanel {
 							Event.READ_PRODUCT);
 					break;
 				case "ticket":
+					Controller.getInstance().action(Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]),
+							Event.READ_TICKET);
 					break;
 				}
 			}
@@ -143,11 +146,11 @@ public class ShowOne extends JPanel {
 			break;
 		case "product":
 			for(Object temp : SAAbstractFactory.getInstance().createSAProduct().readAllProducts())
-				_election.addItem(((TProduct) temp).get_id()+" - "+((TProduct)temp).get_type()+" - "+((TProduct)temp).get_name());
+				_election.addItem(((TProduct) temp).get_id() + " - " + ((TProduct)temp).get_type()+" - "+((TProduct)temp).get_name());
 			break;
 		case "ticket":
-			/*for(Object tt : SAAbstractFactory.getInstance().createSATicket().readAllTickets())
-				_election.addItem(((TTicket)tt).get_id());*/
+			for(Object tt : SAAbstractFactory.getInstance().createSATicket().readAllTickets())
+				_election.addItem(((TTicket)tt).get_id() + " - " + ((TTicket)tt).get_date());
 			break;
 		}
 	}

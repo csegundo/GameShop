@@ -35,7 +35,8 @@ public class DAOPlatformImpl implements DAOPlatform {
 			con.close();
 			
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			id = -1;
 		}
 		return id;
 	}
@@ -59,7 +60,8 @@ public class DAOPlatformImpl implements DAOPlatform {
 			con.close();
 			
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			ret = false;
 		}
 		return ret;
 	}
@@ -90,7 +92,8 @@ public class DAOPlatformImpl implements DAOPlatform {
 			con.close();
 			
 		}catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			ret = false;
 		}
 		return ret;
 	}
@@ -115,7 +118,8 @@ public class DAOPlatformImpl implements DAOPlatform {
 			}
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			tel = null;
 		}
 		
 		return tel;
@@ -140,7 +144,8 @@ public class DAOPlatformImpl implements DAOPlatform {
 			}
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			l = null;
 		}
 		return l;
 	}
@@ -227,7 +232,8 @@ public class DAOPlatformImpl implements DAOPlatform {
 			
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			l = null;
 		}
 		return l;
 	}
@@ -247,7 +253,8 @@ public class DAOPlatformImpl implements DAOPlatform {
 			}
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			tel = null;
 		}
 		
 		return tel;

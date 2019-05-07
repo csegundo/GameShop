@@ -53,7 +53,7 @@ public class ShowPanel extends JPanel {
 			this.sa = new ShowAllPlatform(nameIdentificator, null);
 			break;
 		case "ticket":
-			this.sa =new ShowAllTickets(nameIdentificator,null);
+			this.sa = new ShowAllTickets(nameIdentificator, null);
 			break;
 		}
 		initPanel();

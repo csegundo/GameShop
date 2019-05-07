@@ -261,24 +261,24 @@ public class ControllerImpl extends Controller {
 		case Event.MODIFY_TICKET:
 			tti = (TTicket) data;
 			if(SAAbstractFactory.getInstance().createSATicket().updateTicket(tti))
-				gui.actualiza(Event.RES_MODIFY_PLATFORM_OK, tti.get_id());
+				gui.actualiza(Event.RES_MODIFY_TICKET_OK, tti.get_id());
 			else
-				gui.actualiza(Event.RES_MODIFY_PLATFORM_FAILED, null);
+				gui.actualiza(Event.RES_MODIFY_TICKET_FAILED, null);
 			break;
 		case Event.READ_TICKET:
 			id = (Integer) data;
-			TTicket ticket = (TTicket) (SAAbstractFactory.getInstance().createSATicket().readTicket(id));
+			TTicket ticket = (TTicket)(SAAbstractFactory.getInstance().createSATicket().readTicket(id));
 			if (ticket != null) 
-				gui.actualiza(Event.RES_READ_PLATFORM_OK, ticket);
+				gui.actualiza(Event.RES_READ_TICKET_OK, ticket);
 			else
-				gui.actualiza(Event.RES_READ_PLATFORM_FAILED, null);
+				gui.actualiza(Event.RES_READ_TICKET_FAILED, null);
 			break;
 		case Event.READ_ALL_TICKET:
 			List<Object> tickets = (SAAbstractFactory.getInstance().createSATicket().readAllTickets());
 			if(tickets == null)
-				gui.actualiza(Event.RES_READALL_PLATFORM_FAILED, null);
+				gui.actualiza(Event.RES_READALL_TICKET_FAILED, null);
 			else
-				gui.actualiza(Event.RES_READALL_PLATFORM_OK, tickets);
+				gui.actualiza(Event.RES_READALL_TICKET_OK, tickets);
 			break;
 		}
 	}

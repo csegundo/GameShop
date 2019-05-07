@@ -30,7 +30,8 @@ public class DAOEmployeeImpl implements DAOEmployee {
 			con.close();
 			
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			id = -1;
 		}
 		return id;
 	}
@@ -52,7 +53,8 @@ public class DAOEmployeeImpl implements DAOEmployee {
 			con.close();
 			
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			ret = false;
 		}
 		return ret;
 	}
@@ -86,7 +88,8 @@ public class DAOEmployeeImpl implements DAOEmployee {
 			con.close();
 			
 		}catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			ret = false;
 		}
 		return ret;
 	}
@@ -111,7 +114,8 @@ public class DAOEmployeeImpl implements DAOEmployee {
 			}
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			tel = null;
 		}
 		
 		return tel;
@@ -137,7 +141,8 @@ public class DAOEmployeeImpl implements DAOEmployee {
 			}
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			l = null;
 		}
 		return l;
 	}
@@ -158,7 +163,8 @@ public class DAOEmployeeImpl implements DAOEmployee {
 			}
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			tel = null;
 		}
 		
 		return tel;

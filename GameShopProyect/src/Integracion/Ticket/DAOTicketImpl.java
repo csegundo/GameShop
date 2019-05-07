@@ -47,7 +47,8 @@ public class DAOTicketImpl implements DAOTicket {
 			con.close();
 			
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			id = -1;
 		}
 		return id;
 	}
@@ -75,7 +76,8 @@ public class DAOTicketImpl implements DAOTicket {
 			con.close();
 			
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			ret = false;
 		}
 		return ret;
 	}
@@ -112,20 +114,19 @@ public class DAOTicketImpl implements DAOTicket {
 			con.close();
 			
 		}catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			 * ret = false;
 		}
 		return ret;*/
 		return null;
 	}
-	public TTicket readTicket(TTicket tt) {
+	public TTicket readTicket(Integer id) {
 		TTicket tp = null;
-		List<Object> listprod = new ArrayList<Object>();
-		TProduct tprod = new TProduct();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM ticket WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setInt(1, tt.get_id());
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next()){
@@ -135,8 +136,7 @@ public class DAOTicketImpl implements DAOTicket {
 				tp.set_date(rs.getTimestamp(3));
 				tp.set_finalPrice(rs.getDouble(4));
 				
-				while(rs.next())
-				{ //IDticket, idEmpl, fecha, precioFinal, idProd , nombre , idPlat, cantidad, precio
+				/*while(rs.next()){
 					tprod.set_id(rs.getInt(5));
 					tprod.set_name(rs.getString(6));
 					tprod.set_platformId(rs.getInt(7));
@@ -144,12 +144,13 @@ public class DAOTicketImpl implements DAOTicket {
 					tprod.set_pvp(rs.getDouble(9));
 					listprod.add(tprod);
 				}
-				tp.set_products(listprod);
+				tp.set_products(listprod);*/
 					
 			}
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			tp = null;
 		}
 		
 		return tp;
@@ -172,7 +173,8 @@ public class DAOTicketImpl implements DAOTicket {
 			}
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			l = null;
 		}
 		return l;
 }
@@ -208,7 +210,8 @@ public class DAOTicketImpl implements DAOTicket {
 			}
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			tp = null;
 		}
 		return tp;
 	}

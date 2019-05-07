@@ -30,5 +30,21 @@ public class TAccessory extends TProduct {
 	public void set_color(String _color) {
 		this._color = _color;
 	}
+	
+	@Override
+	public String toString() {
+		String act = super.get_activated() ? "Yes" : "No";
+		return ("ID: " + super.get_id() + '\n' +
+				"Name: " + super.get_name() + '\n'+
+				"Type: " + super.get_type() + '\n' +
+				"Stock: " + super.get_stock() + '\n' +
+				"PVP: " + super.get_pvp() + '\n' +
+				"Provider ID: " + super.get_providerId() + '\n' +
+				"Platform ID: " + super.get_platformId() + '\n' +
+				"Activated: " + act + '\n'+
+				"Units Provided: " + super.get_unitsProvided() + '\n' +
+				"Brand: " + _brand + '\n' +
+				"Color: " + _color);
+	}
 
 }

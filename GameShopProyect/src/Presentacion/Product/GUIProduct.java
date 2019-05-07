@@ -76,8 +76,13 @@ public class GUIProduct extends JPanel implements IGUI {
 			break;
 		case Event.RES_READ_PRODUCT_OK:
 			TProduct tp = (TProduct)t;
-			String act = tp.get_activated() ? "Yes" : "No";
-			String text = "ID: " + tp.get_id() + '\n' + 
+			String text;
+			if(tp.get_type().equalsIgnoreCase(TProduct.game))
+				text = ((TGame)tp).toString();
+			else
+				text = ((TAccessory)tp).toString();
+			/*String act = tp.get_activated() ? "Yes" : "No";
+			String text = "ID: " + tp.get_id() + '\n' +
 					"Name: " + tp.get_name() + '\n'+
 					"Type: " + tp.get_type() + '\n' +
 					"Stock: " + tp.get_stock() + '\n' +
@@ -91,7 +96,7 @@ public class GUIProduct extends JPanel implements IGUI {
 						"Color: " + ((TAccessory)tp).get_color() + '\n' ;
 			else
 				text += "Gender: " +((TGame)tp).get_gender() + '\n';
-			text+= "Description: " + tp.get_description() + '\n';
+			text+= "Description: " + tp.get_description() + '\n';*/
 			_rightPane.setInfoInScreen(text);
 			break;
 		case Event.RES_READ_PRODUCT_FAILED:

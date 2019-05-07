@@ -54,39 +54,14 @@ public class TProvider {
 		this._activated = _activated;
 	}
 
-	/*public String getNif() {
-		return null;
+	
+	@Override
+	public String toString() {
+		String act = _activated ? "Yes" : "No";
+		return ("ID: " + _id + '\n' + 
+				"NIF: " + _nif + '\n' +
+				"Address: " + _address + '\n' +
+				"Phone number: " + _phoneNumber + '\n' +
+				"Activated: " + act);
 	}
-
-	public String getAddress() {
-		return null;
-	}
-
-	public Integer getPhone() {
-		return null;
-	}
-
-	public void setNif(String s) {
-	}
-
-	public void setAddress(String s) {
-	}
-
-	public void setPhone(Integer i) {
-	}
-
-	public Integer getId() {
-		return null;
-	}
-
-	public void setId(Integer i) {
-	}
-
-	public Boolean isActivated() {
-		return null;
-	}
-
-	public void setActivated(Boolean b) {
-	}
-	*/
 }

@@ -1,9 +1,8 @@
 package Presentacion.Ticket;
 
-import java.awt.Component;
 import java.awt.Dimension;
-
-import javax.swing.JCheckBox;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import Transfers.TTicket;
 
@@ -18,5 +17,20 @@ public class FormUpdateTicket extends FormTicket {
 		this.setSize(new Dimension(320, 300));
 		super.disableEmployeeElection();
 		_tTicket = tt;
+		completeFields();
+	}
+	
+	private void completeFields() {
+		disableEmployeeElection();
+		
+	}
+	
+	private void acceptButtonAction() {
+		_accept.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 	}
 }

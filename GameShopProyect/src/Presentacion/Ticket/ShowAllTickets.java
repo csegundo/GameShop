@@ -1,6 +1,3 @@
-/**
- * 
- */
 package Presentacion.Ticket;
 
 import Presentacion.View.ShowAll;
@@ -14,7 +11,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class ShowAllTickets extends ShowAll {
 	private static final long serialVersionUID = 1L;
-	private String[] _columnsId = {"ID","IDEmpleado","Precio final","Fecha"};
+	private String[] _columnsId = {"ID", "Employee ID", "Final price", "Date"};
 	AbstractTableModel model;
 	private List<Object> tickets;
 	
@@ -25,9 +22,9 @@ public class ShowAllTickets extends ShowAll {
 	}
 
 
+	@SuppressWarnings("serial")
 	private void initComponents() {
 		model = new AbstractTableModel() {
-			private static final long serialVersionUID = 1L;
 
 			@Override
 			public int getColumnCount() {
@@ -83,10 +80,10 @@ public class ShowAllTickets extends ShowAll {
 	}
 	
 	private void setColumnsWidth() {
-		_grid.getColumnModel().getColumn(0).setPreferredWidth(30);
-		_grid.getColumnModel().getColumn(1).setPreferredWidth(80);
-		_grid.getColumnModel().getColumn(2).setPreferredWidth(50);
-		_grid.getColumnModel().getColumn(3).setPreferredWidth(80);
+		_grid.getColumnModel().getColumn(0).setPreferredWidth(20);
+		_grid.getColumnModel().getColumn(1).setPreferredWidth(70);
+		_grid.getColumnModel().getColumn(2).setPreferredWidth(60);
+		_grid.getColumnModel().getColumn(3).setPreferredWidth(90);
 	}
 
 	@Override

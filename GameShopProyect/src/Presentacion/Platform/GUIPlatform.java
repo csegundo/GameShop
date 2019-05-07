@@ -87,10 +87,7 @@ public class GUIPlatform extends JPanel implements IGUI {
 			
 		case Event.RES_READ_PLATFORM_OK:
 			TPlatform tp = (TPlatform)t;
-			String act = tp.get_activated() ? "Yes" : "No";
-			_rightPane.setInfoInScreen("ID: " + tp.get_id() + '\n' + 
-										"Name: " + tp.get_name() + '\n' +
-										"Activated: " + act);
+			_rightPane.setInfoInScreen(tp.toString());
 			break;
 			
 		case Event.RES_READ_PLATFORM_FAILED:

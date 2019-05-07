@@ -53,4 +53,13 @@ public class TTicket {
 	public void set_products(List<Object> _productsId) {
 		this._products = _productsId;
 	}
+	
+	
+	@Override
+	public String toString() {
+		return ("ID: " + _id + '\n' +
+				"Employee ID: " + _employeeId + '\n' +
+				"Creation date: " + _date + '\n' +
+				"Total price: " + _finalPrice);
+	}
 }

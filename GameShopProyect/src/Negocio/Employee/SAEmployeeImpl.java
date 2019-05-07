@@ -1,6 +1,3 @@
-/**
- * 
- */
 package Negocio.Employee;
 
 import java.util.List;
@@ -8,17 +5,19 @@ import java.util.List;
 import Integracion.DAO.DAOAbstractFactory;
 import Integracion.Employee.DAOEmployee;
 import Transfers.TEmployee;
+import Transfers.TProvider;
 
 public class SAEmployeeImpl implements SAEmployee {
 
 	@Override
 	public Integer createEmployee(TEmployee te) {
 		int id = -1;
-		DAOEmployee daoEmployee = DAOAbstractFactory.getInstance().createDAOEmployee();
-		if(te != null){
+		if(validateData(te)) {
+			DAOEmployee daoEmployee = DAOAbstractFactory.getInstance().createDAOEmployee();
 			TEmployee tpl = daoEmployee.readEmployeeByNIF(te.get_nif());
 			if(tpl == null)
 				id = daoEmployee.createEmployee(te);
+			
 		}
 		return id;
 	}
@@ -58,4 +57,53 @@ public class SAEmployeeImpl implements SAEmployee {
 		employees = DAOAbstractFactory.getInstance().createDAOEmployee().readAllEmployees();
 		return employees;
 	}
+	
+	private boolean validateData(TEmployee te) {
+		if(te == null || !checkNIF(te.get_nif()) || te.get_name().length() > 45 || te.getTurn().length() > 15)
+			return false;
+		else
+			return true;
+	}
+	
+	
+	// ESTOS 3 METODOS SON PARA COMPROBAR LA VALIDEZ DE UN NIF
+		private boolean checkNIF(String NIF) {
+			String upperLetter = "";
+			if(NIF.length() != 9 || !Character.isLetter(NIF.charAt(8))) 
+				return false;
+			
+			upperLetter = (NIF.substring(8)).toUpperCase();
+			
+			if(NIFnumbers(NIF) && NIFletter(NIF).equals(upperLetter))
+				return true;
+			else return false;
+		}
+
+		private String NIFletter(String NIF) {
+			int myNif = Integer.parseInt(NIF.substring(0, 8)), rest = 0;
+			String letter = "";
+			String[] posibilities = {"T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q",
+					 "V", "H", "L", "C", "K", "E"};
+			rest = myNif % 23;
+			
+			letter = posibilities[rest];
+			
+			return letter;
+		}
+
+		private boolean NIFnumbers(String NIF) {
+			String number = "", myNif = "";
+			String[] numberRange = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+			
+			for(int i = 0; i < NIF.length() - 1; ++i) {
+				number = NIF.substring(i, i + 1);
+				for(int j = 0; j < numberRange.length; ++j) {
+					if(number.equals(numberRange[j]))
+						myNif += numberRange[j];
+				}
+			}
+			if (myNif.length() != 8)
+				return false;
+			else return true;
+		}
 }

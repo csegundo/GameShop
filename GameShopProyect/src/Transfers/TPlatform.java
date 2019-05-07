@@ -46,25 +46,11 @@ public class TPlatform {
 		this._activated = _activated;
 	}
 	
-	/*public String getName() {
-		return null;
+	@Override
+	public String toString() {
+		String act = _activated ? "Yes" : "No";
+		return("ID: " + _id + '\n' + 
+			   "Name: " + _name + '\n' +
+			   "Activated: " + act);
 	}
-	
-	public void setName(String s) {
-	}
-	
-	public Integer getId() {
-		return null;
-	}
-
-	public void setId(Integer i) {
-	}
-
-	public Boolean isActivated() {
-		return null;
-	}
-
-	public void setActivated(Boolean Parameter1) {
-	}
-	*/
 }

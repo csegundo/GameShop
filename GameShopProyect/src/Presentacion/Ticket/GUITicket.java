@@ -11,6 +11,7 @@ import Presentacion.View.GUIGameshop;
 import Presentacion.View.IGUI;
 import Presentacion.View.OperationsPanel;
 import Presentacion.View.ShowPanel;
+import Transfers.TTicket;
 import Presentacion.Controller.Event;
 
 /** 
@@ -82,8 +83,8 @@ public class GUITicket extends JPanel implements IGUI {
 			break;
 			
 		case Event.RES_READ_TICKET_OK:
-			Integer c = (Integer)t;
-			// COOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOODDDDDDDDDDDDDDDDDDDDEEEEEEEEEEEEEEEEEEEEEEEEEE
+			TTicket tt = (TTicket)t;
+			_rightPane.setInfoInScreen(tt.toString());
 			break;
 			
 		case Event.RES_READ_TICKET_FAILED:

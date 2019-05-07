@@ -62,11 +62,26 @@ public class FormUpdateEmployee extends FormEmployee {
 		_accept.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				/* LO DE ANTES:
 				_employee.set_nif(_nifText.getText());
 				_employee.set_name(_nameText.getText());
 				_employee.setTurn(String.valueOf(_turnElection.getSelectedItem()));
 				Controller.getInstance().action(_employee, Event.MODIFY_EMPLOYEE);
-				closeDialog();
+				closeDialog();*/
+				
+				try {
+					String name = _nameText.getText();
+					String nif = _nifText.getText();
+					String turn = String.valueOf(_turnElection.getSelectedItem());
+					_employee.set_name(name);
+					_employee.set_nif(nif);
+					_employee.setTurn(turn);
+					closeDialog();
+					Controller.getInstance().action(_employee, Event.MODIFY_EMPLOYEE);
+				} catch(Exception ex) {
+					closeDialog();
+					Controller.getInstance().action(null, Event.MODIFY_EMPLOYEE);
+				}
 			}
 		});
 	}

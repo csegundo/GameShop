@@ -73,12 +73,7 @@ public class GUIEmployee extends JPanel implements IGUI {
 			
 		case Event.RES_READ_EMPLOYEE_OK:
 			TEmployee te = (TEmployee)t;
-			String act = te.get_activated() ? "Yes" : "No";
-			_rightPane.setInfoInScreen("ID: " + te.get_id() + '\n' + 
-										"Name: " + te.get_name() + '\n' +
-										"NIF: " + te.get_nif() + '\n' +
-										"Round: " + te.getTurn() + '\n' +
-										"Activated: " + act);
+			_rightPane.setInfoInScreen(te.toString());
 			break;
 			
 		case Event.RES_READ_EMPLOYEE_FAILED:

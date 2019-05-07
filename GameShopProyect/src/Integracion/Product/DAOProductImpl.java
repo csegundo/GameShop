@@ -56,7 +56,8 @@ public class DAOProductImpl implements DAOProduct {
 			con.close();
 			
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			id = -1;
 		}
 		return id;
 	}
@@ -77,7 +78,8 @@ public class DAOProductImpl implements DAOProduct {
 			con.close();
 			
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			ret = false;
 		}
 		return ret;
 	}
@@ -160,7 +162,8 @@ public class DAOProductImpl implements DAOProduct {
 			con.close();
 			
 		}catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			ret = false;
 		}
 		return ret;
 	}
@@ -201,7 +204,8 @@ public class DAOProductImpl implements DAOProduct {
 			
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			tp = null;
 		}
 		
 		return tp;
@@ -244,7 +248,8 @@ public class DAOProductImpl implements DAOProduct {
 			
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			l = null;
 		}
 		return l;
 	}
@@ -265,7 +270,8 @@ public class DAOProductImpl implements DAOProduct {
 			}
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			tp = null;
 		}
 		
 		return tp;

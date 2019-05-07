@@ -13,6 +13,14 @@ public class TEmployee {
 	private Boolean _activated;
 	
 	// CONSTRUCTOR
+	public TEmployee(String name, String nif, String turn) {
+		this._name = name;
+		this._nif = nif;
+		this.turn = turn;
+	}
+	public TEmployee() {
+		
+	}
 	
 	public String get_nif() {
 		return _nif;
@@ -55,38 +63,13 @@ public class TEmployee {
 	}
 	
 
-	/*public String getNif() {
-		return null;
+	@Override
+	public String toString() {
+		String act = _activated ? "Yes" : "No";
+		return ("ID: " + _id + '\n' + 
+				"Name: " + _name + '\n' +
+				"NIF: " + _nif + '\n' +
+				"Round: " + turn + '\n' +
+				"Activated: " + act);
 	}
-	
-	public String getName() {
-		return null;
-	}
-
-	public String getTurn() {
-		return null;
-	}
-
-	public void setNif(String s) {
-	}
-
-	public void setName(String s) {
-	}
-
-	public void setTurn(String s) {
-	}
-	
-	public Integer getId() {
-		return null;
-	}
-
-	public void setId(Integer i) {
-	}
-
-	public Boolean isActivated() {
-		return null;
-	}
-
-	public void setActivated(Boolean b) {
-	}*/
 }

@@ -45,18 +45,15 @@ public class SATicketImpl implements SATicket {
 		return deleted;
 	}
 
-	public Boolean updateTicket(TTicket tt) { //TODO ?????????????????????????????????????
+	public Boolean updateTicket(TTicket tt) {
 		return null;
 		// end-user-code
 	}
 	public Object readTicket(Integer id) {
 		TTicket ret = null;
 		DAOTicket daoTicket = DAOAbstractFactory.getInstance().createDAOTicket();
-		if(id != null)
-		{
-			TTicket aux = new TTicket();
-			aux.set_id(id);
-			ret = (TTicket)daoTicket.readTicket(aux);
+		if(id != null){
+			ret = (TTicket)daoTicket.readTicket(id);
 		}
 		return ret;
 	}

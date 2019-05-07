@@ -34,7 +34,8 @@ public class DAOProviderImpl implements DAOProvider {
 			con.close();
 			
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			id = -1;
 		}
 		return id;
 	}
@@ -55,7 +56,8 @@ public class DAOProviderImpl implements DAOProvider {
 			con.close();
 			
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			ret = false;
 		}
 		return ret;
 	}
@@ -89,7 +91,8 @@ public class DAOProviderImpl implements DAOProvider {
 			con.close();
 			
 		}catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			ret = false;
 		}
 		return ret;
 	}
@@ -118,7 +121,8 @@ public class DAOProviderImpl implements DAOProvider {
 			}
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			tpl = null;
 		}
 		
 		return tpl;
@@ -143,7 +147,8 @@ public class DAOProviderImpl implements DAOProvider {
 			}
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			l = null;
 		}
 		return l;
 	}
@@ -169,7 +174,8 @@ public class DAOProviderImpl implements DAOProvider {
 			}
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			tpl = null;
 		}
 		
 		return tpl;

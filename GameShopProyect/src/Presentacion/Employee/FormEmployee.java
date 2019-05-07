@@ -68,12 +68,23 @@ public class FormEmployee extends JDialog {
 		this._accept.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TEmployee te = new TEmployee();//(_nifText.getText(), _addressText.getText(), Integer.parseInt(_phoneText.getText()));
+				/*TEmployee te = new TEmployee();//(_nifText.getText(), _addressText.getText(), Integer.parseInt(_phoneText.getText()));
 				te.set_name(_nameText.getText());
 				te.set_nif(_nifText.getText());
 				te.setTurn((String)_turnElection.getSelectedItem());
 				Controller.getInstance().action(te, Event.REGISTER_EMPLOYEE);
-				closeDialog();
+				closeDialog();*/
+				try {
+					String name = _nameText.getText();
+					String nif = _nifText.getText();
+					String turn = (String)_turnElection.getSelectedItem();
+					TEmployee te = new TEmployee(name, nif, turn);
+					closeDialog();
+					Controller.getInstance().action(te, Event.REGISTER_EMPLOYEE);
+				} catch(Exception ex) {
+					closeDialog();
+					Controller.getInstance().action(null, Event.REGISTER_EMPLOYEE);
+				}
 			}
 		});
 	}
