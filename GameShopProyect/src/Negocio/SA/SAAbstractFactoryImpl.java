@@ -1,8 +1,7 @@
 package Negocio.SA;
 
 import Negocio.Employee.SAEmployee;
-
-import Negocio.Employee.TestSAEmployee;
+import Negocio.Employee.SAEmployeeImpl;
 import Negocio.Platform.SAPlatform;
 import Negocio.Platform.SAPlatformImpl;
 import Negocio.Product.SAProduct;
@@ -19,7 +18,7 @@ import Negocio.Ticket.SATicketImpl;
 public class SAAbstractFactoryImpl extends SAAbstractFactory {
 	
 	public SAEmployee createSAEmployee() {
-		return new TestSAEmployee();
+		return new SAEmployeeImpl();
 	}
 
 	public SAPlatform createSAPlatform() {

@@ -104,47 +104,49 @@ public class OperationsPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				Object	id;
-				switch(nameIdentificator){
-				case "provider":
+				
+				
+				if(_election.getItemCount() > 0){
 					id = Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]);
-					TProvider tpr = (TProvider)(SAAbstractFactory.getInstance().createSAProvider()).readProvider((Integer)id);
-					if(tpr != null)
-						new FormUpdateProvider(tpr);
-					else
-						JOptionPane.showMessageDialog(null, "Error al leer un proveedor de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
-					break;
-				case "platform":
-					id = Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]);
-					TPlatform tpla = (TPlatform)SAAbstractFactory.getInstance().createSAPlatform().readPlatform((Integer)id);
-					if(tpla != null)
-						new FormUpdatePlatform(tpla);
-					else
-						JOptionPane.showMessageDialog(null, "Error al leer una plataforma de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
-					break;
-				case "employee":
-					id = Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]);
-					TEmployee tpe = (TEmployee)(SAAbstractFactory.getInstance().createSAEmployee()).readEmployee((Integer)id);
-					if(tpe != null)
-						new FormUpdateEmployee(tpe);
-					else
-						JOptionPane.showMessageDialog(null, "Error al leer un empleado de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
-					break;
-				case "product":
-					id = Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]);
-					TProduct tprd = (TProduct)(SAAbstractFactory.getInstance().createSAProduct()).readProduct((Integer)id);
-					if(tprd != null)
-						new FormUpdateProduct(tprd);
-					else
-						JOptionPane.showMessageDialog(null, "Error when reading a product from the database.","Failed",JOptionPane.ERROR_MESSAGE);		
-					break;
-				case "ticket":
-					//id = (Integer) _election.getSelectedItem();
-					//TTicket tt = (TTicket)(SAAbstractFactory.getInstance().createSATicket()).readTicket(id);
-					//if(tt != null)
-						new FormUpdateTicket(null/*tt*/);
-					//else
-						//JOptionPane.showMessageDialog(null, "Error al leer un proveedor de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
-					break;
+					switch(nameIdentificator){
+					case "provider":
+						
+						TProvider tpr = (TProvider)(SAAbstractFactory.getInstance().createSAProvider()).readProvider((Integer)id);
+						if(tpr != null)
+							new FormUpdateProvider(tpr);
+						else
+							JOptionPane.showMessageDialog(null, "Error al leer un proveedor de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);
+						break;
+					case "platform":
+						TPlatform tpla = (TPlatform)SAAbstractFactory.getInstance().createSAPlatform().readPlatform((Integer)id);
+						if(tpla != null)
+							new FormUpdatePlatform(tpla);
+						else
+							JOptionPane.showMessageDialog(null, "Error al leer una plataforma de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
+						break;
+					case "employee":
+						TEmployee tpe = (TEmployee)(SAAbstractFactory.getInstance().createSAEmployee()).readEmployee((Integer)id);
+						if(tpe != null)
+							new FormUpdateEmployee(tpe);
+						else
+							JOptionPane.showMessageDialog(null, "Error al leer un empleado de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
+						break;
+					case "product":
+						TProduct tprd = (TProduct)(SAAbstractFactory.getInstance().createSAProduct()).readProduct((Integer)id);
+						if(tprd != null)
+							new FormUpdateProduct(tprd);
+						else
+							JOptionPane.showMessageDialog(null, "Error when reading a product from the database.","Failed",JOptionPane.ERROR_MESSAGE);		
+						break;
+					case "ticket":
+						//id = (Integer) _election.getSelectedItem();
+						//TTicket tt = (TTicket)(SAAbstractFactory.getInstance().createSATicket()).readTicket(id);
+						//if(tt != null)
+							new FormUpdateTicket(null/*tt*/);
+						//else
+							//JOptionPane.showMessageDialog(null, "Error al leer un proveedor de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
+						break;
+					}
 				}
 			}
 		});
@@ -154,27 +156,27 @@ public class OperationsPanel extends JPanel {
 		_remove.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				switch(nameIdentificator){
-				case "provider":
-					Controller.getInstance().action(Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]),
-							Event.UNSUBSCRIBE_PROVIDER);
-					break;
-				case "platform":
-					Controller.getInstance().action(Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]),
-							Event.UNSUBSCRIBE_PLATFORM);
-					break;
-				case "employee":
-					Controller.getInstance().action(Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]),
-							Event.UNSUBSCRIBE_EMPLOYEE);
-					break;
-				case "product":
-					Controller.getInstance().action(Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]),
-							Event.UNSUBSCRIBE_PRODUCT);
-					break;
-				case "ticket":
-					Controller.getInstance().action(Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]),
-							Event.UNSUBSCRIBE_TICKET);
-					break;
+				
+				if(_election.getItemCount() > 0){
+					Integer id = Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]);
+				
+					switch(nameIdentificator){
+					case "provider":
+						Controller.getInstance().action(id, Event.UNSUBSCRIBE_PROVIDER);
+						break;
+					case "platform":
+						Controller.getInstance().action(id, Event.UNSUBSCRIBE_PLATFORM);
+						break;
+					case "employee":
+						Controller.getInstance().action(id, Event.UNSUBSCRIBE_EMPLOYEE);
+						break;
+					case "product":
+						Controller.getInstance().action(id, Event.UNSUBSCRIBE_PRODUCT);
+						break;
+					case "ticket":
+						Controller.getInstance().action(id, Event.UNSUBSCRIBE_TICKET);
+						break;
+					}
 				}
 			}
 		});

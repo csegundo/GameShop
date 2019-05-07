@@ -60,27 +60,25 @@ public class ShowOne extends JPanel {
 		_show.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				switch(nameIdentificator){
-				case "provider":
-					Controller.getInstance().action(Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]),
-							Event.READ_PROVIDER);
-					break;
-				case "platform":
-					Controller.getInstance().action(Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]),
-							Event.READ_PLATFORM);
-					break;
-				case "employee":
-					Controller.getInstance().action(Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]),
-							Event.READ_EMPLOYEE);
-					break;
-				case "product":
-					Controller.getInstance().action(Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]),
-							Event.READ_PRODUCT);
-					break;
-				case "ticket":
-					Controller.getInstance().action(Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]),
-							Event.READ_TICKET);
-					break;
+				if(_election.getItemCount() > 0){
+					Integer id = Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]);
+					switch(nameIdentificator){
+					case "provider":
+						Controller.getInstance().action(id,	Event.READ_PROVIDER);
+						break;
+					case "platform":
+						Controller.getInstance().action(id, Event.READ_PLATFORM);
+						break;
+					case "employee":
+						Controller.getInstance().action(id, Event.READ_EMPLOYEE);
+						break;
+					case "product":
+						Controller.getInstance().action(id, Event.READ_PRODUCT);
+						break;
+					case "ticket":
+						Controller.getInstance().action(id, Event.READ_TICKET);
+						break;
+					}
 				}
 			}
 		});

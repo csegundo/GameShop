@@ -174,7 +174,7 @@ public class DAOTicketImpl implements DAOTicket {
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
 			//e.printStackTrace();
-			l = null;
+			l.clear();
 		}
 		return l;
 }

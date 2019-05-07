@@ -52,10 +52,13 @@ public class ShowProductsFromPlatform extends ShowAllProducts {
 		_show.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				TPlatform tpla = 
-						SAAbstractFactory.getInstance().createSAPlatform()
-						.readPlatform(Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]));
-				Controller.getInstance().action(tpla.get_id(), Event.READ_ALL_PRODUCTS_FROM_PLATFORM);
+				if(_election.getItemCount() > 0){
+					Integer id = Integer.parseInt(_election.getSelectedItem().toString().split(" - ")[0]);
+					TPlatform tpla = 
+							SAAbstractFactory.getInstance().createSAPlatform()
+							.readPlatform(id);
+					Controller.getInstance().action(tpla.get_id(), Event.READ_ALL_PRODUCTS_FROM_PLATFORM);
+				}
 			}
 		});
 	}

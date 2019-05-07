@@ -145,7 +145,7 @@ public class DAOPlatformImpl implements DAOPlatform {
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
 			//e.printStackTrace();
-			l = null;
+			l.clear();
 		}
 		return l;
 	}
@@ -233,7 +233,7 @@ public class DAOPlatformImpl implements DAOPlatform {
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
 			//e.printStackTrace();
-			l = null;
+			l.clear();
 		}
 		return l;
 	}

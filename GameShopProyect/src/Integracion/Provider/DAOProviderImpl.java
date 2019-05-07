@@ -35,7 +35,7 @@ public class DAOProviderImpl implements DAOProvider {
 			
 		} catch (SQLException | ClassNotFoundException e) {
 			//e.printStackTrace();
-			id = -1;
+			//id = -1;
 		}
 		return id;
 	}
@@ -148,7 +148,7 @@ public class DAOProviderImpl implements DAOProvider {
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
 			//e.printStackTrace();
-			l = null;
+			l.clear();
 		}
 		return l;
 	}

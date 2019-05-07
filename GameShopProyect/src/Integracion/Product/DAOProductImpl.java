@@ -249,7 +249,7 @@ public class DAOProductImpl implements DAOProduct {
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
 			//e.printStackTrace();
-			l = null;
+			l.clear();
 		}
 		return l;
 	}
