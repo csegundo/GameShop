@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Transfers.TProduct;
-import Transfers.TProvider;
 import Transfers.TTicket;
 
 import java.sql.Connection;
@@ -30,9 +29,9 @@ public class DAOTicketImpl implements DAOTicket {
 			ps.executeUpdate();
 			
 			ResultSet rs = ps.getGeneratedKeys();
-			List<Object> l = tt.get_products();
 			
 			if(rs.next()) {
+				List<Object> l = tt.get_products();
 				id = rs.getInt(1);
 				for(int i = 0; i < l.size(); ++i) {
 					ps = con.prepareStatement("INSERT INTO asociado(IDProducto, IDTicket, IDEmpleado, cantidad) VALUES(?,?,?,?)");
@@ -41,17 +40,18 @@ public class DAOTicketImpl implements DAOTicket {
 					ps.setInt(3, tt.get_employeeId());
 					ps.setDouble(4, ((TProduct)l.get(i)).get_unitsInTicket());
 					ps.executeUpdate();
+					
 				}
 			}
 			
 			con.close();
 			
 		} catch (SQLException | ClassNotFoundException e) {
-			//e.printStackTrace();
 			id = -1;
 		}
 		return id;
 	}
+	
 	public Boolean deleteTicket(Integer id) {
 		boolean ret = false;
 		try {
@@ -76,50 +76,11 @@ public class DAOTicketImpl implements DAOTicket {
 			con.close();
 			
 		} catch (SQLException | ClassNotFoundException e) {
-			//e.printStackTrace();
 			ret = false;
 		}
 		return ret;
 	}
 	
-	public Boolean updateTicket(TTicket tt) {
-		/*boolean ret = false;
-		try {
-			deleteTicket(tt);
-			createTicket(tt);
-			
-			
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
-			PreparedStatement ps = con.prepareStatement("UPDATE ticket SET =? WHERE =?", PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setBoolean(1, tp.get_activated());
-			ps.setInt(2, tp.get_id());
-			int res = ps.executeUpdate();
-			ps = con.prepareStatement("UPDATE proveedor SET NIF=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setString(1, tp.get_nif());
-			ps.setInt(2, tp.get_id());
-			res = ps.executeUpdate();
-			ps = con.prepareStatement("UPDATE proveedor SET direccion=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setString(1, tp.get_address());
-			ps.setInt(2, tp.get_id());
-			res = ps.executeUpdate();
-			ps = con.prepareStatement("UPDATE proveedor SET telefono=? WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setInt(1, tp.get_phoneNumber());
-			ps.setInt(2, tp.get_id());
-			res = ps.executeUpdate();
-			
-			if(res > 0) {
-				ret = true;
-			}
-			con.close();
-			
-		}catch (SQLException | ClassNotFoundException e) {
-			//e.printStackTrace();
-			 * ret = false;
-		}
-		return ret;*/
-		return null;
-	}
 	public TTicket readTicket(Integer id) {
 		TTicket tp = null;
 		try {
@@ -136,25 +97,33 @@ public class DAOTicketImpl implements DAOTicket {
 				tp.set_date(rs.getTimestamp(3));
 				tp.set_finalPrice(rs.getDouble(4));
 				
-				/*while(rs.next()){
-					tprod.set_id(rs.getInt(5));
-					tprod.set_name(rs.getString(6));
-					tprod.set_platformId(rs.getInt(7));
-					tprod.set_unitsProvided(rs.getInt(8));
-					tprod.set_pvp(rs.getDouble(9));
-					listprod.add(tprod);
+				ps = con.prepareStatement("SELECT * FROM asociado WHERE IDTicket=?");
+				ps.setInt(1, id);
+				ResultSet rsAsociado = ps.executeQuery();
+				List<Object> l = new ArrayList<Object>();
+				while(rsAsociado.next()){
+					TProduct pp = new TProduct();
+					ps = con.prepareStatement("SELECT * FROM producto WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+					ps.setInt(1, rsAsociado.getInt(1));
+					ResultSet rsProducto = ps.executeQuery();
+					if(rsProducto.next()){
+						pp.set_id(rsProducto.getInt(1));
+						pp.set_name(rsProducto.getString(2));
+						pp.set_platformId(rsProducto.getInt(7));
+						pp.set_stock(rsAsociado.getInt(4));
+						l.add(pp);
+					}
 				}
-				tp.set_products(listprod);*/
-					
+				tp.set_products(l);
 			}
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
-			//e.printStackTrace();
 			tp = null;
 		}
 		
 		return tp;
 	}
+	
 	public List<Object> readAllTickets() {
 		List<Object> l = new ArrayList<Object>();
 		try {
@@ -173,46 +142,9 @@ public class DAOTicketImpl implements DAOTicket {
 			}
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
-			//e.printStackTrace();
 			l.clear();
 		}
 		return l;
-}
-
-	public TTicket readByDate(Timestamp d) {
-		TTicket tp = null;
-		List<Object> listprod = new ArrayList<Object>();
-		TProduct tprod = new TProduct();
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
-			PreparedStatement ps = con.prepareStatement("SELECT * FROM ticket WHERE fecha=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setTimestamp(1, d);
-			ResultSet rs = ps.executeQuery();
-			//ResultSet rs = ps.getGeneratedKeys();
-			if(rs.next()){
-				tp = new TTicket();
-				tp.set_id(rs.getInt(1));
-				tp.set_employeeId(rs.getInt(2));
-				tp.set_date(rs.getTimestamp(3));
-				tp.set_finalPrice(rs.getDouble(4));
-				
-				while(rs.next())
-				{ //IDticket, idEmpl, fecha, precioFinal, idProd , nombre , idPlat, cantidad, precio
-					tprod.set_id(rs.getInt(5));
-					tprod.set_name(rs.getString(6));
-					tprod.set_platformId(rs.getInt(7));
-					tprod.set_unitsProvided(rs.getInt(8));
-					tprod.set_pvp(rs.getDouble(9));
-					listprod.add(tprod);
-				}
-				tp.set_products(listprod);
-			}
-			con.close();
-		} catch (SQLException | ClassNotFoundException e) {
-			//e.printStackTrace();
-			tp = null;
-		}
-		return tp;
 	}
+
 }

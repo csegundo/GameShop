@@ -258,13 +258,6 @@ public class ControllerImpl extends Controller {
 			else
 				gui.actualiza(Event.RES_UNSUBSCRIBE_TICKET_FAILED, null);
 			break;
-		case Event.MODIFY_TICKET:
-			tti = (TTicket) data;
-			if(SAAbstractFactory.getInstance().createSATicket().updateTicket(tti))
-				gui.actualiza(Event.RES_MODIFY_TICKET_OK, tti.get_id());
-			else
-				gui.actualiza(Event.RES_MODIFY_TICKET_FAILED, null);
-			break;
 		case Event.READ_TICKET:
 			id = (Integer) data;
 			TTicket ticket = (TTicket)(SAAbstractFactory.getInstance().createSATicket().readTicket(id));

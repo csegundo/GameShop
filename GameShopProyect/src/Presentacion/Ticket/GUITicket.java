@@ -48,12 +48,12 @@ public class GUITicket extends JPanel implements IGUI {
 			Integer id = (Integer)t;
 			JOptionPane.showMessageDialog(null, "Ticket " + id + " has been correctly inserted into the database.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
-			_rightPane.update((SAAbstractFactory.getInstance().createSAPlatform()).readAllPlatforms());
+			_rightPane.update((SAAbstractFactory.getInstance().createSATicket()).readAllTickets());
 			_leftPane.addInfoToComboBox();
 			break;
 			
 		case Event.RES_REGISTER_TICKET_FAILED:
-			JOptionPane.showConfirmDialog(null, "Error inserting the ticket in the database.", "Failed",
+			JOptionPane.showMessageDialog(null, "Error inserting the ticket in the database.", "Failed",
 					JOptionPane.ERROR_MESSAGE);
 			break;
 			
@@ -61,25 +61,12 @@ public class GUITicket extends JPanel implements IGUI {
 			Integer a = (Integer)t;
 			JOptionPane.showMessageDialog(null, "The ticket " + a + " has been properly unsubscribed.", "Success",
 					JOptionPane.INFORMATION_MESSAGE);
-			_rightPane.update((SAAbstractFactory.getInstance().createSAPlatform()).readAllPlatforms());
+			_rightPane.update((SAAbstractFactory.getInstance().createSATicket()).readAllTickets());
 			_leftPane.addInfoToComboBox();
 			break;
 			
 		case Event.RES_UNSUBSCRIBE_TICKET_FAILED:
-			JOptionPane.showConfirmDialog(null, "Error deleting the ticket in the database.", "Failed",
-					JOptionPane.ERROR_MESSAGE);
-			break;
-			
-		case Event.RES_MODIFY_TICKET_OK:
-			Integer b = (Integer)t;
-			JOptionPane.showMessageDialog(null, "Ticket successfully updated in the database.", "Success",
-					JOptionPane.INFORMATION_MESSAGE);
-			_rightPane.update((SAAbstractFactory.getInstance().createSAPlatform()).readAllPlatforms());
-			_leftPane.addInfoToComboBox();
-			break;
-			
-		case Event.RES_MODIFY_TICKET_FAILED:
-			JOptionPane.showConfirmDialog(null, "Error while modifying the ticket in the database.", "Failed",
+			JOptionPane.showMessageDialog(null, "Error deleting the ticket in the database.", "Failed",
 					JOptionPane.ERROR_MESSAGE);
 			break;
 			
@@ -89,7 +76,7 @@ public class GUITicket extends JPanel implements IGUI {
 			break;
 			
 		case Event.RES_READ_TICKET_FAILED:
-			JOptionPane.showConfirmDialog(null, "Error showing a ticket in the database.", "Failed",
+			JOptionPane.showMessageDialog(null, "Error showing a ticket in the database.", "Failed",
 					JOptionPane.ERROR_MESSAGE);
 			break;
 			

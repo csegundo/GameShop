@@ -30,7 +30,6 @@ public class DAOEmployeeImpl implements DAOEmployee {
 			con.close();
 			
 		} catch (SQLException | ClassNotFoundException e) {
-			//e.printStackTrace();
 			id = -1;
 		}
 		return id;
@@ -53,7 +52,6 @@ public class DAOEmployeeImpl implements DAOEmployee {
 			con.close();
 			
 		} catch (SQLException | ClassNotFoundException e) {
-			//e.printStackTrace();
 			ret = false;
 		}
 		return ret;
@@ -88,7 +86,6 @@ public class DAOEmployeeImpl implements DAOEmployee {
 			con.close();
 			
 		}catch (SQLException | ClassNotFoundException e) {
-			//e.printStackTrace();
 			ret = false;
 		}
 		return ret;
@@ -103,7 +100,6 @@ public class DAOEmployeeImpl implements DAOEmployee {
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM empleado WHERE ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
-			//ResultSet rs = ps.getGeneratedKeys();
 			if(rs.next()){
 				tel = new TEmployee();
 				tel.set_id(rs.getInt(1));
@@ -114,7 +110,6 @@ public class DAOEmployeeImpl implements DAOEmployee {
 			}
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
-			//e.printStackTrace();
 			tel = null;
 		}
 		
@@ -129,7 +124,7 @@ public class DAOEmployeeImpl implements DAOEmployee {
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM empleado", PreparedStatement.RETURN_GENERATED_KEYS);
 			ResultSet rs = ps.executeQuery();
-			//ResultSet rs = ps.getGeneratedKeys();
+
 			while(rs.next()){
 				TEmployee tpl = new TEmployee();
 				tpl.set_id(rs.getInt(1));
@@ -141,7 +136,6 @@ public class DAOEmployeeImpl implements DAOEmployee {
 			}
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
-			//e.printStackTrace();
 			l.clear();
 		}
 		return l;
@@ -163,7 +157,6 @@ public class DAOEmployeeImpl implements DAOEmployee {
 			}
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {
-			//e.printStackTrace();
 			tel = null;
 		}
 		

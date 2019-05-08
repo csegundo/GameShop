@@ -12,10 +12,10 @@ import Transfers.TTicket;
 public class SATicketImpl implements SATicket {
 	
 	public Integer createTicket(TTicket tt) {
-		
+		Integer res = -1;
 		TTicket tti = (TTicket)tt;
 		if(/*prodListNotEmpty(tt) && */correctInputData(tt)){ //modificar stock de cada producto, calcular precio final
-			Integer res;
+			
 			double preciofin=0.0;
 			int units=0;
 			for(int i = 0; i < tti.get_products().size(); ++i){
@@ -24,22 +24,25 @@ public class SATicketImpl implements SATicket {
 				units = tp.get_unitsInTicket();
 				tp = DAOAbstractFactory.getInstance().createDAOProduct().readProduct(tp.get_id());
 				preciofin += (tp.get_pvp() * units);
-				tp.set_unitsProvided(tp.get_stock());
-				tp.set_stock(tp.get_stock() - units);
-				
-				if(((TProduct)tp).get_stock() > ((TProduct)tp).get_unitsProvided())
-					((TProduct)tp).set_unitsProvided(((TProduct)tp).get_stock()-((TProduct)tp).get_unitsProvided());
-				else
-					((TProduct)tp).set_unitsProvided(0);
-				
-				DAOAbstractFactory.getInstance().createDAOProduct().updateProduct(tp);
 			}
+			
 			tti.set_finalPrice(preciofin);
 			res = DAOAbstractFactory.getInstance().createDAOTicket().createTicket(tti);
-			return res;
+			
+			if(res > 0){
+				//Si se ha creado el ticket correctamente, actualizamos los valores del stock en la base de datos
+				units=0;
+				for(int i = 0; i < tti.get_products().size(); ++i){
+					TProduct tp = (TProduct) tti.get_products().get(i);
+					units = tp.get_unitsInTicket();
+					tp = DAOAbstractFactory.getInstance().createDAOProduct().readProduct(tp.get_id());
+					tp.set_stock(tp.get_stock() - units);
+					DAOAbstractFactory.getInstance().createDAOProduct().updateProduct(tp);
+				}
+			}
+			 
 		}
-		else
-			return -1;
+		return res;
 	}
 
 	public Boolean deleteTicket(Integer id) {
@@ -52,10 +55,6 @@ public class SATicketImpl implements SATicket {
 		return deleted;
 	}
 
-	public Boolean updateTicket(TTicket tt) {
-		return null;
-		// end-user-code
-	}
 	public Object readTicket(Integer id) {
 		TTicket ret = null;
 		DAOTicket daoTicket = DAOAbstractFactory.getInstance().createDAOTicket();

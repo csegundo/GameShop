@@ -12,8 +12,8 @@ public class SAPlatformImpl implements SAPlatform {
 	@Override
 	public Integer createPlatform(TPlatform tpla) {
 		int id = -1;
-		if(tpla != null && !tpla.get_name().trim().equals("")){ //Comprobamos que el transfer no esta vacio, y que hay nombre introducido.
-			DAOPlatform daoPlatform = DAOAbstractFactory.getInstance().createDAOPlatform();
+		if(tpla != null && tpla.get_name() != null && !tpla.get_name().trim().equals("") && (tpla.get_name().length() < 45)){ //Comprobamos que el transfer no esta vacio, y que hay nombre introducido.
+			DAOPlatform daoPlatform = DAOAbstractFactory.getInstance().createDAOPlatform(); 
 			TPlatform tpl = daoPlatform.readByName(tpla.get_name());
 			if(tpl == null)
 				id = daoPlatform.createPlatform(tpla);
@@ -36,8 +36,18 @@ public class SAPlatformImpl implements SAPlatform {
 
 	@Override
 	public Boolean updatePlatform(TPlatform tpla) {
-		return (tpla != null && !tpla.get_name().trim().equals("")) ?
-				DAOAbstractFactory.getInstance().createDAOPlatform().updatePlatform(tpla) : false;
+		if(tpla != null && tpla.get_name() != null && tpla.get_id() != null && tpla.get_activated() != null && tpla.get_name().length() < 45
+				&& !tpla.get_name().trim().equals("") && tpla.get_id() > 0) {
+			TPlatform tp = DAOAbstractFactory.getInstance().createDAOPlatform().readPlatform(tpla.get_id());
+			if(tp!=null) {
+				if(tp.get_name().equalsIgnoreCase(tpla.get_name())) {
+					if(DAOAbstractFactory.getInstance().createDAOPlatform().readByName(tpla.get_name()) != null)
+						return false;
+				}
+					return DAOAbstractFactory.getInstance().createDAOPlatform().updatePlatform(tpla);
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -59,6 +69,8 @@ public class SAPlatformImpl implements SAPlatform {
 
 	@Override
 	public List<Object> readAllProductsOfAPlatform(Integer id) {
+		if(DAOAbstractFactory.getInstance().createDAOPlatform().readPlatform(id) == null)
+			return null;
 		return DAOAbstractFactory.getInstance().createDAOPlatform().readAllProductsOfAPlatform(id);
 	}
 	

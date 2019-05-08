@@ -15,7 +15,6 @@ import Presentacion.Product.FormUpdateProduct;
 import Presentacion.Provider.FormProvider;
 import Presentacion.Provider.FormUpdateProvider;
 import Presentacion.Ticket.FormTicket;
-import Presentacion.Ticket.FormUpdateTicket;
 import Transfers.TEmployee;
 import Transfers.TPlatform;
 import Transfers.TProduct;
@@ -138,14 +137,6 @@ public class OperationsPanel extends JPanel {
 						else
 							JOptionPane.showMessageDialog(null, "Error when reading a product from the database.","Failed",JOptionPane.ERROR_MESSAGE);		
 						break;
-					case "ticket":
-						//id = (Integer) _election.getSelectedItem();
-						//TTicket tt = (TTicket)(SAAbstractFactory.getInstance().createSATicket()).readTicket(id);
-						//if(tt != null)
-							new FormUpdateTicket(null/*tt*/);
-						//else
-							//JOptionPane.showMessageDialog(null, "Error al leer un proveedor de la base de datos.","Failed",JOptionPane.ERROR_MESSAGE);		
-						break;
 					}
 				}
 			}
@@ -226,7 +217,12 @@ public class OperationsPanel extends JPanel {
 		
 		this.add(Box.createVerticalGlue());
 		
-		_updaterLabel = new JLabel("Modify or remove a " + nameIdentificator);
+		String modifyRemoveTextLabel = "";
+		if(!this.nameIdentificator.equalsIgnoreCase(GUIGameshop.TAB_TICKET))
+			modifyRemoveTextLabel += "Modify or ";
+		modifyRemoveTextLabel += "Remove a " + nameIdentificator;
+		
+		_updaterLabel = new JLabel(modifyRemoveTextLabel);
 		_updaterLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		_updaterLabel.setVisible(true);
 		this.add(_updaterLabel);
@@ -246,11 +242,14 @@ public class OperationsPanel extends JPanel {
 		
 		this.add(Box.createRigidArea(new Dimension(1, 20)));
 		
-		_update = new JButton("Modify " + nameIdentificator);
-		_update.setAlignmentX(Component.CENTER_ALIGNMENT);
-		_update.setSize(new Dimension(100, 50));
-		_update.setVisible(true);
-		this.add(_update);
+		if(!this.nameIdentificator.equalsIgnoreCase(GUIGameshop.TAB_TICKET)){
+			_update = new JButton("Modify " + nameIdentificator);
+			_update.setAlignmentX(Component.CENTER_ALIGNMENT);
+			_update.setSize(new Dimension(100, 50));
+			_update.setVisible(true);
+			this.add(_update);
+			updateButtonAction();
+		}
 		
 		this.add(Box.createRigidArea(new Dimension(1, 10)));
 		
@@ -265,7 +264,7 @@ public class OperationsPanel extends JPanel {
 		addInfoToComboBox();
 		registerButtonAction();
 		deleteButtonAction();
-		updateButtonAction();
+		
 	}
 	
 }

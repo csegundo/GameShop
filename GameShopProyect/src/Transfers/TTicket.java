@@ -57,9 +57,17 @@ public class TTicket {
 	
 	@Override
 	public String toString() {
-		return ("ID: " + _id + '\n' +
+		String tabulador = "   ";
+		String ticketInfo = "ID: " + _id + '\n' +
 				"Employee ID: " + _employeeId + '\n' +
 				"Creation date: " + _date + '\n' +
-				"Total price: " + _finalPrice);
+				"Total price: " + _finalPrice;
+		String productsInfo = "\n\nProduct list:\n" + tabulador;
+		for(int i = 0; i < _products.size(); ++i){
+			TProduct ttp = (TProduct) _products.get(i);
+			productsInfo += "ID: " + ttp.get_id() + " Name: " + ttp.get_name() + " PlatformID: " + ttp.get_platformId() +
+					" Stock: " + ttp.get_stock() + "\n" + tabulador;
+		}
+		return ticketInfo + productsInfo;
 	}
 }

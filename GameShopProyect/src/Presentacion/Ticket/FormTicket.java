@@ -71,37 +71,82 @@ public class FormTicket extends JDialog {
 		this.setLocationRelativeTo(null);
 		
 		initComponents();
-		fillRegisterTicketLists();
+		
 		okButtonAction();
 		cancelButtonAction();
+		
 		addButtonAction();
 		removeButtonAction();
+		
+		fillRegisterTicketLists();
 	}
 	
-	private void cancelButtonAction() {
-		_cancel.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				closeDialog();
-				_productsSelected.clear();
-			}
-		});
+	private void fillRegisterTicketLists() {
+		String type;
+		// Rellenar la lista de los productos
+		for(Object tp : SAAbstractFactory.getInstance().createSAProduct().readAllProducts()) {
+			if(((TProduct) tp).get_type().equalsIgnoreCase(TProduct.game))
+				type = TProduct.game;
+			else
+				type = TProduct.accessory;
+			//Aqui ponemos el id, nombre y el tipo para luego hacer SPLIT(" - ") y saber si es juego o accesorio 
+			if(((TProduct) tp).get_stock() > 0 && ((TProduct) tp).get_activated())
+			_productsElection.addItem(((TProduct) tp).get_id() + " - " + ((TProduct) tp).get_name() + " - " + type);
+		}
+		
+		// Rellenar la lista de los empleados disponibles en la base de datos
+		for(Object te : SAAbstractFactory.getInstance().createSAEmployee().readAllEmployees()) {
+			_employeeElection.addItem(((TEmployee) te).get_id() + " - " + ((TEmployee) te).get_name());
+		}
 	}
 	
-	private void okButtonAction() {
-		_accept.addActionListener(new ActionListener(){
+	private void addButtonAction() {
+		_add.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(_productsSelected.size() > 0) {
-					// info ==> en [0] tenemos el ID del empleado y en [1] tenemos el nombre
-					String[] info = ((String)(_employeeElection.getSelectedItem())).split(" - ");
-					TTicket tt = new TTicket(Integer.parseInt(info[0]), _productsSelected);
+				if(_productsElection.getItemCount() > 0){
+					TProduct toAdd = new TProduct();
+					// En [0] tenemos el ID, en [1] el nombre del producto y en [2] el tipo
+					String[] info = ((String)(_productsElection.getSelectedItem())).split(" - ");
+					toAdd.set_id(Integer.parseInt(info[0]));
+					toAdd.set_name(info[1]);
+					toAdd.set_type(info[2]);
+					Integer unitsToSell = (Integer)_numberOfproduct.getValue();
+					toAdd.set_unitsInTicket(unitsToSell);
 					
-					closeDialog();
-					Controller.getInstance().action(tt, Event.REGISTER_TICKET);
+					// Si existe en la BD un producto con ese id, nombre y tipo, nos devuelve todos sus datos
+					TProduct all = (TProduct)SAAbstractFactory.getInstance().createSAProduct().readProduct(toAdd.get_id());
+					if(all != null && !addItemToAnExistingProduct(toAdd)) {
+						if(unitsToSell > all.get_stock()) unitsToSell = all.get_stock();
+						all.set_unitsInTicket(unitsToSell);
+						_productsSelected.add(all);
+					}
+					_numberOfproduct.setValue(new Integer(1));
+					model.fireTableDataChanged();
 				}
 			}
 		});
+	}
+	
+	//Funcion utilizada para añadir mas unidades a un item que ya ha sido añadido a la tabla.
+	private boolean addItemToAnExistingProduct(Object tpr) {
+		boolean exit = false;
+		TProduct tp = (TProduct)tpr;
+		for(int i = 0; i < _productsSelected.size() && !exit; ++i) {
+			//Buscamos el elemento
+			if(((TProduct)_productsSelected.get(i)).get_id() == tp.get_id()) {
+				//Si el las unidades a añadir mas lo que ya hay supera el stock, dejamos el stock
+				if(tp.get_unitsInTicket() + ((TProduct)_productsSelected.get(i)).get_unitsInTicket() > 
+				((TProduct)_productsSelected.get(i)).get_stock())
+					((TProduct)_productsSelected.get(i)).set_unitsInTicket(((TProduct)_productsSelected.get(i)).get_stock());
+				//Si no, sumamos sin mas
+				else
+				((TProduct)_productsSelected.get(i)).set_unitsInTicket(tp.get_unitsInTicket() +
+						((TProduct)_productsSelected.get(i)).get_unitsInTicket());
+				exit = true;
+			}
+		}
+		return exit;
 	}
 	
 	private void removeButtonAction() {
@@ -125,63 +170,31 @@ public class FormTicket extends JDialog {
 		});
 	}
 	
-	private void addButtonAction() {
-		_add.addActionListener(new ActionListener() {
+	private void cancelButtonAction() {
+		_cancel.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TProduct toAdd = new TProduct();
-				// En [0] tenemos el ID, en [1] el nombre del producto y en [2] el tipo
-				String[] info = ((String)(_productsElection.getSelectedItem())).split(" - ");
-				toAdd.set_id(Integer.parseInt(info[0]));
-				toAdd.set_name(info[1]);
-				toAdd.set_type(info[2]);
-				Integer unitsToSell = (Integer)_numberOfproduct.getValue();
-				toAdd.set_unitsInTicket(unitsToSell);
-				
-				// Si existe en la BD un producto con ese id, nombre y tipo, nos devuelve todos sus datos
-				TProduct all = (TProduct)SAAbstractFactory.getInstance().createSAProduct().readProduct(toAdd.get_id());
-				if(all != null && !addItemToAnExistingProduct(toAdd) && all.get_stock() >= unitsToSell) {
-					all.set_unitsInTicket(unitsToSell);
-					_productsSelected.add(all);
-				}
-				
-				model.fireTableDataChanged();
+				closeDialog();
+				_productsSelected.clear();
 			}
 		});
 	}
 	
-	private boolean addItemToAnExistingProduct(Object tpr) {
-		boolean exit = false;
-		TProduct tp = (TProduct)tpr;
-		for(int i = 0; i < _productsSelected.size() && !exit; ++i) {
-			if(((TProduct)_productsSelected.get(i)).get_id() == tp.get_id()) {
-				((TProduct)_productsSelected.get(i)).set_unitsInTicket(tp.get_unitsInTicket() + ((TProduct)_productsSelected.get(i)).get_unitsInTicket());
-				exit = true;
+	private void okButtonAction() {
+		_accept.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(_productsSelected.size() > 0 && _employeeElection.getItemCount() > 0) {
+					// info ==> en [0] tenemos el ID del empleado y en [1] tenemos el nombre
+					String[] info = ((String)(_employeeElection.getSelectedItem())).split(" - ");
+					TTicket tt = new TTicket(Integer.parseInt(info[0]), _productsSelected);
+					
+					closeDialog();
+					Controller.getInstance().action(tt, Event.REGISTER_TICKET);
+				}
 			}
-		}
-		return exit;
+		});
 	}
-	
-	private void fillRegisterTicketLists() {
-		String type;
-		// Rellenar la lista de los productos
-		for(Object tp : SAAbstractFactory.getInstance().createSAProduct().readAllProducts()) {
-			if(((TProduct) tp).get_type().equalsIgnoreCase(TProduct.game))
-				type = TProduct.game;
-			else
-				type = TProduct.accessory;
-			/* Aqui ponemos el id, nombre y el tipo para luego hacer SPLIT(" - ") y saber si es juego o accesorio */
-			_productsElection.addItem(((TProduct) tp).get_id() + " - " + ((TProduct) tp).get_name() + " - " + type);
-		}
-		
-		// Rellenar la lista de los empleados disponibles en la base de datos
-		for(Object te : SAAbstractFactory.getInstance().createSAEmployee().readAllEmployees()) {
-			_employeeElection.addItem(((TEmployee) te).get_id() + " - " + ((TEmployee) te).get_name());
-		}
-	}
-	
-	
-	
 	
 	// METODOS PARA INICIALIZAR LOS COMPONENTES DE LA GUI
 	private void initComponents() {
@@ -305,4 +318,5 @@ public class FormTicket extends JDialog {
 	protected void disableEmployeeElection(){
 		this._employeeElection.setEnabled(false);
 	}
+	
 }

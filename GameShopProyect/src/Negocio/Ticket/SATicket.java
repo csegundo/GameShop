@@ -17,7 +17,6 @@ public interface SATicket {
 	
 	public Integer createTicket(TTicket tt);
 	public Boolean deleteTicket(Integer id);
-	public Boolean updateTicket(TTicket tt);
 	public Object readTicket(Integer id);
 	public List<Object> readAllTickets();
 }

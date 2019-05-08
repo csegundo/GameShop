@@ -149,7 +149,7 @@ public class FormProduct extends JDialog {
 		this.add(Box.createRigidArea(new Dimension(300,20)));
 		
 		this.add(new JLabel("Stock:"));
-		this._stockInt = new JSpinner(new SpinnerNumberModel(1, 1, 1000, 1));
+		this._stockInt = new JSpinner(new SpinnerNumberModel(1, 0, 1000, 1));
 		this._stockInt.setPreferredSize(new Dimension(60,20));
 		this.add(this._stockInt);
 		
