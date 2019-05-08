@@ -44,8 +44,8 @@ public class FormUpdateProduct extends FormProduct {
 		this._platformElection.setSelectedItem(_tprod.get_platformId());
 		this._pvpDoub.setValue(_tprod.get_pvp());
 		
+		this._description.setText(_tprod.get_description());
 		if(_tprod.get_type().equals(TProduct.game)) {
-			this._description.setText(((TGame)_tprod).get_description());
 			this._genderText.setText(((TGame)_tprod).get_gender());
 		}else {
 			this._brand.setText(((TAccessory)_tprod).get_brand());

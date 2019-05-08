@@ -44,7 +44,8 @@ public class TAccessory extends TProduct {
 				"Activated: " + act + '\n'+
 				"Units Provided: " + super.get_unitsProvided() + '\n' +
 				"Brand: " + _brand + '\n' +
-				"Color: " + _color);
+				"Color: " + _color + '\n' +
+				"Descripcion: " + super.get_description());
 	}
 
 }

@@ -41,10 +41,10 @@ public class SAPlatformImpl implements SAPlatform {
 			TPlatform tp = DAOAbstractFactory.getInstance().createDAOPlatform().readPlatform(tpla.get_id());
 			if(tp!=null) {
 				if(tp.get_name().equalsIgnoreCase(tpla.get_name())) {
-					if(DAOAbstractFactory.getInstance().createDAOPlatform().readByName(tpla.get_name()) != null)
+					if(DAOAbstractFactory.getInstance().createDAOPlatform().readByName(tpla.get_name()) == null)
 						return false;
 				}
-					return DAOAbstractFactory.getInstance().createDAOPlatform().updatePlatform(tpla);
+				return DAOAbstractFactory.getInstance().createDAOPlatform().updatePlatform(tpla);
 			}
 		}
 		return false;

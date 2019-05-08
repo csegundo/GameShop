@@ -33,7 +33,8 @@ public class TGame extends TProduct {
 				"Platform ID: " + super.get_platformId() + '\n' +
 				"Activated: " + act + '\n'+
 				"Units Provided: " + super.get_unitsProvided() + '\n' +
-				"Gender: " + _gender);
+				"Gender: " + _gender + '\n' +
+				"Descripcion: " + super.get_description());
 	}
 
 }

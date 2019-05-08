@@ -40,8 +40,8 @@ public class SAEmployeeImpl implements SAEmployee {
 		if(this.validateData(te)) {
 			if(te.get_activated()!=null) {
 				TEmployee t = (TEmployee) DAOAbstractFactory.getInstance().createDAOEmployee().readEmployee(te.get_id());
-				if(te.get_nif() == t.get_nif()) {
-					if(DAOAbstractFactory.getInstance().createDAOEmployee().readEmployeeByNIF(te.get_nif()) != null)
+				if(te.get_nif().equals(t.get_nif())) {
+					if(DAOAbstractFactory.getInstance().createDAOEmployee().readEmployeeByNIF(te.get_nif()) == null)
 						return false;
 					return DAOAbstractFactory.getInstance().createDAOEmployee().updateEmployee(te); 
 				}
