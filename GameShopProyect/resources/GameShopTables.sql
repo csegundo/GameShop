@@ -38,10 +38,10 @@ CREATE TABLE `producto` (
 	`activo` tinyint(1) NOT NULL,
 	`unidadesProv` int (11) NOT NULL,
 
-	`genero` varchar(45) NOT NULL,
+	`genero` varchar(45),
 
-	`marca` varchar(45) NOT NULL,
-	`color` varchar(45) NOT NULL,
+	`marca` varchar(45),
+	`color` varchar(45),
     
     `tipo` varchar(30) NOT NULL,
 	
@@ -78,3 +78,28 @@ CREATE TABLE `asociado` (
   CONSTRAINT `IDTicketP` FOREIGN KEY (`IDTicket`) REFERENCES `ticket` (`ID`),
   CONSTRAINT `IDProductoP` FOREIGN KEY (`IDProducto`) REFERENCES `producto` (`ID`)
 );
+
+
+----------------------------- 	PROVIDER   ---------------------------------------
+
+INSERT INTO proveedor(ID,direccion,NIF,telefono,activo) values (1,'calle igual','76664094B',622237470,true);
+INSERT INTO proveedor(ID,direccion,NIF,telefono,activo) values (2,'calle igual','16374546H',999888777,false);
+
+----------------------------- 	PLATFORM   ---------------------------------------
+
+INSERT INTO `gameshop`.`plataforma` (`ID`, `nombre`, `activo`) VALUES ('1', 'XBOX360', '0');
+INSERT INTO `gameshop`.`plataforma` (`ID`, `nombre`, `activo`) VALUES ('2', 'NINTENDO-SWITCH', '1');
+INSERT INTO `gameshop`.`plataforma` (`ID`, `nombre`, `activo`) VALUES ('3', 'ORACLE', '1');
+
+----------------------------- 	PRODUCT   ---------------------------------------
+
+INSERT INTO `gameshop`.`producto` (`ID`, `nombre`, `descripcion`, `PVP`, `stock`, `IDProveedor`, `IDPlataforma`, `activo`, `unidadesProv`, `genero`, `tipo`) VALUES ('1', 'Fifa', 'descripcion', '2', '6', '1', '1', '1', '6', 'Horror', 'VideoGame');
+
+----------------------------- 	EMPLOYEE   ---------------------------------------
+
+
+INSERT INTO `gameshop`.`empleado` (`ID`, `nombre`, `NIF`, `turno`, `activo`) VALUES ('1', 'joaquin', '76664094B', 'Early shift', '1');
+INSERT INTO `gameshop`.`empleado` (`ID`, `nombre`, `NIF`, `turno`, `activo`) VALUES ('2', 'pepe', '94311944F','Early shift', '0');
+INSERT INTO `gameshop`.`empleado` (`ID`, `nombre`, `NIF`, `turno`, `activo`) VALUES ('3', 'pablo', '74769725Z','Early shift', '1');
+
+
