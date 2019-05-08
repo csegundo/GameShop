@@ -9,7 +9,7 @@ import Transfers.TProduct;
 import Transfers.TTicket;
 
 
-public class TestSATicket implements SATicket {
+public class TestSATicket i{
 	
 	public Integer createTicket(TTicket tt) {
 		//DAOTicket daoTicket = DAOAbstractFactory.getInstance().createDAOTicket();

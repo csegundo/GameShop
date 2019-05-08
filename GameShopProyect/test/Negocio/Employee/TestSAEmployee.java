@@ -5,57 +5,100 @@ package Negocio.Employee;
 
 import java.util.List;
 
-import Integracion.DAO.DAOAbstractFactory;
-import Integracion.Employee.DAOEmployee;
+import org.junit.jupiter.api.Test;
+
+import Negocio.SA.SAAbstractFactory;
 import Transfers.TEmployee;
 
-public class TestSAEmployee implements SAEmployee {
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-	@Override
-	public Integer createEmployee(TEmployee te) {
-		int id = -1;
-		DAOEmployee daoEmployee = DAOAbstractFactory.getInstance().createDAOEmployee();
-		if(te != null){
-			TEmployee tpl = daoEmployee.readEmployeeByNIF(te.get_nif());
-			if(tpl == null)
-				id = daoEmployee.createEmployee(te);
-		}
-		return id;
+public class TestSAEmployee {
+
+	private SAEmployee sa = SAAbstractFactory.getInstance().createSAEmployee();
+	
+	@Test
+	public void testCreateEmployeeOk() {
+		//Empleado no existente(nif),validez sintactica
+		TEmployee te = new TEmployee("PACO","27684587Q","Early shift");
+		assertEquals(4, sa.createEmployee(te).intValue());
 	}
-
-	@Override
-	public Boolean deleteEmployee(Integer id) {
-		boolean ret = false;
-		DAOEmployee daoEmployee = DAOAbstractFactory.getInstance().createDAOEmployee();
+	
+	@Test
+	public void testCreateEmployeeFail() {
+		//Empleado existe
+		TEmployee te = new TEmployee("PEDRO","76664094B","Late shift");
+		assertNotEquals(5,sa.createEmployee(te).intValue());
+		//Invalidez sintactica
+		te = new TEmployee("","29178317B","Late shift");
+		assertNotEquals(5,sa.createEmployee(te).intValue());
+		te = new TEmployee("PEDRO",null,"Late shift");
+		assertNotEquals(5,sa.createEmployee(te).intValue());
+		te = new TEmployee("PEDRO","29178317B","Late shift late shift");
+		assertNotEquals(5,sa.createEmployee(te).intValue());
+		assertNotEquals(5,sa.createEmployee(null).intValue());
+	}
+	
+	@Test
+	public void testDeleteEmployeeOk() {
+		//Empleado existe y esta activo
+		assertTrue(sa.deleteEmployee(1));
+	}	
+	
+	@Test
+	public void testDeleteEmployeeFail() {
+		//Empleado no existe
+		assertFalse(sa.deleteEmployee(7));
+		//Empleado existe y esta inactivo
+		assertFalse(sa.deleteEmployee(2));
 		
-		if(id != null) {
-			TEmployee ternif = (TEmployee)daoEmployee.readEmployee(id);
-			// Si devuelve un transfer significa que existe y por lo tanto se procede a borrarlo
-			if(ternif != null && ternif.get_activated())
-				ret = daoEmployee.deleteEmployee(ternif);
-		}
-		return ret;
+		assertFalse(sa.deleteEmployee(null));
 	}
 
-	@Override
-	public Boolean updateEmployee(TEmployee te) {
-		return DAOAbstractFactory.getInstance().createDAOEmployee().updateEmployee(te);
+	@Test
+	public void testUpdateEmployeeOk() {
+		//Empleado existe y validez sintactica
+		TEmployee te = new TEmployee("joaquin","76664094B","Late shift");
+		te.set_activated(true);
+		te.set_id(1);
+		assertTrue(sa.updateEmployee(te));
 	}
-
-	@Override
-	public Object readEmployee(Integer id) {
-		TEmployee ret = null;
-		DAOEmployee daoEmployee = DAOAbstractFactory.getInstance().createDAOEmployee();
+	
+	@Test
+	public void testUpdateEmployeeFail() {
+		TEmployee te = new TEmployee("joaquin","76664094B","Late shift");
+		te.set_id(9);
+		te.set_activated(true);
+		//Empleado no existe
+		assertFalse(sa.updateEmployee(null));
+		assertFalse(sa.updateEmployee(te));
 		
-		if(id != null)
-			ret = (TEmployee)daoEmployee.readEmployee(id);
-		return ret;
+		//Invalidez sintactica,empleado existe
+		te.set_activated(null);
+		assertFalse(sa.updateEmployee(te));
+		te.set_activated(true);
+		te.set_id(1);
+		te.set_name("");
+		assertFalse(sa.up)
 	}
 
-	@Override
-	public List<Object> readAllEmployees() {
-		List<Object> employees = null;
-		employees = DAOAbstractFactory.getInstance().createDAOEmployee().readAllEmployees();
-		return employees;
+	@Test
+	public void testReadEmployeeOk() {
+	}
+	
+	@Test
+	public void testReadEmployeeFail() {
+	}
+
+	@Test
+	public void testReadAllEmployeesOk() {
+
+	}
+	
+	@Test
+	public void testReadAllEmployeesFail() {
+		
 	}
 }
