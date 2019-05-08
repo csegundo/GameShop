@@ -249,14 +249,15 @@ public class DAOProductImpl implements DAOProduct {
 		return l;
 	}
 	
-	public TProduct readProductByName(String s) {
+	public TProduct readProductByNameAndPlatform(String name, Integer idp) {
 		TProduct tp = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Main.Main.database, Main.Main.user, Main.Main.password);
 			PreparedStatement ps;
-			ps= con.prepareStatement("SELECT ID FROM producto WHERE nombre=?", PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setString(1, s);
+			ps= con.prepareStatement("SELECT ID FROM producto WHERE (nombre=? AND IDPlataforma=?)", PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setString(1, name);
+			ps.setInt(2,  idp);
 			ResultSet rs = ps.executeQuery();
 
 			if(rs.next()){

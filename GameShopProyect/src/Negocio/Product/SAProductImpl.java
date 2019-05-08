@@ -31,7 +31,7 @@ public class SAProductImpl implements SAProduct {
 							tpr.get_type() == TProduct.game && !((TGame)tpr).get_description().isEmpty() &&
 							!((TGame)tpr).get_gender().isEmpty()){
 						
-						TProduct tp = DAOAbstractFactory.getInstance().createDAOProduct().readProductByName(tpr.get_name());
+						TProduct tp = DAOAbstractFactory.getInstance().createDAOProduct().readProductByNameAndPlatform(tpr.get_name(), tpl.get_id());
 						if(tp == null)
 							id = DAOAbstractFactory.getInstance().createDAOProduct().createProduct(tpr);
 					}
