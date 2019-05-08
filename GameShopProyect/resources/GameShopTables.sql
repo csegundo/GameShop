@@ -84,6 +84,8 @@ CREATE TABLE `asociado` (
 
 INSERT INTO proveedor(ID,direccion,NIF,telefono,activo) values (1,'calle igual','76664094B',622237470,true);
 INSERT INTO proveedor(ID,direccion,NIF,telefono,activo) values (2,'calle igual','16374546H',999888777,false);
+INSERT INTO proveedor(ID,direccion,NIF,telefono,activo) values (3,'calle igual','99296921X',222333444,false);
+INSERT INTO proveedor(ID,direccion,NIF,telefono,activo) values (4,'calle igual','45176319H',622237470,false);
 
 ----------------------------- 	PLATFORM   ---------------------------------------
 

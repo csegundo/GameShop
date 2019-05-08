@@ -27,26 +27,26 @@ public class TestSAProvider {
 	public void testCreateProviderOk() {
 		// Validez sintactica,proveedor no existente,
 		int result = sa.createProvider(new TProvider("88889999J","calle tuya",666777888));
-		assertEquals(3, result); 
+		assertEquals(5, result); 
 	}
 
 	@Test
 	public void testCreateProviderFail() {
 		// Invalidez Sintactica
 		int result = sa.createProvider(new TProvider("77788898G","calle otra",333337888)); //nif invalido
-		assertNotEquals(4,result);
+		assertNotEquals(6,result);
 		result = sa.createProvider(new TProvider("77788898T","",222222222));// campo nulo/vacio
-		assertNotEquals(4,result);																   
+		assertNotEquals(6,result);																   
 		result = sa.createProvider(new TProvider("77788898T","calle siete ocho nueve diez once doce trece catorce quince dieciseis",222222222));// campo address invalido(>50 chars)
-		assertNotEquals(4,result);
+		assertNotEquals(6,result);
 		result = sa.createProvider(new TProvider("77788898T","calle otra",234234));// telefono invalido sintacticamente (<9)
-		assertNotEquals(4,result);
+		assertNotEquals(6,result);
 		result = sa.createProvider(new TProvider("77788898T","calle otra",1342342334));//telefono invalido sintacticamente (>9)
-		assertNotEquals(4,result);
+		assertNotEquals(6,result);
 		result = sa.createProvider(new TProvider("77788898T",null,888999888));//campo nulo
 		// Proveedor existente
 		result = sa.createProvider(new TProvider("76664094B","calle otra",222237470)); //NIF EXISTENTE
-		assertNotEquals(4, result);
+		assertNotEquals(6, result);
 	}
 	
 	@Test
@@ -58,9 +58,9 @@ public class TestSAProvider {
 	@Test
 	public void testDeleteProviderFail() {
 		//Proveedor no existente
-		assertFalse(sa.deleteProvider(5));
+		assertFalse(sa.deleteProvider(6));
 		//Proveedor existente pero inactivo
-		assertFalse(sa.deleteProvider(2));
+		assertFalse(sa.deleteProvider(4));
 		// Proveedor id nulo
 		assertFalse(sa.deleteProvider(null));
 	}
@@ -101,10 +101,10 @@ public class TestSAProvider {
 	@Test
 	public void testReadProviderOk() {
 		//Proveedor existente
-		TProvider tpr = (new TProvider("16374546H","calle distinta",987654321));
-		tpr.set_id(2);
-		tpr.set_activated(true);
-		assertEquals(((TProvider)tpr).toString(), ((TProvider)sa.readProvider(2)).toString());	
+		TProvider tpr = (new TProvider("99296921X","calle igual",222333444));
+		tpr.set_id(3);
+		tpr.set_activated(false);
+		assertEquals(((TProvider)tpr).toString(), ((TProvider)sa.readProvider(3)).toString());	
 	}
 	
 	@Test
@@ -113,7 +113,7 @@ public class TestSAProvider {
 		TProvider tpr = new TProvider("76664094B","calle distinta",666666666);
 		tpr.set_id(5);
 		tpr.set_activated(true);
-		assertNotEquals(((TProvider)sa.readProvider(5)), tpr);
+		assertNotEquals(((TProvider)sa.readProvider(6)), tpr);
 		assertNotEquals(((TProvider)sa.readProvider(1)),null);
 	}
 

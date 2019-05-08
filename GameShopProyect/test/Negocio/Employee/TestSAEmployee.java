@@ -80,25 +80,29 @@ public class TestSAEmployee {
 		assertFalse(sa.updateEmployee(te));
 		te.set_activated(true);
 		te.set_id(1);
-		te.set_name("");
-		assertFalse(sa.up)
+		te.set_name("");																					
+		assertFalse(sa.updateEmployee(te));
+		te.set_name("Antonio");
+		te.setTurn("");
+		assertFalse(sa.updateEmployee(te));
 	}
 
 	@Test
 	public void testReadEmployeeOk() {
+		//Empleado existe
+		TEmployee te = new TEmployee("pablo","74769725Z","Early shift");
+		te.set_id(3);
+		te.set_activated(true);
+		assertEquals(te.toString(),(sa.readEmployee(te.get_id()).toString()));
 	}
 	
 	@Test
 	public void testReadEmployeeFail() {
-	}
-
-	@Test
-	public void testReadAllEmployeesOk() {
-
-	}
-	
-	@Test
-	public void testReadAllEmployeesFail() {
-		
+		//Empleado no existe
+		TEmployee te = new TEmployee("pablo","74769725Z","Early shift");
+		te.set_id(8);
+		te.set_activated(true);
+		assertNotEquals(te,sa.readEmployee(te.get_id()));
+		assertNotEquals(te,sa.readEmployee(null));
 	}
 }
